@@ -8,71 +8,63 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('index', {
             url: '/index',
-            templateUrl: "/src/views/Index/index.html",
+            templateUrl: "views/Index/index.html",
             controller: 'IndexCtrl'
         })
         .state('user', {
             abstract: true,
             url: '/user',
-            templateUrl: '/src/views/User/index.html',
+            templateUrl: 'views/User/index.html',
         })
         .state('wish', {
             abstract: true,
             url: '/wish',
-            templateUrl: '/src/views/Wish/index.html'
+            templateUrl: 'views/Wish/index.html'
         })
-        // .state('user.login', {
-        //     url: '/login',
-        //     templateUrl: '/src/views/User/login.html',
-        //     controller: 'LoginCtrl'
-        // })
-        // .state('user.logout', {
-        //     url: '/logout'
-        // })
         .state('user.info', {
             url: '/info/:userId',
-            templateUrl: '/src/views/User/userinfo.html',
+            templateUrl: 'views/User/userinfo.html',
             controller: 'UserInfoCtrl'
                 // controller: 'UserInfoCtrl'
         })
         .state('user.writewish', {
             url: '/writewish',
-            templateUrl: '/src/views/User/female/writewish.html',
+            templateUrl: 'views/User/female/writewish.html',
             controller: 'UserCtrl'
         })
         .state('user.writeinfo', {
             url: '/writeinfo/:rewrite',
-            templateUrl: '/src/views/User/female/writeinfo.html',
+            templateUrl: 'views/User/female/writeinfo.html',
             controller: 'UserCtrl'
         })
         .state('wish.femalewish', {
             url: '/female/mywish',
-            templateUrl: '/src/views/User/female/mywish.html',
+            templateUrl: 'views/User/female/mywish.html',
             controller: 'FemaleWishCtrl'
         })
         .state('wish.changewish', {
             url: '/female/changewish/:wishId',
-            templateUrl: '/src/views/User/female/changewish.html',
+            templateUrl: 'views/User/female/changewish.html',
             controller: 'WishCtrl'
         })
         .state('wish.malewish', {
             url: '/male/mywish/:pickerId',
-            templateUrl: '/src/views/User/male/mywish.html',
+            templateUrl: 'views/User/male/mywish.html',
             controller: 'MaleWishCtrl'
         })
         .state('user.message', {
         	url: '/message',
-        	templateUrl: '/src/views/User/message.html',
+        	templateUrl: 'views/User/message.html',
         	controller: 'MsgCtrl'
         })
         .state('user.contact', {
         	url: '/contact/:userId/:username',
-        	templateUrl: '/src/views/User/contact.html',
+        	templateUrl: 'views/User/contact.html',
         	controller: 'ContactCtrl'
         })
         .state('wish.detail', {
             url: '/detail/:wishId',
-            templateUrl: '/src/views/Wish/detail.html',
+            templateUrl: 'views/Wish/detail.html',
             controller: 'WishCtrl'
         });
 
