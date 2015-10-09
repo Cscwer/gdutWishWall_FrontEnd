@@ -1,4 +1,4 @@
-var app = angular.module('gdutWishWall', ['ui.router','infinite-scroll']);
+var app = angular.module('gdutWishWall', ['ui.router', 'infinite-scroll']);
 
 //配置路由规则
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -21,19 +21,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/wish',
             templateUrl: 'views/Wish/index.html'
         })
-        // .state('user.login', {
-        //     url: '/login',
-        //     templateUrl: '/src/views/User/login.html',
-        //     controller: 'LoginCtrl'
-        // })
-        // .state('user.logout', {
-        //     url: '/logout'
-        // })
         .state('user.info', {
             url: '/info/:userId',
             templateUrl: 'views/User/userinfo.html',
             controller: 'UserInfoCtrl'
-                // controller: 'UserInfoCtrl'
+            // controller: 'UserInfoCtrl'
         })
         .state('user.writewish', {
             url: '/writewish',
@@ -57,18 +49,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('wish.malewish', {
             url: '/male/mywish/:pickerId',
-            templateUrl: '/src/views/User/male/mywish.html',
+            templateUrl: 'views/User/male/mywish.html',
             controller: 'MaleWishCtrl'
         })
         .state('user.message', {
-        	url: '/message',
+            url: '/message',
             templateUrl: 'views/User/message.html',
-        	controller: 'MsgCtrl'
+            controller: 'MsgCtrl'
         })
         .state('user.contact', {
-        	url: '/contact/:userId/:username',
+            url: '/contact/:userId/:username',
             templateUrl: 'views/User/contact.html',
-        	controller: 'ContactCtrl'
+            controller: 'ContactCtrl'
         })
         .state('wish.detail', {
             url: '/detail/:wishId',
@@ -79,9 +71,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 //配置url参数规则
-app.config(['$locationProvider', function($locationProvider) {
-    $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: false
-    });
-}]);
+app.config(['$locationProvider',
+    function($locationProvider) {
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+    }
+]);
