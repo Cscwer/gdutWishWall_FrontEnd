@@ -1,4 +1,4 @@
-var app = angular.module('gdutWishWall', ['ui.router','infinite-scroll']);
+var app = angular.module('gdutWishWall', ['ui.router', 'infinite-scroll']);
 
 //配置路由规则
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -25,7 +25,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/info/:userId',
             templateUrl: 'views/User/userinfo.html',
             controller: 'UserInfoCtrl'
-                // controller: 'UserInfoCtrl'
+            // controller: 'UserInfoCtrl'
         })
         .state('user.writewish', {
             url: '/writewish',
@@ -53,14 +53,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'MaleWishCtrl'
         })
         .state('user.message', {
-        	url: '/message',
-        	templateUrl: 'views/User/message.html',
-        	controller: 'MsgCtrl'
+            url: '/message',
+            templateUrl: 'views/User/message.html',
+            controller: 'MsgCtrl'
         })
         .state('user.contact', {
-        	url: '/contact/:userId/:username',
-        	templateUrl: 'views/User/contact.html',
-        	controller: 'ContactCtrl'
+            url: '/contact/:userId/:username',
+            templateUrl: 'views/User/contact.html',
+            controller: 'ContactCtrl'
         })
         .state('wish.detail', {
             url: '/detail/:wishId',
@@ -71,9 +71,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 //配置url参数规则
-app.config(['$locationProvider', function($locationProvider) {
-    $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: false
-    });
-}]);
+app.config(['$locationProvider',
+    function($locationProvider) {
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+    }
+]);
