@@ -64,7 +64,7 @@ gulp.task('minify', ['clean:build', 'less'], function() {
 
     gulp.src('./app/index.html')
         .pipe(usemin({
-            js: [uglify(), rev()],
+            js: [rev()],
             css: [minifyCss(), 'concat', rev()]
         }))
         .pipe(gulp.dest('dist/'));
