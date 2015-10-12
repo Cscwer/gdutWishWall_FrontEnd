@@ -7,14 +7,50 @@
     <meta name="viewport" content="initial-scale=1" />
     <meta http-equiv="Cache-Control" content="no-transform " />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css">
     <!--build:css /public/stylesheets/app.css-->
-    <!-- <link rel="stylesheet" href="css/main.css"> -->
+    <link rel="stylesheet" href="css/main.css">
     <!--endbuild-->
 </head>
 
 <body>
-    <nav class="navbar navbar-default noBounce" role="navigation" ng-controller="HeaderCtrl">
+	<!-- Sidebars -->
+    <!-- <div class="sidebar sidebar-left"></div> -->
+    <!-- <div class="sidebar sidebar-right"></div> -->
+    <div class="app">
+    <div class="navbar navbar-app navbar-absolute-top">
+    <!-- Top Navbar -->
+	    <div class="navbar-brand navbar-brand-left">
+	    	许愿墙
+	    </div>
+	    <div class="navbar-brand navbar-brand-right">
+	    	祝福墙
+	    </div>
+    </div>
+    <div class="navbar navbar-app wishwall-navbar-app navbar-absolute-bottom">
+    <!-- Bottom Navbar -->
+        <div class="btn-group justified">
+            <a href="#" class="btn btn-navbar">
+                <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- App body -->
+
+    <div class='app-body'>
+      <div class='app-content'>
+        <div ui-view>
+
+    	</div>
+      </div>
+    </div>
+  </div><!-- ~ .app -->
+
+  <!-- Modals and Overlays -->
+  <div ui-yield-to="modals"></div>
+    <!-- <nav class="navbar navbar-default noBounce" role="navigation" ng-controller="HeaderCtrl">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
                 <span class="sr-only">切换导航</span>
@@ -34,14 +70,13 @@
                 <li ng-if="user.sex === 2"><a ui-sref="user.writewish">许愿</a></li>
             </ul>
         </div>
-    </nav>
-    <div ui-view class="scrollable" id="scrollable">
-
-    </div>
+    </nav> -->
+    
     <script src="components/jquery/dist/jquery.min.js"></script>
     <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="components/angular/angular.min.js"></script>
     <script src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
     <script src="components/scrollfix/scrollfix.js"></script>
     <script src="components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
     <script src="components/socket.io-client/socket.io.js"></script>

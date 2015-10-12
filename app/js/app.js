@@ -25,7 +25,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/info/:userId',
             templateUrl: 'views/User/userinfo.html',
             controller: 'UserInfoCtrl'
-            // controller: 'UserInfoCtrl'
         })
         .state('user.writewish', {
             url: '/writewish',
