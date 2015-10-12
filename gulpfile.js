@@ -67,12 +67,16 @@ gulp.task('minify', ['clean:build', 'less'], function() {
         .pipe(gulp.dest('dist/views'));
 
     gulp.src('app/index.html')
+
         .pipe(usemin({
-            js: [uglify(), rev()],
-            //css: [minifyCss(), 'concat', rev()]
+            js: [uglify({mangle: false}), rev()],
+            css: [minifyCss(), 'concat', rev()]
         }))
         .pipe(gulp.dest('dist/'));
 
+    gulp.src('./app/views/**/*.html')
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest('dist/views'));
 });
 
 // build 上线代码
