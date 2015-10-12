@@ -15,7 +15,7 @@ app.controller('IndexCtrl', ['$scope', 'GetUnpickedWish',
 
         //加载下一页的内容，只有登录的人才能查看
         $scope.page = 1; //当前页数
-        $scope.per_page = 5; //每页显示数目
+        $scope.per_page = 15; //每页显示数目
         $scope.isLoading = false;
         $scope.nextpage = function(page, per_page) {
             $scope.isLoading = true;

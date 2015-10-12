@@ -1,21 +1,16 @@
-<div>
 
-    <div class="container-fluid" infinite-scroll="nextpage(page, per_page)" infinite-scroll-disabled="isLoading" infinite-scroll-refresh="refreshPage(1, per_page)">
-        <div class="row-fluid" ng-repeat="wish in wishes">
-            <div class="hero-unit">
-                <h1>
-				<span class="badge">{{wish.wishType}}</span>{{wish.username}}
-			</h1>
-                <p>
-                    {{wish.school_area}}
-                </p>
-                <p>
-                    {{wish.wish}}
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-large" ui-sref="wish.detail({wishId: wish._id})">愿望详情</a>
-                </p>
+        <div class="section">
+            <div class="panel panel-default" ng-repeat="wish in wishes">
+                <div class="panel-body">
+                    <h1>
+                        <span class="badge">{{wish.wishType}}</span>
+                        {{wish.username}}
+                    </h1>
+                    <p>{{wish.school_area}}</p>
+                    <p>{{wish.wish}}</p>
+                    <p>
+                        <a class="btn btn-primary btn-large" ui-sref="wish.detail({wishId: wish._id})">愿望详情</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-</div>
