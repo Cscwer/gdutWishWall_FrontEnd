@@ -21,8 +21,9 @@
             <!-- Top Navbar -->
             <div class="navbar-brand navbar-brand-left">许愿墙</div>
             <div class="navbar-brand navbar-brand-right">祝福墙</div>
+
         </div>
-        <div class="navbar navbar-app wishwall-navbar-app navbar-absolute-bottom">
+        <div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-app-bottom navbar-absolute-bottom">
             <!-- Bottom Navbar -->
             <div class="btn-group justified">
                 <a href="#" class="btn btn-navbar"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
@@ -40,39 +41,15 @@
                 </a>
             </div>
         </div>
-        <div class="scrollable">
+        
 
-            <!-- App body -->
+        <!-- App body -->
 
-            <div class='app-body'>
-                <div class='app-content'>
-                    <div class="scrollable-header">
+        <div class='app-body'>
+            <div class='app-content'>
 
-                        <div class="auto-roll-img">
-                            <div class="carousel slide" id="myCarousel">
-                                <ol class="carousel-indicators">
-                                    <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
-                                    <li data-slide-to="1" data-target="#myCarousel" class=""></li>
-                                    <li data-slide-to="2" data-target="#myCarousel" class=""></li>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="item active">
-                                        <img alt="" src="img/1.jpg" height="1080" width="1920"></div>
-                                    <div class="item">
-                                        <img alt="" src="img/2.jpg" height="1600" width="2560"></div>
-                                    <div class="item">
-                                        <img alt="" src="img/3.jpg" height="1200" width="1920"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="scrollable-content">
-                        <div ui-view></div>
-                    </div>
-                    <div class="scrollable-footer"></div>
-                </div>
+                <div ui-view></div>
             </div>
-
         </div>
 
     </div>
