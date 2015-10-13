@@ -41,3 +41,20 @@
 .wishwall-panel-body {
   padding: 5px;
 }
+.headimg {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  vertical-align: inherit;
+}
+.username {
+  display: inline-block;
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+}
+.school_area {
+  font-size: 10px;
+  color: gray;
+}

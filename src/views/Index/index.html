@@ -22,11 +22,13 @@
                 <div class="col-xs-6 wishwall-col-6">
                     <div class="panel panel-default" ng-repeat="wish in oddwishes">
                         <div class="panel-body wishwall-panel-body">
-                            <p>
-                                <span class="badge">{{wish.wishType}}</span>
-                                {{wish.username}}
+                                <img ng-src="{{wish.userheadimg}}46" alt="" class="headimg">
+
+                            <p class="username">
+                                {{wish.username}} <br>
+                                <span class="school_area">{{wish.school_area}}</span>
+
                             </p>
-                            <p>{{wish.school_area}}</p>
                             <p>{{wish.wish}}</p>
                             <p>
                                 <a class="btn btn-primary btn-large" ui-sref="wish.detail({wishId: wish._id})">愿望详情</a>
@@ -37,11 +39,12 @@
                 <div class="col-xs-6 wishwall-col-6">
                     <div class="panel panel-default" ng-repeat="wish in evenwishes">
                         <div class="panel-body wishwall-panel-body">
-                            <p>
-                                <span class="badge">{{wish.wishType}}</span>
-                                {{wish.username}}
+                                <img ng-src="{{wish.userheadimg}}46" alt="" class="headimg">
+                            <p class="username">
+                                <!-- <span class="badge">{{wish.wishType}}</span> -->
+                                {{wish.username}} <br>
+                                <span class="school_area">{{wish.school_area}}</span>
                             </p>
-                            <p>{{wish.school_area}}</p>
                             <p>{{wish.wish}}</p>
                             <p>
                                 <a class="btn btn-primary btn-large" ui-sref="wish.detail({wishId: wish._id})">愿望详情</a>

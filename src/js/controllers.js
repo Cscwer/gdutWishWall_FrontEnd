@@ -236,6 +236,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'P
             //组装愿望数据包
             WishData.user = sessionStorage.getItem('uid');
             WishData.username = sessionStorage.getItem('username');
+            WishData.userheadimg = $rootScope.user.headimgurl;
             WishData.wishType = $scope.wish_type;
             WishData.wish = $scope.wish;
 
