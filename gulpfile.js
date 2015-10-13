@@ -13,13 +13,13 @@ var usemin = require('gulp-usemin');
 
 // 删除 css
 gulp.task('clean:css', function() {
-    del.sync('./app/css/*.css');
+    del.sync('./src/css/*.css');
 })
 
 // 启动本地服务
 gulp.task('connect', function() {
 	connect.server({
-        root: './app/',
+        root: './src/',
         port: 8080,
 		livereload: true
 	});
@@ -27,29 +27,29 @@ gulp.task('connect', function() {
 
 // 编译 less
 gulp.task('less', ['clean:css'], function() {
-	gulp.src('./app/less/*.less')
+	gulp.src('./src/less/*.less')
 		.pipe(less())
-        .pipe(gulp.dest('./app/css/'))
+        .pipe(gulp.dest('./src/css/'))
 		.pipe(connect.reload());
 });
 
 // 处理 js
 gulp.task('script', function() {
-	gulp.src('./app/js/*.js')
+	gulp.src('./src/js/*.js')
 		.pipe(connect.reload());
 });
 
 // 处理 html
 gulp.task('html', function() {
-	gulp.src(['./app/views/**/*.html', './app/index.html'])
+	gulp.src(['./src/views/**/*.html', './src/index.html'])
 		.pipe(connect.reload());
 });
 
 // 监控文件
 gulp.task('watch', function() {
-	gulp.watch(['./app/views/**/*.html', './app/index.html'], ['html']);
-	gulp.watch(['./app/less/*.less'], ['less']);
-	gulp.watch(['./app/js/*.js'], ['script']);
+	gulp.watch(['./src/views/**/*.html', './src/index.html'], ['html']);
+	gulp.watch(['./src/less/*.less'], ['less']);
+	gulp.watch(['./src/js/*.js'], ['script']);
 });
 
 // 本地开发
@@ -62,11 +62,11 @@ gulp.task('clean:build', function() {
 
 gulp.task('minify', ['clean:build', 'less'], function() {
 
-    gulp.src('app/views/**/*.html')
+    gulp.src('src/views/**/*.html')
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest('dist/views'));
 
-    gulp.src('app/index.html')
+    gulp.src('src/index.html')
 
         .pipe(usemin({
             js: [uglify({mangle: false}), rev()],
@@ -74,7 +74,7 @@ gulp.task('minify', ['clean:build', 'less'], function() {
         }))
         .pipe(gulp.dest('dist/'));
 
-    gulp.src('./app/views/**/*.html')
+    gulp.src('./src/views/**/*.html')
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest('dist/views'));
 });
