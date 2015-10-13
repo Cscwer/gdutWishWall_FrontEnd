@@ -1,14 +1,3 @@
-body {
-  font-size: 62.5%;/*10 ÷ 16 × 100% = 62.5%*/
-}
-.section {
-  padding: 16px;
-  background-color: #e8e7e7;
-}
-.panel {
-  margin-bottom: 16px;
-  border-radius: 0px;
-}
 .navbar-brand-right {
   float: right;
   padding-right: 40px;
@@ -18,19 +7,13 @@ body {
 }
 .wishwall-icon-home {
   font-size: 25px;
-  color: #ff5247;
 }
 .wishwall-navbar-app {
   min-height: 40px;
 }
-.wishwall-navbar-top {
-  background-color: #ff5247;
-  color: #fff;
-  border: none;
-}
 .wishwall-navbar-app-bottom {
   height: 40px;
-  background-color: #fff;
+  background-color: white;
 }
 .wishwall-navbar-top {
   margin-bottom: 0;

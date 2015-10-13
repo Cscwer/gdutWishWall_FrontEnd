@@ -7,9 +7,9 @@
     <meta name="viewport" content="initial-scale=1" />
     <meta http-equiv="Cache-Control" content="no-transform " />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="stylesheet" href="components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css">
+    <link rel="stylesheet" href="/src/components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css">
     <!--build:css /public/stylesheets/app.css-->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/src/css/main.css">
 
     <!--endbuild-->
 </head>
@@ -22,20 +22,20 @@
             <div class="navbar-brand navbar-brand-left navbar-active" ui-sref="index" ui-sref-opts="{reload: true}">许愿墙</div>
             <div class="navbar-brand navbar-brand-right">祝福墙</div>
         </div>
-        <div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-app-bottom navbar-absolute-bottom">
+        <div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-app-bottom navbar-absolute-bottom" ng-controller="HeaderCtrl">
             <!-- Bottom Navbar -->
             <div class="btn-group justified">
-                <a href="#" class="btn btn-navbar"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
+                <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="index" ui-sref-opts="{reload: true}"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
                 </a>
-                <a href="#" class="btn btn-navbar"> <i class="fa fa-search wishwall-icon-home fa-navbar"></i>
+                <a href="javascript:void(0)" class="btn btn-navbar"> <i class="fa fa-search wishwall-icon-home fa-navbar"></i>
                 </a>
-                <a href="#" class="btn btn-navbar">
+                <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="user.writewish">
                     <i class="fa fa-plus wishwall-icon-home fa-navbar"></i>
                 </a>
-                <a href="#" class="btn btn-navbar">
+                <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="user.message" ng-click="cancelMsgCount()" ui-sref-opts="{reload: true}">
                     <i class="fa fa-comment wishwall-icon-home fa-navbar"></i>
                 </a>
-                <a href="#" class="btn btn-navbar">
+                <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="user.info({userId: user._id})">
                     <i class="fa fa-user wishwall-icon-home fa-navbar"></i>
                 </a>
             </div>
@@ -57,17 +57,17 @@
     <!-- Modals and Overlays -->
     <div ui-yield-to="modals"></div>
 
-    <script src="components/jquery/dist/jquery.min.js"></script>
-    <script src="components/angular/angular.min.js"></script>
-    <script src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
-    <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="components/scrollfix/scrollfix.js"></script>
-    <script src="components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
-    <script src="components/socket.io-client/socket.io.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/controllers.js"></script>
+    <script src="/src/components/jquery/dist/jquery.min.js"></script>
+    <script src="/src/components/angular/angular.min.js"></script>
+    <script src="/src/components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/src/components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
+    <script src="/src/components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/src/components/scrollfix/scrollfix.js"></script>
+    <script src="/src/components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="/src/components/socket.io-client/socket.io.js"></script>
+    <script src="/src/js/app.js"></script>
+    <script src="/src/js/services.js"></script>
+    <script src="/src/js/controllers.js"></script>
     <!--endbuild-->
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 

@@ -19,7 +19,7 @@ gulp.task('clean:css', function() {
 // 启动本地服务
 gulp.task('connect', function() {
 	connect.server({
-        root: './src/',
+        root: './',
         port: 8080,
 		livereload: true
 	});

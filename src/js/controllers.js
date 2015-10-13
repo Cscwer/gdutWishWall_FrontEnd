@@ -79,14 +79,14 @@ app.controller('HeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
             });
 
         //登录保护
-        $rootScope.$on('$stateChangeStart', function(event, toState) {
+        // $rootScope.$on('$stateChangeStart', function(event, toState) {
 
-            if ($rootScope.user === null) {
-                event.preventDefault();
-                $state.go('index');
-            }
+        //     if ($rootScope.user === null) {
+        //         event.preventDefault();
+        //         $state.go('index');
+        //     }
 
-        });
+        // });
 
         //系统消息队列
         $rootScope.SystemMsg = [];
