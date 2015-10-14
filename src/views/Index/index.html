@@ -1,8 +1,8 @@
 <div class="scrollable">
     <div class="scrollable-content">
-        <div class="auto-roll-img">
+        <div class="auto-roll-img" autoroll>
             <div class="carousel slide" id="myCarousel">
-                <ol class="carousel-indicators">
+                <ol class="carousel-indicators wishwall-carousel-indicators">
                     <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
                     <li data-slide-to="1" data-target="#myCarousel" class=""></li>
                     <li data-slide-to="2" data-target="#myCarousel" class=""></li>
@@ -22,7 +22,7 @@
                 <div class="col-xs-6 wishwall-col-6">
                     <div class="panel panel-default wishwall-panel" ng-repeat="wish in oddwishes">
                         <div class="panel-body wishwall-panel-body">
-                            <img ng-src="{{wish.userheadimg}}46" alt="" class="headimg">
+                            <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg">
 
                             <p class="username">
                                 {{wish.username}}
@@ -39,7 +39,7 @@
                 <div class="col-xs-6 wishwall-col-6">
                     <div class="panel panel-default wishwall-panel" ng-repeat="wish in evenwishes">
                         <div class="panel-body wishwall-panel-body">
-                            <img ng-src="{{wish.userheadimg}}46" alt="" class="headimg">
+                            <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg">
                             <p class="username">
                                 {{wish.username}}
                                 <br>
