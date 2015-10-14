@@ -17,38 +17,36 @@
                 </div>
             </div>
         </div>
-        <div class="section">
+        <div class="section wishwall-section">
             <div class="row">
                 <div class="col-xs-6 wishwall-col-6">
-                    <div class="panel panel-default" ng-repeat="wish in oddwishes">
+                    <div class="panel panel-default wishwall-panel" ng-repeat="wish in oddwishes">
                         <div class="panel-body wishwall-panel-body">
-                                <img ng-src="{{wish.userheadimg}}46" alt="" class="headimg">
+                            <img ng-src="{{wish.userheadimg}}46" alt="" class="headimg">
 
                             <p class="username">
-                                {{wish.username}} <br>
+                                {{wish.username}}
+                                <br>
                                 <span class="school_area">{{wish.school_area}}</span>
 
                             </p>
-                            <p>{{wish.wish}}</p>
-                            <p>
-                                <a class="btn btn-primary btn-large" ui-sref="wish.detail({wishId: wish._id})">愿望详情</a>
-                            </p>
+                            <hr class="wishborder">
+                            <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
+                            <img src="/src/img/1.jpg" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-6 wishwall-col-6">
-                    <div class="panel panel-default" ng-repeat="wish in evenwishes">
+                    <div class="panel panel-default wishwall-panel" ng-repeat="wish in evenwishes">
                         <div class="panel-body wishwall-panel-body">
-                                <img ng-src="{{wish.userheadimg}}46" alt="" class="headimg">
+                            <img ng-src="{{wish.userheadimg}}46" alt="" class="headimg">
                             <p class="username">
-                                <!-- <span class="badge">{{wish.wishType}}</span> -->
-                                {{wish.username}} <br>
+                                {{wish.username}}
+                                <br>
                                 <span class="school_area">{{wish.school_area}}</span>
                             </p>
-                            <p>{{wish.wish}}</p>
-                            <p>
-                                <a class="btn btn-primary btn-large" ui-sref="wish.detail({wishId: wish._id})">愿望详情</a>
-                            </p>
+                            <hr class="wishborder">
+                            <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
                         </div>
                     </div>
                 </div>
