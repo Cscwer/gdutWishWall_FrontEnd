@@ -25,12 +25,6 @@ body {
   border: none;
   color: rgba(255, 255, 255, 0.5);
 }
-.wishwall-navbar-top a {
-  color: rgba(255, 255, 255, 0.5);
-}
-.navbar-active a {
-  color: #fff;
-}
 .wishwall-navbar-app .navbar-brand {
   height: 40px;
   line-height: 10px;
@@ -94,4 +88,10 @@ body {
 .wishwall-carousel-indicators .active {
   width: 7px;
   height: 7px;
+}
+.wishwall-navbar-top a {
+  color: rgba(255, 255, 255, 0.5);
+}
+.navbar-active a {
+  color: #fff;
 }
