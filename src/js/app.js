@@ -31,9 +31,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: '/src/views/User/female/writewish.html',
             controller: 'UserCtrl'
         })
+        .state('user.writebless', {
+            url: '/writebless',
+            templateUrl: '/src/views/User/writebless.html',
+            controller: 'UserCtrl'
+        })
         .state('user.writeinfo', {
             url: '/writeinfo/:rewrite',
             templateUrl: '/src/views/User/female/writeinfo.html',
+            controller: 'UserCtrl'
+        })
+        .state('user.writeblessinfo', {
+            url: '/writeblessinfo/:rewrite',
+            templateUrl: '/src/views/User/writeblessinfo.html',
             controller: 'UserCtrl'
         })
         .state('wish.femalewish', {

@@ -17,7 +17,7 @@ body {
 }
 .wishwall-navbar-app-bottom {
   height: 40px;
-  background-color: white;
+  background-color: #fff;
 }
 .wishwall-navbar-top {
   margin-bottom: 0;
@@ -25,8 +25,11 @@ body {
   border: none;
   color: rgba(255, 255, 255, 0.5);
 }
-.navbar-active {
-  color: white;
+.wishwall-navbar-top a {
+  color: rgba(255, 255, 255, 0.5);
+}
+.navbar-active a {
+  color: #fff;
 }
 .wishwall-navbar-app .navbar-brand {
   height: 40px;

@@ -1,7 +1,7 @@
 //主页控制器
 
-app.controller('IndexCtrl', ['$scope', 'GetUnpickedWish',
-    function($scope, GetUnpickedWish) {
+app.controller('IndexCtrl', ['$scope', 'GetAllBless', 'MakePraise', 'GetUnpickedWish',
+    function($scope, GetAllBless, MakePraise, GetUnpickedWish) {
 
         //愿望列表
         $scope.oddwishes = [];
@@ -22,7 +22,6 @@ app.controller('IndexCtrl', ['$scope', 'GetUnpickedWish',
             $scope.isLoading = true;
             GetUnpickedWish.getWishes(page, per_page)
                 .success(function(data, status) {
-                    
                     if (status === 200) {
                         // alert(data.wishes.length);
                         for (var i = 0; i < data.wishes.length; i = i + 2) {
@@ -52,7 +51,46 @@ app.controller('IndexCtrl', ['$scope', 'GetUnpickedWish',
 
         $scope.nextpage(1, 15);
 
+        //祝福列表
+        $scope.blesses = [];
 
+        $scope.pageForBless = 1;
+        $scope.per_pageForBless = 5;
+        $scope.nextpageBless = function(page, per_page) {
+            $scope.isLoading = true;
+            GetAllBless.getBlesses(page, per_page)
+                .success(function(data, status) {
+                    if(status === 200) {
+                        for(var i = 0; i < data.blesses.length; i++) {
+                            $scope.blesses.push(data.blesses[i]);
+                        }
+                        $scope.pageForBless++;
+                        $scope.isLoading = false;
+                    }
+                });
+        };
+
+        $scope.nextpageBless(1, 5);
+
+        //祝福点赞
+
+        $scope.praiseIt = function(blessId) {
+            console.log(blessId);
+            var data = {
+                //userId: sessionStorage.getItem('uid'),
+                userId: 'asdasdcmjnnjbbj',
+                blessId: blessId.blessId
+            };
+            console.log(data);
+            MakePraise.makePraise(data)
+                 .success(function(data, status) {
+                    if(status === 200) {
+                        console.log('点赞成功');
+                    } else {
+                        console.log(data);
+                    }
+                 }); 
+        };
     }
 ]);
 
@@ -164,8 +202,8 @@ app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams'
 
 
 //用户控制器
-app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'PutWishService', 'WishData', 'GetUserInfoService', 'UpdateInfoService', 'UpdateWishService', 'WeChatService',
-    function($scope, $rootScope, $state, $stateParams, PutWishService, WishData, GetUserInfoService, UpdateInfoService, UpdateWishService, WeChatService) {
+app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'PutWishService', 'PutBlessService', 'WishData', 'BlessData', 'GetUserInfoService', 'UpdateInfoService', 'UpdateWishService', 'WeChatService',
+    function($scope, $rootScope, $state, $stateParams, PutWishService, PutBlessService, WishData, BlessData, GetUserInfoService, UpdateInfoService, UpdateWishService, WeChatService) {
 
         $scope.isRewrite = $stateParams.rewrite;
 
@@ -345,6 +383,50 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'P
 
 
         };
+
+        //*************Bless Part***************//
+
+        $scope.setUserBlessInfo = function() {
+
+            //组装祝福数据包
+            BlessData.user = sessionStorage.getItem('uid');
+            BlessData.username = sessionStorage.getItem('username');
+            BlessData.bless = $scope.bless;
+
+            $state.go('user.writeblessinfo');
+        };
+
+        //发布祝福
+        $scope.publicBless = function() {
+
+            //组装个人信息数据包
+            var InfoData = {
+                user: sessionStorage.getItem('uid'),
+                real_name: $scope.real_name,
+                school_area: $scope.school_area,
+                college_name: $scope.college_name,
+                long_tel: $scope.long_tel,
+                short_tel: $scope.short_tel
+            };
+            BlessData.school_area = $scope.school_area;
+            //发布愿望
+            PutBlessService.putBless(BlessData)
+                .success(function(data, status) {
+                    if (status === 200) {
+                        //更新个人信息
+                        UpdateInfoService.updateInfo(InfoData)
+                            .success(function(data, status) {
+                                if (status === 200) {
+                                    alert('祝福成功');
+                                    $state.go('index');
+                                }
+                            });
+                    }
+                });
+
+        };
+
+        //*************Bless Part***************//
 
 
 

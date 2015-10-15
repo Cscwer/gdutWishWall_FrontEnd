@@ -188,6 +188,52 @@ app.factory('ContactService', ['$http',
     }
 ]);
 
+/***************************祝福墙服务**********************/
+
+//获取所有祝福
+app.factory('GetAllBless', ['$http',
+    function($http) {
+        return {
+            getBlesses: function(page, per_page) {
+                return $http({
+                    method: 'GET',
+                    url: Host + '/getallbless?page=' + page + '&per_page=' + per_page
+                });
+            }
+        };
+    }
+]);
+
+//祝福点赞
+app.factory('MakePraise', ['$http',
+    function($http) {
+        return {
+            makePraise: function(data) {
+                return $http({
+                    method: 'POST',
+                    url: Host + '/makepraise',
+                    data: data
+                });
+            }
+        };
+    }
+]);
+
+//发布祝福
+app.factory('PutBlessService', ['$http',
+    function($http) {
+        return {
+            putBless: function(data) {
+                return $http({
+                    method: 'POST',
+                    url: Host + '/putbless',
+                    data: data
+                });
+            }
+        };
+    }
+]);
+
 /***************************微信服务************************/
 
 //根据code获取网页授权access_token及用户资料
@@ -227,5 +273,13 @@ app.factory('WishData', function() {
         username: '',
         wishType: '',
         wish: ''
+    };
+});
+
+app.factory('BlessData', function() {
+    return {
+        user: '',
+        username: '',
+        bless: ''
     };
 });
