@@ -1,5 +1,14 @@
-<div class="scrollable" ui-if="activeTab == 1">
+<div class="scrollable">
     <div class="scrollable-content">
+        <div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-top">
+            <!-- Top Navbar -->
+            <div class="navbar-brand navbar-brand-left">
+                <a ui-sref="index.wishwall" ui-sref-opts="{reload: true}" class="active">许愿墙</a>
+            </div>
+            <div class="navbar-brand navbar-brand-right">
+                <a ui-sref="index.blesswall" ui-sref-opts="{reload: true}">祝福墙</a>
+            </div>
+        </div>
         <div class="auto-roll-img" autoroll>
             <div class="carousel slide" id="myCarousel">
                 <ol class="carousel-indicators wishwall-carousel-indicators">
@@ -17,67 +26,6 @@
                 </div>
             </div>
         </div>
-        <div class="section wishwall-section">
-            <div class="row">
-                <div class="col-xs-6 wishwall-col-6">
-                    <div class="panel panel-default wishwall-panel" ng-repeat="wish in oddwishes">
-                        <div class="panel-body wishwall-panel-body">
-                            <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg">
-
-                            <p class="username">
-                                {{wish.username}}
-                                <br>
-                                <span class="school_area">{{wish.school_area}}</span>
-
-                            </p>
-                            <hr class="wishborder">
-                            <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
-                            <img src="/src/img/1.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 wishwall-col-6">
-                    <div class="panel panel-default wishwall-panel" ng-repeat="wish in evenwishes">
-                        <div class="panel-body wishwall-panel-body">
-                            <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg">
-                            <p class="username">
-                                {{wish.username}}
-                                <br>
-                                <span class="school_area">{{wish.school_area}}</span>
-                            </p>
-                            <hr class="wishborder">
-                            <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="scrollable" ui-if="activeTab == 2">
-    <div class="scrollable-content">
-        <div class="section wishwall-section">
-            <div class="row">
-                <div class="col-xs-12 wishwall-col-6">
-                    <div class="panel panel-default wishwall-panel" ng-repeat="bless in blesses">
-                        <div class="panel-body wishwall-panel-body">
-                            <img ng-src="{{bless.userheadimg}}64" alt="" class="headimg">
-
-                            <p class="username">
-                                {{bless.username}}
-                                <br>
-                                <span class="school_area">{{bless.school_area}}</span>
-
-                            </p>
-                            <hr class="wishborder">
-                            <!-- <p class="wish_content" ui-sref="bless.detail({blessId: bless._id})">{{bless.bless}}</p> -->
-                            <p class="wish_content">{{bless.bless}}</p>
-                            <img src="/src/img/1.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div ui-view></div>
     </div>
 </div>

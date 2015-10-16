@@ -1,7 +1,7 @@
 //主页控制器
 
-app.controller('IndexCtrl', ['$scope', 'GetAllBless', 'MakePraise', 'GetUnpickedWish',
-    function($scope, GetAllBless, MakePraise, GetUnpickedWish) {
+app.controller('IndexCtrl', ['$scope', 'GetUnpickedWish',
+    function($scope, GetUnpickedWish) {
 
         //愿望列表
         $scope.oddwishes = [];
@@ -27,9 +27,9 @@ app.controller('IndexCtrl', ['$scope', 'GetAllBless', 'MakePraise', 'GetUnpicked
                         for (var i = 0; i < data.wishes.length; i = i + 2) {
                             $scope.oddwishes.push(data.wishes[i]);
                         }
-                        for(var i = 1; i < data.wishes.length; i = i + 2) {
+                        for (var i = 1; i < data.wishes.length; i = i + 2) {
                             $scope.evenwishes.push(data.wishes[i]);
-                        } 
+                        }
                         $scope.page++;
                         $scope.isLoading = false;
                     }
@@ -51,6 +51,13 @@ app.controller('IndexCtrl', ['$scope', 'GetAllBless', 'MakePraise', 'GetUnpicked
 
         $scope.nextpage(1, 15);
 
+
+    }
+]);
+
+//祝福墙主页控制器
+app.controller('BlessIndexCtrl', ['$scope', '$state', 'GetAllBless', 'MakePraise',
+    function($scope, $state, GetAllBless, MakePraise) {
         //祝福列表
         $scope.blesses = [];
 
@@ -60,8 +67,8 @@ app.controller('IndexCtrl', ['$scope', 'GetAllBless', 'MakePraise', 'GetUnpicked
             $scope.isLoading = true;
             GetAllBless.getBlesses(page, per_page)
                 .success(function(data, status) {
-                    if(status === 200) {
-                        for(var i = 0; i < data.blesses.length; i++) {
+                    if (status === 200) {
+                        for (var i = 0; i < data.blesses.length; i++) {
                             $scope.blesses.push(data.blesses[i]);
                         }
                         $scope.pageForBless++;
@@ -83,19 +90,18 @@ app.controller('IndexCtrl', ['$scope', 'GetAllBless', 'MakePraise', 'GetUnpicked
             };
             console.log(data);
             MakePraise.makePraise(data)
-                 .success(function(data, status) {
-                    if(status === 200) {
+                .success(function(data, status) {
+                    if (status === 200) {
                         console.log('点赞成功');
                     } else {
                         console.log(data);
                     }
-                 }); 
+                });
         };
     }
 ]);
-
 //导航栏控制器
-app.controller('HeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$http', 'MsgService', 'WeChatService',
+app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$http', 'MsgService', 'WeChatService',
 
     function($scope, $rootScope, $state, $location, $http, MsgService, WeChatService) {
 
@@ -183,13 +189,14 @@ app.controller('HeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
     }
 ]);
 
+
+
 //用户信息控制器
 app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'GetUserInfoService',
     function($scope, $rootScope, $state, $stateParams, GetUserInfoService) {
         $scope.isSelf = ($stateParams.userId === sessionStorage.getItem('uid'))
         var data = {
             userId: $stateParams.userId
-            // userId: sessionStorage.getItem('uid')
         };
         GetUserInfoService.getUserInfo(data)
             .success(function(data, status) {
@@ -199,6 +206,9 @@ app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams'
             });
     }
 ]);
+
+// app.controller('UserInfoWishWallCtrl', ['$scope', function($scope) {
+// }]);
 
 
 //用户控制器

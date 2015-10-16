@@ -3,29 +3,43 @@ var app = angular.module('gdutWishWall', ['ui.router', 'infinite-scroll', 'mobil
 //配置路由规则
 app.config(function($stateProvider, $urlRouterProvider) {
     //默认指向 index
-    $urlRouterProvider.otherwise("/index");
+    $urlRouterProvider.otherwise("/index/wishwall");
     //配置状态路由
     $stateProvider
         .state('index', {
             url: '/index',
             templateUrl: "/src/views/Index/index.html",
-            controller: 'IndexCtrl'
+            controller: 'IndexCtrl',
+            abstract: true
+        })
+        .state('index.wishwall', {
+            url: '/wishwall',
+            templateUrl: '/src/views/Index/wishwall.html'
+        })
+        .state('index.blesswall', {
+            url: '/blesswall',
+            templateUrl: '/src/views/Index/blesswall.html',
+            controller: 'BlessIndexCtrl'
         })
         .state('user', {
-            abstract: true,
             url: '/user',
-            templateUrl: '/src/views/User/index.html',
+            templateUrl: '/src/views/User/index.html'
+        })
+        .state('userinfo', {
+            url: '/userinfo/:userId',
+            templateUrl: '/src/views/User/userinfo.html',
+            controller: 'UserInfoCtrl'
         })
         .state('wish', {
             abstract: true,
             url: '/wish',
             templateUrl: '/src/views/Wish/index.html'
         })
-        .state('user.info', {
-            url: '/info/:userId',
-            templateUrl: '/src/views/User/userinfo.html',
-            controller: 'UserInfoCtrl'
-        })
+        // .state('userinfo.wishwall', {
+        //     url: '/wishwall/:userId',
+        //     templateUrl: '/src/views/User/userinfowishwall.html'
+        //     controller: 'UserInfoWishWallCtrl'
+        // })
         .state('user.writewish', {
             url: '/writewish',
             templateUrl: '/src/views/User/female/writewish.html',

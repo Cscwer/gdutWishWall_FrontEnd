@@ -1,3 +1,4 @@
+html,
 body {
   color: #000;
 }
@@ -16,13 +17,25 @@ body {
 }
 .wishwall-navbar-app-bottom {
   height: 40px;
-  background-color: #fff;
+  background-color: white;
+}
+.wishwall-navbar-app-bottom i {
+  color: rgba(0, 0, 0, 0.5);
+}
+.wishwall-navbar-app-bottom .active i {
+  color: #ff5247;
 }
 .wishwall-navbar-top {
   margin-bottom: 0;
   background-color: #ff5247;
   border: none;
   color: rgba(255, 255, 255, 0.5);
+}
+.wishwall-navbar-top a {
+  color: rgba(255, 255, 255, 0.5);
+}
+.wishwall-navbar-app a.active {
+  color: white;
 }
 .wishwall-navbar-app .navbar-brand {
   height: 40px;
@@ -88,9 +101,35 @@ body {
   width: 7px;
   height: 7px;
 }
-.wishwall-navbar-top a {
-  color: rgba(255, 255, 255, 0.5);
+.user-info-bg {
+  height: 180px;
+  padding: 25px 0 0 0;
+  background-image: url('/src/img/1.jpg');
+  background-size: cover;
 }
-.navbar-active a {
-  color: #fff;
+.user-info-bg img.userheadimg {
+  width: 64px;
+  border-radius: 50%;
+}
+.userinfo-navbar-top {
+  color: #ffffff;
+}
+.visitors {
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-top: 40px;
+}
+.visitors img {
+  width: 30px;
+  border-radius: 50%;
+  position: relative;
+  top: 10px;
+  margin-right: 10px;
+  float: left;
+}
+.visitors img:first-child {
+  margin-left: 5px;
+}
+.visitors img:last-child {
+  margin-right: 5px;
 }

@@ -17,20 +17,12 @@
 <body>
 
     <div class="app">
-         <div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-top" ui-state='activeTab' ui-default='1'>
-            <!-- Top Navbar -->
-            <div class="navbar-brand navbar-brand-left navbar-active" ui-sref="index" ui-sref-opts="{reload: true}" ui-class="{'active': activeTab == 1}">
-                <a ui-set="{'activeTab': 1}">许愿墙</a>
-            </div>
-            <div class="navbar-brand navbar-brand-right" ui-sref="index" ui-sref-opts="{reload: true}" ui-class="{'active': activeTab == 2}">
-                <a ui-set="{'activeTab': 2}">祝福墙</a>
-            </div>
-        </div>
+        
 
-        <div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-app-bottom navbar-absolute-bottom" ng-controller="HeaderCtrl">
+        <div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-app-bottom navbar-absolute-bottom" ng-controller="LeaderCtrl">
             <!-- Bottom Navbar -->
             <div class="btn-group justified">
-                <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="index" ui-sref-opts="{reload: true}"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
+                <a href="javascript:void(0)" class="btn btn-navbar btn-navbar-active" ui-class ui-sref="index.wishwall" ui-sref-opts="{reload: true}"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
                 </a>
                 <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="user.writebless"> <i class="fa fa-search wishwall-icon-home fa-navbar"></i>
                 </a>
@@ -40,12 +32,11 @@
                 <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="user.message" ng-click="cancelMsgCount()" ui-sref-opts="{reload: true}">
                     <i class="fa fa-comment wishwall-icon-home fa-navbar"></i>
                 </a>
-                <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="user.info({userId: user._id})">
+                <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="userinfo({userId: '55f95741fa14b7b5181938c1'})">
                     <i class="fa fa-user wishwall-icon-home fa-navbar"></i>
                 </a>
             </div>
         </div>
-        
 
         <!-- App body -->
 

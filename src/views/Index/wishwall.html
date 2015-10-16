@@ -1,0 +1,34 @@
+<div class="section wishwall-section">
+    <div class="row">
+        <div class="col-xs-6 wishwall-col-6">
+            <div class="panel panel-default wishwall-panel" ng-repeat="wish in oddwishes">
+                <div class="panel-body wishwall-panel-body">
+                    <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg">
+
+                    <p class="username">
+                        {{wish.username}}
+                        <br>
+                        <span class="school_area">{{wish.school_area}}</span>
+
+                    </p>
+                    <hr class="wishborder">
+                    <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
+                    <img src="/src/img/1.jpg" alt=""></div>
+            </div>
+        </div>
+        <div class="col-xs-6 wishwall-col-6">
+            <div class="panel panel-default wishwall-panel" ng-repeat="wish in evenwishes">
+                <div class="panel-body wishwall-panel-body">
+                    <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg">
+                    <p class="username">
+                        {{wish.username}}
+                        <br>
+                        <span class="school_area">{{wish.school_area}}</span>
+                    </p>
+                    <hr class="wishborder">
+                    <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

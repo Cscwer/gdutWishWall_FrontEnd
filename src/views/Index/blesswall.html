@@ -1,0 +1,22 @@
+        <div class="section wishwall-section">
+            <div class="row">
+                <div class="col-xs-12 wishwall-col-6">
+                    <div class="panel panel-default wishwall-panel" ng-repeat="bless in blesses">
+                        <div class="panel-body wishwall-panel-body">
+                            <img ng-src="{{bless.userheadimg}}64" alt="" class="headimg">
+
+                            <p class="username">
+                                {{bless.username}}
+                                <br>
+                                <span class="school_area">{{bless.school_area}}</span>
+
+                            </p>
+                            <hr class="wishborder">
+                            <!-- <p class="wish_content" ui-sref="bless.detail({blessId: bless._id})">{{bless.bless}}</p> -->
+                            <p class="wish_content">{{bless.bless}}</p>
+                            <img src="/src/img/1.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
