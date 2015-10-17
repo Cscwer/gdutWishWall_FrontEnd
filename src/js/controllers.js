@@ -202,6 +202,7 @@ app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams'
             .success(function(data, status) {
                 if (status === 200) {
                     $scope.user = data.user;
+                    $state.go('userinfo.wishwall', {sex: $scope.user.sex});
                 }
             });
     }

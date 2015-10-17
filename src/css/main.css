@@ -2,6 +2,9 @@ html,
 body {
   color: #000;
 }
+textarea {
+  resize: none;
+}
 .navbar-brand-right {
   float: right;
   padding-right: 40px;
@@ -49,6 +52,9 @@ body {
 }
 .auto-roll-img {
   height: 115px;
+}
+.wishwall-section .wishwall-panel {
+  border: none;
 }
 .wishwall-col-6 {
   padding-left: 5px;
@@ -153,9 +159,9 @@ body {
   margin-right: 5px;
 }
 .userinfo-navbar-middle {
-  margin: 0;
-  padding-left: 10px;
-  padding-right: 10px;
+  margin-bottom: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
   border: none;
   min-height: 40px;
 }
@@ -165,7 +171,20 @@ body {
   text-align: center;
   line-height: 37px;
   padding: 0;
+  width: 100%;
 }
 .userinfo-navbar-middle .active {
   border-bottom: 3px solid rgba(255, 82, 71, 0.5);
+}
+.userinfo-navbar-middle .row {
+  margin: 0;
+}
+.userinfo-navbar-middle .row .col-xs-6 {
+  padding: 0;
+}
+.userinfo-navbar-middle .row .col-xs-6:first-child {
+  padding-right: 5px;
+}
+.userinfo-navbar-middle .row .col-xs-6:last-child {
+  padding-left: 5px;
 }
