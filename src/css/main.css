@@ -9,15 +9,28 @@ body {
 .navbar-brand-left {
   padding-left: 40px;
 }
-.wishwall-icon-home {
+.wishwall-icon {
   font-size: 25px;
 }
 .wishwall-navbar-app {
   min-height: 40px;
 }
+.wishwall-navbar-app a.active {
+  color: white;
+}
+.wishwall-navbar-app .navbar-brand {
+  height: 40px;
+  line-height: 10px;
+}
+.wishwall-navbar-app .btn-navbar {
+  line-height: 45px;
+}
 .wishwall-navbar-app-bottom {
   height: 40px;
   background-color: white;
+}
+.wishwall-navbar-app-bottom .wishwall-icon-home {
+  font-size: 25px;
 }
 .wishwall-navbar-app-bottom i {
   color: rgba(0, 0, 0, 0.5);
@@ -33,16 +46,6 @@ body {
 }
 .wishwall-navbar-top a {
   color: rgba(255, 255, 255, 0.5);
-}
-.wishwall-navbar-app a.active {
-  color: white;
-}
-.wishwall-navbar-app .navbar-brand {
-  height: 40px;
-  line-height: 10px;
-}
-.wishwall-navbar-app .btn-navbar {
-  line-height: 45px;
 }
 .auto-roll-img {
   height: 115px;
@@ -97,19 +100,35 @@ body {
   width: 5px;
   height: 5px;
 }
-.wishwall-carousel-indicators .active {
+.wishwall-carousel-indicators li .active {
   width: 7px;
   height: 7px;
 }
-.user-info-bg {
+.wishwall-list-group {
+  margin-bottom: 0;
+}
+.wishwall-list-group .user-info-bg {
   height: 180px;
   padding: 25px 0 0 0;
   background-image: url('/src/img/1.jpg');
   background-size: cover;
 }
-.user-info-bg img.userheadimg {
+.wishwall-list-group .user-info-bg img.userheadimg {
   width: 64px;
   border-radius: 50%;
+}
+.wishwall-list-group .user-info-bg span {
+  position: absolute;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 5px;
+  height: 35px;
+}
+.wishwall-list-group .user-info-bg .info_school_area {
+  margin-right: 20px;
+}
+.wishwall-list-group .user-info-bg .info_college_name {
+  margin-left: 20px;
 }
 .userinfo-navbar-top {
   color: #ffffff;
@@ -132,4 +151,11 @@ body {
 }
 .visitors img:last-child {
   margin-right: 5px;
+}
+.userinfo-navbar-middle {
+  border: none;
+  min-height: 40px;
+}
+.userinfo-navbar-middle .navbar-brand a {
+  color: #ff5247;
 }

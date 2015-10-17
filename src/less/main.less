@@ -1,3 +1,6 @@
+@themecolor: #ff5247;
+@navbartopheight: 40px;
+@navbarbottomheight: 40px;
 html,body {
 	color: #000;
 }
@@ -8,42 +11,48 @@ html,body {
 .navbar-brand-left {
 	padding-left: 40px;
 }
-.wishwall-icon-home {
+.wishwall-icon {
 	font-size: 25px;
 }
 .wishwall-navbar-app {
-	min-height: 40px;
-	// height: 40px;
+	min-height: @navbartopheight;
+	a.active {
+		color: white;
+	}
+	.navbar-brand {
+		height: @navbartopheight;
+		line-height: 10px;
+	}
+	.btn-navbar {
+		line-height: 45px;
+	}
 }
 .wishwall-navbar-app-bottom {
-	height: 40px;
+	height: @navbarbottomheight;
 	background-color: white;
+	.wishwall-icon-home {
+		font-size: 25px;
+	}
+	i {
+		color: rgba(0, 0, 0, .5);
+	}
+	.active {
+		i {
+			color: @themecolor;
+		}
+	}
 }
-.wishwall-navbar-app-bottom i {
-	color: rgba(0, 0, 0, .5);
-}
-.wishwall-navbar-app-bottom .active i{
-	color: #ff5247;
-}
+
 .wishwall-navbar-top {
 	margin-bottom: 0;
-	background-color: #ff5247;
+	background-color: @themecolor;
 	border: none;
 	color: rgba(255, 255, 255, .5);
+	a {
+		color: rgba(255, 255, 255, .5);
+	}
 }
-.wishwall-navbar-top a {
-	color: rgba(255, 255, 255, .5);
-}
-.wishwall-navbar-app a.active {
-	color: white;
-}
-.wishwall-navbar-app .navbar-brand {
-	height: 40px;
-	line-height: 10px;
-}
-.wishwall-navbar-app .btn-navbar {
-	line-height: 45px;
-}
+
 .auto-roll-img {
 	height: 115px;
 }
@@ -76,8 +85,6 @@ html,body {
 	margin: 5px 9px;
 }
 .wish_content {
-	// font-weight: ;
-	// text-indent: 9px;
 	padding: 0 9px;
 	word-wrap: break-word;
 }
@@ -94,25 +101,45 @@ html,body {
 .wishwall-carousel-indicators {
 	margin-bottom: 0;
 	bottom: 0;
+	li {
+		width: 5px;
+		height: 5px;
+		.active {
+			width: 7px;
+			height: 7px;
+		}
+	}
 }
-.wishwall-carousel-indicators li {
-	width: 5px;
-	height: 5px;
+.wishwall-list-group {
+	margin-bottom: 0;
+	.user-info-bg {
+		height: 180px;
+		padding: 25px 0 0 0;
+		background-image: url('/src/img/1.jpg');
+		background-size: cover;
+		img.userheadimg {
+			width: 64px;
+			border-radius: 50%;
+		}
+		span {
+			position: absolute;
+			color: #fff;
+			font-weight: bold;
+			margin-top: 5px;
+			height: 35px;
+			// border-bottom: 2px solid white;
+		}
+		.info_school_area {
+			margin-right: 20px;
+
+		}
+		.info_college_name {
+			margin-left: 20px;
+		}
+	}
 }
-.wishwall-carousel-indicators .active {
-	width: 7px;
-	height: 7px;
-}
-.user-info-bg {
-	height: 180px;
-	padding: 25px 0 0 0;
-	background-image: url('/src/img/1.jpg');
-	background-size: cover;
-}
-.user-info-bg img.userheadimg {
-	width: 64px;
-	border-radius: 50%;
-}
+
+
 .userinfo-navbar-top {
 	color: rgba(255, 255, 255, 1);
 }
@@ -120,18 +147,25 @@ html,body {
 	height: 50px;
 	background-color: rgba(0, 0, 0, 0.2);
 	margin-top: 40px;
+	img {
+		width: 30px;
+		border-radius: 50%;
+		position: relative;
+		top: 10px;
+		margin-right: 10px;
+		float: left;
+	}
+	img:first-child {
+		margin-left: 5px;
+	}
+	img:last-child {
+		margin-right: 5px;
+	}
 }
-.visitors img {
-	width: 30px;
-	border-radius: 50%;
-	position: relative;
-	top: 10px;
-	margin-right: 10px;
-	float: left;
-}
-.visitors img:first-child {
-	margin-left: 5px;
-}
-.visitors img:last-child {
-	margin-right: 5px;
+.userinfo-navbar-middle {
+	border: none;
+	min-height: @navbartopheight;
+	.navbar-brand  a{
+		color: @themecolor;
+	}
 }
