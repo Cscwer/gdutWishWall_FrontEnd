@@ -100,7 +100,7 @@ body {
   width: 5px;
   height: 5px;
 }
-.wishwall-carousel-indicators li .active {
+.wishwall-carousel-indicators .active {
   width: 7px;
   height: 7px;
 }
@@ -153,9 +153,19 @@ body {
   margin-right: 5px;
 }
 .userinfo-navbar-middle {
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
   border: none;
   min-height: 40px;
 }
-.userinfo-navbar-middle .navbar-brand a {
+.userinfo-navbar-middle a {
   color: #ff5247;
+  font-size: 18px;
+  text-align: center;
+  line-height: 37px;
+  padding: 0;
+}
+.userinfo-navbar-middle .active {
+  border-bottom: 3px solid rgba(255, 82, 71, 0.5);
 }

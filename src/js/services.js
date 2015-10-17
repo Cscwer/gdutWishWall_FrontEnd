@@ -1,26 +1,18 @@
-/****************定义各种服务*****************/
 var Host = 'http://gdutgirl.duapp.com'; //定义主机
 
 
-
-//获取指定用户的信息
-app.factory('GetUserInfoService', ['$http',
+/************************** 用户服务**********************/
+app.factory('UserService', ['$http',
     function($http) {
         return {
+            //获取用户信息
             getUserInfo: function(data) {
                 return $http({
                     method: 'GET',
                     url: Host + '/getUserInfo?userId=' + data.userId
                 });
-            }
-        };
-    }
-]);
-
-//更新用户信息
-app.factory('UpdateInfoService', ['$http',
-    function($http) {
-        return {
+            },
+            //更新用户信息
             updateInfo: function(data) {
                 return $http({
                     method: 'POST',
@@ -32,81 +24,36 @@ app.factory('UpdateInfoService', ['$http',
     }
 ]);
 
-//获取所有未领取愿望
-app.factory('GetUnpickedWish', ['$http',
+/************************** 愿望服务**********************/
+app.factory('WishService', ['$http',
     function($http) {
         return {
-            getWishes: function(page, per_page) {
+            getUnpickedWishes: function(page, per_page) {
                 return $http({
                     method: 'GET',
                     url: Host + '/getUnpickedWish?page=' + page + '&per_page=' + per_page
                 });
-            }
-        };
-    }
-]);
-
-//发布愿望
-app.factory('PutWishService', ['$http',
-    function($http) {
-        return {
+            },
             putWish: function(data) {
                 return $http({
                     method: 'POST',
                     url: Host + '/putwish',
                     data: data
                 });
-            }
-        };
-    }
-]);
-
-//查找指定愿望
-app.factory('FindWishService', ['$http',
-    function($http) {
-        return {
+            },
             findWish: function(data) {
                 return $http({
                     method: 'GET',
                     url: Host + '/getwish?wishId=' + data.wishId
                 });
-            }
-        }
-    }
-]);
-
-//男生领取愿望
-// app.factory('PickWishService', ['$http', function($http) {
-//     return {
-//         pickWish: function(data) {
-//             return $http({
-//                 method: 'POST',
-//                 url: Host + '/pickwish',
-//                 data: data
-//             });
-//         }
-//     };
-// }]);
-
-//女生获取自己的愿望
-app.factory('GetFemaleWishService', ['$http',
-    function($http) {
-        return {
+            },
             getWish: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getfemalewish?userId=' + data.userId,
+                    url: Host + '/getoneswish?sex=' + data.sex + '&userId=' + data.userId,
                     data: data
                 });
-            }
-        };
-    }
-]);
-
-//更新愿望状态
-app.factory('UpdateWishService', ['$http',
-    function($http) {
-        return {
+            },
             updateWishState: function(data) {
                 return $http({
                     method: 'POST',
@@ -130,11 +77,12 @@ app.factory('UpdateWishService', ['$http',
                     data: data
                 });
             },
-
-
         };
     }
 ]);
+
+
+
 
 //男生获取自己领取的愿望
 app.factory('GetMaleWishService', ['$http',
@@ -240,25 +188,25 @@ app.factory('PutBlessService', ['$http',
 app.factory('WeChatService', ['$http',
     function($http) {
         return {
-            
+
             getWeChatInfo: function(code) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getWeChatInfo?code='+code
+                    url: Host + '/getWeChatInfo?code=' + code
                 });
             },
 
             getAccessToken: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getAccessToken?uid='+data.userId
+                    url: Host + '/getAccessToken?uid=' + data.userId
                 });
             },
 
             getApiTicket: function(token) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getApiTicket?token='+token
+                    url: Host + '/getApiTicket?token=' + token
                 });
             }
         };

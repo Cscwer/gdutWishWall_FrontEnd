@@ -104,10 +104,10 @@ html,body {
 	li {
 		width: 5px;
 		height: 5px;
-		.active {
-			width: 7px;
-			height: 7px;
-		}
+	}
+	.active {
+		width: 7px;
+		height: 7px;
 	}
 }
 .wishwall-list-group {
@@ -163,9 +163,20 @@ html,body {
 	}
 }
 .userinfo-navbar-middle {
+	margin: 0;
+	padding-left: 10px;
+	padding-right: 10px;
 	border: none;
 	min-height: @navbartopheight;
-	.navbar-brand  a{
+	 a {
 		color: @themecolor;
+		font-size: 18px;
+		text-align: center;
+		line-height: 37px;
+		padding: 0;
 	}
+	.active {
+		border-bottom: 3px solid fade(@themecolor, 50%);
+	}
+	
 }

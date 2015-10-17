@@ -35,11 +35,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/wish',
             templateUrl: '/src/views/Wish/index.html'
         })
-        // .state('userinfo.wishwall', {
-        //     url: '/wishwall/:userId',
-        //     templateUrl: '/src/views/User/userinfowishwall.html'
-        //     controller: 'UserInfoWishWallCtrl'
-        // })
+        .state('userinfo.wishwall', {
+            url: '/wishwall/:sex',
+            templateUrl: '/src/views/User/userinfowishwall.html',
+            controller: 'UserInfoWishWallCtrl'
+        })
+        .state('userinfo.blesswall', {
+            url: '/blesswall',
+            templateUrl: '/src/views/User/userinfoblesswall.html',
+            controller: 'UserInfoBlessWallCtrl'
+        })
         .state('user.writewish', {
             url: '/writewish',
             templateUrl: '/src/views/User/female/writewish.html',
