@@ -9,7 +9,6 @@ var htmlmin = require('gulp-htmlmin');
 var minifyCss = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var rev = require('gulp-rev');
-nixie
 var usemin = require('gulp-usemin');
 
 // 删除 css
