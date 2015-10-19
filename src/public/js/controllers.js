@@ -107,7 +107,7 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
 
 
         //获取微信用户信息
-        var code = $location.search().code;
+        // var code = $location.search().code;
         WeChatService.getWeChatInfo(code)
             .success(function(data, status) {
                 if (status === 200) {
