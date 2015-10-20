@@ -1,20 +1,29 @@
-        <div class="section wishwall-section">
+        <div class="section yblesswall-section">
             <div class="row">
-                <div class="col-xs-12 wishwall-col-6">
-                    <div class="panel panel-default wishwall-panel" ng-repeat="bless in blesses">
-                        <div class="panel-body wishwall-panel-body">
-                            <img ng-src="{{bless.userheadimg}}64" alt="" class="headimg">
-
-                            <p class="username">
-                                {{bless.username}}
-                                <br>
-                                <span class="school_area">{{bless.school_area}}</span>
-                                <span>点赞数{{bless.praise_num}}</span>
-                            </p>
-                            <hr class="wishborder">
-                            <!-- <p class="wish_content" ui-sref="bless.detail({blessId: bless._id})">{{bless.bless}}</p> -->
-                            <p class="wish_content">{{bless.bless}}</p>
-                            <img src="/src/img/1.jpg" alt="">
+                <div class="col-xs-12 blesswall-con">
+                    <div class="panel panel-default blesswall-panel" ng-repeat="bless in blesses">
+                        <div class="panel-body blesswall-panel-body">
+                            <div class="blessimg-con">
+                                <img src="/src/img/1.jpg" alt="">
+                            </div>
+                            <div class="blessmessage-con">
+                                <div class="headimg-con">
+                                    <img ng-src="{{bless.userheadimg}}64" alt="" class="headimg">
+                                </div>
+                                <div class="blessuser-con">
+                                    <p class="username">
+                                        {{bless.username}}
+                                        <br>
+                                        <span class="school_area">{{bless.school_area}}</span>
+                                        <span>点赞数{{bless.praise_num}}</span>
+                                    </p>
+                                </div>
+                                <a href="#" class="bless-praise">
+                                    <i class="fa fa-heart wishwall-icon-heart fa-navbar"></i>
+                                </a>
+                                <!-- <p class="wish_content" ui-sref="bless.detail({blessId: bless._id})">{{bless.bless}}</p> -->
+                                <p class="wish_content">{{bless.bless}}</p>
+                            </div>     
                         </div>
                     </div>
                 </div>

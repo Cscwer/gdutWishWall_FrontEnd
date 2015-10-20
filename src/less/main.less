@@ -64,12 +64,12 @@ textarea {
 		border: none;
 	}
 }
-.wishwall-col-6 {
+.wishwall-col-6,.blesswall-con {
 	padding-left: 5px;
 	padding-right: 5px;
 }
-.wishwall-panel-body {
-	padding: 5px;
+.wishwall-panel-body,.blesswall-panel-body {
+	padding: 0;
 }
 .headimg {
 	width: 33px;
@@ -99,10 +99,14 @@ textarea {
 .wishwall-app-body {
 	background-color: rgba(255,255,255,0.7);
 }
-.wishwall-section {
+.wishwall-section,.blesswall-section {
 	background: none;
 }
 .wishwall-panel {
+	margin-bottom: 5px;
+	border-radius: 0;
+}
+.blesswall-panel {
 	margin-bottom: 5px;
 	border-radius: 0;
 }
@@ -200,4 +204,35 @@ textarea {
 		}
 	}
 	
+}
+.blessmessage-con {
+	position: relative;
+}
+.headimg-con {
+	position: relative;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	background-color: #fff;
+	top: -25px;
+	display: inline-block;
+	text-align: center;
+	img {
+		position: relative;
+		width: 42px;
+		height: 42px;
+		top: 4px;
+	}
+}
+.blessuser-con {
+	display: inline-block;
+	
+}
+.bless-praise {
+	height: inherit;
+	color: rgba(0, 0, 0, 0.5);
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
 }

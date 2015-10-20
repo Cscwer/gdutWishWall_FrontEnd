@@ -452,7 +452,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                             .success(function(data, status) {
                                 if (status === 200) {
                                     alert('祝福成功');
-                                    $state.go('index');
+                                    $state.go('index.blesswall');
                                 }
                             });
                     }
