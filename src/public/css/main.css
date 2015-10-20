@@ -58,18 +58,17 @@ textarea {
   padding-left: 10px;
   padding-right: 5px;
 }
-<<<<<<< HEAD:src/css/main.css
-.wishwall-col-6,
-.blesswall-con {
-=======
 .wishwall-section .wishwall-col-6:last-child {
->>>>>>> 8bc99a7332119a67526e6e666b797243652bde79:src/public/css/main.css
   padding-left: 5px;
   padding-right: 10px;
 }
 .wishwall-section .wishwall-panel {
   border: none;
   margin-bottom: 10px;
+}
+.blesswall-con {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .wishwall-panel-body,
 .blesswall-panel-body {
@@ -205,7 +204,6 @@ textarea {
 .userinfo-navbar-middle .row .col-xs-6:last-child {
   padding-left: 5px;
 }
-<<<<<<< HEAD:src/css/main.css
 .blessmessage-con {
   position: relative;
 }
@@ -235,7 +233,7 @@ textarea {
   -webkit-box-orient: vertical;
   -webkit-box-pack: center;
   -webkit-box-align: center;
-=======
+}
 .wishwall-search-navbar .navbar-brand-left {
   padding: 0px;
 }
@@ -301,5 +299,4 @@ textarea {
   text-align: center;
   line-height: 70px;
   background-color: white;
->>>>>>> 8bc99a7332119a67526e6e666b797243652bde79:src/public/css/main.css
 }
