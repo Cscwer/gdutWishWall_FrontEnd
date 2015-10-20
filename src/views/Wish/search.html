@@ -1,0 +1,51 @@
+<div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-top wishwall-search-navbar">
+	<!-- Top Navbar -->
+	<div class="navbar-brand navbar-brand-left">
+		<div class="btn-group">
+			<a ui-turn-on='myDropdown' class='btn'>
+				<span ng-model="searchwhere" ng-bind="searchwhere"></span> <i class="fa fa-angle-down"></i>
+			</a>
+			<ul 
+    class="dropdown-menu"
+    ui-outer-click="Ui.turnOff('myDropdown')"
+    ui-outer-click-if="Ui.active('myDropdown')"
+    role="menu"
+    ui-show="myDropdown" 
+    ui-state="myDropdown"
+    ui-turn-off="myDropdown">
+				<li>
+					<a ng-click="searchSelect(1)">许愿墙</a>
+				</li>
+				<li>
+					<a ng-click="searchSelect(2)">祝福墙</a>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+	<input type="search" class="form-control" placeholder="对方昵称 or 愿望关键字" ng-model="searchinput"> <i class="fa fa-remove" ng-click="clearInput()"></i>
+</div>
+<div class="wishwall-search-content">
+	<div class="row search-type">
+		<div class="col-xs-12">按女生校区</div>
+	</div>
+	<div class="row search-school-area">
+		<div class="col-xs-6"><span>大学城校区</span></div>
+		<div class="col-xs-6"><span>龙洞校区</span></div>
+	</div>
+	<div class="row search-school-area">
+		<div class="col-xs-6"><span>东风路校区</span></div>
+		<div class="col-xs-6"><span>全校区</span></div>
+	</div>
+	<div class="row search-type">
+		<div class="col-xs-12">按获赞数目</div>
+	</div>
+	<div class="row search-school-area">
+		<div class="col-xs-6"><span>从高到低</span></div>
+		<div class="col-xs-6"><span>从低到高</span></div>
+	</div>
+	<div class="row search-school-area">
+		<div class="col-xs-6"><span>任性不排</span></div>
+		<div class="col-xs-6"></div>
+	</div>
+</div>

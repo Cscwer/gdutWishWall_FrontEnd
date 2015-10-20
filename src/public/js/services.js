@@ -192,7 +192,7 @@ app.factory('WeChatService', ['$http',
             getWeChatInfo: function(code) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getWeChatInfo?code=' + code
+                    url: Host + '/getWeChatInfo' 
                 });
             },
 
