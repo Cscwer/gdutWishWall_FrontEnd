@@ -25,26 +25,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/user',
             templateUrl: '/views/User/index.html'
         })
-        .state('userinfo', {
-            url: '/userinfo/:userId',
-            templateUrl: '/views/User/userinfo.html',
-            controller: 'UserInfoCtrl'
-        })
-        .state('wish', {
-            abstract: true,
-            url: '/wish',
-            templateUrl: '/views/Wish/index.html'
-        })
-        .state('userinfo.wishwall', {
-            url: '/wishwall/:sex',
-            templateUrl: '/views/User/userinfowishwall.html',
-            controller: 'UserInfoWishWallCtrl'
-        })
-        .state('userinfo.blesswall', {
-            url: '/blesswall',
-            templateUrl: '/views/User/userinfoblesswall.html',
-            controller: 'UserInfoBlessWallCtrl'
-        })
         .state('user.writewish', {
             url: '/writewish',
             templateUrl: '/views/User/female/writewish.html',
@@ -65,6 +45,41 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: '/views/User/writeblessinfo.html',
             controller: 'UserCtrl'
         })
+        .state('user.message', {
+            url: '/message',
+            templateUrl: '/views/User/message.html',
+            controller: 'MsgCtrl'
+        })
+        .state('user.contact', {
+            url: '/contact/:userId/:username',
+            templateUrl: '/views/User/contact.html',
+            controller: 'ContactCtrl'
+        })
+        .state('userinfo', {
+            url: '/userinfo/:userId',
+            templateUrl: '/views/User/userinfo.html',
+            controller: 'UserInfoCtrl'
+        })
+        .state('userinfo.wishwall', {
+            url: '/wishwall/:sex',
+            templateUrl: '/views/User/userinfowishwall.html',
+            controller: 'UserInfoWishWallCtrl'
+        })
+        .state('userinfo.blesswall', {
+            url: '/blesswall',
+            templateUrl: '/views/User/userinfoblesswall.html',
+            controller: 'UserInfoBlessWallCtrl'
+        })
+        .state('wish', {
+            abstract: true,
+            url: '/wish',
+            templateUrl: '/views/Wish/index.html'
+        })
+        .state('wish.search', {
+            url: '/search',
+            templateUrl: '/views/Wish/search.html',
+            controller: 'SearchCtrl'
+        })
         .state('wish.femalewish', {
             url: '/female/mywish',
             templateUrl: '/views/User/female/mywish.html',
@@ -80,21 +95,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: '/views/User/male/mywish.html',
             controller: 'MaleWishCtrl'
         })
-        .state('user.message', {
-            url: '/message',
-            templateUrl: '/views/User/message.html',
-            controller: 'MsgCtrl'
-        })
-        .state('user.contact', {
-            url: '/contact/:userId/:username',
-            templateUrl: '/views/User/contact.html',
-            controller: 'ContactCtrl'
-        })
-        .state('wish.detail', {
-            url: '/detail/:wishId',
-            templateUrl: '/views/Wish/detail.html',
-            controller: 'WishCtrl'
-        });
+
+    .state('wish.detail', {
+        url: '/detail/:wishId',
+        templateUrl: '/views/Wish/detail.html',
+        controller: 'WishCtrl'
+    });
 });
 
 //配置url参数规则

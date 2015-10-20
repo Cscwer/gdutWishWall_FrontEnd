@@ -108,7 +108,7 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
 
         //获取微信用户信息
         // var code = $location.search().code;
-        WeChatService.getWeChatInfo(code)
+        WeChatService.getWeChatInfo()
             .success(function(data, status) {
                 if (status === 200) {
                     if (!data.errmsg) {
@@ -189,6 +189,23 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
     }
 ]);
 
+app.controller('SearchCtrl', ['$scope',
+    function($scope) {
+        $scope.searchwhere = '许愿墙';
+
+        $scope.searchSelect = function(num) {
+            if (num === 1) {
+                $scope.searchwhere = '许愿墙';
+            } else {
+                $scope.searchwhere = '祝福墙';
+            }
+        };
+
+        $scope.clearInput = function() {
+            $scope.searchinput = '';
+        };
+    }
+]);
 
 
 //用户信息控制器
@@ -202,7 +219,9 @@ app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams'
             .success(function(data, status) {
                 if (status === 200) {
                     $scope.user = data.user;
-                    $state.go('userinfo.wishwall', {sex: $scope.user.sex});
+                    $state.go('userinfo.wishwall', {
+                        sex: $scope.user.sex
+                    });
                 }
             });
     }
@@ -220,10 +239,10 @@ app.controller('UserInfoWishWallCtrl', ['$scope', '$stateParams', 'WishService',
         WishService.getWish(data)
             .success(function(data, status) {
                 if (status === 200) {
-                    for (var i = 0; i < data.wishes.length; i=i+2) {
-                        
+                    for (var i = 0; i < data.wishes.length; i = i + 2) {
+
                         $scope.oddwishes.push(data.wishes[i]);
-                        $scope.evenwishes.push(data.wishes[i+1]);
+                        $scope.evenwishes.push(data.wishes[i + 1]);
                     }
                 }
             });

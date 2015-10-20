@@ -3,6 +3,7 @@
 @navbarbottomheight: 40px;
 html,body {
 	color: #000;
+	height: 100%;
 }
 textarea {
 	resize: none;
@@ -60,14 +61,20 @@ textarea {
 	height: 115px;
 }
 .wishwall-section {
+	.wishwall-col-6:first-child {
+		padding-left: 10px;
+		padding-right: 5px;
+	}
+	.wishwall-col-6:last-child {
+		padding-left: 5px;
+		padding-right: 10px;
+	}
 	.wishwall-panel {
 		border: none;
+		margin-bottom: 10px;
 	}
 }
-.wishwall-col-6 {
-	padding-left: 5px;
-	padding-right: 5px;
-}
+
 .wishwall-panel-body {
 	padding: 5px;
 }
@@ -97,7 +104,7 @@ textarea {
 	word-wrap: break-word;
 }
 .wishwall-app-body {
-	background-color: rgba(255,255,255,0.7);
+	background-color: #f4efee;
 }
 .wishwall-section {
 	background: none;
@@ -123,7 +130,7 @@ textarea {
 	.user-info-bg {
 		height: 180px;
 		padding: 25px 0 0 0;
-		background-image: url('/src/img/1.jpg');
+		background-image: url('/public/img/1.jpg');
 		background-size: cover;
 		img.userheadimg {
 			width: 64px;
@@ -135,7 +142,6 @@ textarea {
 			font-weight: bold;
 			margin-top: 5px;
 			height: 35px;
-			// border-bottom: 2px solid white;
 		}
 		.info_school_area {
 			margin-right: 20px;
@@ -200,4 +206,76 @@ textarea {
 		}
 	}
 	
+}
+
+.wishwall-search-navbar {
+	.navbar-brand-left {
+		padding: 0px;
+	}
+	.btn {
+		line-height: @navbartopheight;
+		padding-left: 5px;
+	}
+	a,span{
+		height: @navbartopheight;
+		font-size: 18px;
+		color: white;
+	}
+	i {
+		color: white;
+		font-size: 18px;
+	}
+	span {
+		display: inline-block;
+		line-height: 40px;
+	}
+	input {
+		width: 60%;
+		margin-top: 5px;
+		height: 30px;
+		display: inline-block;
+	}
+	.fa-remove {
+		font-size: 20px;
+		margin-left: 5px;
+	}
+}
+@searchspanheight: 70px;
+@searchtypeheight: 70px;
+.wishwall-search-content {
+	.row {
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 10px;
+	}
+	.search-type {
+		margin-bottom: 0;
+		.col-xs-12 {
+			height: @searchtypeheight;
+			line-height: @searchtypeheight;
+			color: #c5bfbe;
+			font-size: 18px;
+			text-align: center;
+		}
+	}
+	.search-school-area {
+		color: #9f9493;
+		font-size: 18px;
+		.col-xs-6:first-child {
+			padding-left: 10px;
+			padding-right: 5px;
+		}
+		.col-xs-6:last-child {
+			padding-right: 10px;
+			padding-left: 5px;
+		}
+		span {
+			display: inline-block;
+			width: 100%;
+			height: @searchspanheight;
+			text-align: center;
+			line-height: @searchspanheight;
+			background-color: white;
+		}
+	}
 }

@@ -1,6 +1,7 @@
 html,
 body {
   color: #000;
+  height: 100%;
 }
 textarea {
   resize: none;
@@ -53,12 +54,17 @@ textarea {
 .auto-roll-img {
   height: 115px;
 }
+.wishwall-section .wishwall-col-6:first-child {
+  padding-left: 10px;
+  padding-right: 5px;
+}
+.wishwall-section .wishwall-col-6:last-child {
+  padding-left: 5px;
+  padding-right: 10px;
+}
 .wishwall-section .wishwall-panel {
   border: none;
-}
-.wishwall-col-6 {
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-bottom: 10px;
 }
 .wishwall-panel-body {
   padding: 5px;
@@ -89,7 +95,7 @@ textarea {
   word-wrap: break-word;
 }
 .wishwall-app-body {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: #f4efee;
 }
 .wishwall-section {
   background: none;
@@ -116,7 +122,7 @@ textarea {
 .wishwall-list-group .user-info-bg {
   height: 180px;
   padding: 25px 0 0 0;
-  background-image: url('/src/img/1.jpg');
+  background-image: url('/public/img/1.jpg');
   background-size: cover;
 }
 .wishwall-list-group .user-info-bg img.userheadimg {
@@ -187,4 +193,70 @@ textarea {
 }
 .userinfo-navbar-middle .row .col-xs-6:last-child {
   padding-left: 5px;
+}
+.wishwall-search-navbar .navbar-brand-left {
+  padding: 0px;
+}
+.wishwall-search-navbar .btn {
+  line-height: 40px;
+  padding-left: 5px;
+}
+.wishwall-search-navbar a,
+.wishwall-search-navbar span {
+  height: 40px;
+  font-size: 18px;
+  color: white;
+}
+.wishwall-search-navbar i {
+  color: white;
+  font-size: 18px;
+}
+.wishwall-search-navbar span {
+  display: inline-block;
+  line-height: 40px;
+}
+.wishwall-search-navbar input {
+  width: 60%;
+  margin-top: 5px;
+  height: 30px;
+  display: inline-block;
+}
+.wishwall-search-navbar .fa-remove {
+  font-size: 20px;
+  margin-left: 5px;
+}
+.wishwall-search-content .row {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 10px;
+}
+.wishwall-search-content .search-type {
+  margin-bottom: 0;
+}
+.wishwall-search-content .search-type .col-xs-12 {
+  height: 70px;
+  line-height: 70px;
+  color: #c5bfbe;
+  font-size: 18px;
+  text-align: center;
+}
+.wishwall-search-content .search-school-area {
+  color: #9f9493;
+  font-size: 18px;
+}
+.wishwall-search-content .search-school-area .col-xs-6:first-child {
+  padding-left: 10px;
+  padding-right: 5px;
+}
+.wishwall-search-content .search-school-area .col-xs-6:last-child {
+  padding-right: 10px;
+  padding-left: 5px;
+}
+.wishwall-search-content .search-school-area span {
+  display: inline-block;
+  width: 100%;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  background-color: white;
 }
