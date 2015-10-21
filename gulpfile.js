@@ -8,8 +8,12 @@ var del = require('del');
 var htmlmin = require('gulp-htmlmin');
 var minifyCss = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 var rev = require('gulp-rev');
 var usemin = require('gulp-usemin');
+var sourcemaps = require('gulp-sourcemaps');
+var lessAutoprefix = require('less-plugin-autoprefix');
+var autoprefix = new lessAutoprefix({browsers: ['last 2 versions'], cascade: false});
 
 // 删除 css
 gulp.task('clean:css', function () {
@@ -28,7 +32,11 @@ gulp.task('connect', function () {
 // 编译 less
 gulp.task('less', ['clean:css'], function () {
 	return gulp.src('./src/less/*.less')
-		    .pipe(less())
+            .pipe(sourcemaps.init())
+            .pipe(less({
+                plugins: [autoprefix]
+            }))
+            .pipe(sourcemaps.write())
             .pipe(gulp.dest('./src/public/css/'))
 		    .pipe(connect.reload());
 });
