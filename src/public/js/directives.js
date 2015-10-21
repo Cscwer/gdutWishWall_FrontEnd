@@ -319,9 +319,10 @@ app.directive('wishwallvisitor', ['$window', function($window) {
         link: function(scope, elem, attrs) {
             console.log(elem.width());
             var elemwidth = elem.width();
+            console.log(elemwidth);
             var imgwidth = elemwidth / 8;
             var sawidth = elemwidth / 2;
-            var imgmargin = imgwidth - 30;
+            var imgmargin = imgwidth - 23;
             elem.find('img').css({'margin-right': imgmargin/2,'margin-left': imgmargin/2});
             elem.parent().find('.info_school_area').css('right', sawidth);
             elem.parent().find('.info_college_name').css('left', sawidth);

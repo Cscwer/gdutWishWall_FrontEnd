@@ -6,41 +6,22 @@ body {
 textarea {
   resize: none;
 }
-.navbar-brand-right {
-  float: right;
-  padding-right: 40px;
-}
-.navbar-brand-left {
-  padding-left: 40px;
-}
 .wishwall-icon {
   font-size: 25px;
 }
 .wishwall-navbar-app {
-  min-height: 40px;
+  min-height: 35px;
 }
 .wishwall-navbar-app a.active {
   color: white;
 }
 .wishwall-navbar-app .navbar-brand {
-  height: 40px;
-  line-height: 10px;
+  height: 35px;
+  padding: 0;
 }
-.wishwall-navbar-app .btn-navbar {
-  line-height: 45px;
-}
-.wishwall-navbar-app-bottom {
-  height: 40px;
-  background-color: white;
-}
-.wishwall-navbar-app-bottom .wishwall-icon-home {
-  font-size: 25px;
-}
-.wishwall-navbar-app-bottom i {
-  color: rgba(0, 0, 0, 0.5);
-}
-.wishwall-navbar-app-bottom .active i {
-  color: #ff5247;
+.wishwall-navbar-app .navbar-brand a {
+  height: 35px;
+  line-height: 35px;
 }
 .wishwall-navbar-top {
   margin-bottom: 0;
@@ -48,23 +29,62 @@ textarea {
   border: none;
   color: rgba(255, 255, 255, 0.5);
 }
+.wishwall-navbar-top .navbar-brand-right {
+  width: 50%;
+  text-align: center;
+}
+.wishwall-navbar-top .navbar-brand-left {
+  width: 50%;
+  text-align: center;
+}
 .wishwall-navbar-top a {
   color: rgba(255, 255, 255, 0.5);
 }
+.wishwall-navbar-app-bottom {
+  height: 35px;
+  line-height: 35px;
+  background-color: white;
+}
+.wishwall-navbar-app-bottom .btn-navbar {
+  height: 35px;
+  line-height: 35px;
+}
+.wishwall-navbar-app-bottom .btn-group {
+  height: 35px;
+  line-height: 35px;
+}
+.wishwall-navbar-app-bottom .wishwall-icon-home {
+  font-size: 25px;
+}
+.wishwall-navbar-app-bottom i {
+  height: 35px;
+  line-height: 35px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.wishwall-navbar-app-bottom .active i {
+  color: #ff5247;
+}
 .auto-roll-img {
-  height: 115px;
+  height: 110px;
+}
+.wishwall-section {
+  padding-top: 8px;
 }
 .wishwall-section .wishwall-col-6:first-child {
-  padding-left: 10px;
-  padding-right: 5px;
+  padding-left: 8px;
+  padding-right: 4px;
 }
 .wishwall-section .wishwall-col-6:last-child {
-  padding-left: 5px;
-  padding-right: 10px;
+  padding-left: 4px;
+  padding-right: 8px;
 }
 .wishwall-section .wishwall-panel {
   border: none;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+.wishwall-section .wishinfo-panel {
+  padding: 10px 10px 0 10px;
 }
 .blesswall-con {
   padding-left: 5px;
@@ -75,8 +95,10 @@ textarea {
   padding: 0;
 }
 .headimg {
-  width: 33px;
-  height: 33px;
+  background-image: url('/public/img/headimg56.png');
+  background-size: cover;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   vertical-align: inherit;
@@ -86,18 +108,22 @@ textarea {
   margin: 0;
   font-size: 12px;
   font-weight: bold;
+  color: #606060;
+  vertical-align: top;
+  margin-left: 10px;
 }
 .school_area {
   font-size: 10px;
   font-weight: normal;
   color: gray;
+  display: inline-block;
 }
 .wishborder {
-  margin: 5px 9px;
+  margin: 10px 0;
 }
 .wish_content {
-  padding: 0 9px;
   word-wrap: break-word;
+  font-size: 12px;
 }
 .wishwall-app-body {
   background-color: #f4efee;
@@ -130,21 +156,24 @@ textarea {
   margin-bottom: 0;
 }
 .wishwall-list-group .user-info-bg {
-  height: 180px;
-  padding: 25px 0 0 0;
+  height: 140px;
+  padding: 19px 0 0 0;
   background-image: url('/public/img/1.jpg');
   background-size: cover;
 }
 .wishwall-list-group .user-info-bg img.userheadimg {
-  width: 64px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
+  background-image: url('/public/img/headimg56.png');
+  background-size: cover;
 }
 .wishwall-list-group .user-info-bg span {
   position: absolute;
   color: #fff;
   font-weight: bold;
   margin-top: 5px;
-  height: 35px;
+  font-size: 8px;
 }
 .wishwall-list-group .user-info-bg .info_school_area {
   margin-right: 20px;
@@ -155,16 +184,21 @@ textarea {
 .userinfo-navbar-top {
   color: #ffffff;
 }
+.userinfo-navbar-top .navbar-brand {
+  line-height: 35px;
+}
 .visitors {
-  height: 50px;
+  width: 100%;
+  height: 40px;
   background-color: rgba(0, 0, 0, 0.2);
-  margin-top: 40px;
+  position: absolute;
+  bottom: 0;
 }
 .visitors img {
-  width: 30px;
+  width: 23px;
   border-radius: 50%;
   position: relative;
-  top: 10px;
+  top: 8.5px;
   margin-right: 10px;
   float: left;
 }
@@ -176,10 +210,10 @@ textarea {
 }
 .userinfo-navbar-middle {
   margin-bottom: 0px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
   border: none;
-  min-height: 40px;
+  min-height: 39px;
 }
 .userinfo-navbar-middle a {
   color: #ff5247;
@@ -199,10 +233,10 @@ textarea {
   padding: 0;
 }
 .userinfo-navbar-middle .row .col-xs-6:first-child {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 .userinfo-navbar-middle .row .col-xs-6:last-child {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 .blessmessage-con {
   position: relative;
@@ -211,7 +245,7 @@ textarea {
   position: relative;
   width: 50px;
   height: 50px;
-  border-radius: 50px;
+  border-radius: 50%;
   background-color: #fff;
   top: -25px;
   display: inline-block;
@@ -236,14 +270,16 @@ textarea {
 }
 .wishwall-search-navbar .navbar-brand-left {
   padding: 0px;
+  float: left;
+  width: inherit;
 }
 .wishwall-search-navbar .btn {
-  line-height: 40px;
+  line-height: 35px;
   padding-left: 5px;
 }
 .wishwall-search-navbar a,
 .wishwall-search-navbar span {
-  height: 40px;
+  height: 35px;
   font-size: 18px;
   color: white;
 }
@@ -253,12 +289,12 @@ textarea {
 }
 .wishwall-search-navbar span {
   display: inline-block;
-  line-height: 40px;
+  line-height: 35px;
 }
 .wishwall-search-navbar input {
   width: 60%;
-  margin-top: 5px;
-  height: 30px;
+  margin-top: 5.5px;
+  height: 24px;
   display: inline-block;
 }
 .wishwall-search-navbar .fa-remove {
@@ -268,14 +304,14 @@ textarea {
 .wishwall-search-content .row {
   margin-left: 0;
   margin-right: 0;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .wishwall-search-content .search-type {
   margin-bottom: 0;
 }
 .wishwall-search-content .search-type .col-xs-12 {
-  height: 70px;
-  line-height: 70px;
+  height: 58px;
+  line-height: 58px;
   color: #c5bfbe;
   font-size: 18px;
   text-align: center;
@@ -285,18 +321,22 @@ textarea {
   font-size: 18px;
 }
 .wishwall-search-content .search-school-area .col-xs-6:first-child {
-  padding-left: 10px;
-  padding-right: 5px;
+  padding-left: 8px;
+  padding-right: 4px;
 }
 .wishwall-search-content .search-school-area .col-xs-6:last-child {
-  padding-right: 10px;
-  padding-left: 5px;
+  padding-right: 8px;
+  padding-left: 4px;
 }
 .wishwall-search-content .search-school-area span {
   display: inline-block;
   width: 100%;
-  height: 70px;
+  height: 63px;
   text-align: center;
-  line-height: 70px;
+  line-height: 63px;
   background-color: white;
+}
+.msg-content .row {
+  margin-left: 0;
+  margin-right: 0;
 }

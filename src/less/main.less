@@ -1,6 +1,6 @@
 @themecolor: #ff5247;
-@navbartopheight: 40px;
-@navbarbottomheight: 40px;
+@navbartopheight: 35px;
+@navbarbottomheight: 35px;
 html,body {
 	color: #000;
 	height: 100%;
@@ -8,13 +8,7 @@ html,body {
 textarea {
 	resize: none;
 }
-.navbar-brand-right {
-	float: right;
-	padding-right: 40px;
-}
-.navbar-brand-left {
-	padding-left: 40px;
-}
+
 .wishwall-icon {
 	font-size: 25px;
 }
@@ -25,19 +19,48 @@ textarea {
 	}
 	.navbar-brand {
 		height: @navbartopheight;
-		line-height: 10px;
+		padding: 0;
+		a {
+			height: @navbartopheight;
+			line-height: @navbartopheight;
+		}
 	}
-	.btn-navbar {
-		line-height: 45px;
+}
+.wishwall-navbar-top {
+	.navbar-brand-right {
+		width: 50%;
+		text-align: center;
+	}
+	.navbar-brand-left {
+		width: 50%;
+		text-align: center;
+	}
+	margin-bottom: 0;
+	background-color: @themecolor;
+	border: none;
+	color: rgba(255, 255, 255, .5);
+	a {
+		color: rgba(255, 255, 255, .5);
 	}
 }
 .wishwall-navbar-app-bottom {
 	height: @navbarbottomheight;
+	line-height: @navbarbottomheight;
+	.btn-navbar {
+		height: @navbarbottomheight;
+		line-height: @navbarbottomheight;
+	}
+	.btn-group {
+		height: @navbarbottomheight;
+		line-height: @navbarbottomheight;
+	}
 	background-color: white;
 	.wishwall-icon-home {
 		font-size: 25px;
 	}
 	i {
+		height: @navbarbottomheight;
+		line-height: @navbarbottomheight;
 		color: rgba(0, 0, 0, .5);
 	}
 	.active {
@@ -47,43 +70,42 @@ textarea {
 	}
 }
 
-.wishwall-navbar-top {
-	margin-bottom: 0;
-	background-color: @themecolor;
-	border: none;
-	color: rgba(255, 255, 255, .5);
-	a {
-		color: rgba(255, 255, 255, .5);
-	}
-}
+
 
 .auto-roll-img {
-	height: 115px;
+	height: 110px;
 }
 .wishwall-section {
+	padding-top: 8px;
 	.wishwall-col-6:first-child {
-		padding-left: 10px;
-		padding-right: 5px;
+		padding-left: 8px;
+		padding-right: 4px;
 	}
 	.wishwall-col-6:last-child {
-		padding-left: 5px;
-		padding-right: 10px;
+		padding-left: 4px;
+		padding-right: 8px;
 	}
 	.wishwall-panel {
 		border: none;
-		margin-bottom: 10px;
+		margin-bottom: 8px;
+		border-radius: 4px;
+	}
+	.wishinfo-panel {
+		padding: 10px 10px 0 10px;
 	}
 }
 .blesswall-con {
 	padding-left: 5px;
 	padding-right: 5px;
 }
-.wishwall-panel-body,.blesswall-panel-body {
+.wishwall-panel-body, .blesswall-panel-body {
 	padding: 0;
 }
 .headimg {
-	width: 33px;
-	height: 33px;
+	background-image: url('/public/img/headimg56.png');
+	background-size: cover;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
 	vertical-align: inherit;
@@ -93,18 +115,22 @@ textarea {
 	margin: 0;
 	font-size: 12px;
 	font-weight: bold;
+	color: #606060;
+	vertical-align: top;
+	margin-left: 10px;
 }
 .school_area {
 	font-size: 10px;
 	font-weight: normal;
 	color: gray;
+	display: inline-block;
 }
 .wishborder {
-	margin: 5px 9px;
+	margin: 10px 0;
 }
 .wish_content {
-	padding: 0 9px;
 	word-wrap: break-word;
+	font-size: 12px;
 }
 .wishwall-app-body {
 	background-color: #f4efee;
@@ -134,21 +160,25 @@ textarea {
 }
 .wishwall-list-group {
 	margin-bottom: 0;
+
 	.user-info-bg {
-		height: 180px;
-		padding: 25px 0 0 0;
+		height: 140px;
+		padding: 19px 0 0 0;
 		background-image: url('/public/img/1.jpg');
 		background-size: cover;
 		img.userheadimg {
-			width: 64px;
+			width: 55px;
+			height: 55px;
 			border-radius: 50%;
+			background-image: url('/public/img/headimg56.png');
+			background-size: cover;
 		}
 		span {
 			position: absolute;
 			color: #fff;
 			font-weight: bold;
 			margin-top: 5px;
-			height: 35px;
+			font-size: 8px;
 		}
 		.info_school_area {
 			margin-right: 20px;
@@ -163,16 +193,21 @@ textarea {
 
 .userinfo-navbar-top {
 	color: rgba(255, 255, 255, 1);
+	.navbar-brand {
+		line-height: @navbartopheight;
+	}
 }
 .visitors {
-	height: 50px;
+	width: 100%;
+	height: 40px;
 	background-color: rgba(0, 0, 0, 0.2);
-	margin-top: 40px;
+	position: absolute;
+	bottom: 0;
 	img {
-		width: 30px;
+		width: 23px;
 		border-radius: 50%;
 		position: relative;
-		top: 10px;
+		top: 8.5px;
 		margin-right: 10px;
 		float: left;
 	}
@@ -185,10 +220,10 @@ textarea {
 }
 .userinfo-navbar-middle {
 	margin-bottom: 0px;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
 	border: none;
-	min-height: @navbartopheight;
+	min-height: 39px;
 	 a {
 		color: @themecolor;
 		font-size: 18px;
@@ -206,10 +241,10 @@ textarea {
 			padding: 0;
 		}
 		.col-xs-6:first-child {
-			padding-right: 5px; 
+			padding-right: 4px; 
 		}
 		.col-xs-6:last-child {
-			padding-left: 5px;
+			padding-left: 4px;
 		}
 	}
 	
@@ -222,7 +257,7 @@ textarea {
 	position: relative;
 	width: 50px;
 	height: 50px;
-	border-radius: 50px;
+	border-radius: 50%;
 	background-color: #fff;
 	top: -25px;
 	display: inline-block;
@@ -249,6 +284,8 @@ textarea {
 .wishwall-search-navbar {
 	.navbar-brand-left {
 		padding: 0px;
+		float: left;
+		width: inherit;
 	}
 	.btn {
 		line-height: @navbartopheight;
@@ -265,12 +302,12 @@ textarea {
 	}
 	span {
 		display: inline-block;
-		line-height: 40px;
+		line-height: @navbartopheight;
 	}
 	input {
 		width: 60%;
-		margin-top: 5px;
-		height: 30px;
+		margin-top: 5.5px;
+		height: 24px;
 		display: inline-block;
 	}
 	.fa-remove {
@@ -278,13 +315,13 @@ textarea {
 		margin-left: 5px;
 	}
 }
-@searchspanheight: 70px;
-@searchtypeheight: 70px;
+@searchspanheight: 63px;
+@searchtypeheight: 58px;
 .wishwall-search-content {
 	.row {
 		margin-left: 0;
 		margin-right: 0;
-		margin-bottom: 10px;
+		margin-bottom: 8px;
 	}
 	.search-type {
 		margin-bottom: 0;
@@ -300,12 +337,12 @@ textarea {
 		color: #9f9493;
 		font-size: 18px;
 		.col-xs-6:first-child {
-			padding-left: 10px;
-			padding-right: 5px;
+			padding-left: 8px;
+			padding-right: 4px;
 		}
 		.col-xs-6:last-child {
-			padding-right: 10px;
-			padding-left: 5px;
+			padding-right: 8px;
+			padding-left: 4px;
 		}
 		span {
 			display: inline-block;
@@ -317,4 +354,11 @@ textarea {
 		}
 	}
 
+}
+
+.msg-content {
+	.row {
+		margin-left: 0;
+		margin-right: 0;
+	}
 }
