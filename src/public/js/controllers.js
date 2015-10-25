@@ -133,7 +133,14 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
         // });
 
         //系统消息队列
-        $rootScope.SystemMsg = [];
+        $scope.SystemMsg = JSON.parse(localStorage.getItem('WishMsg')) || [];
+        var msg = {
+            a: 1,
+            b: 2
+        };
+        $scope.SystemMsg.push(msg);
+        console.log($scope.SystemMsg);
+        localStorage.WishMsg = JSON.stringify($scope.SystemMsg);
 
         //基于 socket.io 的消息推送
         $scope.hasNewMsg = false;
@@ -145,34 +152,36 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
         });
 
 
-        $rootScope.socket.on('Msg_res', function(msg) {
+        $rootScope.socket.on('WishMsg_res', function(msg) {
             console.log(msg);
             //处理系统消息
             if (msg.receiver === sessionStorage.getItem('uid')) {
                 $scope.$apply(function() {
                     $scope.hasNewMsg = true;
+                    $scope.SystemMsg.push(msg);
+                    localStorage.WishMsg = JSON.stringify($scope.SystemMsg);
                 });
             }
         });
 
         //检查有无未阅读的消息
         // if (sessionStorage.getItem('uid')) {
-        var msgData = {
-            userId: sessionStorage.getItem('uid')
-        };
-        MsgService.getMsg(msgData)
-            .success(function(data, status) {
-                if (status === 200) {
-                    console.log(data);
-                    for (var i = 0; i < data.msgs.length; i++) {
-                        if (data.msgs[i].hadread === 0) {
-                            // $scope.$apply(function() {
-                            $scope.hasNewMsg = true;
-                            // });
-                        }
-                    }
-                }
-            });
+        // var msgData = {
+        //     userId: sessionStorage.getItem('uid')
+        // };
+        // MsgService.getMsg(msgData)
+        //     .success(function(data, status) {
+        //         if (status === 200) {
+        //             console.log(data);
+        //             for (var i = 0; i < data.msgs.length; i++) {
+        //                 if (data.msgs[i].hadread === 0) {
+        //                     // $scope.$apply(function() {
+        //                     $scope.hasNewMsg = true;
+        //                     // });
+        //                 }
+        //             }
+        //         }
+        //     });
         // }
 
 
@@ -401,7 +410,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                                         receiver_name: WishData.username,
                                         msg: '领取了你的愿望'
                                     };
-                                    $rootScope.socket.emit('Msg', msg);
+                                    $rootScope.socket.emit('WishMsg', msg);
                                     alert('领取成功！');
                                     $state.go('wish.malewish');
                                 }
@@ -489,25 +498,27 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 //消息控制器
 app.controller('MsgCtrl', ['$scope', '$rootScope', '$state', 'MsgService',
     function($scope, $rootScope, $state, MsgService) {
-        $scope.SystemMsg = [];
+        $scope.SystemMsg = JSON.parse(localStorage.getItem('WishMsg'));
+        $scope.SystemMsgNum = $scope.SystemMsg.length;
         $scope.UserMsg = [];
-        var data = {
-            userId: $rootScope.user._id
-        };
-        MsgService.getMsg(data)
-            .success(function(data, status) {
-                if (status === 200) {
-                    console.log(data.msgs);
-                    for (var i = 0; i < data.msgs.length; i++) {
-                        if (data.msgs[i].msg_type === 'System') {
-                            $scope.SystemMsg.push(data.msgs[i]);
-                        }
-                        if (data.msgs[i].msg_type === 'User') {
-                            $scope.UserMsg.push(data.msgs[i]);
-                        }
-                    }
-                }
-            });
+
+        // var data = {
+        //     userId: $rootScope.user._id
+        // };
+        // MsgService.getMsg(data)
+        //     .success(function(data, status) {
+        //         if (status === 200) {
+        //             console.log(data.msgs);
+        //             for (var i = 0; i < data.msgs.length; i++) {
+        //                 if (data.msgs[i].msg_type === 'System') {
+        //                     $scope.SystemMsg.push(data.msgs[i]);
+        //                 }
+        //                 if (data.msgs[i].msg_type === 'User') {
+        //                     $scope.UserMsg.push(data.msgs[i]);
+        //                 }
+        //             }
+        //         }
+        //     });
     }
 ]);
 
