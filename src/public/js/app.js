@@ -1,5 +1,10 @@
 var app = angular.module('gdutWishWall', ['ui.router', 'infinite-scroll', 'mobile-angular-ui']);
 
+//配置图片白名单
+app.config(['$compileProvider', function($compileProvider) {
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|weixin|wxlocalresource):/);
+}]);
+
 //配置路由规则
 app.config(function($stateProvider, $urlRouterProvider) {
     //默认指向 index

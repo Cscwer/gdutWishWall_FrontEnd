@@ -313,19 +313,37 @@ app.directive('autoroll', ['$window', '$timeout',
 ]);
 
 //动态匹配访客头像间隔
-app.directive('wishwallvisitor', ['$window', function($window) {
-    return {
-        restrict: 'A',
-        link: function(scope, elem, attrs) {
-            console.log(elem.width());
-            var elemwidth = elem.width();
-            console.log(elemwidth);
-            var imgwidth = elemwidth / 8;
-            var sawidth = elemwidth / 2;
-            var imgmargin = imgwidth - 23;
-            elem.find('img').css({'margin-right': imgmargin/2,'margin-left': imgmargin/2});
-            elem.parent().find('.info_school_area').css('right', sawidth);
-            elem.parent().find('.info_college_name').css('left', sawidth);
-        }
-    };
-}]);
+app.directive('wishwallvisitor', ['$window',
+    function($window) {
+        return {
+            restrict: 'A',
+            link: function(scope, elem, attrs) {
+                var elemwidth = elem.width();
+                var imgwidth = elemwidth / 8;
+                var sawidth = elemwidth / 2;
+                var imgmargin = imgwidth - 23;
+                elem.find('img').css({
+                    'margin-right': imgmargin / 2,
+                    'margin-left': imgmargin / 2
+                });
+                elem.parent().find('.info_school_area').css('right', sawidth);
+                elem.parent().find('.info_college_name').css('left', sawidth);
+            }
+        };
+    }
+]);
+
+//发布愿望选择图片
+// app.directive('wishwallpic', ['$window',
+//     function($window) {
+//         return {
+//             restrict: 'A',
+//             link: function(scope, elem, attrs) {
+//                 var img_elem = document.createElement('img');
+//                 img_elem.src = scope.localIds[0];
+//                 alert(img_elem.src);
+//                 $('#pic').append(img_elem);
+//             }
+//         };
+//     }
+// ]);

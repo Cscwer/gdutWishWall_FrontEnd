@@ -107,7 +107,6 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
 
 
         //获取微信用户信息
-        // var code = $location.search().code;
         WeChatService.getWeChatInfo()
             .success(function(data, status) {
                 if (status === 200) {
@@ -117,7 +116,6 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
                         sessionStorage.setItem('username', $rootScope.user.nickname);
                     } else {
                         $rootScope.user = null;
-                        // alert("登录出错");
                     }
                 }
             });
@@ -133,14 +131,9 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
         // });
 
         //系统消息队列
-        $scope.SystemMsg = JSON.parse(localStorage.getItem('WishMsg')) || [];
-        var msg = {
-            a: 1,
-            b: 2
-        };
-        $scope.SystemMsg.push(msg);
-        console.log($scope.SystemMsg);
-        localStorage.WishMsg = JSON.stringify($scope.SystemMsg);
+        // $scope.SystemMsg.push(msg);
+        // console.log($scope.SystemMsg);
+        // localStorage.WishMsg = JSON.stringify($scope.SystemMsg);
 
         //基于 socket.io 的消息推送
         $scope.hasNewMsg = false;
@@ -164,27 +157,6 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
             }
         });
 
-        //检查有无未阅读的消息
-        // if (sessionStorage.getItem('uid')) {
-        // var msgData = {
-        //     userId: sessionStorage.getItem('uid')
-        // };
-        // MsgService.getMsg(msgData)
-        //     .success(function(data, status) {
-        //         if (status === 200) {
-        //             console.log(data);
-        //             for (var i = 0; i < data.msgs.length; i++) {
-        //                 if (data.msgs[i].hadread === 0) {
-        //                     // $scope.$apply(function() {
-        //                     $scope.hasNewMsg = true;
-        //                     // });
-        //                 }
-        //             }
-        //         }
-        //     });
-        // }
-
-
         $scope.cancelMsgCount = function() {
             $scope.hasNewMsg = false;
             MsgService.readMsg(sessionStorage.getItem('uid'))
@@ -198,6 +170,7 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
     }
 ]);
 
+//搜索页面控制器
 app.controller('SearchCtrl', ['$scope',
     function($scope) {
         $scope.searchwhere = '许愿墙';
@@ -224,6 +197,7 @@ app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams'
         var data = {
             userId: $stateParams.userId
         };
+        alert($stateParams.userId);
         UserService.getUserInfo(data)
             .success(function(data, status) {
                 if (status === 200) {
@@ -264,8 +238,8 @@ app.controller('UserInfoBlessWallCtrl', ['$scope',
 
 
 //用户控制器
-app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'WishService', 'PutBlessService', 'WishData', 'BlessData', 'UserService', 'WeChatService',
-    function($scope, $rootScope, $state, $stateParams, WishService, PutBlessService, WishData, BlessData, UserService, WeChatService) {
+app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'WishService', 'PutBlessService', 'WishData', 'BlessData', 'UserService', 'WeChatService', '$sce',
+    function($scope, $rootScope, $state, $stateParams, WishService, PutBlessService, WishData, BlessData, UserService, WeChatService, $sce) {
 
         $scope.isRewrite = $stateParams.rewrite;
 
@@ -285,51 +259,50 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             });
 
 
-        // JS_Api 初始化函数
-        $scope.apiConfig = function(signature) {
-            wx.config({
-                debug: true,
-                appId: signature.appId,
-                timestamp: signature.timestamp_ticket,
-                nonceStr: signature.noncestr,
-                signature: signature.signature,
-                jsApiList: ['chooseImage']
-            });
-            wx.error(function(res) {
-                // alert(res);
-            });
-        };
 
         //获取微信 AccessToken 以及 ApiTicket (女生才需要)
-        WeChatService.getAccessToken(data)
+
+        var ticket_data = {
+            location: window.location.href.split('#')[0]
+        };
+        WeChatService.getSignature(ticket_data)
             .success(function(data, status) {
                 if (status === 200) {
-                    var token = data.token.token;
-                    WeChatService.getApiTicket(token)
-                        .success(function(data, status) {
-                            if (status === 200) {
-                                //获取 Signature
-                                $scope.signature = data;
-                                $scope.apiConfig($scope.signature);
-                            }
-                        });
+                    console.log(data);
+                    var signature = data.data;
+                    wx.config({
+                        debug: true,
+                        appId: signature.appId,
+                        timestamp: signature.timestamp,
+                        nonceStr: signature.nonceStr,
+                        signature: signature.signature,
+                        jsApiList: ['chooseImage', 'uploadImage']
+                    });
                 }
             });
 
-        $scope.imgSrc = [];
         $scope.chooseImage = function() {
             wx.chooseImage({
-                count: 9,
+                count: 1,
                 sizeType: ['original', 'compressed'],
                 sourceType: ['album', 'camera'],
                 success: function(res) {
-                    $scope.imgSrc = res.localIds;
-                    alert($scope.imgSrc.length);
+                    $scope.localIds = res.localIds;
+                    wx.uploadImage({
+                        localId: res.localIds[0],
+                        isShowProgressTips: 1,
+                        success: function(res) {
+                            alert(res.serverId);
+                            WishData.mediaId = res.serverId;
+                        }
+                    });
                 }
             });
         };
 
+       
 
+        // $scope.localIds = ['wxLocalResource://46795268757953'];
 
         $scope.setUserInfo = function() {
 
@@ -368,7 +341,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                             .success(function(data, status) {
                                 if (status === 200) {
                                     alert('许愿成功');
-                                    $state.go('index');
+                                    $state.go('index.wishwall');
                                 }
                             });
                     }
@@ -609,7 +582,6 @@ app.controller('FemaleWishCtrl', ['$scope', '$rootScope', '$state', 'WishService
         $scope.UnpickWishes = [];
         $scope.PickedWishes = [];
         $scope.CompletedWishes = [];
-
 
 
 
