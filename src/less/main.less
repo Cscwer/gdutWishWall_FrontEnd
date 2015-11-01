@@ -113,7 +113,7 @@ textarea {
 .username {
 	display: inline-block;
 	margin: 0;
-	font-size: 12px;
+	font-size: 16px;
 	font-weight: bold;
 	color: #606060;
 	vertical-align: top;
@@ -131,6 +131,11 @@ textarea {
 .wish_content {
 	word-wrap: break-word;
 	font-size: 12px;
+}
+.bless_content {
+	word-wrap: break-word;
+	margin: 16px 30px 10px 8px;
+	font-size: 16px;
 }
 .wishwall-app-body {
 	background-color: #f4efee;
@@ -254,12 +259,13 @@ textarea {
 	position: relative;
 }
 .headimg-con {
-	position: relative;
+	position: absolute;
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
 	background-color: #fff;
 	top: -25px;
+	left: 6px;
 	display: inline-block;
 	text-align: center;
 	img {
@@ -271,15 +277,23 @@ textarea {
 }
 .blessuser-con {
 	display: inline-block;
-	
+	position: relative;
+	left: 50px;
+	top: 10px;
+	left: 56px;
 }
 .bless-praise {
-	height: inherit;
-	color: rgba(0, 0, 0, 0.5);
-	display:-webkit-box;
-	-webkit-box-orient:vertical;
-	-webkit-box-pack:center;
-	-webkit-box-align:center;
+	float: right;
+	position: absolute;
+	top: 0;
+	right: 12px;
+	text-align: center;
+	a {
+		color: rgba(0, 0, 0, 0.5);
+	}
+	p {
+		margin: 0;
+	}
 }
 .wishwall-search-navbar {
 	.navbar-brand-left {
