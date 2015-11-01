@@ -196,10 +196,11 @@ app.factory('WeChatService', ['$http',
                 });
             },
 
-            getAccessToken: function(data) {
+            getSignature: function(data) {
                 return $http({
-                    method: 'GET',
-                    url: Host + '/getAccessToken?uid=' + data.userId
+                    method: 'POST',
+                    url: Host + '/getSignature',
+                    data: data
                 });
             },
 
