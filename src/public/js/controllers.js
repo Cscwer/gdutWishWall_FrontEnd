@@ -197,7 +197,6 @@ app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams'
         var data = {
             userId: $stateParams.userId
         };
-        alert($stateParams.userId);
         UserService.getUserInfo(data)
             .success(function(data, status) {
                 if (status === 200) {
@@ -236,6 +235,13 @@ app.controller('UserInfoBlessWallCtrl', ['$scope',
     function($scope) {}
 ]);
 
+app.controller('SettingCtrl', ['$scope', '$window',
+    function($scope, $window) {
+        $scope.goBack = function() {
+            $window.history.back();
+        };
+    }
+]);
 
 //用户控制器
 app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'WishService', 'PutBlessService', 'WishData', 'BlessData', 'UserService', 'WeChatService', '$sce',
@@ -300,9 +306,8 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             });
         };
 
-       
 
-        // $scope.localIds = ['wxLocalResource://46795268757953'];
+
 
         $scope.setUserInfo = function() {
 
@@ -495,6 +500,14 @@ app.controller('MsgCtrl', ['$scope', '$rootScope', '$state', 'MsgService',
     }
 ]);
 
+app.controller('NoticeCtrl', ['$scope', '$window',
+    function($scope, $window) {
+        $scope.goBack = function() {
+            $window.history.back();
+        };
+    }
+]);
+
 //用户联系控制器
 app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'ContactService',
     function($scope, $rootScope, $stateParams, ContactService) {
@@ -639,7 +652,6 @@ app.controller('FemaleWishCtrl', ['$scope', '$rootScope', '$state', 'WishService
 //男生愿望控制器
 app.controller('MaleWishCtrl', ['$scope', '$state', 'GetMaleWishService',
     function($scope, $state, GetMaleWishService) {
-        // $scope.ApplyToPickWishes = [];
         $scope.CompletedWishes = [];
         $scope.PickedWishes = [];
         var data = {
@@ -649,9 +661,6 @@ app.controller('MaleWishCtrl', ['$scope', '$state', 'GetMaleWishService',
             .success(function(data, status) {
                 if (status === 200) {
                     for (var i = 0; i < data.wishes.length; i++) {
-                        // if (data.wishes[i].ispicked === 1) {
-                        //     $scope.ApplyToPickWishes.push(data.wishes[i]);
-                        // }
                         if (data.wishes[i].ispicked === 1) {
                             $scope.PickedWishes.push(data.wishes[i]);
                         }

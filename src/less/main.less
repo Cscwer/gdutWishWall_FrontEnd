@@ -4,11 +4,14 @@
 html,body {
 	color: #000;
 	height: 100%;
+	overflow: hidden;
 }
 textarea {
 	resize: none;
 }
-
+.scrollable-content {
+	overflow: hidden;
+}
 .wishwall-icon {
 	font-size: 25px;
 }
@@ -195,6 +198,13 @@ textarea {
 	color: rgba(255, 255, 255, 1);
 	.navbar-brand {
 		line-height: @navbartopheight;
+	}
+	.wishwall-icon-a {
+		line-height: @navbartopheight;
+		position: absolute;
+		right: 0px;
+		font-size: 20px;
+		color: #fff;
 	}
 }
 .visitors {
@@ -390,5 +400,33 @@ textarea {
 		line-height: 45px;
 		height: 45px;
 		margin-left: 10px;
+	}
+}
+.setting-navbar-top {
+	color: #fff;
+	.navbar-brand-center {
+		line-height: @navbartopheight;
+	}
+	.wishwall-icon-a {
+		position: absolute;
+		left: 0;
+		font-size: 30px;
+		color: #fff;
+	}
+}
+
+.wishwall-notice {
+	.timestamp {
+		color: fade(#000, 70%);
+	}
+	.row .col-xs-12 {
+		height: auto;
+	}
+	.col-xs-12 {
+		p {
+			margin: 0;
+			height: auto;
+			line-height: normal;
+		}
 	}
 }

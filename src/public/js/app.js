@@ -55,6 +55,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: '/views/User/message.html',
             controller: 'MsgCtrl'
         })
+        .state('user.notice', {
+            url: '/notice',
+            templateUrl: '/views/User/notice.html',
+            controller: 'NoticeCtrl'
+        })
         .state('user.contact', {
             url: '/contact/:userId/:username',
             templateUrl: '/views/User/contact.html',
@@ -74,6 +79,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/blesswall',
             templateUrl: '/views/User/userinfoblesswall.html',
             controller: 'UserInfoBlessWallCtrl'
+        })
+        .state('setting', {
+            url: '/setting',
+            templateUrl: '/views/User/setting.html',
+            controller: 'SettingCtrl'
         })
         .state('wish', {
             abstract: true,
