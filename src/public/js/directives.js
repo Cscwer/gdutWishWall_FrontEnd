@@ -347,3 +347,21 @@ app.directive('wishwallvisitor', ['$window',
 //         };
 //     }
 // ]);
+
+//动态对齐访点赞数目模块的高度
+app.directive('makepraiseheight', ['$window',
+    function($window) {
+        return {
+            restrict: 'A',
+            link: function(scope, elem, attrs) {
+                var textheight = elem.find('.blessmessage-con').height();
+                var praise = elem.find('.bless-praise');
+                var praiseheight = praise.height();
+                var praisetotop = (textheight + 10 - praiseheight) / 2;
+                praise.css({
+                    'top': praisetotop
+                });
+            }
+        };
+    }
+]);
