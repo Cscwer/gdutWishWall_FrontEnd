@@ -86,7 +86,7 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'GetAllBless', 'MakePraise
             var data = {
                 //userId: sessionStorage.getItem('uid'),
                 userId: 'asdasdcmjnnjbbj',
-                blessId: blessId.blessId
+                blessId: blessId
             };
             console.log(data);
             MakePraise.makePraise(data)
