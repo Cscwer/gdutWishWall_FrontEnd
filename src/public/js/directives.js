@@ -366,7 +366,7 @@ app.directive('makepraiseheight', ['$window',
     }
 ]);
 
-//动态对齐选择框模块的位置
+//控制选择框的弹出以及动态对齐选择框模块的位置
 app.directive('selecebox', ['$window',
     function($window) {
         return {
