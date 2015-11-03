@@ -439,6 +439,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             //组装祝福数据包
             BlessData.user = sessionStorage.getItem('uid');
             BlessData.username = sessionStorage.getItem('username');
+            WishData.userheadimg = $rootScope.user.headimgurl;
             BlessData.bless = $scope.bless;
 
             $state.go('user.writeblessinfo');
@@ -465,7 +466,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                         UserService.updateInfo(InfoData)
                             .success(function(data, status) {
                                 if (status === 200) {
-                                    alert('祝福成功');
+                                    alert('发布祝福成功');
                                     $state.go('index.blesswall');
                                 }
                             });
