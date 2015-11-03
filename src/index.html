@@ -19,14 +19,14 @@
 
         
 
-        <div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-app-bottom navbar-absolute-bottom" ng-controller="LeaderCtrl">
+        <div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-app-bottom navbar-absolute-bottom" ng-controller="LeaderCtrl" selecebox>
             <!-- Bottom Navbar -->
             <div class="btn-group justified">
                 <a href="javascript:void(0)" class="btn btn-navbar btn-navbar-active" ui-class ui-sref="index.wishwall" ui-sref-opts="{reload: true}"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
                 </a>
                 <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="wish.search"> <i class="fa fa-search wishwall-icon-home fa-navbar"></i>
                 </a>
-                <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="user.writewish">
+                <a href="javascript:void(0)" class="btn btn-navbar select-box-button">
                     <i class="fa fa-plus wishwall-icon-home fa-navbar"></i>
                 </a>
                 <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="user.message" ng-click="cancelMsgCount()" ui-sref-opts="{reload: true}">
@@ -35,6 +35,14 @@
                 <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="userinfo({userId: '563083ca1dcd7cdb8b6829b6'})" ui-sref-opts="{reload: true}">
                     <i class="fa fa-user wishwall-icon-home fa-navbar"></i>
                 </a>
+            </div>
+            <div class="select-box">
+                    <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writewish">
+                        <i class="fa fa-plus wishwall-icon-home fa-navbar"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writebless">
+                        <i class="fa fa-plus wishwall-icon-home fa-navbar"></i>
+                    </a>
             </div>
         </div>
 

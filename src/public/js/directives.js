@@ -348,7 +348,7 @@ app.directive('wishwallvisitor', ['$window',
 //     }
 // ]);
 
-//动态对齐访点赞数目模块的高度
+//动态对齐点赞数目模块的高度
 app.directive('makepraiseheight', ['$window',
     function($window) {
         return {
@@ -360,6 +360,34 @@ app.directive('makepraiseheight', ['$window',
                 var praisetotop = (textheight + 10 - praiseheight) / 2;
                 praise.css({
                     'top': praisetotop
+                });
+            }
+        };
+    }
+]);
+
+//动态对齐选择框模块的位置
+app.directive('selecebox', ['$window',
+    function($window) {
+        return {
+            restrict: 'A',
+            link: function(scope, elem, attrs) {
+                var selectBoxButton = elem.find('.select-box-button');
+                var elemWidth = elem.width();
+                var selectBox = elem.find('.select-box');
+                var selectBoxWidth = selectBox.width();
+                var boxLeft = (elemWidth - selectBoxWidth) / 2;
+                var selection = elem.find('.selection');
+                selectBoxButton.on('click', function(event) {
+                    event.preventDefault();
+                    selectBox.toggle('400');
+                });
+                selection.on('click', function(event) {
+                    selectBox.toggle('400');
+                });
+                console.log(boxLeft);
+                selectBox.css({
+                    'left': boxLeft
                 });
             }
         };
