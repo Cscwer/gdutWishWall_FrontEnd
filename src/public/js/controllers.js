@@ -437,10 +437,8 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             //组装祝福数据包
             BlessData.user = sessionStorage.getItem('uid');
             BlessData.username = sessionStorage.getItem('username');
-            BlessData.userheadimg = $rootScope.user.headimgurl;
             BlessData.bless = $scope.bless;
             BlessData.userheadimg = $rootScope.user.headimgurl;
-
             $state.go('user.writeblessinfo');
         };
 
