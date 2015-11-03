@@ -281,12 +281,10 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                 sizeType: ['original', 'compressed'],
                 sourceType: ['album', 'camera'],
                 success: function(res) {
-                    $scope.localIds = res.localIds;
                     wx.uploadImage({
                         localId: res.localIds[0],
                         isShowProgressTips: 1,
                         success: function(res) {
-                            alert(res.serverId);
                             WishData.mediaId = res.serverId;
                         }
                     });
@@ -295,18 +293,16 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
         };
 
         //Bless image
-        $scope.chooseImage = function() {
+        $scope.chooseBlessImage = function() {
             wx.chooseImage({
                 count: 1,
                 sizeType: ['original', 'compressed'],
                 sourceType: ['album', 'camera'],
                 success: function(res) {
-                    $scope.localIds = res.localIds;
                     wx.uploadImage({
                         localId: res.localIds[0],
                         isShowProgressTips: 1,
                         success: function(res) {
-                            alert(res.serverId);
                             BlessData.mediaId = res.serverId;
                         }
                     });
@@ -440,6 +436,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             BlessData.user = sessionStorage.getItem('uid');
             BlessData.username = sessionStorage.getItem('username');
             BlessData.bless = $scope.bless;
+            BlessData.userheadimg = $rootScope.user.headimgurl;
 
             $state.go('user.writeblessinfo');
         };
