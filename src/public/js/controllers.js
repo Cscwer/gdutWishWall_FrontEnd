@@ -7,13 +7,6 @@ app.controller('IndexCtrl', ['$scope', 'WishService',
         $scope.oddwishes = [];
         $scope.evenwishes = [];
 
-
-        //获取在主页显示的愿望
-        // WishService.getUnpickedWishes()
-        //     .success(function(data) {
-        //         $scope.wishes = data.wishes;
-        //     });
-
         //加载下一页的内容，只有登录的人才能查看
         $scope.page = 1; //当前页数
         $scope.per_page = 15; //每页显示数目
