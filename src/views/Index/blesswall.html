@@ -4,7 +4,7 @@
                     <div class="panel panel-default blesswall-panel" ng-repeat="bless in blesses">
                         <div class="panel-body blesswall-panel-body" makepraiseheight>
                             <div class="blessimg-con">
-                                <img src="/public/img/1.jpg" alt="">
+                                <img ng-if="bless.img" ng-src="{{bless.img}}" alt="">
                             </div>
                             <div class="blessmessage-con">
                                 <div class="headimg-con">

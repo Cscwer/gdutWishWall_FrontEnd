@@ -1,12 +1,10 @@
 <form role="form" name="putBlessForm">
      <div class="form-group">
         <button ng-click="chooseBlessImage()">选择图片</button><br>
-        <ul>
-          <li ng-repeat="img in imgSrc">
-            <img ng-src="{{img}}" alt="">
-          </li>
-        </ul><br>
-
+        <div id="pic" ng-repeat="localId in localBlessIds">
+            <p>{{localId}}</p>
+            <img  ng-src="{{localId}}" width="40px" height="40px">
+        </div><br>
             <label for="name">祝福内容</label>
             <textarea class="form-control" rows="3" placeholder="写下你的祝福" ng-model="bless" name="bless" ng-maxlength="140" required></textarea>
             <p style="color: red" ng-show="putBlessForm.bless.$invalid">祝福不能为空且不能超过140个字</p>
