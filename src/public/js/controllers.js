@@ -56,8 +56,8 @@ app.controller('IndexCtrl', ['$scope', 'WishService',
 ]);
 
 //祝福墙主页控制器
-app.controller('BlessIndexCtrl', ['$scope', '$state', 'GetAllBless', 'MakePraise',
-    function($scope, $state, GetAllBless, MakePraise) {
+app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
+    function($scope, $state, BlessService) {
         //祝福列表
         $scope.blesses = [];
 
@@ -65,7 +65,7 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'GetAllBless', 'MakePraise
         $scope.per_pageForBless = 5;
         $scope.nextpageBless = function(page, per_page) {
             $scope.isLoading = true;
-            GetAllBless.getBlesses(page, per_page)
+            BlessService.getBlesses(page, per_page)
                 .success(function(data, status) {
                     if (status === 200) {
                         for (var i = 0; i < data.blesses.length; i++) {
@@ -80,16 +80,10 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'GetAllBless', 'MakePraise
         $scope.nextpageBless(1, 5);
 
         //祝福点赞
-
         $scope.praiseIt = function(blessId) {
             console.log(blessId);
-            var data = {
-                //userId: sessionStorage.getItem('uid'),
-                userId: 'asdasdcmjnnjbbj',
-                blessId: blessId
-            };
             console.log(data);
-            MakePraise.makePraise(data)
+            BlessService.makePraise(data)
                 .success(function(data, status) {
                     if (status === 200) {
                         console.log('点赞成功');
@@ -244,8 +238,8 @@ app.controller('SettingCtrl', ['$scope', '$window',
 ]);
 
 //用户控制器
-app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'WishService', 'PutBlessService', 'WishData', 'BlessData', 'UserService', 'WeChatService', '$sce',
-    function($scope, $rootScope, $state, $stateParams, WishService, PutBlessService, WishData, BlessData, UserService, WeChatService, $sce) {
+app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'WishService', 'BlessService', 'WishData', 'BlessData', 'UserService', 'WeChatService', '$sce',
+    function($scope, $rootScope, $state, $stateParams, WishService, BlessService, WishData, BlessData, UserService, WeChatService, $sce) {
 
         $scope.isRewrite = $stateParams.rewrite;
 
@@ -287,6 +281,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                 }
             });
 
+        //Wish image
         $scope.chooseImage = function() {
             wx.chooseImage({
                 count: 1,
@@ -300,6 +295,26 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                         success: function(res) {
                             alert(res.serverId);
                             WishData.mediaId = res.serverId;
+                        }
+                    });
+                }
+            });
+        };
+
+        //Bless image
+        $scope.chooseImage = function() {
+            wx.chooseImage({
+                count: 1,
+                sizeType: ['original', 'compressed'],
+                sourceType: ['album', 'camera'],
+                success: function(res) {
+                    $scope.localIds = res.localIds;
+                    wx.uploadImage({
+                        localId: res.localIds[0],
+                        isShowProgressTips: 1,
+                        success: function(res) {
+                            alert(res.serverId);
+                            BlessData.mediaId = res.serverId;
                         }
                     });
                 }
@@ -450,7 +465,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             };
             BlessData.school_area = $scope.school_area;
             //发布愿望
-            PutBlessService.putBless(BlessData)
+            BlessService.putBless(BlessData)
                 .success(function(data, status) {
                     if (status === 200) {
                         //更新个人信息

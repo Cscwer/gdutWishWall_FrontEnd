@@ -137,8 +137,54 @@ app.factory('ContactService', ['$http',
 ]);
 
 /***************************祝福墙服务**********************/
-
-//获取所有祝福
+app.factory('BlessService', ['$http',
+    function($http) {
+        return {
+            getBlesses: function(page, per_page) {
+                return $http({
+                    method: 'GET',
+                    url: Host + '/getallbless?page=' + page + '&per_page=' + per_page
+                });
+            },
+            makePraise: function(data) {
+                return $http({
+                    method: 'POST',
+                    url: Host + '/makepraise',
+                    data: data
+                });
+            },
+            putBless: function(data) {
+                return $http({
+                    method: 'POST',
+                    url: Host + '/putbless',
+                    data: data
+                });
+            },
+            getBless: function(data) {
+                return $http({
+                    method: 'GET',
+                    url: Host + '/getbless?blessId=' + data.blessId,
+                    data: data
+                });
+            },
+            getUserBless: function(data) {
+                return $http({
+                    method: 'GET',
+                    url: Host + '/getoneswish?userId=' + data.userId,
+                    data: data
+                });
+            },
+            deleteBless: function(data) {
+                return $http({
+                    method: 'POST',
+                    url: Host + '/deletebless',
+                    data: data
+                });
+            },
+        };
+    }
+]);
+/*//获取所有祝福
 app.factory('GetAllBless', ['$http',
     function($http) {
         return {
@@ -180,7 +226,7 @@ app.factory('PutBlessService', ['$http',
             }
         };
     }
-]);
+]);*/
 
 /***************************微信服务************************/
 
