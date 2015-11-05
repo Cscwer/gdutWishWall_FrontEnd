@@ -28,7 +28,9 @@ app.controller('IndexCtrl', ['$scope', 'WishService',
                     }
                 });
         };
-
+        $scope.test = function() {
+            console.log('ahahahah');
+        };
         $scope.refreshPage = function(page, per_page) {
             $scope.isLoading = true;
             $scope.wishes = [];
