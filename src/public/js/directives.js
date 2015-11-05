@@ -349,15 +349,16 @@ app.directive('wishwallvisitor', ['$window',
 // ]);
 
 //动态对齐点赞数目模块的高度
+//菊花残
 app.directive('makepraiseheight', ['$window',
     function($window) {
         return {
             restrict: 'A',
             link: function(scope, elem, attrs) {
                 var textheight = elem.parent().height();
-                
+                console.log(textheight);
                 var praiseheight = elem.height();
-                
+                console.log(praiseheight);
                 var praisetotop = (textheight + 10 - praiseheight) / 2;
                 elem.css({
                     'top': praisetotop
