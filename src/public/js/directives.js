@@ -354,11 +354,12 @@ app.directive('makepraiseheight', ['$window',
         return {
             restrict: 'A',
             link: function(scope, elem, attrs) {
-                var textheight = elem.find('.blessmessage-con').height();
-                var praise = elem.find('.bless-praise');
-                var praiseheight = praise.height();
+                var textheight = elem.parent().height();
+                
+                var praiseheight = elem.height();
+                
                 var praisetotop = (textheight + 10 - praiseheight) / 2;
-                praise.css({
+                elem.css({
                     'top': praisetotop
                 });
             }
