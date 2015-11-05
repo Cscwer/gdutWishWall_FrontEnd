@@ -74,14 +74,17 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
 
         //祝福点赞
         $scope.praiseIt = function(blessId) {
-            console.log(blessId);
-            console.log(data);
-            BlessService.makePraise(data)
+            var praiseData = {
+                blessId: blessId,
+                userId: sessionStorage.getItem('uid')
+            }
+            console.log(praiseData);
+            BlessService.makePraise(praiseData)
                 .success(function(data, status) {
                     if (status === 200) {
-                        console.log('点赞成功');
+                        alert('点赞成功');
                     } else {
-                        console.log(data);
+                        alert(data);
                     }
                 });
         };
