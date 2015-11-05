@@ -8,7 +8,8 @@
     <meta http-equiv="Cache-Control" content="no-transform " />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <!--build:css public/css/app.css-->
-    <link rel="stylesheet" href="components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css">
+    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="public/css/main.css">
     <!--endbuild-->
 </head>
@@ -19,9 +20,17 @@
 
         
 
-        <div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-app-bottom navbar-absolute-bottom" ng-controller="LeaderCtrl" selecebox>
-            <!-- Bottom Navbar -->
-            <div class="btn-group justified">
+        
+
+        <!-- App body -->
+
+        <div class='app-body wishwall-app-body'>
+            <div class='app-content'>
+
+                <div ui-view></div>
+            </div>
+        </div>
+        <div class="navbar wishwall-navbar-app wishwall-navbar-app-bottom navbar-fixed-bottom" ng-controller="LeaderCtrl" selecebox>
                 <a href="javascript:void(0)" class="btn btn-navbar btn-navbar-active" ui-class ui-sref="index.wishwall" ui-sref-opts="{reload: true}"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
                 </a>
                 <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="wish.search"> <i class="fa fa-search wishwall-icon-home fa-navbar"></i>
@@ -35,7 +44,6 @@
                 <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="userinfo({userId: '563083ca1dcd7cdb8b6829b6'})" ui-sref-opts="{reload: true}">
                     <i class="fa fa-user wishwall-icon-home fa-navbar"></i>
                 </a>
-            </div>
             <div class="select-box">
                     <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writewish">
                         <i class="fa fa-plus wishwall-icon-home fa-navbar"></i>
@@ -46,26 +54,15 @@
             </div>
         </div>
 
-        <!-- App body -->
-
-        <div class='app-body wishwall-app-body'>
-            <div class='app-content'>
-
-                <div ui-view></div>
-            </div>
-        </div>
-
     </div>
 
     <!-- Modals and Overlays -->
-    <div ui-yield-to="modals"></div>
 
     <!--build:js public/js/index.js -->
     <script src="components/jquery/dist/jquery.min.js"></script>
     <script src="components/angular/angular.min.js"></script>
     <script src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
-    <script src="components/scrollfix/scrollfix.js"></script>
+    <!--<script src="components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>-->
     <script src="public/js/infinite-scroll.js"></script>
     <script src="components/socket.io-client/socket.io.js"></script>
     <script src="public/js/app.js"></script>

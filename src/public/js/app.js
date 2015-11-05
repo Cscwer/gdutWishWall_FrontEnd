@@ -1,4 +1,4 @@
-var app = angular.module('gdutWishWall', ['ui.router', 'infinite-scroll', 'mobile-angular-ui']);
+var app = angular.module('gdutWishWall', ['ui.router', 'infinite-scroll']);
 
 //配置图片白名单
 app.config(['$compileProvider', function($compileProvider) {
