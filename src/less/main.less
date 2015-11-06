@@ -1,6 +1,9 @@
 @themecolor: #ff5247;
 @navbartopheight: 35px;
 @navbarbottomheight: 35px;
+a:hover, a:focus {
+	text-decoration: none;
+}
 html,body {
 	color: #000;
 	height: 100%;
@@ -69,6 +72,30 @@ textarea {
 		border: none;
 		padding: 0;
 	}
+	.badge {
+		position: absolute;
+		padding: 0;
+		width: 5px;
+		height: 5px;
+		display: inline-block;
+		min-width: 0;
+		top: 5px;
+		background-color: @themecolor;
+	}
+	.select-box {
+		position: absolute;
+		display: none;
+		bottom: 35px;
+		left: 50%;
+		transform: translate(-50%);
+		.selection {
+			width: auto;
+			color: #fff;
+			background-color: @themecolor;
+			padding: 0 10px;
+		}
+	}
+	
 	background-color: white;
 	.wishwall-icon-home {
 		font-size: 25px;
@@ -78,7 +105,11 @@ textarea {
 		line-height: @navbarbottomheight;
 		color: rgba(0, 0, 0, .5);
 	}
-	.active {
+	.btn:active, .btn.active {
+		box-shadow: none;
+		-webkit-box-shadow: none;
+	}
+	.active, .active-longer {
 		i {
 			color: @themecolor;
 		}
@@ -226,10 +257,15 @@ textarea {
 		}
 		.info_school_area {
 			margin-right: 20px;
-
+			position: absolute;
+			left: 40%;
+			transform: translate(-50%);
 		}
 		.info_college_name {
 			margin-left: 20px;
+			position: absolute;
+			right: 40%;
+			transform: translate(50%);
 		}
 	}
 }
@@ -480,12 +516,7 @@ textarea {
 			margin: 0;
 			height: auto;
 			line-height: normal;
+			display: block;
 		}
 	}
-}
-.select-box {
-	position: absolute;
-	display: none;
-	top: -39px;
-	background-color: #ff5247;
 }

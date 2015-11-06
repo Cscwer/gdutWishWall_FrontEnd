@@ -30,7 +30,7 @@
                         </div>
 
                         <hr class="wishborder">
-                        <p class="wish_content">{{wish.wish}}</p>
+                        <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
                     </div>
 
                     <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img"></div>
@@ -49,7 +49,7 @@
                         <!-- <br>
                         -->
                         <hr class="wishborder">
-                        <p class="wish_content">{{wish.wish}}</p>
+                        <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
                     </div>
                     <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img"></div>
             </div>

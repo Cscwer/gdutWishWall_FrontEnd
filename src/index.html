@@ -16,7 +16,7 @@
 
 <body>
 
-    <div class="app">
+    <div class="app" wishwall>
 
         
 
@@ -31,25 +31,26 @@
             </div>
         </div>
         <div class="navbar wishwall-navbar-app wishwall-navbar-app-bottom navbar-fixed-bottom" ng-controller="LeaderCtrl" selecebox>
-                <a href="javascript:void(0)" class="btn btn-navbar btn-navbar-active" ui-class ui-sref="index.wishwall" ui-sref-opts="{reload: true}"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
+                <a href="javascript:void(0)" class="btn btn-navbar active wishwall-navbar-bottom-btn" ui-class ui-sref="index.wishwall"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
                 </a>
-                <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="wish.search"> <i class="fa fa-search wishwall-icon-home fa-navbar"></i>
+                <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" ui-sref="wish.search"> <i class="fa fa-search wishwall-icon-home fa-navbar"></i>
                 </a>
-                <a href="javascript:void(0)" class="btn btn-navbar select-box-button">
+                <a href="javascript:void(0)" class="btn btn-navbar select-box-button wishwall-navbar-bottom-btn active-longer">
                     <i class="fa fa-plus wishwall-icon-home fa-navbar"></i>
                 </a>
-                <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="user.message" ng-click="cancelMsgCount()" ui-sref-opts="{reload: true}">
+                <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" ui-sref="user.message" ng-click="cancelMsgCount()">
                     <i class="fa fa-comment wishwall-icon-home fa-navbar"></i>
+                    <span class="badge" ng-if="hasNewMsg"></span>
                 </a>
-                <a href="javascript:void(0)" class="btn btn-navbar" ui-sref="userinfo({userId: '563083ca1dcd7cdb8b6829b6'})" ui-sref-opts="{reload: true}">
+                <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" ui-sref="userinfo({userId: user._id})">
                     <i class="fa fa-user wishwall-icon-home fa-navbar"></i>
                 </a>
             <div class="select-box">
                     <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writewish">
-                        <i class="fa fa-plus wishwall-icon-home fa-navbar"></i>
+                        发愿望
                     </a>
                     <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writebless">
-                        <i class="fa fa-plus wishwall-icon-home fa-navbar"></i>
+                        发祝福
                     </a>
             </div>
         </div>

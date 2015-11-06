@@ -97,7 +97,6 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
 
     function($scope, $rootScope, $state, $location, $http, MsgService, WeChatService) {
 
-
         //获取微信用户信息
         WeChatService.getWeChatInfo()
             .success(function(data, status) {
@@ -122,10 +121,6 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
 
         // });
 
-        //系统消息队列
-        // $scope.SystemMsg.push(msg);
-        // console.log($scope.SystemMsg);
-        // localStorage.WishMsg = JSON.stringify($scope.SystemMsg);
 
         //基于 socket.io 的消息推送
         $scope.hasNewMsg = false;
@@ -136,9 +131,10 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
             console.log('连接成功');
         });
 
+        //SystemMsgList
+        $scope.SystemMsg = JSON.parse(localStorage.getItem('WishMsg')) || [];
 
         $rootScope.socket.on('WishMsg_res', function(msg) {
-            console.log(msg);
             //处理系统消息
             if (msg.receiver === sessionStorage.getItem('uid')) {
                 $scope.$apply(function() {
@@ -149,14 +145,20 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
             }
         });
 
+        MsgService.getMsg(sessionStorage.getItem('uid'))
+            .success(function(data, status) {
+                if(status === 200) {
+                    $scope.MsgList = data.msgs;
+                    for(var i = 0, len = $scope.MsgList.length; i < len; i++) {
+                        if($scope.MsgList[i].hadread == 0) {
+                            $scope.hasNewMsg = true;
+                        }
+                    }
+                }
+            });
+
         $scope.cancelMsgCount = function() {
             $scope.hasNewMsg = false;
-            MsgService.readMsg(sessionStorage.getItem('uid'))
-                .success(function(data, status) {
-                    if (status === 200) {
-                        console.log("清楚消息");
-                    }
-                });
         };
 
     }
@@ -253,6 +255,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                     $scope.real_name = data.user.real_name;
                     $scope.long_tel = data.user.long_tel;
                     $scope.short_tel = data.user.short_tel;
+                    $scope.email = data.user.email;
                 }
             });
 
@@ -266,10 +269,9 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
         WeChatService.getSignature(ticket_data)
             .success(function(data, status) {
                 if (status === 200) {
-                    console.log(data);
                     var signature = data.data;
                     wx.config({
-                        debug: true,
+                        debug: false,
                         appId: signature.appId,
                         timestamp: signature.timestamp,
                         nonceStr: signature.nonceStr,
@@ -345,9 +347,11 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                 school_area: $scope.school_area,
                 college_name: $scope.college_name,
                 long_tel: $scope.long_tel,
-                short_tel: $scope.short_tel
+                short_tel: $scope.short_tel,
+                email: $scope.email
             };
             WishData.school_area = $scope.school_area;
+            WishData.useremail = $scope.email;
             //发布愿望
             WishService.putWish(WishData)
                 .success(function(data, status) {
@@ -374,39 +378,41 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                 school_area: $scope.school_area,
                 college_name: $scope.college_name,
                 long_tel: $scope.long_tel,
-                short_tel: $scope.short_tel
+                short_tel: $scope.short_tel,
+                email: $scope.email
             };
 
-            // if (confirm('确定领取该愿望?')) {
-            var data = {
-                type: 1,
-                wishId: WishData._id,
-                wishPicker: sessionStorage.getItem('uid'),
-                wishPickerName: sessionStorage.getItem('username')
-            };
-            WishService.updateWishState(data)
-                .success(function(data, status) {
-                    if (status === 200) {
-                        //更新个人信息
-                        UserService.updateInfo(InfoData)
-                            .success(function(data, status) {
-                                if (status === 200) {
-                                    var msg = {
-                                        msg_type: 'System',
-                                        sender: sessionStorage.getItem('uid'),
-                                        sender_name: sessionStorage.getItem('username'),
-                                        receiver: WishData.user,
-                                        receiver_name: WishData.username,
-                                        msg: '领取了你的愿望'
-                                    };
-                                    $rootScope.socket.emit('WishMsg', msg);
-                                    alert('领取成功！');
-                                    $state.go('wish.malewish');
-                                }
-                            });
-                    }
-                });
-            // }
+            if (confirm('确定领取该愿望?')) {
+                var data = {
+                    type: 1,
+                    wishId: WishData._id,
+                    wishPicker: sessionStorage.getItem('uid'),
+                    wishPickerName: sessionStorage.getItem('username'),
+                    email: WishData.useremail
+                };
+                WishService.updateWishState(data)
+                    .success(function(data, status) {
+                        if (status === 200) {
+                            //更新个人信息
+                            UserService.updateInfo(InfoData)
+                                .success(function(data, status) {
+                                    if (status === 200) {
+                                        var msg = {
+                                            msg_type: 'System',
+                                            sender: sessionStorage.getItem('uid'),
+                                            sender_name: sessionStorage.getItem('username'),
+                                            receiver: WishData.user,
+                                            receiver_name: WishData.username,
+                                            msg: '领取了你的愿望'
+                                        };
+                                        $rootScope.socket.emit('WishMsg', msg);
+                                        alert('领取成功！');
+                                        $state.go('wish.malewish');
+                                    }
+                                });
+                        }
+                    });
+            }
         };
 
         //修改个人信息
@@ -418,7 +424,8 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                 school_area: $scope.school_area,
                 college_name: $scope.college_name,
                 long_tel: $scope.long_tel,
-                short_tel: $scope.short_tel
+                short_tel: $scope.short_tel,
+                email: $scope.email
             };
 
             //更新个人信息
@@ -488,34 +495,30 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 app.controller('MsgCtrl', ['$scope', '$rootScope', '$state', 'MsgService',
     function($scope, $rootScope, $state, MsgService) {
         $scope.SystemMsg = JSON.parse(localStorage.getItem('WishMsg'));
-        $scope.SystemMsgNum = $scope.SystemMsg.length;
         $scope.UserMsg = [];
 
-        // var data = {
-        //     userId: $rootScope.user._id
-        // };
-        // MsgService.getMsg(data)
-        //     .success(function(data, status) {
-        //         if (status === 200) {
-        //             console.log(data.msgs);
-        //             for (var i = 0; i < data.msgs.length; i++) {
-        //                 if (data.msgs[i].msg_type === 'System') {
-        //                     $scope.SystemMsg.push(data.msgs[i]);
-        //                 }
-        //                 if (data.msgs[i].msg_type === 'User') {
-        //                     $scope.UserMsg.push(data.msgs[i]);
-        //                 }
-        //             }
-        //         }
-        //     });
+        $scope.clearMsg = function() {
+            localStorage.removeItem('WishMsg');
+            $scope.SystemMsg.length = 0;
+        };
+        
     }
 ]);
 
-app.controller('NoticeCtrl', ['$scope', '$window',
-    function($scope, $window) {
+app.controller('NoticeCtrl', ['$scope', '$window', 'MsgService',
+    function($scope, $window, MsgService) {
+
         $scope.goBack = function() {
             $window.history.back();
         };
+        MsgService.getMsg(sessionStorage.getItem('uid'))
+            .success(function(data, status) {
+                if(status === 200) {
+                    $scope.MsgList = data.msgs;
+                }
+            });
+
+        $scope.SystemMsg = JSON.parse(localStorage.getItem('WishMsg'));
     }
 ]);
 
@@ -577,6 +580,7 @@ app.controller('WishCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                     WishData._id = data.wish._id;
                     WishData.user = data.wish.user;
                     WishData.username = data.wish.username;
+                    WishData.useremail = data.wish.useremail;
                 }
             });
 

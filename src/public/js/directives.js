@@ -298,7 +298,6 @@ app.directive('autoroll', ['$window', '$timeout',
 
                 var olelem = elem.find('.carousel-indicators').children();
                 var imgelem = elem.find('.carousel-inner');
-                console.log($(imgelem));
 
                 var elemindex = 1;
                 var handle = function() {
@@ -320,33 +319,16 @@ app.directive('wishwallvisitor', ['$window',
             link: function(scope, elem, attrs) {
                 var elemwidth = elem.width();
                 var imgwidth = elemwidth / 8;
-                var sawidth = elemwidth / 2;
                 var imgmargin = imgwidth - 23;
                 elem.find('img').css({
                     'margin-right': imgmargin / 2,
                     'margin-left': imgmargin / 2
                 });
-                elem.parent().find('.info_school_area').css('right', sawidth);
-                elem.parent().find('.info_college_name').css('left', sawidth);
             }
         };
     }
 ]);
 
-//发布愿望选择图片
-// app.directive('wishwallpic', ['$window',
-//     function($window) {
-//         return {
-//             restrict: 'A',
-//             link: function(scope, elem, attrs) {
-//                 var img_elem = document.createElement('img');
-//                 img_elem.src = scope.localIds[0];
-//                 alert(img_elem.src);
-//                 $('#pic').append(img_elem);
-//             }
-//         };
-//     }
-// ]);
 
 //动态对齐点赞数目模块的高度
 //菊花残
@@ -356,9 +338,7 @@ app.directive('makepraiseheight', ['$window',
             restrict: 'A',
             link: function(scope, elem, attrs) {
                 var textheight = elem.parent().height();
-                console.log(textheight);
                 var praiseheight = elem.height();
-                console.log(praiseheight);
                 var praisetotop = (textheight + 10 - praiseheight) / 2;
                 elem.css({
                     'top': praisetotop
@@ -375,23 +355,31 @@ app.directive('selecebox', ['$window',
             restrict: 'A',
             link: function(scope, elem, attrs) {
                 var selectBoxButton = elem.find('.select-box-button');
-                var elemWidth = elem.width();
                 var selectBox = elem.find('.select-box');
-                var selectBoxWidth = selectBox.width();
-                var boxLeft = (elemWidth - selectBoxWidth) / 2;
                 var selection = elem.find('.selection');
+                elem.find('.wishwall-navbar-bottom-btn').on('click', function() {
+                    $(this).addClass('active').siblings().removeClass('active');
+                });;
                 selectBoxButton.on('click', function(event) {
                     event.preventDefault();
-                    selectBox.toggle('400');
+                    selectBox.toggle();
                 });
                 selection.on('click', function(event) {
-                    selectBox.toggle('400');
-                });
-                console.log(boxLeft);
-                selectBox.css({
-                    'left': boxLeft
+                    selectBox.toggle();
                 });
             }
         };
     }
 ]);
+
+app.directive('wishwalltop', ['$window', function($window) {
+    return {
+        restrict: 'A',
+        link: function(scope, elem, attrs) {
+            elem.find('.wishwall-navbar-top-btn').on('click', function() {
+                console.log('1');
+                $(this).addClass('active').parent().siblings().find('.wishwall-navbar-top-btn').removeClass('active');
+            });
+        }
+    };
+}]);

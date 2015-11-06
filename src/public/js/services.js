@@ -105,7 +105,7 @@ app.factory('MsgService', ['$http',
             getMsg: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getmessage?userId=' + data.userId
+                    url: Host + '/getmessage?userId=' + data
                 });
             },
 

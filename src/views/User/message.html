@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12" ui-sref="user.notice">
-            	<div class="greenbox"><span class="badge"ng-bind="SystemMsgNum"></span></div><p>通知</p>
+            	<div class="greenbox"><span class="badge"ng-bind="SystemMsg.length" ng-if="SystemMsg.length !== 0"></span></div><p>通知</p>
             </div>
         </div>
         <div class="row">
@@ -15,5 +15,6 @@
             	<div class="greenbox"></div><p>获赞</p>
             </div>
         </div>
+        <button ng-click="clearMsg()">click to clear the msg</button>
     </div>
 </div>

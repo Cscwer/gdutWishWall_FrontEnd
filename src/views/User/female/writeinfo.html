@@ -43,8 +43,12 @@
 	 	<label>长号</label><br>
 	 	<input type="text" name="long_tel" ng-model="long_tel" required ng-pattern="/^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/">
 	 	<p style="display: inline; color:red" ng-if="writeInfoForm.long_tel.$invalid">请输入合理的手机号</p><br><br>
+	 	<label>邮箱</label><br>
+	 	<input type="text" name="email" ng-model="email" required ng-pattern="/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ ">
+	 	<p style="display: inline; color:red" ng-if="writeInfoForm.email.$invalid">请输入合理的邮箱地址</p><br><br>
 	 	<label>短号</label><br>
-	 	<input type="text" name="short_tel" ng-model="short_tel">
+	 	<input type="text" name="short_tel" ng-model="short_tel"><br>
+	 	
 	 </div>
 	 <button type="submit" class="btn btn-default" ui-sref="user.writewish" ng-if="user.sex === 2 && isRewrite !== '1'">上一步</button>
 	 <button type="submit" class="btn btn-default" ng-click="publicWish()" ng-disabled="writeInfoForm.$invalid" ng-if="user.sex === 2 && isRewrite !== '1'">发布愿望</button>
