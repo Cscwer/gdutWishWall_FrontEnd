@@ -15,7 +15,7 @@ app.controller('IndexCtrl', ['$scope', 'WishService',
             $scope.isLoading = true;
             WishService.getUnpickedWishes(page, per_page)
                 .success(function(data, status) {
-                    if (status === 200) {
+                    if (status === 200 && data.wishes.length !== 0) {
                         // alert(data.wishes.length);
                         for (var i = 0; i < data.wishes.length; i = i + 2) {
                             $scope.oddwishes.push(data.wishes[i]);
@@ -28,25 +28,6 @@ app.controller('IndexCtrl', ['$scope', 'WishService',
                     }
                 });
         };
-        $scope.test = function() {
-            console.log('ahahahah');
-        };
-        $scope.refreshPage = function(page, per_page) {
-            $scope.isLoading = true;
-            $scope.wishes = [];
-            WishService.getUnpickedWishes(page, per_page)
-                .success(function(data, status) {
-                    for (var i = 0; i < data.wishes.length; i++) {
-                        $scope.wishes.push(data.wishes[i]);
-                    }
-                    $scope.page = 2;
-                    $scope.isLoading = false;
-                });
-        };
-
-        $scope.nextpage(1, 15);
-
-
     }
 ]);
 
@@ -62,7 +43,7 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
             $scope.isLoading = true;
             BlessService.getBlesses(page, per_page)
                 .success(function(data, status) {
-                    if (status === 200) {
+                    if (status === 200 && data.blesses.length !== 0) {
                         for (var i = 0; i < data.blesses.length; i++) {
                             $scope.blesses.push(data.blesses[i]);
                         }
@@ -72,7 +53,6 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
                 });
         };
 
-        $scope.nextpageBless(1, 5);
 
         //祝福点赞
         $scope.praiseIt = function(blessId) {
@@ -105,6 +85,7 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
                         $rootScope.user = data.data;
                         sessionStorage.setItem('uid', $rootScope.user._id);
                         sessionStorage.setItem('username', $rootScope.user.nickname);
+                        $scope.getUnreadMsgNum(data.data._id);
                     } else {
                         $rootScope.user = null;
                     }
@@ -123,42 +104,45 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
 
 
         //基于 socket.io 的消息推送
-        $scope.hasNewMsg = false;
+        $scope.unread_num = 0;
         $rootScope.isConnected = false;
-        $rootScope.socket = io.connect('http://gdutgirl.duapp.com');
+        $rootScope.socket = io.connect('http://gdutgirl.duapp.com', {
+            'connect_timeout': 500,
+            'reconnect': true,
+            'reconnection delay': 500,
+            'reopen delay': 500,
+            'max reconnection attempts': 10
+        });
         $rootScope.socket.on('open', function() {
             $rootScope.isConnected = true;
             console.log('连接成功');
         });
 
         //SystemMsgList
-        $scope.SystemMsg = JSON.parse(localStorage.getItem('WishMsg')) || [];
 
         $rootScope.socket.on('WishMsg_res', function(msg) {
             //处理系统消息
             if (msg.receiver === sessionStorage.getItem('uid')) {
-                $scope.$apply(function() {
-                    $scope.hasNewMsg = true;
-                    $scope.SystemMsg.push(msg);
-                    localStorage.WishMsg = JSON.stringify($scope.SystemMsg);
-                });
+                $scope.getUnreadMsgNum(msg.receiver);
             }
         });
-
-        MsgService.getMsg(sessionStorage.getItem('uid'))
-            .success(function(data, status) {
-                if(status === 200) {
-                    $scope.MsgList = data.msgs;
-                    for(var i = 0, len = $scope.MsgList.length; i < len; i++) {
-                        if($scope.MsgList[i].hadread == 0) {
-                            $scope.hasNewMsg = true;
-                        }
+        $rootScope.socket.on('NewUserMsg', function(receiver) {
+            if (receiver === sessionStorage.uid) {
+                $scope.getUnreadMsgNum(sessionStorage.uid);
+            }
+        });
+        $scope.getUnreadMsgNum = function(uid) {
+            MsgService.getUnreadMsgNum(uid)
+                .success(function(data, status) {
+                    if (status === 200) {
+                        $scope.unread_num = data.num;
                     }
-                }
-            });
+                });
+        };
+
 
         $scope.cancelMsgCount = function() {
-            $scope.hasNewMsg = false;
+            $scope.unread_num = 0;
         };
 
     }
@@ -398,12 +382,12 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                                 .success(function(data, status) {
                                     if (status === 200) {
                                         var msg = {
-                                            msg_type: 'System',
+                                            msg_type: 'Notice',
                                             sender: sessionStorage.getItem('uid'),
                                             sender_name: sessionStorage.getItem('username'),
                                             receiver: WishData.user,
                                             receiver_name: WishData.username,
-                                            msg: '领取了你的愿望'
+                                            msg: sessionStorage.username + '领取了你的愿望'
                                         };
                                         $rootScope.socket.emit('WishMsg', msg);
                                         alert('领取成功！');
@@ -492,39 +476,55 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 ]);
 
 //消息控制器
-app.controller('MsgCtrl', ['$scope', '$rootScope', '$state', 'MsgService',
-    function($scope, $rootScope, $state, MsgService) {
-        $scope.SystemMsg = JSON.parse(localStorage.getItem('WishMsg'));
-        $scope.UserMsg = [];
+app.controller('MsgCtrl', ['$scope', '$rootScope', '$state', 'MsgService', '$window',
+    function($scope, $rootScope, $state, MsgService, $window) {
 
-        $scope.clearMsg = function() {
-            localStorage.removeItem('WishMsg');
-            $scope.SystemMsg.length = 0;
-        };
-        
-    }
-]);
 
-app.controller('NoticeCtrl', ['$scope', '$window', 'MsgService',
-    function($scope, $window, MsgService) {
-
-        $scope.goBack = function() {
-            $window.history.back();
-        };
-        MsgService.getMsg(sessionStorage.getItem('uid'))
+        MsgService.getUnreadMsgNum(sessionStorage.uid)
             .success(function(data, status) {
-                if(status === 200) {
-                    $scope.MsgList = data.msgs;
+                if (status === 200) {
+                    $scope.notices_num = data.notice;
+                    $scope.praise_num = data.praise;
+                    $scope.user_num = data.user;
                 }
             });
 
-        $scope.SystemMsg = JSON.parse(localStorage.getItem('WishMsg'));
+        $scope.clearNotice = function(type) {
+            MsgService.readMsg(sessionStorage.uid, type)
+                .success(function(data, status) {
+                    $state.go('user.notice', {
+                        type: type
+                    });
+                });
+        };
+
+    }
+]);
+
+app.controller('NoticeCtrl', ['$scope', '$window', 'MsgService', '$stateParams',
+    function($scope, $window, MsgService, $stateParams) {
+        $scope.MsgList = [];
+        $scope.goBack = function() {
+            $window.history.back();
+        };
+        var type = $stateParams.type;
+        MsgService.getMsg(sessionStorage.getItem('uid'))
+            .success(function(data, status) {
+                if (status === 200) {
+
+                    for(var i = 0, len = data.msgs.length; i < len; i++) {
+                        if(data.msgs[i].msg_type === type) {
+                            $scope.MsgList.push(data.msgs[i]);
+                        }
+                    }
+                }
+            });
     }
 ]);
 
 //用户联系控制器
-app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'ContactService',
-    function($scope, $rootScope, $stateParams, ContactService) {
+app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'MsgService', '$state',
+    function($scope, $rootScope, $stateParams, MsgService, $state) {
         $scope.thisUser = $rootScope.user._id;
         $scope.thatUser = $stateParams.userId;
         var contact = {
@@ -532,19 +532,19 @@ app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'ContactS
             that: $stateParams.userId
         };
         var updateContact = function() {
-
-            ContactService.getContact(contact)
+            MsgService.getContact(contact)
                 .success(function(data, status) {
                     if (status === 200) {
                         $scope.contacts = data.contacts;
-                        console.log(data.contacts);
                     }
                 });
         };
 
         updateContact();
-        $rootScope.socket.on('Msg_res', function(msg) {
-            updateContact();
+        $rootScope.socket.on('UserMsg_res', function(msg) {
+            if (msg.sender === sessionStorage.uid || msg.receiver === sessionStorage.uid) {
+                updateContact();
+            }
         });
         $scope.sendMsg = function() {
             var msg = {
@@ -556,10 +556,7 @@ app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'ContactS
                 sender_name: sessionStorage.getItem('username')
             };
             $scope.contact_msg = '';
-            $rootScope.socket.emit('Msg', msg);
-            $rootScope.socket.on('Msg_res', function(msg) {
-                updateContact();
-            });
+            $rootScope.socket.emit('UserMsg', msg);
         };
     }
 ]);

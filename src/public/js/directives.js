@@ -377,7 +377,6 @@ app.directive('wishwalltop', ['$window', function($window) {
         restrict: 'A',
         link: function(scope, elem, attrs) {
             elem.find('.wishwall-navbar-top-btn').on('click', function() {
-                console.log('1');
                 $(this).addClass('active').parent().siblings().find('.wishwall-navbar-top-btn').removeClass('active');
             });
         }

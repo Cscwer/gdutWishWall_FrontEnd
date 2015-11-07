@@ -57,7 +57,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'MsgCtrl'
         })
         .state('user.notice', {
-            url: '/notice',
+            url: '/notice/:type',
             templateUrl: '/views/User/notice.html',
             controller: 'NoticeCtrl'
         })

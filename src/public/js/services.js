@@ -109,22 +109,20 @@ app.factory('MsgService', ['$http',
                 });
             },
 
-            readMsg: function(uid) {
+            getUnreadMsgNum: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/readmessage?userId=' + uid
+                    url: Host + '/getunreadmsgnum?uid=' + data
                 });
             },
 
+            readMsg: function(uid, type) {
+                return $http({
+                    method: 'GET',
+                    url: Host + '/readmessage?userId=' + uid + '&type=' + type
+                });
+            },
 
-        };
-    }
-]);
-
-//聊天服务
-app.factory('ContactService', ['$http',
-    function($http) {
-        return {
             getContact: function(data) {
                 return $http({
                     method: 'POST',
@@ -132,9 +130,12 @@ app.factory('ContactService', ['$http',
                     data: data
                 });
             }
+
+
         };
     }
 ]);
+
 
 /***************************祝福墙服务**********************/
 app.factory('BlessService', ['$http',
@@ -238,7 +239,7 @@ app.factory('WeChatService', ['$http',
             getWeChatInfo: function(code) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getWeChatInfo' 
+                    url: Host + '/getWeChatInfo'
                 });
             },
 
