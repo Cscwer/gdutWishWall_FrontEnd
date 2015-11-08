@@ -211,8 +211,22 @@ app.controller('UserInfoWishWallCtrl', ['$scope', '$stateParams', 'WishService',
     }
 ]);
 
-app.controller('UserInfoBlessWallCtrl', ['$scope',
-    function($scope) {}
+app.controller('UserInfoBlessWallCtrl', ['$scope', '$stateParams', 'BlessService',
+    function($scope, $stateParams, BlessService) {
+        var data = {
+            userId: $stateParams.userId
+        }
+        BlessService.getUserBless(data)
+            .success(function(data, status) {
+                if (status === 200 && data.blesses.length !== 0) {
+                    for (var i = 0; i < data.blesses.length; i++) {
+                        $scope.blesses.push(data.blesses[i]);
+                    }
+                    /*$scope.pageForBless++;*/
+                    $scope.isLoading = false;
+                }
+            });
+    }
 ]);
 
 app.controller('SettingCtrl', ['$scope', '$window',
