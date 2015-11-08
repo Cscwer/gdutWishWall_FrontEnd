@@ -15,13 +15,13 @@
         </div>
     </div>
 </div>
-<div class="section wishwall-section" >
+<div class="section wishwall-section" infinite-scroll="nextpage(page, per_page)" infinite-scroll-disabled="isLoading">
     <div class="row">
         <div class="col-xs-6 wishwall-col-6">
             <div class="panel panel-default wishwall-panel" ng-repeat="wish in oddwishes">
                 <div class="panel-body wishwall-panel-body">
                     <div class="wishinfo-panel">
-                        <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg">
+                        <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg" ui-sref="user.contact({userId: wish.user,username: wish.username})">
 
                         <div class="username">
                             <span>{{wish.username}}</span>
@@ -40,7 +40,7 @@
             <div class="panel panel-default wishwall-panel" ng-repeat="wish in evenwishes">
                 <div class="panel-body wishwall-panel-body">
                     <div class="wishinfo-panel">
-                        <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg">
+                        <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg" ui-sref="user.contact({userId: wish.user,username: wish.username})">
                         <div class="username">
                             <span>{{wish.username}}</span>
                             <br>

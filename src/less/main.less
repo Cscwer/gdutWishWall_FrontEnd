@@ -368,8 +368,9 @@ textarea {
 	z-index: 1;
 	float: right;
 	position: absolute;
-	top: 0;
-	right: 10px;
+	top: 50%;
+	transform: translate(0,-50%);
+	right: 12px;
 	text-align: center;
 	border: none;
 	background-color: transparent;
@@ -379,6 +380,9 @@ textarea {
 	p {
 		margin: 0;
 	}
+}
+.bless-noimg {
+	height: 30px;
 }
 .wishwall-search-navbar {
 	.navbar-brand-left {
@@ -519,4 +523,19 @@ textarea {
 			display: block;
 		}
 	}
+}
+
+.msg-container div p {
+	display: inline-block;
+	background-color: gray;
+	border-radius: 5px;
+	font-size: 1.6rem;
+	padding: 0 5px;
+}
+.this {
+	text-align: right;
+}
+
+.badge:empty {
+	display: inline-block;
 }

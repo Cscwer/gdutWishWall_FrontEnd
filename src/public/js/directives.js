@@ -332,21 +332,21 @@ app.directive('wishwallvisitor', ['$window',
 
 //动态对齐点赞数目模块的高度
 //菊花残
-app.directive('makepraiseheight', ['$window',
-    function($window) {
-        return {
-            restrict: 'A',
-            link: function(scope, elem, attrs) {
-                var textheight = elem.parent().height();
-                var praiseheight = elem.height();
-                var praisetotop = (textheight + 10 - praiseheight) / 2;
-                elem.css({
-                    'top': praisetotop
-                });
-            }
-        };
-    }
-]);
+// app.directive('makepraiseheight', ['$window',
+//     function($window) {
+//         return {
+//             restrict: 'A',
+//             link: function(scope, elem, attrs) {
+//                 var textheight = elem.parent().height();
+//                 var praiseheight = elem.height();
+//                 var praisetotop = (textheight + 10 - praiseheight) / 2;
+//                 elem.css({
+//                     'top': praisetotop
+//                 });
+//             }
+//         };
+//     }
+// ]);
 
 //控制选择框的弹出以及动态对齐选择框模块的位置
 app.directive('selecebox', ['$window',
@@ -377,7 +377,6 @@ app.directive('wishwalltop', ['$window', function($window) {
         restrict: 'A',
         link: function(scope, elem, attrs) {
             elem.find('.wishwall-navbar-top-btn').on('click', function() {
-                console.log('1');
                 $(this).addClass('active').parent().siblings().find('.wishwall-navbar-top-btn').removeClass('active');
             });
         }

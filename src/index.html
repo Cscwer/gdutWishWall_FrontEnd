@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="navbar wishwall-navbar-app wishwall-navbar-app-bottom navbar-fixed-bottom" ng-controller="LeaderCtrl" selecebox>
-                <a href="javascript:void(0)" class="btn btn-navbar active wishwall-navbar-bottom-btn" ui-class ui-sref="index.wishwall"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
+                <a href="javascript:void(0)" class="btn btn-navbar active wishwall-navbar-bottom-btn" ui-class ui-sref="index.wishwall" ui-sref-opts="{reload: true}"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
                 </a>
                 <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" ui-sref="wish.search"> <i class="fa fa-search wishwall-icon-home fa-navbar"></i>
                 </a>
@@ -40,13 +40,13 @@
                 </a>
                 <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" ui-sref="user.message" ng-click="cancelMsgCount()">
                     <i class="fa fa-comment wishwall-icon-home fa-navbar"></i>
-                    <span class="badge" ng-if="hasNewMsg"></span>
+                    <span class="badge" ng-if="unread_num !== 0"></span>
                 </a>
                 <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" ui-sref="userinfo({userId: user._id})">
                     <i class="fa fa-user wishwall-icon-home fa-navbar"></i>
                 </a>
             <div class="select-box">
-                    <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writewish">
+                    <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writewish" ng-show="user.sex && user.sex === 2">
                         发愿望
                     </a>
                     <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writebless">

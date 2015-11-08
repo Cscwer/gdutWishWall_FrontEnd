@@ -9,8 +9,8 @@
         </div>
         <div class="wishwall-notice-container" ng-repeat = "msg in MsgList">
             <div class="row">
-                <div class="col-xs-12">
-                    <p>{{msg.sender_name}}{{msg.msg}}</p>
+                <div class="col-xs-12" ui-sref="user.contact({userId: msg.sender,username: msg.sender_name})">
+                    <p>{{msg.msg}}</p>
                     <span class="timestamp">{{msg.msg_time | date: "yyyy-MM-dd"}}</span>
                 </div>
             </div>
