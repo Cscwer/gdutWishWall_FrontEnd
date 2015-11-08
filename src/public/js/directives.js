@@ -330,23 +330,22 @@ app.directive('wishwallvisitor', ['$window',
 ]);
 
 
-//动态对齐点赞数目模块的高度
-//菊花残
-// app.directive('makepraiseheight', ['$window',
-//     function($window) {
-//         return {
-//             restrict: 'A',
-//             link: function(scope, elem, attrs) {
-//                 var textheight = elem.parent().height();
-//                 var praiseheight = elem.height();
-//                 var praisetotop = (textheight + 10 - praiseheight) / 2;
-//                 elem.css({
-//                     'top': praisetotop
-//                 });
-//             }
-//         };
-//     }
-// ]);
+//点赞数目模块
+app.directive('makepraise', ['$window',
+    function($window) {
+        return {
+            restrict: 'A',
+            link: function(scope, elem, attrs) {
+                elem.on('click', function(event) {
+                    event.preventDefault();
+                    elem.find('.wishwall-icon-heart').css({
+                        'color': '#ff5247'
+                    });
+                });
+            }
+        };
+    }
+]);
 
 //控制选择框的弹出以及动态对齐选择框模块的位置
 app.directive('selecebox', ['$window',
