@@ -171,7 +171,7 @@ app.factory('BlessService', ['$http',
             getUserBless: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getoneswish?userId=' + data.userId,
+                    url: Host + '/getuserbless?userId=' + data.userId,
                     data: data
                 });
             },

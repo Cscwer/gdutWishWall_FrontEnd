@@ -219,9 +219,10 @@ app.controller('UserInfoWishWallCtrl', ['$scope', '$stateParams', 'WishService',
 
 app.controller('UserInfoBlessWallCtrl', ['$scope', '$stateParams', 'BlessService',
     function($scope, $stateParams, BlessService) {
+        $scope.blesses = [];
         var data = {
             userId: $stateParams.userId
-        }
+        };
         BlessService.getUserBless(data)
             .success(function(data, status) {
                 if (status === 200 && data.blesses.length !== 0) {
