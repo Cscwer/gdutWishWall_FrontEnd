@@ -47,7 +47,6 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
                     if (status === 200 && data.blesses.length !== 0) {
                         for (var i = 0; i < data.blesses.length; i++) {
                             $scope.blesses.push(data.blesses[i]);
-                            console.log(data.blesses[i].praiser.indexOf(uid));
                             if (data.blesses[i].praiser.indexOf(uid) === -1) {
                                 data.blesses[i].hadpraise = false;
                             } else {

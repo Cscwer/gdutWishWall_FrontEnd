@@ -584,8 +584,8 @@ textarea {
 			display: inline-block;
 			float: right;
 			border-right: 1px solid fade(#000, 30%);
-			height: 30px;
-			margin: 20px 0;
+			height: 100%;
+			margin: 0;
 		}
 	}
 	.wishwall-writewish-info {
@@ -624,6 +624,9 @@ textarea {
 		height: 50px;
 		font-size: 17px;
 	}
+	.writewish-type {
+		margin-bottom: 15px;
+	}
 }
 
 .wishwall-write-info {
@@ -635,5 +638,14 @@ textarea {
 		margin: 0;
 		height: 50px;
 		border-bottom: 1px solid fade(#000, 15%);
+	}
+	input {
+		float: right;
+		border: none;
+   		text-align: right;
+	}
+	input:focus {
+		border: none;
+		outline:none;
 	}
 }
