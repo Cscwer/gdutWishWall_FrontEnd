@@ -1,26 +1,43 @@
-<form role="form" name="putWishForm">
-	 <div class="form-group">
-	 	<label>愿望类型</label><br>
-	 	<select name="wish_type" id="" ng-model="wish_type" required>
-	 		<option value="耗时类">耗时类</option>
-	 		<option value="实物类">实物类</option>
-	 	</select><p style="display: inline; color:red" ng-show="putWishForm.wish_type.$invalid">请选择愿望类型!</p><br>
-	 	<button ng-click="chooseImage()">选择图片</button><br>
-	 	<!-- <button class="pickfiles">上传七牛</button> -->
-	 	<div id="pic" ng-repeat="localId in localIds">
-	 		<p>{{localId}}</p>
-	 		<img  ng-src="{{localId}}" width="40px" height="40px">
-	 	</div><br>
-	    	<label for="name">愿望内容</label>
-	    	<textarea class="form-control" rows="3" placeholder="写下你的愿望" ng-model="wish" name="wish" ng-maxlength="140" required></textarea>
-	    	<p style="color: red" ng-show="putWishForm.wish.$invalid">愿望不能为空且不能超过140个字</p>
-	 </div>
-	 <button type="submit" class="btn btn-default" ng-click="setUserInfo()" ng-disabled="putWishForm.$invalid">下一步</button>
-</form>
-<script>
-	// wx.config({
-	// 	debug: true,
-	// 	appId: 'wxc0328e0fe1f4cc8b',
-	// 	timestamp
-	// });
-</script>
+
+<div class="scrollable-content">
+	<div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-top setting-navbar-top ">
+		<div class="navbar-brand navbar-brand-center">
+			许愿望
+			<a href="javascript:void(0)" class="btn btn-navbar wishwall-icon-a" ng-click="goBack()"> <i class="fa fa-angle-left fa-navbar wishwall-icon-cog"></i>
+			</a>
+		</div>
+	</div>
+	<div class="wishwall-form-content">
+		<form role="form" name="putWishForm">
+			<div class="form-group writewish-textarea">
+				<textarea class="form-control" rows="3" placeholder="写下你的愿望" ng-model="wish" name="wish" ng-maxlength="70" required>
+				</textarea>
+				<span class="wishwall-icon-camera" ng-click="chooseImage()">
+				<i class="fa fa-camera" ng-hide="localIds.length"></i>
+				<img  ng-src="{{localIds[0]}}" ng-show="localIds.length"  width="40px" height="40px">
+				</span>
+				<span class="wishwall-word-num" ng-bind="70-wish.length"></span>
+			</div>
+				<p style="color: red" ng-show="putWishForm.wish.$invalid">愿望不能为空且不能超过140个字</p>
+				<label class="wishwall-type">愿望类型</label>
+				<div class="form-group writewish-type row">
+					<div class="col-xs-6" ng-click="wish_type='耗时类'" ng-class="{wishtype_red: wish_type==='耗时类'}">耗时类<hr/></div>
+					<div class="col-xs-6" ng-click="wish_type='实物类'" ng-class="{wishtype_red: wish_type==='实物类'}">实物类</div>
+				</div>
+				<label class="writewish-info">个人信息</label><br>
+				<div class="form-group wishwall-writewish-info">
+					<div class="row">
+						<div class="col-xs-5">石建文</div>
+						<div class="col-xs-5">大学城校区</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">计算机学院</div>
+						<div class="col-xs-5">15626237124</div>
+					</div>
+				</div>
+
+			<button type="submit" class="btn btn-default" ng-click="setUserInfo()" ng-disabled="putWishForm.$invalid">下一步</button>
+		</form>
+	</div>
+
+</div>

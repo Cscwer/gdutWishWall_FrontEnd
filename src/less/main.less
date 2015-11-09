@@ -542,3 +542,66 @@ textarea {
 .badge:empty {
 	display: inline-block;
 }
+
+.wishwall-form-content {
+	.writewish-textarea {
+		position: relative;
+		height: 200px;
+		background-color: white;
+		padding: 10px;
+		.wishwall-icon-camera {
+			font-size: 25px;
+			position: absolute;
+			bottom: 0;
+		}
+		.wishwall-word-num {
+			float: right;
+		}
+		textarea {
+			padding: 0;
+			border: none;
+			height: 160px;
+			box-shadow: none;
+		}
+		textarea:focus {
+			box-shadow: none;
+		}
+	}
+	.wishwall-type, .writewish-info{
+		margin-left: 10px;
+		color: fade(#000, 30%);
+	}
+	.row {
+		margin: 0;
+	}
+	.writewish-type  .col-xs-6{
+		height: 70px;
+		line-height: 70px;
+		padding: 0;
+		background-color: #fff;
+		text-align: center;
+		hr {
+			display: inline-block;
+			float: right;
+			border-right: 1px solid fade(#000, 30%);
+			height: 30px;
+			margin: 20px 0;
+		}
+	}
+	.wishwall-writewish-info {
+		height: 70px;
+		background-color: #fff;
+		.row {
+			height: 50%;
+		}
+		.col-xs-6 {
+			height: 100%;
+			line-height: 35px;
+			text-align: left;
+			
+		}
+	}
+	.wishtype_red {
+		color: red;
+	}
+}
