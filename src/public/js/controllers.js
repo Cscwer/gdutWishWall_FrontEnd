@@ -244,10 +244,16 @@ app.controller('SettingCtrl', ['$scope', '$window',
 ]);
 
 //用户控制器
-app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'WishService', 'BlessService', 'WishData', 'BlessData', 'UserService', 'WeChatService', '$sce',
-    function($scope, $rootScope, $state, $stateParams, WishService, BlessService, WishData, BlessData, UserService, WeChatService, $sce) {
+app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'WishService', 'BlessService', 'WishData', 'BlessData', 'UserService', 'WeChatService', '$window',
+    function($scope, $rootScope, $state, $stateParams, WishService, BlessService, WishData, BlessData, UserService, WeChatService, $window) {
 
         $scope.isRewrite = $stateParams.rewrite;
+        $scope.wish_type = '耗时类';
+        $scope.goBack = function() {
+            $window.history.back();
+        };
+
+
 
         var data = {
             userId: sessionStorage.getItem('uid')

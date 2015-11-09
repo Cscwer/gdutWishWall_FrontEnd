@@ -23,7 +23,7 @@
                                         <i class="fa fa-heart wishwall-icon-heart fa-navbar had-praise"></i>
                                         <p>{{bless.praise_num}}</p>
                                     </a>
-                                    <a href="javascript:void(0)" ng-show="!bless.hadpraise" class="praise-no" ng-click="praiseIt(bless)" >
+                                    <a href="javascript:void(0)" ng-show="!bless.hadpraise || bless.praiser.indexOf(sessionStorage.uid) ===  -1" class="praise-no" ng-click="praiseIt(bless)" >
                                         <i class="fa fa-heart wishwall-icon-heart fa-navbar"></i>
                                         <p>{{bless.praise_num}}</p>
                                     </a>
