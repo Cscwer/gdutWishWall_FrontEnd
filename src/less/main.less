@@ -634,18 +634,34 @@ textarea {
 	margin-top: 10px;
 	background-color: #fff;
 	padding: 0 10px;
+	border-top: 1px solid fade(#000, 15%);
+	border-bottom: 1px solid fade(#000, 15%);
+	label {
+		color: rgba(0, 0, 0, 0.5);
+	}
 	.row {
 		margin: 0;
+		padding: 15px 0;
 		height: 50px;
 		border-bottom: 1px solid fade(#000, 15%);
+	}
+	.row-noborder {
+		border: none;
 	}
 	input {
 		float: right;
 		border: none;
    		text-align: right;
+		color: rgba(0, 0, 0, 0.5);
 	}
 	input:focus {
 		border: none;
 		outline:none;
 	}
+}
+.wishwall-write-info-part {
+	height: 50px;
+	margin-top: 10px;
+	background-color: #fff;
+	padding: 0 10px;
 }
