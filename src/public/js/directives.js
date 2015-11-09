@@ -338,8 +338,9 @@ app.directive('makepraise', ['$window',
             link: function(scope, elem, attrs) {
                 elem.on('click', function(event) {
                     event.preventDefault();
-                    elem.find('.wishwall-icon-heart').css({
-                        'color': '#ff5247'
+                    elem.find('.wishwall-icon-heart').addClass('had-praise');
+                    elem.find('.praise-no').hide('0', function() {
+                        elem.find('.praise-yes').show('0');
                     });
                 });
             }

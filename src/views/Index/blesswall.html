@@ -18,12 +18,16 @@
                                         
                                     </p>
                                 </div>
-                                <button class="bless-praise" ng-click="praiseIt(bless)" makepraise>
-                                    <a href="javascript:void(0)">
+                                <div class="bless-praise" makepraise>
+                                    <a href="javascript:void(0)" ng-show="bless.hadpraise || bless.praiser.indexOf(sessionStorage.uid) !==  -1" class="praise-yes">
+                                        <i class="fa fa-heart wishwall-icon-heart fa-navbar had-praise"></i>
+                                        <p>{{bless.praise_num}}</p>
+                                    </a>
+                                    <a href="javascript:void(0)" ng-show="!bless.hadpraise" class="praise-no" ng-click="praiseIt(bless)" >
                                         <i class="fa fa-heart wishwall-icon-heart fa-navbar"></i>
                                         <p>{{bless.praise_num}}</p>
                                     </a>
-                                </button>
+                                </div>
                                 <!-- <p class="wish_content" ui-sref="bless.detail({blessId: bless._id})">{{bless.bless}}</p> -->
                                 <p class="bless_content">{{bless.bless}}</p>
                             </div>     

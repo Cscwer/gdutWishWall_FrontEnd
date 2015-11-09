@@ -44,8 +44,12 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
             BlessService.getBlesses(page, per_page)
                 .success(function(data, status) {
                     if (status === 200 && data.blesses.length !== 0) {
+
                         for (var i = 0; i < data.blesses.length; i++) {
                             $scope.blesses.push(data.blesses[i]);
+                            // if (data.blesses[i].praiser) {
+
+                            // };
                         }
                         $scope.pageForBless++;
                         $scope.isLoading = false;
@@ -56,16 +60,18 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
 
         //祝福点赞
         $scope.praiseIt = function(bless) {
-            console.log(bless);
+            console.log(bless.praiser.indexOf(sessionStorage.uid));
             var praiseData = {
                 blessId: bless._id,
                 userId: sessionStorage.getItem('uid')
-            }
+            };
             console.log(praiseData);
+            alert(praiseData.userId);
             BlessService.makePraise(praiseData)
                 .success(function(data, status) {
                     if (status === 200) {
                         bless.praise_num++;
+                        bless.hadpraise = true;
                         alert('点赞成功');
                     } else {
                         alert(data);
