@@ -18,12 +18,11 @@
                                         
                                     </p>
                                 </div>
-                                <div class="bless-praise" makepraise>
+                                <div class="bless-praise">
                                     <a href="javascript:void(0)" ng-if="bless.hadpraise">
                                         <i class="fa fa-heart wishwall-icon-heart fa-navbar had-praise"></i>
                                         <p>{{bless.praise_num}}</p>
                                     </a>
-
                                     <a href="javascript:void(0)" ng-if="!bless.hadpraise" ng-click="praiseIt(bless)" >
                                         <i class="fa fa-heart wishwall-icon-heart fa-navbar" ng-class="{true: 'had-praise', false: ''}[bless.hadpraise]"></i>
                                         <p>{{bless.praise_num}}</p>
