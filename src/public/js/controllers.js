@@ -73,9 +73,9 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
             BlessService.makePraise(praiseData)
                 .success(function(data, status) {
                     if (status === 200) {
+                        alert('点赞成功');
                         bless.praise_num++;
                         bless.hadpraise = true;
-                        alert('点赞成功');
                     } else {
                         alert(data);
                     }

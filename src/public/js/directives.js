@@ -329,25 +329,6 @@ app.directive('wishwallvisitor', ['$window',
     }
 ]);
 
-
-//点赞数目模块
-app.directive('makepraise', ['$window',
-    function($window) {
-        return {
-            restrict: 'A',
-            link: function(scope, elem, attrs) {
-                elem.on('click', function(event) {
-                    event.preventDefault();
-                    elem.find('.wishwall-icon-heart').addClass('had-praise');
-                    elem.find('.praise-no').hide('0', function() {
-                        elem.find('.praise-yes').show('0');
-                    });
-                });
-            }
-        };
-    }
-]);
-
 //控制选择框的弹出以及动态对齐选择框模块的位置
 app.directive('selecebox', ['$window',
     function($window) {
