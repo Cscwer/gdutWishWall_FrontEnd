@@ -10,33 +10,42 @@
 	<div class="wishwall-form-content">
 		<form role="form" name="putWishForm">
 			<div class="form-group writewish-textarea">
-				<textarea class="form-control" rows="3" placeholder="写下你的愿望" ng-model="wish" name="wish" ng-maxlength="70" required>
-				</textarea>
-				<span class="wishwall-icon-camera" ng-click="chooseImage()">
-				<i class="fa fa-camera" ng-hide="localIds.length"></i>
-				<img  ng-src="{{localIds[0]}}" ng-show="localIds.length"  width="40px" height="40px">
-				</span>
+				<textarea class="form-control" rows="3" placeholder="写下你的愿望" ng-model="wish" name="wish" ng-maxlength="70" required></textarea>
+				<span class="wishwall-icon-camera" ng-click="chooseImage()"> <i class="fa fa-camera" ng-hide="localIds.length"></i>
+					<img  ng-src="{{localIds[0]}}" ng-show="localIds.length"  width="40px" height="40px"></span>
 				<span class="wishwall-word-num" ng-bind="70-wish.length"></span>
 			</div>
-				<p style="color: red" ng-show="putWishForm.wish.$invalid">愿望不能为空且不能超过140个字</p>
-				<label class="wishwall-type">愿望类型</label>
-				<div class="form-group writewish-type row">
-					<div class="col-xs-6" ng-click="wish_type='耗时类'" ng-class="{wishtype_red: wish_type==='耗时类'}">耗时类<hr/></div>
-					<div class="col-xs-6" ng-click="wish_type='实物类'" ng-class="{wishtype_red: wish_type==='实物类'}">实物类</div>
+			<p style="color: red" ng-show="putWishForm.wish.$invalid">愿望不能为空且不能超过140个字</p>
+			<label class="wishwall-type">愿望类型</label>
+			<div class="form-group writewish-type row">
+				<div class="col-xs-6" ng-click="wish_type='耗时类'" ng-class="{wishtype_red: wish_type==='耗时类'}">
+					耗时类
+					<hr/>
 				</div>
-				<label class="writewish-info">个人信息</label><br>
-				<div class="form-group wishwall-writewish-info">
-					<div class="row">
-						<div class="col-xs-5">石建文</div>
-						<div class="col-xs-5">大学城校区</div>
+				<div class="col-xs-6" ng-click="wish_type='实物类'" ng-class="{wishtype_red: wish_type==='实物类'}">实物类</div>
+			</div>
+			<label class="writewish-info">个人信息</label>
+			<br>
+			<div class="form-group wishwall-writewish-info">
+				<div class="row">
+					<div class="col-xs-5" ng-if="real_name">
+						<span ng-bind="real_name" ng-if="real_name">石建文</span>
+						<br>
+						<span ng-bind="college_name" ng-if="real_name">计算机学院</span>
 					</div>
-					<div class="row">
-						<div class="col-xs-5">计算机学院</div>
-						<div class="col-xs-5">15626237124</div>
+					<div ng-class="real_name?'col-xs-5':'col-xs-10'">
+						<p ng-if="!real_name">请补全信息</p>
+						<span ng-bind="school_area" ng-if="real_name">大学城校区</span>
+						<br>
+						<span ng-bind="long_tel" ng-if="real_name">15626237124</span>
+					</div>
+					<div class="col-xs-2" ui-sref="user.writeinfo">
+						<i class="fa fa-angle-right"></i>
 					</div>
 				</div>
+			</div>
 
-			<button type="submit" class="btn btn-default" ng-click="setUserInfo()" ng-disabled="putWishForm.$invalid">下一步</button>
+			<button type="button" class="btn btn-warning" ng-click="setUserInfo()" ng-disabled="putWishForm.$invalid" disabled="{{!real_name}}">发布</button>
 		</form>
 	</div>
 

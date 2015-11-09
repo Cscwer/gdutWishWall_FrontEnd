@@ -23,13 +23,9 @@
                                         <i class="fa fa-heart wishwall-icon-heart fa-navbar had-praise"></i>
                                         <p>{{bless.praise_num}}</p>
                                     </a>
-<<<<<<< HEAD
-                                    <a href="javascript:void(0)" ng-show="!bless.hadpraise || bless.praiser.indexOf(sessionStorage.uid) ===  -1" class="praise-no" ng-click="praiseIt(bless)" >
-                                        <i class="fa fa-heart wishwall-icon-heart fa-navbar"></i>
-=======
+
                                     <a href="javascript:void(0)" ng-if="!bless.hadpraise" ng-click="praiseIt(bless)" >
                                         <i class="fa fa-heart wishwall-icon-heart fa-navbar" ng-class="{true: 'had-praise', false: ''}[bless.hadpraise]"></i>
->>>>>>> 35ce047878b7faf27fa3254aa9d649233ea7fb2e
                                         <p>{{bless.praise_num}}</p>
                                     </a>
                                 </div>
