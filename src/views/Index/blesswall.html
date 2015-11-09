@@ -19,12 +19,12 @@
                                     </p>
                                 </div>
                                 <div class="bless-praise" makepraise>
-                                    <a href="javascript:void(0)" ng-show="bless.hadpraise || bless.praiser.indexOf(sessionStorage.uid) !==  -1" class="praise-yes">
+                                    <a href="javascript:void(0)" ng-if="bless.hadpraise">
                                         <i class="fa fa-heart wishwall-icon-heart fa-navbar had-praise"></i>
                                         <p>{{bless.praise_num}}</p>
                                     </a>
-                                    <a href="javascript:void(0)" ng-show="!bless.hadpraise" class="praise-no" ng-click="praiseIt(bless)" >
-                                        <i class="fa fa-heart wishwall-icon-heart fa-navbar"></i>
+                                    <a href="javascript:void(0)" ng-if="!bless.hadpraise" ng-click="praiseIt(bless)" >
+                                        <i class="fa fa-heart wishwall-icon-heart fa-navbar" ng-class="{true: 'had-praise', false: ''}[bless.hadpraise]"></i>
                                         <p>{{bless.praise_num}}</p>
                                     </a>
                                 </div>

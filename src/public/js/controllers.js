@@ -35,21 +35,24 @@ app.controller('IndexCtrl', ['$scope', 'WishService',
 app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
     function($scope, $state, BlessService) {
         //祝福列表
+        var uid = sessionStorage.getItem('uid');
         $scope.blesses = [];
-
         $scope.pageForBless = 1;
         $scope.per_pageForBless = 5;
+        $scope.hadpraise = false;
         $scope.nextpageBless = function(page, per_page) {
             $scope.isLoading = true;
             BlessService.getBlesses(page, per_page)
                 .success(function(data, status) {
                     if (status === 200 && data.blesses.length !== 0) {
-
                         for (var i = 0; i < data.blesses.length; i++) {
                             $scope.blesses.push(data.blesses[i]);
-                            // if (data.blesses[i].praiser) {
-
-                            // };
+                            console.log(data.blesses[i].praiser.indexOf(uid));
+                            if (data.blesses[i].praiser.indexOf(uid) === -1) {
+                                data.blesses[i].hadpraise = false;
+                            } else {
+                                data.blesses[i].hadpraise = true;
+                            }
                         }
                         $scope.pageForBless++;
                         $scope.isLoading = false;
@@ -60,7 +63,7 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
 
         //祝福点赞
         $scope.praiseIt = function(bless) {
-            console.log(bless.praiser.indexOf(sessionStorage.uid));
+            console.log(bless.praiser);
             var praiseData = {
                 blessId: bless._id,
                 userId: sessionStorage.getItem('uid')
