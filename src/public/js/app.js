@@ -46,6 +46,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: '/views/User/female/writeinfo.html',
             controller: 'UserCtrl'
         })
+        .state('user.chooseschool', {
+            url: '/chooseschool',
+            templateUrl: '/views/User/chooseschool.html',
+            controller: 'UserCtrl'
+        })
+        .state('user.choosecollege', {
+            url: '/choosecollege',
+            templateUrl: '/views/User/choosecollege.html',
+            controller: 'UserCtrl'
+        })
         .state('user.writeblessinfo', {
             url: '/writeblessinfo/:rewrite',
             templateUrl: '/views/User/writeblessinfo.html',

@@ -363,3 +363,31 @@ app.directive('wishwalltop', ['$window', function($window) {
         }
     };
 }]);
+
+// app.directive('writewishinfo', ['$window', function($window) {
+//     return {
+//         restrict: 'A',
+//         link: function(scope, elem, attrs) {
+//             elem.find('.writewish-select-school').on('click', function() {
+//                 console.log('aa');
+//                 elem.find('.hide-select-school').focus().click();
+//             });
+//             elem.find('.hide-select-school').on('click', function(){
+//                 console.log('bb');
+//             });
+//         }
+//     };
+// }]);
+// 
+app.directive('wishwallselector', ['$window', function($window) {
+    return {
+        restrict: 'A',
+        link: function(scope, elem, attrs) {
+            // elem.on('change', function() {
+            //     var selected = elem.find('option:selected').text().width();
+            //     console.log(selected);
+                // elem.css('width',width+32);
+            })
+        }
+    };
+}]);

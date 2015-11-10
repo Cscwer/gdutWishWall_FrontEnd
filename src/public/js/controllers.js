@@ -331,24 +331,48 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             });
         };
 
-
-
-
-        $scope.setUserInfo = function() {
-
-            //组装愿望数据包
-            WishData.user = sessionStorage.getItem('uid');
-            WishData.username = sessionStorage.getItem('username');
-            WishData.userheadimg = $rootScope.user.headimgurl;
-            WishData.wishType = $scope.wish_type;
-            WishData.wish = $scope.wish;
-
-            $state.go('user.writeinfo');
-
-
-
+        $scope.setSchoolArea = function(school_area) {
+            $window.history.back();
+            WishData.school_area = school_area;
+        };
+        $scope.getSchool = function() {
+            console.log(WishData.school_area);
         };
 
+
+
+        // $scope.setUserInfo = function() {
+
+        //     //组装愿望数据包
+        //     WishData.user = sessionStorage.getItem('uid');
+        //     WishData.username = sessionStorage.getItem('username');
+        //     WishData.userheadimg = $rootScope.user.headimgurl;
+        //     WishData.wishType = $scope.wish_type;
+        //     WishData.wish = $scope.wish;
+
+        //     $state.go('user.writeinfo');
+
+
+
+        // };
+        $scope.setUserInfo = function() {
+            //组装个人信息数据包
+            var InfoData = {
+                user: sessionStorage.getItem('uid'),
+                real_name: $scope.real_name,
+                school_area: $scope.school_area,
+                college_name: $scope.college_name,
+                long_tel: $scope.long_tel,
+                short_tel: $scope.short_tel,
+                email: $scope.email
+            };
+            UserService.updateInfo(InfoData)
+                .success(function(data, status) {
+                    if (status === 200) {
+                        $window.history.back();
+                    }
+                });
+        };
         //发布愿望
         $scope.publicWish = function() {
 
@@ -540,8 +564,8 @@ app.controller('NoticeCtrl', ['$scope', '$window', 'MsgService', '$stateParams',
             .success(function(data, status) {
                 if (status === 200) {
 
-                    for(var i = 0, len = data.msgs.length; i < len; i++) {
-                        if(data.msgs[i].msg_type === type) {
+                    for (var i = 0, len = data.msgs.length; i < len; i++) {
+                        if (data.msgs[i].msg_type === type) {
                             $scope.MsgList.push(data.msgs[i]);
                         }
                     }

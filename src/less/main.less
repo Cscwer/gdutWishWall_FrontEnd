@@ -628,21 +628,33 @@ textarea {
 		margin-bottom: 15px;
 	}
 }
-
+.wishwall-write-info-form {
+	button {
+		width: 100%;
+		height: 50px;
+		font-size: 17px;
+	}
+	.college-name {
+		margin-bottom: 20px;
+	}
+}
 .wishwall-write-info {
-	height: 150px;
+	height: 200px;
 	margin-top: 10px;
 	background-color: #fff;
 	padding: 0 10px;
 	border-top: 1px solid fade(#000, 15%);
 	border-bottom: 1px solid fade(#000, 15%);
+	.ng-invalid {
+		// border: 1px solid red;
+	}
 	label {
 		color: rgba(0, 0, 0, 0.5);
 	}
 	.row {
 		margin: 0;
-		padding: 15px 0;
 		height: 50px;
+		line-height: 50px;
 		border-bottom: 1px solid fade(#000, 15%);
 	}
 	.row-noborder {
@@ -652,12 +664,47 @@ textarea {
 		float: right;
 		border: none;
    		text-align: right;
+   		padding: 0;
+   		height: 48px;
 		color: rgba(0, 0, 0, 0.5);
 	}
 	input:focus {
 		border: none;
 		outline:none;
+		padding: 0;
 	}
+	select {
+		border: none;
+		float: right;
+	}
+	select:focus {
+		border: none;
+		box-shadow: none;
+	}
+	.input-lg {
+		width: auto;
+		display: inline-block;
+	}
+	i.fa-angle-right {
+		float: right;
+		font-size: 30px;
+		height: 50px;
+		line-height: 50px;
+	}
+	.writewish-school-area {
+		float: right;
+		margin-right: 10px;
+	}
+
+}
+.select-school {
+	height: 200px;
+}
+.select-school  label{
+	color: #000;
+}
+.school-area, .college-name {
+	height: auto;
 }
 .wishwall-write-info-part {
 	height: 50px;
