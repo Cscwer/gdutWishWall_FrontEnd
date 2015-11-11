@@ -8,32 +8,37 @@
 <form class="wishwall-write-info-form" role="form" name="writeInfoForm">
 	<div class="wishwall-write-info">
 		<div class="row">
-			<label>真实姓名</label>
+			<label>真实姓名
 			<input type="text" ng-model="real_name" required></div>
+			</label>
 		<div class="row">
-			<label>手机长号</label>
+			<label>手机长号
 			<input type="text" name="long_tel" ng-model="long_tel" required ng-pattern="/^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/"></div>
+			</label>
 		<div class="row">
-			<label>邮箱</label>
+			<label>邮箱
 			<input type="text" ng-model="email" required ng-pattern="/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/"></div>
+			</label>
 		<div class="row row-noborder">
-			<label>校园短号</label>
+			<label>校园短号
 			<input type="text" placeholder="选填" ng-model="short-tel"></div>
+			</label>
 	</div>
 	<div class="wishwall-write-info school-area">
 		<div class="row row-noborder">
-			<label>所在校区</label>
+			<label>所在校区
 			<select name="school_area" id="" ng-model="school_area" required class="hide-select-school form-control input-lg">
 				<option value="大学城">大学城</option>
 				<option value="龙洞">龙洞</option>
 				<option value="东风路">东风路</option>
 				<option value="番禺">番禺</option>
 			</select>
+			</label>
 		</div>
 	</div>
 	<div class="wishwall-write-info college-name">
 		<div class="row row-noborder">
-			<label>所读学院</label>
+			<label>所读学院
 			<select name="college_name" id="" ng-model="college_name" required class="hide-select-school form-control input-lg" dir="ltr" wishwallselector>
 				<!-- 大学城 -->
 				<option value="计算机学院" ng-if="school_area == '大学城'">计算机</option>
@@ -62,6 +67,7 @@
 				<!-- 番禺 -->
 				<option value="国际教育学院" ng-if="school_area == '番禺'">国际教育学院</option>
 			</select>
+			</label>
 		</div>
 	</div>
 	<button type="button" class="btn btn-warning" ng-click="setUserInfo()" ng-disabled="writeInfoForm.$invalid">确定</button>
