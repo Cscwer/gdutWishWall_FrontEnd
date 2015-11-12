@@ -379,15 +379,15 @@ app.directive('wishwalltop', ['$window', function($window) {
 //     };
 // }]);
 // 
-app.directive('wishwallselector', ['$window', function($window) {
-    return {
-        restrict: 'A',
-        link: function(scope, elem, attrs) {
-            // elem.on('change', function() {
-            //     var selected = elem.find('option:selected').text().width();
-            //     console.log(selected);
-                // elem.css('width',width+32);
-            })
-        }
-    };
-}]);
+// app.directive('wishwallselector', ['$window', function($window) {
+//     return {
+//         restrict: 'A',
+//         link: function(scope, elem, attrs) {
+//             // elem.on('change', function() {
+//             //     var selected = elem.find('option:selected').text().width();
+//             //     console.log(selected);
+//                 // elem.css('width',width+32);
+//             })
+//         }
+//     };
+// }]);
