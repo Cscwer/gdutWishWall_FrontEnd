@@ -377,29 +377,37 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
         $scope.publicWish = function() {
 
             //组装个人信息数据包
-            var InfoData = {
-                user: sessionStorage.getItem('uid'),
-                real_name: $scope.real_name,
-                school_area: $scope.school_area,
-                college_name: $scope.college_name,
-                long_tel: $scope.long_tel,
-                short_tel: $scope.short_tel,
-                email: $scope.email
-            };
+            // var InfoData = {
+            //     user: sessionStorage.getItem('uid'),
+            //     real_name: $scope.real_name,
+            //     school_area: $scope.school_area,
+            //     college_name: $scope.college_name,
+            //     long_tel: $scope.long_tel,
+            //     short_tel: $scope.short_tel,
+            //     email: $scope.email
+            // };
+            //组装愿望数据包
+            WishData.user = sessionStorage.getItem('uid');
+            WishData.username = sessionStorage.getItem('username');
+            WishData.userheadimg = $rootScope.user.headimgurl;
+            WishData.wishType = $scope.wish_type;
+            WishData.wish = $scope.wish;
             WishData.school_area = $scope.school_area;
             WishData.useremail = $scope.email;
             //发布愿望
             WishService.putWish(WishData)
                 .success(function(data, status) {
                     if (status === 200) {
+                        alert('许愿成功');
+                        $state.go('index.wishwall');
                         //更新个人信息
-                        UserService.updateInfo(InfoData)
-                            .success(function(data, status) {
-                                if (status === 200) {
-                                    alert('许愿成功');
-                                    $state.go('index.wishwall');
-                                }
-                            });
+                        // UserService.updateInfo(InfoData)
+                        //     .success(function(data, status) {
+                        //         if (status === 200) {
+                        //             alert('许愿成功');
+                        //             $state.go('index.wishwall');
+                        //         }
+                        //     });
                     }
                 });
 
