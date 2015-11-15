@@ -53,8 +53,186 @@ Res: {
 ```
 Url: /putwish
 Method: POST
-Req: 
+Req: {
+    wish: Object
+}
 ```
+5.获取指定愿望
+```
+Url: /getWish
+Method: GET
+Req: {
+    wishId: String
+}
+Res: {
+    wish: Object
+}
+```
+6.获取某个人的所有愿望
+```
+Url: /getonesWish
+Method: GET
+Req: {
+    sex: String 用户性别
+    userId: String 用户id
+}
+```
+7.更新愿望状态
+```
+Url: /updatewishstate
+Method: POST
+Req: {
+    wish: Object
+}
+```
+8.修改愿望
+```
+Url: /refreshwish
+Method: POST
+Req: {
+    wish: Object
+}
+```
+9.删除愿望
+```
+Url: /deletewish
+Method: POST
+Req: {
+    wishId: String
+}
+```
+10.男生获取自己领取的愿望
+```
+Url: /getmalewish
+Method: GET
+Req: {
+    pickerId: String 男生id
+}
+Res: {
+    wishes: []
+}
+```
+11.获取消息
+```
+Url: /getmessage
+Method: GET
+Req: {
+    userId: String 用户id
+}
+```
+12.获取未读消息的数量
+```
+Url: /getunreadmsgnum
+Method: GET
+Req: {
+    uid: String 用户id
+}
+```
+13.更新消息为已读
+```
+Url: /readmessage
+Method: GET
+Req: {
+    userId: String 用户id
+    type: String 消息类型
+}
+```
+14.获取对话
+```
+Url: /getcontact
+Method: POST
+Req: {
+    this: String 发起会话的用户id
+    that: String 接受会话的用户id
+}
+```
+15.主页获取所有祝福
+```
+Url: /getallbless
+Method: GET
+Req: {
+    page: String 当前页数
+    per_page: String 每页数量
+}
+Res: {
+    blesses: []
+}
+```
+16.点赞动作
+```
+Url: /makepraise
+Method: POST
+Req: {
+    blessId: String 祝福id
+    userId: String 用户id
+}
+```
+17.发布祝福
+```
+Url: /putbless
+Method: POST
+Req: {
+    user: Sting 用户id
+    real_name: String 真实姓名
+    school_area: String 用户所在校区
+    college_name: String 用户所在学院
+    long_tel: String 用户长号
+    short_tel: String 用户短号
+}
+```
+18.获取指定祝福
+```
+Url: /getbless
+Method: GET
+Req: {
+    blessId: String 祝福id
+}
+Res: {
+    bless: Object
+}
+```
+19.获取指定用户的祝福
+```
+Url: /getuserbless
+Method: GET
+Req: {
+    userId: String 用户id
+}
+Res: {
+    blesses: []
+}
+```
+20.删除祝福
+```
+Url: /deletebless
+Method: POST
+Req: {
+    bless_id: String 祝福id
+}
+```
+21.获取用户微信信息
+```
+Url: /getWechatInfo
+Method: GET
+Req: {}
+Res: {
+    user: Object
+}
+```
+22.获取微信签名
+```
+Url: /getSignature
+Method: POST
+Req: {
+    location: String 当前页面url
+}
+Res: {
+    signature: Object
+}
+```
+
+###数据说明
+
 
 
 

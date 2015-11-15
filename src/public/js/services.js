@@ -7,7 +7,7 @@ app.factory('UserService', ['$http',
         return {
             //获取用户信息
             getUserInfo: function(data) {
-                return $http({
+                return $http({:
                     method: 'GET',
                     url: Host + '/getUserInfo?userId=' + data.userId
                 });
@@ -185,49 +185,7 @@ app.factory('BlessService', ['$http',
         };
     }
 ]);
-/*//获取所有祝福
-app.factory('GetAllBless', ['$http',
-    function($http) {
-        return {
-            getBlesses: function(page, per_page) {
-                return $http({
-                    method: 'GET',
-                    url: Host + '/getallbless?page=' + page + '&per_page=' + per_page
-                });
-            }
-        };
-    }
-]);
 
-//祝福点赞
-app.factory('MakePraise', ['$http',
-    function($http) {
-        return {
-            makePraise: function(data) {
-                return $http({
-                    method: 'POST',
-                    url: Host + '/makepraise',
-                    data: data
-                });
-            }
-        };
-    }
-]);
-
-//发布祝福
-app.factory('PutBlessService', ['$http',
-    function($http) {
-        return {
-            putBless: function(data) {
-                return $http({
-                    method: 'POST',
-                    url: Host + '/putbless',
-                    data: data
-                });
-            }
-        };
-    }
-]);*/
 
 /***************************微信服务************************/
 
@@ -250,13 +208,6 @@ app.factory('WeChatService', ['$http',
                     data: data
                 });
             },
-
-            getApiTicket: function(token) {
-                return $http({
-                    method: 'GET',
-                    url: Host + '/getApiTicket?token=' + token
-                });
-            }
         };
     }
 ]);
