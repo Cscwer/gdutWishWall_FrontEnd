@@ -14,7 +14,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('index', {
             url: '/index',
             templateUrl: "/views/Index/index.html",
-            controller: 'IndexCtrl',
             abstract: true
         })
         .state('index.wishwall', {
@@ -42,9 +41,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'UserCtrl'
         })
         .state('user.writeinfo', {
-            url: '/writeinfo/:rewrite',
+            url: '/writeinfo/:type',
             templateUrl: '/views/User/female/writeinfo.html',
-            controller: 'UserCtrl'
+            controller: 'UserWriteInfoCtrl'
         })
         .state('user.chooseschool', {
             url: '/chooseschool',

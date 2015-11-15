@@ -1,10 +1,11 @@
 @themecolor: #ff5247;
 @navbartopheight: 35px;
 @navbarbottomheight: 35px;
+
 a:hover, a:focus {
 	text-decoration: none;
 }
-html,body {
+html, body {
 	color: #000;
 	height: 100%;
 }
@@ -27,12 +28,14 @@ textarea {
 }
 .wishwall-navbar-app {
 	min-height: @navbartopheight;
+
 	a.active {
 		color: white;
 	}
 	.navbar-brand {
 		height: @navbartopheight;
 		padding: 0;
+
 		a {
 			height: @navbartopheight;
 			line-height: @navbartopheight;
@@ -56,15 +59,18 @@ textarea {
 	background-color: @themecolor;
 	border: none;
 	color: rgba(255, 255, 255, .5);
+
 	a {
 		color: rgba(255, 255, 255, .5);
 	}
 }
 .wishwall-navbar-app-bottom {
+	
 	border-top: 1px solid #eee;
 	height: @navbarbottomheight+1;
 	line-height: @navbarbottomheight;
 	background-color: @themecolor;
+
 	.btn-navbar {
 		height: @navbarbottomheight;
 		line-height: @navbarbottomheight;
@@ -88,6 +94,7 @@ textarea {
 		bottom: 35px;
 		left: 50%;
 		transform: translate(-50%);
+
 		.selection {
 			width: auto;
 			color: #fff;
@@ -95,8 +102,8 @@ textarea {
 			padding: 0 10px;
 		}
 	}
-	
 	background-color: white;
+
 	.wishwall-icon-home {
 		font-size: 25px;
 	}
@@ -115,9 +122,6 @@ textarea {
 		}
 	}
 }
-
-
-
 .auto-roll-img {
 	.item {
 		img {
@@ -131,6 +135,7 @@ textarea {
 		margin: 0;
 	}
 	padding-top: 8px;
+
 	.wishwall-col-6:first-child {
 		padding-left: 8px;
 		padding-right: 4px;
@@ -149,6 +154,10 @@ textarea {
 	}
 	.wishinfo-panel {
 		padding: 10px 10px 0 10px;
+		.pick_this {
+			position: absolute;
+			right: 10px;
+		}
 	}
 }
 .yblesswall-section {
@@ -159,7 +168,8 @@ textarea {
 .blesswall-con {
 	padding-left: 5px;
 	padding-right: 5px;
-	.blessimg-con img{
+
+	.blessimg-con img {
 		width: 100%;
 	}
 }
@@ -209,7 +219,7 @@ textarea {
 	background-color: #f4efee;
 	height: 100%;
 }
-.wishwall-section,.blesswall-section {
+.wishwall-section, .blesswall-section {
 	background: none;
 }
 .wishwall-panel {
@@ -223,6 +233,7 @@ textarea {
 .wishwall-carousel-indicators {
 	margin-bottom: 0;
 	bottom: 0;
+
 	li {
 		width: 5px;
 		height: 5px;
@@ -241,6 +252,7 @@ textarea {
 		border: none;
 		background-image: url('/public/img/1.jpg');
 		background-size: cover;
+
 		img.userheadimg {
 			width: 55px;
 			height: 55px;
@@ -269,10 +281,9 @@ textarea {
 		}
 	}
 }
-
-
 .userinfo-navbar-top {
 	color: rgba(255, 255, 255, 1);
+
 	.navbar-brand {
 		line-height: @navbartopheight;
 	}
@@ -290,6 +301,7 @@ textarea {
 	background-color: rgba(0, 0, 0, 0.2);
 	position: absolute;
 	bottom: 0;
+
 	img {
 		width: 23px;
 		border-radius: 50%;
@@ -311,7 +323,8 @@ textarea {
 	padding-right: 8px;
 	border: none;
 	min-height: 39px;
-	 a {
+
+	a {
 		color: @themecolor;
 		font-size: 18px;
 		text-align: center;
@@ -324,19 +337,18 @@ textarea {
 	}
 	.row {
 		margin: 0;
+
 		.col-xs-6 {
 			padding: 0;
 		}
 		.col-xs-6:first-child {
-			padding-right: 4px; 
+			padding-right: 4px;
 		}
 		.col-xs-6:last-child {
 			padding-left: 4px;
 		}
 	}
-	
 }
-
 .blessmessage-con {
 	position: relative;
 }
@@ -350,6 +362,7 @@ textarea {
 	left: 6px;
 	display: inline-block;
 	text-align: center;
+
 	img {
 		position: relative;
 		width: 42px;
@@ -369,11 +382,12 @@ textarea {
 	float: right;
 	position: absolute;
 	top: 50%;
-	transform: translate(0,-50%);
+	transform: translate(0, -50%);
 	right: 10px;
 	text-align: center;
 	border: none;
 	background-color: transparent;
+
 	a {
 		color: rgba(0, 0, 0, 0.5);
 	}
@@ -398,7 +412,7 @@ textarea {
 		line-height: @navbartopheight;
 		padding-left: 5px;
 	}
-	a,span{
+	a, span {
 		height: @navbartopheight;
 		font-size: 18px;
 		color: white;
@@ -424,6 +438,7 @@ textarea {
 }
 @searchspanheight: 63px;
 @searchtypeheight: 58px;
+
 .wishwall-search-content {
 	.row {
 		margin-left: 0;
@@ -432,6 +447,7 @@ textarea {
 	}
 	.search-type {
 		margin-bottom: 0;
+
 		.col-xs-12 {
 			height: @searchtypeheight;
 			line-height: @searchtypeheight;
@@ -443,6 +459,7 @@ textarea {
 	.search-school-area {
 		color: #9f9493;
 		font-size: 18px;
+
 		.col-xs-6:first-child {
 			padding-left: 8px;
 			padding-right: 4px;
@@ -460,9 +477,7 @@ textarea {
 			background-color: white;
 		}
 	}
-
 }
-
 .msg-content {
 	.message-navbar-top {
 		.navbar-brand {
@@ -472,11 +487,11 @@ textarea {
 	}
 	.row {
 		margin: 8px;
+
 		.col-xs-12 {
 			height: 63px;
 			background-color: #fff;
 			padding: 10px;
-
 		}
 	}
 	.greenbox {
@@ -485,6 +500,7 @@ textarea {
 		width: 45px;
 		border-radius: 50%;
 		background-color: fade(green, 55%);
+
 		.badge {
 			float: right;
 			background-color: #f00;
@@ -501,6 +517,7 @@ textarea {
 }
 .setting-navbar-top {
 	color: #fff;
+
 	.navbar-brand-center {
 		line-height: @navbartopheight;
 	}
@@ -511,7 +528,6 @@ textarea {
 		color: #fff;
 	}
 }
-
 .wishwall-notice {
 	.timestamp {
 		color: fade(#000, 70%);
@@ -528,7 +544,6 @@ textarea {
 		}
 	}
 }
-
 .msg-container div p {
 	display: inline-block;
 	background-color: gray;
@@ -539,17 +554,16 @@ textarea {
 .this {
 	text-align: right;
 }
-
 .badge:empty {
 	display: inline-block;
 }
-
 .wishwall-form-content {
 	.writewish-textarea {
 		position: relative;
 		height: 200px;
 		background-color: white;
 		padding: 10px;
+
 		.wishwall-icon-camera {
 			font-size: 25px;
 			position: absolute;
@@ -568,19 +582,20 @@ textarea {
 			box-shadow: none;
 		}
 	}
-	.wishwall-type, .writewish-info{
+	.wishwall-type, .writewish-info {
 		margin-left: 10px;
 		color: fade(#000, 30%);
 	}
 	.row {
 		margin: 0;
 	}
-	.writewish-type  .col-xs-6{
+	.writewish-type  .col-xs-6 {
 		height: 70px;
 		line-height: 70px;
 		padding: 0;
 		background-color: #fff;
 		text-align: center;
+
 		hr {
 			display: inline-block;
 			float: right;
@@ -592,6 +607,7 @@ textarea {
 	.wishwall-writewish-info {
 		height: 70px;
 		background-color: #fff;
+
 		.row {
 			height: 100%;
 		}
@@ -600,8 +616,9 @@ textarea {
 			line-height: 35px;
 			text-align: left;
 		}
-		.col-xs-2,.col-xs-10 {
+		.col-xs-2, .col-xs-10 {
 			height: 100%;
+
 			i {
 				float: right;
 				font-size: 40px;
@@ -649,6 +666,7 @@ textarea {
 	padding: 0 10px;
 	border-top: 1px solid fade(#000, 15%);
 	border-bottom: 1px solid fade(#000, 15%);
+
 	.ng-invalid {
 		// border: 1px solid red;
 	}
@@ -667,20 +685,19 @@ textarea {
 	input {
 		float: right;
 		border: none;
-   		text-align: right;
-   		padding: 0;
-   		height: 48px;
+		text-align: right;
+		padding: 0;
+		height: 48px;
 		color: rgba(0, 0, 0, 0.5);
 	}
 	input:focus {
 		border: none;
-		outline:none;
+		outline: none;
 		padding: 0;
 	}
 	select {
 		border: none;
 		float: right;
-		
 	}
 	select:focus {
 		border: none;
@@ -700,12 +717,11 @@ textarea {
 		float: right;
 		margin-right: 10px;
 	}
-
 }
 .select-school {
 	height: 200px;
 }
-.select-school  label{
+.select-school  label {
 	color: #000;
 }
 .school-area, .college-name {

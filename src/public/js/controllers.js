@@ -1,7 +1,7 @@
 //主页控制器
 
-app.controller('IndexCtrl', ['$scope', 'WishService',
-    function($scope, WishService) {
+app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData',
+    function($scope, WishService, $state, WishData) {
 
         //愿望列表
         $scope.oddwishes = [];
@@ -9,7 +9,7 @@ app.controller('IndexCtrl', ['$scope', 'WishService',
 
         //加载下一页的内容，只有登录的人才能查看
         $scope.page = 1; //当前页数
-        $scope.per_page = 15; //每页显示数目
+        $scope.per_page = 30; //每页显示数目
         $scope.isLoading = false;
         $scope.nextpage = function(page, per_page) {
             $scope.isLoading = true;
@@ -17,16 +17,21 @@ app.controller('IndexCtrl', ['$scope', 'WishService',
                 .success(function(data, status) {
                     if (status === 200 && data.wishes.length !== 0) {
                         // alert(data.wishes.length);
-                        for (var i = 0; i < data.wishes.length; i = i + 2) {
+                        for (var i = 0; i < data.wishes.length - 1; i = i + 2) {
                             $scope.oddwishes.push(data.wishes[i]);
-                        }
-                        for (var i = 1; i < data.wishes.length; i = i + 2) {
-                            $scope.evenwishes.push(data.wishes[i]);
+                            $scope.evenwishes.push(data.wishes[i + 1]);
                         }
                         $scope.page++;
                         $scope.isLoading = false;
                     }
                 });
+        };
+        $scope.pickWish = function(wish) {
+            if (confirm('确认领取' + wish.username + '的这个愿望?')) {
+                WishData._id = wish._id;
+                WishData.useremail = wish.useremail;
+                $state.go('user.writeinfo');
+            }
         };
     }
 ]);
@@ -341,51 +346,11 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 
 
 
-        // $scope.setUserInfo = function() {
-
-        //     //组装愿望数据包
-        //     WishData.user = sessionStorage.getItem('uid');
-        //     WishData.username = sessionStorage.getItem('username');
-        //     WishData.userheadimg = $rootScope.user.headimgurl;
-        //     WishData.wishType = $scope.wish_type;
-        //     WishData.wish = $scope.wish;
-
-        //     $state.go('user.writeinfo');
 
 
-
-        // };
-        $scope.setUserInfo = function() {
-            //组装个人信息数据包
-            var InfoData = {
-                user: sessionStorage.getItem('uid'),
-                real_name: $scope.real_name,
-                school_area: $scope.school_area,
-                college_name: $scope.college_name,
-                long_tel: $scope.long_tel,
-                short_tel: $scope.short_tel,
-                email: $scope.email
-            };
-            UserService.updateInfo(InfoData)
-                .success(function(data, status) {
-                    if (status === 200) {
-                        $window.history.back();
-                    }
-                });
-        };
         //发布愿望
         $scope.publicWish = function() {
 
-            //组装个人信息数据包
-            // var InfoData = {
-            //     user: sessionStorage.getItem('uid'),
-            //     real_name: $scope.real_name,
-            //     school_area: $scope.school_area,
-            //     college_name: $scope.college_name,
-            //     long_tel: $scope.long_tel,
-            //     short_tel: $scope.short_tel,
-            //     email: $scope.email
-            // };
             //组装愿望数据包
             WishData.user = sessionStorage.getItem('uid');
             WishData.username = sessionStorage.getItem('username');
@@ -400,64 +365,12 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                     if (status === 200) {
                         alert('许愿成功');
                         $state.go('index.wishwall');
-                        //更新个人信息
-                        // UserService.updateInfo(InfoData)
-                        //     .success(function(data, status) {
-                        //         if (status === 200) {
-                        //             alert('许愿成功');
-                        //             $state.go('index.wishwall');
-                        //         }
-                        //     });
                     }
                 });
 
         };
 
-        //领取愿望动作
-        $scope.pickWish = function() {
-            //组装个人信息数据包
-            var InfoData = {
-                user: sessionStorage.getItem('uid'),
-                real_name: $scope.real_name,
-                school_area: $scope.school_area,
-                college_name: $scope.college_name,
-                long_tel: $scope.long_tel,
-                short_tel: $scope.short_tel,
-                email: $scope.email
-            };
 
-            if (confirm('确定领取该愿望?')) {
-                var data = {
-                    type: 1,
-                    wishId: WishData._id,
-                    wishPicker: sessionStorage.getItem('uid'),
-                    wishPickerName: sessionStorage.getItem('username'),
-                    email: WishData.useremail
-                };
-                WishService.updateWishState(data)
-                    .success(function(data, status) {
-                        if (status === 200) {
-                            //更新个人信息
-                            UserService.updateInfo(InfoData)
-                                .success(function(data, status) {
-                                    if (status === 200) {
-                                        var msg = {
-                                            msg_type: 'Notice',
-                                            sender: sessionStorage.getItem('uid'),
-                                            sender_name: sessionStorage.getItem('username'),
-                                            receiver: WishData.user,
-                                            receiver_name: WishData.username,
-                                            msg: sessionStorage.username + '领取了你的愿望'
-                                        };
-                                        $rootScope.socket.emit('WishMsg', msg);
-                                        alert('领取成功！');
-                                        $state.go('wish.malewish');
-                                    }
-                                });
-                        }
-                    });
-            }
-        };
 
         //修改个人信息
         $scope.rewrite = function() {
@@ -532,6 +445,91 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 
 
 
+    }
+]);
+
+//填写用户信息的控制器
+app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService',
+    function($scope, $state, UserService) {
+        
+        $scope.goBack = function() {
+            $window.history.back();
+        };
+
+        var data = {
+            userId: sessionStorage.getItem('uid')
+        };
+
+        UserService.getUserInfo(data)
+            .success(function(data, status) {
+                if (status === 200) {
+                    $scope.user = data.user;
+                }
+            });
+
+        //更新用户信息
+        $scope.setUserInfo = function() {
+            //组装个人信息数据包
+            var InfoData = {
+                user: sessionStorage.getItem('uid'),
+                real_name: $scope.user.real_name,
+                school_area: $scope.user.school_area,
+                college_name: $scope.user.college_name,
+                long_tel: $scope.user.long_tel,
+                short_tel: $scope.user.short_tel,
+                email: $scope.user.email
+            };
+            UserService.updateInfo(InfoData)
+                .success(function(data, status) {
+                    if (status === 200) {
+                        $window.history.back();
+                    }
+                });
+        };
+
+        //领取愿望动作
+        $scope.pickWish = function() {
+            //组装个人信息数据包
+            var InfoData = {
+                user: sessionStorage.getItem('uid'),
+                real_name: $scope.real_name,
+                school_area: $scope.school_area,
+                college_name: $scope.college_name,
+                long_tel: $scope.long_tel,
+                short_tel: $scope.short_tel,
+                email: $scope.email
+            };
+
+            var data = {
+                type: 1,
+                wishId: WishData._id,
+                wishPicker: sessionStorage.getItem('uid'),
+                wishPickerName: sessionStorage.getItem('username'),
+                email: WishData.useremail
+            };
+            WishService.updateWishState(data)
+                .success(function(data, status) {
+                    if (status === 200) {
+                        //更新个人信息
+                        UserService.updateInfo(InfoData)
+                            .success(function(data, status) {
+                                if (status === 200) {
+                                    var msg = {
+                                        msg_type: 'Notice',
+                                        sender: sessionStorage.getItem('uid'),
+                                        sender_name: sessionStorage.getItem('username'),
+                                        receiver: WishData.user,
+                                        receiver_name: WishData.username,
+                                        msg: sessionStorage.username + '领取了你的愿望'
+                                    };
+                                    $rootScope.socket.emit('WishMsg', msg);
+                                    alert('领取成功！');
+                                    $state.go('wish.malewish');
+                                }
+                            });
+                    }
+                });
+        };
     }
 ]);
 

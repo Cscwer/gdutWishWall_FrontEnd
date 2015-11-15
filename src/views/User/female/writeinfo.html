@@ -9,25 +9,25 @@
 	<div class="wishwall-write-info">
 		<div class="row">
 			<label>真实姓名
-			<input type="text" ng-model="real_name" required></div>
+			<input type="text" ng-model="user.real_name" required></div>
 			</label>
 		<div class="row">
 			<label>手机长号
-			<input type="text" name="long_tel" ng-model="long_tel" required ng-pattern="/^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/"></div>
+			<input type="text" name="long_tel" ng-model="user.long_tel" required ng-pattern="/^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/"></div>
 			</label>
 		<div class="row">
 			<label>邮箱
-			<input type="text" ng-model="email" required ng-pattern="/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/"></div>
+			<input type="text" ng-model="user.email" required ng-pattern="/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/"></div>
 			</label>
 		<div class="row row-noborder">
 			<label>校园短号
-			<input type="text" placeholder="选填" ng-model="short-tel"></div>
+			<input type="text" placeholder="选填" ng-model="user.short-tel"></div>
 			</label>
 	</div>
 	<div class="wishwall-write-info school-area">
 		<div class="row row-noborder">
 			<label>所在校区
-			<select name="school_area" id="" ng-model="school_area" required class="hide-select-school form-control input-lg">
+			<select name="school_area" id="" ng-model="user.school_area" required class="hide-select-school form-control input-lg">
 				<option value="大学城">大学城</option>
 				<option value="龙洞">龙洞</option>
 				<option value="东风路">东风路</option>
@@ -39,7 +39,7 @@
 	<div class="wishwall-write-info college-name">
 		<div class="row row-noborder">
 			<label>所读学院
-			<select name="college_name" id="" ng-model="college_name" required class="hide-select-school form-control input-lg" dir="ltr" wishwallselector>
+			<select name="college_name" id="" ng-model="user.college_name" required class="hide-select-school form-control input-lg" dir="ltr" wishwallselector>
 				<!-- 大学城 -->
 				<option value="计算机学院" ng-if="school_area == '大学城'">计算机</option>
 				<option value="自动化学院" ng-if="school_area == '大学城'">自动化</option>

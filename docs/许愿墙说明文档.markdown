@@ -1,0 +1,61 @@
+﻿# 许愿墙说明文档
+
+标签（空格分隔）： 未分类
+
+---
+
+###数据接口
+
+#####Host: http://gdutgirl.duapp.com/
+
+1.获取用户信息
+
+```
+Url: /getUserInfo
+Method: GET
+Req: {
+    userId: String
+}
+Res: {
+    user: Object{
+        
+    }
+}
+
+```
+
+2.更新用户信息
+
+```
+Url: /updateinfo
+Method: POST
+Req: {
+    Object{
+        user
+    }
+}
+```
+3.主页获取所有愿望
+
+```
+Url: /getUnpickedWish
+Method: GET
+Req: {
+    page: 当前页数
+    per_page: 每页的数量
+}
+Res: {
+    wishes: [
+    ]
+}
+```
+4.许愿
+```
+Url: /putwish
+Method: POST
+Req: 
+```
+
+
+
+
