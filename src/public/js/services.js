@@ -7,7 +7,7 @@ app.factory('UserService', ['$http',
         return {
             //获取用户信息
             getUserInfo: function(data) {
-                return $http({:
+                return $http({
                     method: 'GET',
                     url: Host + '/getUserInfo?userId=' + data.userId
                 });

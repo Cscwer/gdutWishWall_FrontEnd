@@ -27,18 +27,18 @@
 			<br>
 			<div class="form-group wishwall-writewish-info">
 				<div class="row">
-					<div class="col-xs-5" ng-if="real_name">
-						<span ng-bind="real_name" ng-if="real_name">石建文</span>
+					<div class="col-xs-5" ng-if="user.real_name">
+						<span ng-bind="user.real_name" ng-if="user.real_name">石建文</span>
 						<br>
-						<span ng-bind="college_name" ng-if="real_name">计算机学院</span>
+						<span ng-bind="user.college_name" ng-if="user.real_name">计算机学院</span>
 					</div>
-					<div ng-class="real_name?'col-xs-5':'col-xs-10'">
-						<p ng-if="!real_name">请补全信息</p>
-						<span ng-bind="school_area" ng-if="real_name">大学城校区</span>
+					<div ng-class="user.real_name?'col-xs-5':'col-xs-10'">
+						<p ng-if="!user.real_name">请补全信息</p>
+						<span ng-bind="user.school_area" ng-if="user.real_name">大学城校区</span>
 						<br>
-						<span ng-bind="long_tel" ng-if="real_name">15626237124</span>
+						<span ng-bind="user.long_tel" ng-if="user.real_name">15626237124</span>
 					</div>
-					<div class="col-xs-2" ui-sref="user.writeinfo">
+					<div class="col-xs-2" ui-sref="user.writeinfo({type: 1})">
 						<i class="fa fa-angle-right"></i>
 					</div>
 				</div>

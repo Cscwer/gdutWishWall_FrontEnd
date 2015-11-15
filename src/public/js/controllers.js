@@ -30,7 +30,9 @@ app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData',
             if (confirm('确认领取' + wish.username + '的这个愿望?')) {
                 WishData._id = wish._id;
                 WishData.useremail = wish.useremail;
-                $state.go('user.writeinfo');
+                $state.go('user.writeinfo', {
+                    type: 2
+                });
             }
         };
     }
@@ -252,7 +254,6 @@ app.controller('SettingCtrl', ['$scope', '$window',
 app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'WishService', 'BlessService', 'WishData', 'BlessData', 'UserService', 'WeChatService', '$window',
     function($scope, $rootScope, $state, $stateParams, WishService, BlessService, WishData, BlessData, UserService, WeChatService, $window) {
 
-        $scope.isRewrite = $stateParams.rewrite;
         $scope.wish_type = '耗时类';
         $scope.goBack = function() {
             $window.history.back();
@@ -267,12 +268,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
         UserService.getUserInfo(data)
             .success(function(data, status) {
                 if (status === 200) {
-                    $scope.school_area = data.user.school_area;
-                    $scope.college_name = data.user.college_name;
-                    $scope.real_name = data.user.real_name;
-                    $scope.long_tel = data.user.long_tel;
-                    $scope.short_tel = data.user.short_tel;
-                    $scope.email = data.user.email;
+                    $scope.user = data.user;
                 }
             });
 
@@ -336,13 +332,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             });
         };
 
-        $scope.setSchoolArea = function(school_area) {
-            $window.history.back();
-            WishData.school_area = school_area;
-        };
-        $scope.getSchool = function() {
-            console.log(WishData.school_area);
-        };
+        
 
 
 
@@ -372,32 +362,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 
 
 
-        //修改个人信息
-        $scope.rewrite = function() {
-            //组装个人信息数据包
-            var InfoData = {
-                user: sessionStorage.getItem('uid'),
-                real_name: $scope.real_name,
-                school_area: $scope.school_area,
-                college_name: $scope.college_name,
-                long_tel: $scope.long_tel,
-                short_tel: $scope.short_tel,
-                email: $scope.email
-            };
-
-            //更新个人信息
-            UserService.updateInfo(InfoData)
-                .success(function(data, status) {
-                    if (status === 200) {
-                        alert('修改成功');
-                        $state.go('userinfo', {
-                            userId: InfoData.user
-                        });
-                    }
-                });
-
-
-        };
+        
 
         //*************Bless Part***************//
 
@@ -449,12 +414,13 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 ]);
 
 //填写用户信息的控制器
-app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService',
-    function($scope, $state, UserService) {
-        
+app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService', '$stateParams', '$window', 'WishService', 'WishData', '$rootScope',
+    function($scope, $state, UserService, $stateParams, $window, WishService, WishData, $rootScope) {
+
         $scope.goBack = function() {
             $window.history.back();
         };
+        $scope.type = $stateParams.type;
 
         var data = {
             userId: sessionStorage.getItem('uid')
@@ -492,14 +458,13 @@ app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService',
             //组装个人信息数据包
             var InfoData = {
                 user: sessionStorage.getItem('uid'),
-                real_name: $scope.real_name,
-                school_area: $scope.school_area,
-                college_name: $scope.college_name,
-                long_tel: $scope.long_tel,
-                short_tel: $scope.short_tel,
-                email: $scope.email
+                real_name: $scope.user.real_name,
+                school_area: $scope.user.school_area,
+                college_name: $scope.user.college_name,
+                long_tel: $scope.user.long_tel,
+                short_tel: $scope.user.short_tel,
+                email: $scope.user.email
             };
-
             var data = {
                 type: 1,
                 wishId: WishData._id,
@@ -529,6 +494,33 @@ app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService',
                             });
                     }
                 });
+        };
+        
+        //修改个人信息
+        $scope.rewrite = function() {
+            //组装个人信息数据包
+            var InfoData = {
+                user: sessionStorage.getItem('uid'),
+                real_name: $scope.real_name,
+                school_area: $scope.school_area,
+                college_name: $scope.college_name,
+                long_tel: $scope.long_tel,
+                short_tel: $scope.short_tel,
+                email: $scope.email
+            };
+
+            //更新个人信息
+            UserService.updateInfo(InfoData)
+                .success(function(data, status) {
+                    if (status === 200) {
+                        alert('修改成功');
+                        $state.go('userinfo', {
+                            userId: InfoData.user
+                        });
+                    }
+                });
+
+
         };
     }
 ]);

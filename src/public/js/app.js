@@ -40,20 +40,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: '/views/User/writebless.html',
             controller: 'UserCtrl'
         })
+
+        //填写用户信息页面,type表示场景类型,1表示发布愿望和祝福,2表示领取愿望,3表示用户修改
         .state('user.writeinfo', {
             url: '/writeinfo/:type',
             templateUrl: '/views/User/female/writeinfo.html',
             controller: 'UserWriteInfoCtrl'
-        })
-        .state('user.chooseschool', {
-            url: '/chooseschool',
-            templateUrl: '/views/User/chooseschool.html',
-            controller: 'UserCtrl'
-        })
-        .state('user.choosecollege', {
-            url: '/choosecollege',
-            templateUrl: '/views/User/choosecollege.html',
-            controller: 'UserCtrl'
         })
         .state('user.writeblessinfo', {
             url: '/writeblessinfo/:rewrite',
