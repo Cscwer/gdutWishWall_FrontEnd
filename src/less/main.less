@@ -12,6 +12,9 @@ html, body {
 textarea {
 	resize: none;
 }
+.row {
+	margin: 0;
+}
 .app {
 	height: 100%;
 }
@@ -252,7 +255,7 @@ textarea {
 		border: none;
 		background-image: url('/public/img/1.jpg');
 		background-size: cover;
-
+		border-radius: 0;
 		img.userheadimg {
 			width: 55px;
 			height: 55px;
@@ -605,7 +608,7 @@ textarea {
 		}
 	}
 	.wishwall-writewish-info {
-		height: 70px;
+		height: 105px;
 		background-color: #fff;
 
 		.row {
@@ -623,13 +626,13 @@ textarea {
 				float: right;
 				font-size: 40px;
 				height: 100%;
-				line-height: 70px;
+				line-height: 105px;
 				color: fade(#000, 30%);
 			}
 			p {
 				height: 100%;
 				text-align: center;
-				line-height: 70px;
+				line-height: 105px;
 				color: fade(#000, 30%);
 			}
 		}
@@ -732,4 +735,20 @@ textarea {
 	margin-top: 10px;
 	background-color: #fff;
 	padding: 0 10px;
+}
+.mystery-content {
+	.row {
+		margin-top: 20px;
+		p {
+			text-align: center;
+		}
+		button {
+			width: 50%;
+			position: relative;
+			left: 50%;
+			transform: translate(-50%);
+			-webkit-transform: translate(-50%);
+		}
+	}
+
 }

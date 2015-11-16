@@ -31,12 +31,16 @@
 						<span ng-bind="user.real_name" ng-if="user.real_name">石建文</span>
 						<br>
 						<span ng-bind="user.college_name" ng-if="user.real_name">计算机学院</span>
+						<br>
+						<span ng-bind="user.email" ng-if="user.email">424432317@qq.com</span>
 					</div>
 					<div ng-class="user.real_name?'col-xs-5':'col-xs-10'">
 						<p ng-if="!user.real_name">请补全信息</p>
 						<span ng-bind="user.school_area" ng-if="user.real_name">大学城校区</span>
 						<br>
 						<span ng-bind="user.long_tel" ng-if="user.real_name">15626237124</span>
+						<br>
+						<span ng-bind="user.short_tel" ng-if="user.short_tel"></span>
 					</div>
 					<div class="col-xs-2" ui-sref="user.writeinfo({type: 1})">
 						<i class="fa fa-angle-right"></i>

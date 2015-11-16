@@ -1,7 +1,7 @@
 //主页控制器
 
-app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData',
-    function($scope, WishService, $state, WishData) {
+app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData', 'WeChatService',
+    function($scope, WishService, $state, WishData, WeChatService) {
 
         //愿望列表
         $scope.oddwishes = [];
@@ -34,6 +34,32 @@ app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData',
                     type: 2
                 });
             }
+        };
+
+        //获取调用sdk的signature
+        var ticket_data = {
+            location: window.location.href.split('#')[0]
+        };
+        WeChatService.getSignature(ticket_data)
+            .success(function(data, status) {
+                if (status === 200) {
+                    var signature = data.data;
+                    wx.config({
+                        debug: false,
+                        appId: signature.appId,
+                        timestamp: signature.timestamp,
+                        nonceStr: signature.nonceStr,
+                        signature: signature.signature,
+                        jsApiList: ['previewImage']
+                    });
+                }
+            });
+
+        $scope.previewImage = function(url) {
+            wx.previewImage({
+                current: url, // 当前显示图片的http链接
+                urls: [url] // 需要预览的图片http链接列表
+            });
         };
     }
 ]);
@@ -159,27 +185,29 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
             $scope.unread_num = 0;
         };
 
+        $scope.searchwhere = '许愿墙';
+
     }
 ]);
 
 //搜索页面控制器
-app.controller('SearchCtrl', ['$scope',
-    function($scope) {
-        $scope.searchwhere = '许愿墙';
+// app.controller('SearchCtrl', ['$scope',
+//     function($scope) {
+//         $scope.searchwhere = '许愿墙';
 
-        $scope.searchSelect = function(num) {
-            if (num === 1) {
-                $scope.searchwhere = '许愿墙';
-            } else {
-                $scope.searchwhere = '祝福墙';
-            }
-        };
+//         $scope.searchSelect = function(num) {
+//             if (num === 1) {
+//                 $scope.searchwhere = '许愿墙';
+//             } else {
+//                 $scope.searchwhere = '祝福墙';
+//             }
+//         };
 
-        $scope.clearInput = function() {
-            $scope.searchinput = '';
-        };
-    }
-]);
+//         $scope.clearInput = function() {
+//             $scope.searchinput = '';
+//         };
+//     }
+// ]);
 
 
 //用户信息控制器
@@ -332,8 +360,6 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             });
         };
 
-        
-
 
 
 
@@ -344,11 +370,11 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             //组装愿望数据包
             WishData.user = sessionStorage.getItem('uid');
             WishData.username = sessionStorage.getItem('username');
-            WishData.userheadimg = $rootScope.user.headimgurl;
+            WishData.userheadimg = $scope.user.headimgurl;
             WishData.wishType = $scope.wish_type;
             WishData.wish = $scope.wish;
-            WishData.school_area = $scope.school_area;
-            WishData.useremail = $scope.email;
+            WishData.school_area = $scope.user.school_area;
+            WishData.useremail = $scope.user.email;
             //发布愿望
             WishService.putWish(WishData)
                 .success(function(data, status) {
@@ -362,7 +388,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 
 
 
-        
+
 
         //*************Bless Part***************//
 
@@ -495,18 +521,18 @@ app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService', '$stateP
                     }
                 });
         };
-        
+
         //修改个人信息
         $scope.rewrite = function() {
             //组装个人信息数据包
             var InfoData = {
                 user: sessionStorage.getItem('uid'),
-                real_name: $scope.real_name,
-                school_area: $scope.school_area,
-                college_name: $scope.college_name,
-                long_tel: $scope.long_tel,
-                short_tel: $scope.short_tel,
-                email: $scope.email
+                real_name: $scope.user.real_name,
+                school_area: $scope.user.school_area,
+                college_name: $scope.user.college_name,
+                long_tel: $scope.user.long_tel,
+                short_tel: $scope.user.short_tel,
+                email: $scope.user.email
             };
 
             //更新个人信息
@@ -735,3 +761,12 @@ app.controller('MaleWishCtrl', ['$scope', '$state', 'GetMaleWishService',
             })
     }
 ]);
+
+app.controller('MysteryLoverCtrl', ['$scope', '$window', function($scope, $window) {
+    $scope.goBack = function() {
+        $window.history.back();
+    };
+    $scope.searchMystery = function() {
+        
+    };
+}]);
