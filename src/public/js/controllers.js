@@ -360,10 +360,6 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             });
         };
 
-
-
-
-
         //发布愿望
         $scope.publicWish = function() {
 
@@ -392,49 +388,28 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 
         //*************Bless Part***************//
 
-        $scope.setUserBlessInfo = function() {
+        //发布祝福
+        $scope.publicBless = function() {
 
             //组装祝福数据包
             BlessData.user = sessionStorage.getItem('uid');
             BlessData.username = sessionStorage.getItem('username');
+            BlessData.userheadimg = $scope.user.headimgurl;
             BlessData.bless = $scope.bless;
-            BlessData.userheadimg = $rootScope.user.headimgurl;
-            $state.go('user.writeblessinfo');
-        };
-
-        //发布祝福
-        $scope.publicBless = function() {
-
-            //组装个人信息数据包
-            var InfoData = {
-                user: sessionStorage.getItem('uid'),
-                real_name: $scope.real_name,
-                school_area: $scope.school_area,
-                college_name: $scope.college_name,
-                long_tel: $scope.long_tel,
-                short_tel: $scope.short_tel
-            };
-            BlessData.school_area = $scope.school_area;
-            //发布愿望
+            BlessData.school_area = $scope.user.school_area;
+            BlessData.useremail = $scope.user.email;
+            //发布祝福
             BlessService.putBless(BlessData)
                 .success(function(data, status) {
                     if (status === 200) {
-                        //更新个人信息
-                        UserService.updateInfo(InfoData)
-                            .success(function(data, status) {
-                                if (status === 200) {
-                                    alert('发布祝福成功');
-                                    $state.go('index.blesswall');
-                                }
-                            });
+                        alert("祝福成功");
+                        $state.go('index.blesswall');
                     }
                 });
 
         };
 
         //*************Bless Part***************//
-
-
 
     }
 ]);

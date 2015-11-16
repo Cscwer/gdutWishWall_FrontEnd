@@ -28,17 +28,17 @@
 			<div class="form-group wishwall-writewish-info">
 				<div class="row">
 					<div class="col-xs-5" ng-if="user.real_name">
-						<span ng-bind="user.real_name" ng-if="user.real_name">石建文</span>
+						<span ng-bind="user.real_name" ng-if="user.real_name"></span>
 						<br>
-						<span ng-bind="user.college_name" ng-if="user.real_name">计算机学院</span>
+						<span ng-bind="user.college_name" ng-if="user.real_name"></span>
 						<br>
-						<span ng-bind="user.email" ng-if="user.email">424432317@qq.com</span>
+						<span ng-bind="user.email" ng-if="user.email"></span>
 					</div>
 					<div ng-class="user.real_name?'col-xs-5':'col-xs-10'">
 						<p ng-if="!user.real_name">请补全信息</p>
-						<span ng-bind="user.school_area" ng-if="user.real_name">大学城校区</span>
+						<span ng-bind="user.school_area" ng-if="user.real_name"></span>
 						<br>
-						<span ng-bind="user.long_tel" ng-if="user.real_name">15626237124</span>
+						<span ng-bind="user.long_tel" ng-if="user.real_name"></span>
 						<br>
 						<span ng-bind="user.short_tel" ng-if="user.short_tel"></span>
 					</div>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 
-			<button type="button" class="btn btn-warning" ng-click="publicWish()" ng-disabled="putWishForm.$invalid" disabled="{{!real_name}}">发布</button>
+			<button type="button" class="btn btn-warning" ng-click="publicWish()" ng-disabled="putWishForm.$invalid || !real_name|| !user.ong_tel || !user.short_tell">发布</button>
 		</form>
 	</div>
 
