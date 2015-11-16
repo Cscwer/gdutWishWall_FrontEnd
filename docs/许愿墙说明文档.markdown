@@ -30,9 +30,7 @@ Res: {
 Url: /updateinfo
 Method: POST
 Req: {
-    Object{
-        user
-    }
+    user： Object
 }
 ```
 3.主页获取所有愿望
@@ -230,7 +228,20 @@ Res: {
     signature: Object
 }
 ```
-
+23.暗恋匹配
+```
+Url: /loverMatch
+Method: POST
+Req: {
+    uid: String 用户id
+    myname: String 用户的真实姓名
+    hisname: String 用户暗恋对象的真实姓名
+}
+Res： {
+    msg: 'success'|'fail'
+    user: Object(若 msg 为 'success' 则有此字段，否则没有)
+}
+```
 ###数据说明
 
 
