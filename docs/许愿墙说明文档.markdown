@@ -4,6 +4,94 @@
 
 ---
 
+##愿望相关接口
+
+###返回数据格式约定
+```javascript
+	{
+		totalItem: 1000,
+		data:[] | {},
+		status: 400 | 500,
+		message: '获取成功';
+	}
+```
+###1. 获取所有愿望
+```javascript
+	url: /api/wish?page=1&pageSize=100&type=&campus=&sort=&sortBy=&searchContent=
+	method: 'GET',
+	query: {
+		page: '当前页码',
+		pageSize: '加载数据量',
+		type: '愿望类型',
+		campus: '校区',
+		sort: 'desc|asc'
+	},
+	response: {
+		wishId: 423535,
+		authorId: '',
+		campus: '',
+		authorName: '',
+		imageUrl: '',	//
+		datetime: 12342422,
+		wishContent: '',
+		state: ''
+	}
+```
+###2. 获取单个愿望
+```javascript
+	url: /api/wish/:wishId
+	method: 'GET',
+	params: {
+		wishId: 'number'
+	}
+```
+###3. 新建愿望
+```javascript
+	url: /api/wish,
+	method: 'POST',
+	body: {
+		type: 1 | 2,
+		wishContent: '',
+		imageUrl: '',
+	}
+	response: {
+		data:[] | {},
+		status: 200 | 500,
+		message: '许愿成功' | '许愿失败';
+	}
+```
+
+###4. 更新愿望
+```javascript
+	url: /api/wish/:wishId,
+	method: 'PUT',
+	params: {
+		wishId: 'number'
+	}
+	response: {
+		data:[] | {},
+		status: 200 | 500,
+		message: '更新成功' | '更新失败';
+	}
+```
+###5. 删除愿望
+```javascript
+	url: /api/wish/:wishId,
+	method: 'DELETE',
+	params: {
+		wishId: 'number'
+	}
+	response: {
+		data:[] | {},
+		status: 200 | 500,
+		message: '更新成功' | '更新失败';
+	}
+```
+
+
+
+
+
 ###数据接口
 
 #####Host: http://gdutgirl.duapp.com/
