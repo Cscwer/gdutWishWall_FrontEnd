@@ -1,9 +1,18 @@
 var app = angular.module('gdutWishWall', ['ui.router', 'infinite-scroll']);
 
 //配置图片白名单
-app.config(['$compileProvider', function($compileProvider) {
-    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|weixin|wxlocalresource):/);
-}]);
+app.config(['$compileProvider',
+    function($compileProvider) {
+        $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|weixin|wxlocalresource):/);
+    }
+]);
+app.config(['$httpProvider',
+    function($httpProvider) {
+        $httpProvider.defaults.headers.patch = {
+            'Content-Type': 'application/json;charset=utf-8'
+        }
+    }
+])
 
 //配置路由规则
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -41,12 +50,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'UserCtrl'
         })
 
-        //填写用户信息页面,type表示场景类型,1表示发布愿望和祝福,2表示领取愿望,3表示用户修改
-        .state('user.writeinfo', {
-            url: '/writeinfo/:type',
-            templateUrl: '/views/User/writeinfo.html',
-            controller: 'UserWriteInfoCtrl'
-        })
+    //填写用户信息页面,type表示场景类型,1表示发布愿望和祝福,2表示领取愿望,3表示用户修改
+    .state('user.writeinfo', {
+        url: '/writeinfo/:type',
+        templateUrl: '/views/User/writeinfo.html',
+        controller: 'UserWriteInfoCtrl'
+    })
         .state('user.writeblessinfo', {
             url: '/writeblessinfo/:rewrite',
             templateUrl: '/views/User/writeblessinfo.html',

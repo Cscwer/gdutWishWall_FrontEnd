@@ -9,7 +9,7 @@ app.factory('UserService', ['$http',
             getUserInfo: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/api/' + data.userId
+                    url: Host + '/api/users/' + data.userId
                 });
             },
 
@@ -55,13 +55,13 @@ app.factory('WishService', ['$http',
             getWish: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/api/wishes/' + data.userId + '?sex=' + data.sex
+                    url: Host + '/api/wishes/user/' + data.userId + '?sex=' + data.sex
                 });
             },
 
             updateWishState: function(data) {
                 return $http({
-                    method: 'PATCH',
+                    method: 'PUT',
                     url: Host + '/api/wishes/state/' + data.wishId,
                     data: data
                 });
@@ -69,7 +69,7 @@ app.factory('WishService', ['$http',
 
             updateWish: function(data) {
                 return $http({
-                    method: 'PATCH',
+                    method: 'PUT',
                     url: Host + '/api/wishes/' + data.wishId,
                     data: data
                 });
@@ -111,7 +111,7 @@ app.factory('MsgService', ['$http',
 
             readMsg: function(userId, msgType) {
                 return $http({
-                    method: 'PATCH',
+                    method: 'PUT',
                     url: Host + '/api/msgs/' + userId + '/' + msgType
                 });
             },
@@ -143,7 +143,7 @@ app.factory('BlessService', ['$http',
 
             makePraise: function(data) {
                 return $http({
-                    method: 'PATCH',
+                    method: 'PUT',
                     url: Host + '/api/blesses/' + data.blessId,
                     data: data
                 });
@@ -167,7 +167,7 @@ app.factory('BlessService', ['$http',
             getUserBless: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/api/blesses/' + data.userId
+                    url: Host + '/api/blesses/user/' + data.userId
                 });
             },
 
@@ -198,8 +198,9 @@ app.factory('WeChatService', ['$http',
 
             getSignature: function(data) {
                 return $http({
-                    method: 'GET',
-                    url: Host + '/api/wechat/signature?location=' + data.location
+                    method: 'POST',
+                    url: Host + '/api/wechat/signature',
+                    data: data
                 });
             },
         };

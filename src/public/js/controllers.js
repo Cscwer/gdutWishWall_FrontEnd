@@ -713,30 +713,30 @@ app.controller('FemaleWishCtrl', ['$scope', '$rootScope', '$state', 'WishService
 ]);
 
 //男生愿望控制器
-app.controller('MaleWishCtrl', ['$scope', '$state', 'WishService',
-    function($scope, $state, WishService) {
-        $scope.CompletedWishes = [];
-        $scope.PickedWishes = [];
-        var data = {
-            pickerId: sessionStorage.getItem('uid'),
-            sex: 1
-        };
-        WishService.getWish(data)
-            .success(function(data, status) {
-                if (status === 200) {
-                    for (var i = 0; i < data.wishes.length; i++) {
-                        if (data.wishes[i].ispicked === 1) {
-                            $scope.PickedWishes.push(data.wishes[i]);
-                        }
-                        if (data.wishes[i].ispicked === 2) {
-                            $scope.CompletedWishes.push(data.wishes[i]);
-                        }
-                    }
-                    $scope.wishes = data.wishes;
-                }
-            })
-    }
-]);
+// app.controller('MaleWishCtrl', ['$scope', '$state', 'WishService',
+//     function($scope, $state, WishService) {
+//         $scope.CompletedWishes = [];
+//         $scope.PickedWishes = [];
+//         var data = {
+//             pickerId: sessionStorage.getItem('uid'),
+//             sex: 1
+//         };
+//         WishService.getWish(data)
+//             .success(function(data, status) {
+//                 if (status === 200) {
+//                     for (var i = 0; i < data.wishes.length; i++) {
+//                         if (data.wishes[i].ispicked === 1) {
+//                             $scope.PickedWishes.push(data.wishes[i]);
+//                         }
+//                         if (data.wishes[i].ispicked === 2) {
+//                             $scope.CompletedWishes.push(data.wishes[i]);
+//                         }
+//                     }
+//                     $scope.wishes = data.wishes;
+//                 }
+//             })
+//     }
+// ]);
 
 app.controller('MysteryLoverCtrl', ['$scope', '$window', function($scope, $window) {
     $scope.goBack = function() {
