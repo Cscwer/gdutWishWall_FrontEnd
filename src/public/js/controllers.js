@@ -3,39 +3,6 @@
 app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData', 'WeChatService',
     function($scope, WishService, $state, WishData, WeChatService) {
 
-        //愿望列表
-        $scope.oddwishes = [];
-        $scope.evenwishes = [];
-
-        //加载下一页的内容，只有登录的人才能查看
-        $scope.page = 1; //当前页数
-        $scope.per_page = 30; //每页显示数目
-        $scope.isLoading = false;
-        $scope.nextpage = function(page, per_page) {
-            $scope.isLoading = true;
-            WishService.getUnpickedWishes(page, per_page)
-                .success(function(data, status) {
-                    if (status === 200 && data.wishes.length !== 0) {
-                        // alert(data.wishes.length);
-                        for (var i = 0; i < data.wishes.length - 1; i = i + 2) {
-                            $scope.oddwishes.push(data.wishes[i]);
-                            $scope.evenwishes.push(data.wishes[i + 1]);
-                        }
-                        $scope.page++;
-                        $scope.isLoading = false;
-                    }
-                });
-        };
-        $scope.pickWish = function(wish) {
-            if (confirm('确认领取' + wish.username + '的这个愿望?')) {
-                WishData._id = wish._id;
-                WishData.useremail = wish.useremail;
-                $state.go('user.writeinfo', {
-                    type: 2
-                });
-            }
-        };
-
         //获取调用sdk的signature
         var ticket_data = {
             location: window.location.href.split('#')[0]
@@ -64,9 +31,51 @@ app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData', 'WeC
     }
 ]);
 
+//许愿墙主页控制器
+app.controller('WishIndexCtrl', ['$scope', 'WishData', '$state', 'WishService',
+    function($scope, WishData, $state, WishService) {
+
+        $scope.pickWish = function(wish) {
+            if (confirm('确认领取' + wish.username + '的这个愿望?')) {
+                WishData._id = wish._id;
+                WishData.useremail = wish.useremail;
+                $state.go('user.writeinfo', {
+                    type: 2
+                });
+            }
+        };
+
+        //愿望列表
+        $scope.oddwishes = [];
+        $scope.evenwishes = [];
+
+        //加载下一页的内容，只有登录的人才能查看
+        $scope.page = 1; //当前页数
+        $scope.per_page = 30; //每页显示数目
+        $scope.isLoading = false;
+        $scope.nextpage = function(page, per_page) {
+            $scope.isLoading = true;
+            WishService.getUnpickedWishes(page, per_page)
+                .success(function(data, status) {
+                    if (status === 200 && data.wishes.length !== 0) {
+                        // alert(data.wishes.length);
+                        for (var i = 0; i < data.wishes.length - 1; i = i + 2) {
+                            $scope.oddwishes.push(data.wishes[i]);
+                            $scope.evenwishes.push(data.wishes[i + 1]);
+                        }
+                        $scope.page++;
+                        $scope.isLoading = false;
+                    }
+                });
+        };
+
+    }
+]);
+
 //祝福墙主页控制器
 app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
     function($scope, $state, BlessService) {
+
         //祝福列表
         var uid = sessionStorage.getItem('uid');
         $scope.blesses = [];
@@ -92,7 +101,6 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
                 });
         };
 
-
         //祝福点赞
         $scope.praiseIt = function(bless) {
             var praiseData = {
@@ -114,7 +122,6 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
 ]);
 //导航栏控制器
 app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$http', 'MsgService', 'WeChatService',
-
     function($scope, $rootScope, $state, $location, $http, MsgService, WeChatService) {
 
         //获取微信用户信息
@@ -189,26 +196,6 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
 
     }
 ]);
-
-//搜索页面控制器
-// app.controller('SearchCtrl', ['$scope',
-//     function($scope) {
-//         $scope.searchwhere = '许愿墙';
-
-//         $scope.searchSelect = function(num) {
-//             if (num === 1) {
-//                 $scope.searchwhere = '许愿墙';
-//             } else {
-//                 $scope.searchwhere = '祝福墙';
-//             }
-//         };
-
-//         $scope.clearInput = function() {
-//             $scope.searchinput = '';
-//         };
-//     }
-// ]);
-
 
 //用户信息控制器
 app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'UserService',
@@ -287,8 +274,6 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             $window.history.back();
         };
 
-
-
         var data = {
             userId: sessionStorage.getItem('uid')
         };
@@ -299,8 +284,6 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                     $scope.user = data.user;
                 }
             });
-
-
 
         //获取微信 AccessToken 以及 ApiTicket (女生才需要)
 
@@ -712,37 +695,13 @@ app.controller('FemaleWishCtrl', ['$scope', '$rootScope', '$state', 'WishService
     }
 ]);
 
-//男生愿望控制器
-// app.controller('MaleWishCtrl', ['$scope', '$state', 'WishService',
-//     function($scope, $state, WishService) {
-//         $scope.CompletedWishes = [];
-//         $scope.PickedWishes = [];
-//         var data = {
-//             pickerId: sessionStorage.getItem('uid'),
-//             sex: 1
-//         };
-//         WishService.getWish(data)
-//             .success(function(data, status) {
-//                 if (status === 200) {
-//                     for (var i = 0; i < data.wishes.length; i++) {
-//                         if (data.wishes[i].ispicked === 1) {
-//                             $scope.PickedWishes.push(data.wishes[i]);
-//                         }
-//                         if (data.wishes[i].ispicked === 2) {
-//                             $scope.CompletedWishes.push(data.wishes[i]);
-//                         }
-//                     }
-//                     $scope.wishes = data.wishes;
-//                 }
-//             })
-//     }
-// ]);
+app.controller('MysteryLoverCtrl', ['$scope', '$window',
+    function($scope, $window) {
+        $scope.goBack = function() {
+            $window.history.back();
+        };
+        $scope.searchMystery = function() {
 
-app.controller('MysteryLoverCtrl', ['$scope', '$window', function($scope, $window) {
-    $scope.goBack = function() {
-        $window.history.back();
-    };
-    $scope.searchMystery = function() {
-        
-    };
-}]);
+        };
+    }
+]);

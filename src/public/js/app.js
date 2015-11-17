@@ -23,12 +23,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('index', {
             url: '/index',
             templateUrl: "/views/Index/index.html",
+            controller: 'IndexCtrl',
             abstract: true
         })
         .state('index.wishwall', {
             url: '/wishwall',
             templateUrl: '/views/Index/wishwall.html',
-            controller: 'IndexCtrl'
+            controller: 'WishIndexCtrl'
         })
         .state('index.blesswall', {
             url: '/blesswall',
