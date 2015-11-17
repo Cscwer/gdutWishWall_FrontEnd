@@ -32,7 +32,7 @@
 		userId: String 用户id
 	}
 	Data: {
-	    	user： Object
+		user： Object
 	}
 ```
 
@@ -56,7 +56,7 @@
 	Url: /api/wishes
 	Method: POST
 	Data: {
-	    	wish: Object
+		wish: Object
 	}
 ```
 
@@ -65,10 +65,10 @@
 	Url: /api/wishes/:wishId
 	Method: GET
 	Params: {
-	    	wishId: String 愿望id
+		wishId: String 愿望id
 	}
 	Res: {
-	    	wish: Object
+		wish: Object
 	}
 ```
 
@@ -95,9 +95,9 @@
 		wishId: String 愿望id
 	}
 	Data: {
-	    	type: String 更新类型
-	    	wishPicker: String 愿望领取人的id
-	    	wishPickerName： String 愿望领取人的名字
+		type: String 更新类型
+		wishPicker: String 愿望领取人的id
+		wishPickerName： String 愿望领取人的名字
 	}
 ```
 
@@ -109,8 +109,8 @@
 		wishId: String 愿望id
 	}
 	Data: {
-	    	wishType: String 愿望类型
-	    	wish: String 愿望内容
+		wishType: String 愿望类型
+		wish: String 愿望内容
 	}
 ```
 
@@ -119,7 +119,7 @@
 	Url: /api/wish/:wishId
 	Method: DELETE
 	Params: {
-	    	wishId: String 愿望id
+		wishId: String 愿望id
 	}
 ```
 
@@ -147,8 +147,8 @@
 	Url: /api/msgs/contacts
 	Method: GET
 	Req: {
-	    	this: String 发起会话的用户id
-	    	that: String 接受会话的用户id
+		this: String 发起会话的用户id
+		that: String 接受会话的用户id
 	}
 ```
 
@@ -157,13 +157,13 @@
 	Url: /api/blesses?page=&perPage=&campus=&sort=
 	Method: GET
 	Query: {
-	    	page: String 当前页数
-	    	perPage: String 每页数量
-	    	campus: String 校区
-	    	sort: 1|2 升降序
+		page: String 当前页数
+		perPage: String 每页数量
+		campus: String 校区
+		sort: 1|2 升降序
 	}
 	Res: {
-	    	blesses: []
+		blesses: []
 	}
 ```
 
@@ -172,7 +172,7 @@
 	Url: /api/blesses/:blessId
 	Method: PATCH
 	Params: {
-	    	blessId: String 祝福id
+		blessId: String 祝福id
 	}
 	Data: {
 		userId: String 点赞用户id
@@ -184,12 +184,12 @@
 	Url: /api/blesses
 	Method: POST
 	Data: {
-	    	user: Sting 用户id
-	    	real_name: String 真实姓名
-	    	school_area: String 用户所在校区
-	    	college_name: String 用户所在学院
-	    	long_tel: String 用户长号
-	    	short_tel: String 用户短号
+		user: Sting 用户id
+		real_name: String 真实姓名
+		school_area: String 用户所在校区
+		college_name: String 用户所在学院
+		long_tel: String 用户长号
+		short_tel: String 用户短号
 	}
 ```
 
@@ -198,10 +198,10 @@
 	Url: /api/blesses/:blessId
 	Method: GET
 	Params: {
-	    	blessId: String 祝福id
+		blessId: String 祝福id
 	}
 	Res: {
-	    	bless: Object
+		bless: Object
 	}
 ```
 
@@ -210,10 +210,10 @@
 	Url: /api/blesses/:userId
 	Method: GET
 	Params: {
-	    	userId: String 用户id
+		userId: String 用户id
 	}
 	Res: {
-	    	blesses: []
+		blesses: []
 	}
 ```
 
@@ -222,7 +222,7 @@
 	Url: /api/blesses/:blessId
 	Method: DELETE
 	Params: {
-	    	blessId: String 祝福id
+		blessId: String 祝福id
 	}
 ```
 
@@ -231,7 +231,7 @@
 	Url: /api/wechat/info
 	Method: GET
 	Res: {
-	    	user: Object
+		user: Object
 	}
 ```
 
@@ -240,10 +240,10 @@
 	Url: /api/wechat/signature
 	Method: GET
 	Query: {
-	    	location: String 当前页面url
+		location: String 当前页面url
 	}
 	Res: {
-	    	signature: Object
+		signature: Object
 	}
 ```
 
@@ -252,13 +252,13 @@
 	Url: /api/user/mystery
 	Method: POST
 	Req: {
-	    uid: String 用户id
-	    myname: String 用户的真实姓名
-	    hisname: String 用户暗恋对象的真实姓名
+		uid: String 用户id
+		myname: String 用户的真实姓名
+		hisname: String 用户暗恋对象的真实姓名
 	}
 	Res： {
-	    msg: 'success'|'fail'
-	    user: Object(若 msg 为 'success' 则有此字段，否则没有)
+		msg: 'success'|'fail'
+		user: Object(若 msg 为 'success' 则有此字段，否则没有)
 	}
 ```
 
