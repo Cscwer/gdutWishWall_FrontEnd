@@ -20,7 +20,7 @@
 		userId: String 用户id
 	}
 	Res: {
-	    	user: Object
+		user: Object
 	}
 ```
 
@@ -41,11 +41,11 @@
 	Url: /api/wishes?page=1&perPage=100&type=&campus=
 	Method: GET
 	Query: {
-		page: 当前页码
-		perPage: 加载数据量
-		type: 愿望类型
-		campus: 校区
-	},
+		page: String 当前页数
+		perPage: String 每页数量
+		type: String 愿望类型
+		campus: String 校区
+	}
 	Res: {
 		wishes: []
 	}
