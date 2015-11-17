@@ -16,27 +16,7 @@
 	}
 ```
 ###1. 获取所有愿望
-```javascript
-	url: /api/wish?page=1&pageSize=100&type=&campus=&sort=&sortBy=&searchContent=
-	method: 'GET',
-	query: {
-		page: '当前页码',
-		pageSize: '加载数据量',
-		type: '愿望类型',
-		campus: '校区',
-		sort: 'desc|asc'
-	},
-	response: {
-		wishId: 423535,
-		authorId: '',
-		campus: '',
-		authorName: '',
-		imageUrl: '',	//
-		datetime: 12342422,
-		wishContent: '',
-		state: ''
-	}
-```
+
 ###2. 获取单个愿望
 ```javascript
 	url: /api/wish/:wishId
@@ -97,82 +77,82 @@
 #####Host: http://gdutgirl.duapp.com/
 
 1.获取用户信息
-
-```
-Url: /getUserInfo
-Method: GET
-Req: {
-    userId: String
-}
-Res: {
-    user: Object{
-        
-    }
-}
-
+```javascript
+	Url: /api/users/:userId
+	Method: GET
+	Params: {
+		userId: String 用户id
+	}
+	Res: {
+	    user: Object
+	}
 ```
 
 2.更新用户信息
+```javascript
+	Url: /api/users/:userId
+	Method: PUT
+	Params: {
+		userId: String 用户id
+	}
+	Data: {
+	    user： Object
+	}
+```
 
-```
-Url: /updateinfo
-Method: POST
-Req: {
-    user： Object
-}
-```
 3.主页获取所有愿望
+```javascript
+	url: /api/wishes?page=1&per_page=100&type=&campus=
+	method: 'GET',
+	query: {
+		page: '当前页码',
+		per_page: '加载数据量',
+		type: '愿望类型',
+		campus: '校区'
+	},
+	response: [{},{}]
+```
 
-```
-Url: /getUnpickedWish
-Method: GET
-Req: {
-    page: 当前页数
-    per_page: 每页的数量
-}
-Res: {
-    wishes: [
-    ]
-}
-```
 4.许愿
-```
-Url: /putwish
-Method: POST
-Req: {
-    wish: Object
-}
+```javascript
+	Url: /api/wishes
+	Method: POST
+	Data: {
+	    wish: Object
+	}
 ```
 5.获取指定愿望
-```
-Url: /getWish
-Method: GET
-Req: {
-    wishId: String
-}
-Res: {
-    wish: Object
-}
+```javascript
+	Url: /api/wishes/:wishId
+	Method: GET
+	Params: {
+	    wishId: String 愿望id
+	}
+	Res: {
+	    wish: Object
+	}
 ```
 6.获取某个人的所有愿望
-```
-Url: /getonesWish
-Method: GET
-Req: {
-    sex: String 用户性别
-    userId: String 用户id
-}
+```javascript
+	Url: /api/wishes/:userId
+	Method: GET
+	Params: {
+		userId: String 用户id
+	}
+	Res: {
+		wishes: []
+	}
 ```
 7.更新愿望状态
-```
-Url: /updatewishstate
-Method: POST
-Req: {
-    wish: Object
-}
+```javascript
+	Url: /api/wishes/:wishId
+	Method: PATCH
+	Req: {
+	    wish: Object
+	}
 ```
 8.修改愿望
-```
+```javascript
 Url: /refreshwish
 Method: POST
 Req: {
