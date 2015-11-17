@@ -4,333 +4,265 @@
 
 ---
 
+
+
+#数据接口
+
+####Host: http://gdutgirl.duapp.com/
+
 ##愿望相关接口
 
-###返回数据格式约定
-```javascript
-	{
-		totalItem: 1000,
-		data:[] | {},
-		status: 400 | 500,
-		message: '获取成功';
-	}
-```
-###1. 获取所有愿望
-```javascript
-	url: /api/wish?page=1&pageSize=100&type=&campus=&sort=&sortBy=&searchContent=
-	method: 'GET',
-	query: {
-		page: '当前页码',
-		pageSize: '加载数据量',
-		type: '愿望类型',
-		campus: '校区',
-		sort: 'desc|asc'
-	},
-	response: {
-		wishId: 423535,
-		authorId: '',
-		campus: '',
-		authorName: '',
-		imageUrl: '',	//
-		datetime: 12342422,
-		wishContent: '',
-		state: ''
-	}
-```
-###2. 获取单个愿望
-```javascript
-	url: /api/wish/:wishId
-	method: 'GET',
-	params: {
-		wishId: 'number'
-	}
-```
-###3. 新建愿望
-```javascript
-	url: /api/wish,
-	method: 'POST',
-	body: {
-		type: 1 | 2,
-		wishContent: '',
-		imageUrl: '',
-	}
-	response: {
-		data:[] | {},
-		status: 200 | 500,
-		message: '许愿成功' | '许愿失败';
-	}
-```
-
-###4. 更新愿望
-```javascript
-	url: /api/wish/:wishId,
-	method: 'PUT',
-	params: {
-		wishId: 'number'
-	}
-	response: {
-		data:[] | {},
-		status: 200 | 500,
-		message: '更新成功' | '更新失败';
-	}
-```
-###5. 删除愿望
-```javascript
-	url: /api/wish/:wishId,
-	method: 'DELETE',
-	params: {
-		wishId: 'number'
-	}
-	response: {
-		data:[] | {},
-		status: 200 | 500,
-		message: '更新成功' | '更新失败';
-	}
-```
-
-
-
-
-
-###数据接口
-
-#####Host: http://gdutgirl.duapp.com/
-
 1.获取用户信息
-
-```
-Url: /getUserInfo
-Method: GET
-Req: {
-    userId: String
-}
-Res: {
-    user: Object{
-        
-    }
-}
-
+```javascript
+	Url: /api/users/:userId
+	Method: GET
+	Params: {
+		userId: String 用户id
+	}
+	Res: {
+		user: Object
+	}
 ```
 
 2.更新用户信息
+```javascript
+	Url: /api/users/:userId
+	Method: PUT
+	Params: {
+		userId: String 用户id
+	}
+	Data: {
+		user： Object
+	}
+```
 
-```
-Url: /updateinfo
-Method: POST
-Req: {
-    user： Object
-}
-```
 3.主页获取所有愿望
+```javascript
+	Url: /api/wishes?page=1&perPage=100&type=&campus=
+	Method: GET
+	Query: {
+		page: String 当前页数
+		perPage: String 每页数量
+		type: String 愿望类型
+		campus: String 校区
+	}
+	Res: {
+		wishes: []
+	}
+```
 
-```
-Url: /getUnpickedWish
-Method: GET
-Req: {
-    page: 当前页数
-    per_page: 每页的数量
-}
-Res: {
-    wishes: [
-    ]
-}
-```
 4.许愿
+```javascript
+	Url: /api/wishes
+	Method: POST
+	Data: {
+		wish: Object
+	}
 ```
-Url: /putwish
-Method: POST
-Req: {
-    wish: Object
-}
-```
+
 5.获取指定愿望
+```javascript
+	Url: /api/wishes/:wishId
+	Method: GET
+	Params: {
+		wishId: String 愿望id
+	}
+	Res: {
+		wish: Object
+	}
 ```
-Url: /getWish
-Method: GET
-Req: {
-    wishId: String
-}
-Res: {
-    wish: Object
-}
-```
+
 6.获取某个人的所有愿望
+```javascript
+	Url: /api/wishes/:userId
+	Method: GET
+	Params: {
+		userId: String 用户id
+	}
+	Query: {
+		sex: 1|2 性别 
+	}
+	Res: {
+		wishes: []
+	}
 ```
-Url: /getonesWish
-Method: GET
-Req: {
-    sex: String 用户性别
-    userId: String 用户id
-}
-```
+
 7.更新愿望状态
+```javascript
+	Url: /api/wishes/state/:wishId
+	Method: PATCH
+	Params: {
+		wishId: String 愿望id
+	}
+	Data: {
+		type: String 更新类型
+		wishPicker: String 愿望领取人的id
+		wishPickerName： String 愿望领取人的名字
+	}
 ```
-Url: /updatewishstate
-Method: POST
-Req: {
-    wish: Object
-}
-```
+
 8.修改愿望
+```javascript
+	Url: /api/wishes/:wishId
+	Method: PATCH
+	Params: {
+		wishId: String 愿望id
+	}
+	Data: {
+		wishType: String 愿望类型
+		wish: String 愿望内容
+	}
 ```
-Url: /refreshwish
-Method: POST
-Req: {
-    wish: Object
-}
-```
+
 9.删除愿望
+```javascript
+	Url: /api/wishes/:wishId
+	Method: DELETE
+	Params: {
+		wishId: String 愿望id
+	}
 ```
-Url: /deletewish
-Method: POST
-Req: {
-    wishId: String
-}
-```
-10.男生获取自己领取的愿望
-```
-Url: /getmalewish
-Method: GET
-Req: {
-    pickerId: String 男生id
-}
-Res: {
-    wishes: []
-}
-```
+
 11.获取消息
+```javascript
+	Url: /api/msgs/:userId
+	Method: GET
+	Params: {
+		userId: String 用户id
+	}
 ```
-Url: /getmessage
-Method: GET
-Req: {
-    userId: String 用户id
-}
+
+13.更新用户消息状态
+```javascript
+	Url: /api/msgs/:userId/:msgType
+	Method: PATCH
+	Params: {
+		userId: String 用户id
+		type: String 消息类型
+	}
 ```
-12.获取未读消息的数量
-```
-Url: /getunreadmsgnum
-Method: GET
-Req: {
-    uid: String 用户id
-}
-```
-13.更新消息为已读
-```
-Url: /readmessage
-Method: GET
-Req: {
-    userId: String 用户id
-    type: String 消息类型
-}
-```
+
 14.获取对话
+```javascript
+	Url: /api/msgs/contacts
+	Method: GET
+	Req: {
+		this: String 发起会话的用户id
+		that: String 接受会话的用户id
+	}
 ```
-Url: /getcontact
-Method: POST
-Req: {
-    this: String 发起会话的用户id
-    that: String 接受会话的用户id
-}
-```
+
 15.主页获取所有祝福
+```javascript
+	Url: /api/blesses?page=&perPage=&campus=&sort=
+	Method: GET
+	Query: {
+		page: String 当前页数
+		perPage: String 每页数量
+		campus: String 校区
+		sort: 1|2 升降序
+	}
+	Res: {
+		blesses: []
+	}
 ```
-Url: /getallbless
-Method: GET
-Req: {
-    page: String 当前页数
-    per_page: String 每页数量
-}
-Res: {
-    blesses: []
-}
-```
+
 16.点赞动作
+```javascript
+	Url: /api/blesses/:blessId
+	Method: PATCH
+	Params: {
+		blessId: String 祝福id
+	}
+	Data: {
+		userId: String 点赞用户id
+	}
 ```
-Url: /makepraise
-Method: POST
-Req: {
-    blessId: String 祝福id
-    userId: String 用户id
-}
-```
+
 17.发布祝福
+```javascript
+	Url: /api/blesses
+	Method: POST
+	Data: {
+		user: Sting 用户id
+		real_name: String 真实姓名
+		school_area: String 用户所在校区
+		college_name: String 用户所在学院
+		long_tel: String 用户长号
+		short_tel: String 用户短号
+	}
 ```
-Url: /putbless
-Method: POST
-Req: {
-    user: Sting 用户id
-    real_name: String 真实姓名
-    school_area: String 用户所在校区
-    college_name: String 用户所在学院
-    long_tel: String 用户长号
-    short_tel: String 用户短号
-}
-```
+
 18.获取指定祝福
+```javascript
+	Url: /api/blesses/:blessId
+	Method: GET
+	Params: {
+		blessId: String 祝福id
+	}
+	Res: {
+		bless: Object
+	}
 ```
-Url: /getbless
-Method: GET
-Req: {
-    blessId: String 祝福id
-}
-Res: {
-    bless: Object
-}
-```
+
 19.获取指定用户的祝福
+```javascript
+	Url: /api/blesses/:userId
+	Method: GET
+	Params: {
+		userId: String 用户id
+	}
+	Res: {
+		blesses: []
+	}
 ```
-Url: /getuserbless
-Method: GET
-Req: {
-    userId: String 用户id
-}
-Res: {
-    blesses: []
-}
-```
+
 20.删除祝福
+```javascript
+	Url: /api/blesses/:blessId
+	Method: DELETE
+	Params: {
+		blessId: String 祝福id
+	}
 ```
-Url: /deletebless
-Method: POST
-Req: {
-    bless_id: String 祝福id
-}
-```
+
 21.获取用户微信信息
+```javascript
+	Url: /api/wechat/info
+	Method: GET
+	Res: {
+		user: Object
+	}
 ```
-Url: /getWechatInfo
-Method: GET
-Req: {}
-Res: {
-    user: Object
-}
-```
+
 22.获取微信签名
+```javascript
+	Url: /api/wechat/signature
+	Method: GET
+	Query: {
+		location: String 当前页面url
+	}
+	Res: {
+		signature: Object
+	}
 ```
-Url: /getSignature
-Method: POST
-Req: {
-    location: String 当前页面url
-}
-Res: {
-    signature: Object
-}
-```
+
 23.暗恋匹配
+```javascript
+	Url: /api/user/mystery
+	Method: POST
+	Req: {
+		uid: String 用户id
+		myname: String 用户的真实姓名
+		hisname: String 用户暗恋对象的真实姓名
+	}
+	Res： {
+		msg: 'success'|'fail'
+		user: Object(若 msg 为 'success' 则有此字段，否则没有)
+	}
 ```
-Url: /loverMatch
-Method: POST
-Req: {
-    uid: String 用户id
-    myname: String 用户的真实姓名
-    hisname: String 用户暗恋对象的真实姓名
-}
-Res： {
-    msg: 'success'|'fail'
-    user: Object(若 msg 为 'success' 则有此字段，否则没有)
-}
-```
-###数据说明
+
+##数据说明
 
 
 
