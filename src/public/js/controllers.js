@@ -713,14 +713,15 @@ app.controller('FemaleWishCtrl', ['$scope', '$rootScope', '$state', 'WishService
 ]);
 
 //男生愿望控制器
-app.controller('MaleWishCtrl', ['$scope', '$state', 'GetMaleWishService',
-    function($scope, $state, GetMaleWishService) {
+app.controller('MaleWishCtrl', ['$scope', '$state', 'WishService',
+    function($scope, $state, WishService) {
         $scope.CompletedWishes = [];
         $scope.PickedWishes = [];
         var data = {
-            pickerId: sessionStorage.getItem('uid')
+            pickerId: sessionStorage.getItem('uid'),
+            sex: 1
         };
-        GetMaleWishService.getWish(data)
+        WishService.getWish(data)
             .success(function(data, status) {
                 if (status === 200) {
                     for (var i = 0; i < data.wishes.length; i++) {

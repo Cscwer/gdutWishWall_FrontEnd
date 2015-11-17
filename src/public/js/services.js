@@ -9,14 +9,15 @@ app.factory('UserService', ['$http',
             getUserInfo: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getUserInfo?userId=' + data.userId
+                    url: Host + '/api/' + data.userId
                 });
             },
+
             //更新用户信息
             updateInfo: function(data) {
                 return $http({
-                    method: 'POST',
-                    url: Host + '/updateinfo',
+                    method: 'PUT',
+                    url: Host + '/api/users/' + data.user,
                     data: data
                 })
             }
@@ -28,52 +29,56 @@ app.factory('UserService', ['$http',
 app.factory('WishService', ['$http',
     function($http) {
         return {
-            getUnpickedWishes: function(page, per_page) {
+
+            getUnpickedWishes: function(page, perPage) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getUnpickedWish?page=' + page + '&per_page=' + per_page
+                    url: Host + '/api/wishes?page=' + page + '&perPage=' + perPage
                 });
             },
+
             putWish: function(data) {
                 return $http({
                     method: 'POST',
-                    url: Host + '/putwish',
+                    url: Host + '/api/wishes',
                     data: data
                 });
             },
+
             findWish: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getwish?wishId=' + data.wishId
+                    url: Host + '/api/wishes/' + data.wishId
                 });
             },
+
             getWish: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getoneswish?sex=' + data.sex + '&userId=' + data.userId,
-                    data: data
+                    url: Host + '/api/wishes/' + data.userId + '?sex=' + data.sex
                 });
             },
+
             updateWishState: function(data) {
                 return $http({
-                    method: 'POST',
-                    url: Host + '/updatewishstate',
+                    method: 'PATCH',
+                    url: Host + '/api/wishes/state/' + data.wishId,
                     data: data
                 });
             },
 
             updateWish: function(data) {
                 return $http({
-                    method: 'POST',
-                    url: Host + '/refreshwish',
+                    method: 'PATCH',
+                    url: Host + '/api/wishes/' + data.wishId,
                     data: data
                 });
             },
 
             deleteWish: function(data) {
                 return $http({
-                    method: 'POST',
-                    url: Host + '/deletewish',
+                    method: 'DELETE',
+                    url: Host + '/api/wishes/' + data.wishId,
                     data: data
                 });
             },
@@ -84,28 +89,16 @@ app.factory('WishService', ['$http',
 
 
 
-//男生获取自己领取的愿望
-app.factory('GetMaleWishService', ['$http',
-    function($http) {
-        return {
-            getWish: function(data) {
-                return $http({
-                    method: 'GET',
-                    url: Host + '/getmalewish?pickerId=' + data.pickerId
-                });
-            }
-        };
-    }
-]);
+
 
 //消息服务
 app.factory('MsgService', ['$http',
     function($http) {
         return {
-            getMsg: function(data) {
+            getMsg: function(userId) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getmessage?userId=' + data
+                    url: Host + '/api/msgs/' + userId
                 });
             },
 
@@ -116,18 +109,17 @@ app.factory('MsgService', ['$http',
                 });
             },
 
-            readMsg: function(uid, type) {
+            readMsg: function(userId, msgType) {
                 return $http({
-                    method: 'GET',
-                    url: Host + '/readmessage?userId=' + uid + '&type=' + type
+                    method: 'PATCH',
+                    url: Host + '/api/msgs/' + userId + '/' + msgType
                 });
             },
 
             getContact: function(data) {
                 return $http({
-                    method: 'POST',
-                    url: Host + '/getcontact',
-                    data: data
+                    method: 'GET',
+                    url: Host + '/api/msgs/contacts?this=' + data.this + '&that=' + data.that
                 });
             }
 
@@ -141,45 +133,48 @@ app.factory('MsgService', ['$http',
 app.factory('BlessService', ['$http',
     function($http) {
         return {
-            getBlesses: function(page, per_page) {
+
+            getBlesses: function(page, perPage) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getallbless?page=' + page + '&per_page=' + per_page
+                    url: Host + '/api/blesses?page=' + page + '&per_page=' + perPage
                 });
             },
+
             makePraise: function(data) {
                 return $http({
-                    method: 'POST',
-                    url: Host + '/makepraise',
+                    method: 'PATCH',
+                    url: Host + '/api/blesses/' + data.blessId,
                     data: data
                 });
             },
+
             putBless: function(data) {
                 return $http({
                     method: 'POST',
-                    url: Host + '/putbless',
+                    url: Host + '/api/blesses',
                     data: data
                 });
             },
+
             getBless: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getbless?blessId=' + data.blessId,
-                    data: data
+                    url: Host + '/api/blesses/' + data.blessId
                 });
             },
+
             getUserBless: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getuserbless?userId=' + data.userId,
-                    data: data
+                    url: Host + '/api/blesses/' + data.userId
                 });
             },
+
             deleteBless: function(data) {
                 return $http({
-                    method: 'POST',
-                    url: Host + '/deletebless',
-                    data: data
+                    method: 'DELETE',
+                    url: Host + '/api/blesses/' + data.blessId
                 });
             },
         };
@@ -197,15 +192,14 @@ app.factory('WeChatService', ['$http',
             getWeChatInfo: function(code) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getWeChatInfo'
+                    url: Host + '/api/wechat/info'
                 });
             },
 
             getSignature: function(data) {
                 return $http({
-                    method: 'POST',
-                    url: Host + '/getSignature',
-                    data: data
+                    method: 'GET',
+                    url: Host + '/api/wechat/signature?location=' + data.location
                 });
             },
         };
