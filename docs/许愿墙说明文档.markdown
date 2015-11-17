@@ -116,7 +116,7 @@
 
 9.删除愿望
 ```javascript
-	Url: /api/wish/:wishId
+	Url: /api/wishes/:wishId
 	Method: DELETE
 	Params: {
 		wishId: String 愿望id
