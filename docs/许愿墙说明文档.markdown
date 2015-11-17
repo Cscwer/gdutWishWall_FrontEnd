@@ -90,7 +90,7 @@
 7.更新愿望状态
 ```javascript
 	Url: /api/wishes/state/:wishId
-	Method: PATCH
+	Method: PUT
 	Params: {
 		wishId: String 愿望id
 	}
@@ -104,7 +104,7 @@
 8.修改愿望
 ```javascript
 	Url: /api/wishes/:wishId
-	Method: PATCH
+	Method: PUT
 	Params: {
 		wishId: String 愿望id
 	}
@@ -135,7 +135,7 @@
 13.更新用户消息状态
 ```javascript
 	Url: /api/msgs/:userId/:msgType
-	Method: PATCH
+	Method: PUT
 	Params: {
 		userId: String 用户id
 		type: String 消息类型
@@ -170,7 +170,7 @@
 16.点赞动作
 ```javascript
 	Url: /api/blesses/:blessId
-	Method: PATCH
+	Method: PUT
 	Params: {
 		blessId: String 祝福id
 	}
