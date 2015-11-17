@@ -11,7 +11,7 @@
         <form role="form" name="putBlessForm">
             <div class="form-group writewish-textarea">
                 <textarea class="form-control" rows="3" placeholder="写下你的祝福且不能超过140个字" ng-model="bless" name="bless" ng-maxlength="70" required></textarea>
-                <span class="wishwall-icon-camera" ng-click="chooseImage()"> <i class="fa fa-camera" ng-hide="localIds.length"></i>
+                <span class="wishwall-icon-camera" ng-click="chooseBlessImage()"> <i class="fa fa-camera" ng-hide="localIds.length"></i>
                     <img  ng-src="{{localIds[0]}}" ng-show="localIds.length"  width="40px" height="40px"></span>
                 <span class="wishwall-word-num" ng-bind="140-bless.length"></span>
             </div>
