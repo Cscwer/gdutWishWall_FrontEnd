@@ -353,6 +353,23 @@ app.directive('selecebox', ['$window',
     }
 ]);
 
+//模拟用户信息选择框
+/*app.directive('infoselection', ['$window', 
+    function($window) {
+        return {
+            restrict: 'A',
+            link: function(scope, elem, attrs) {
+                var selectBlock = elem.find('.userinfo-selection-hide');
+                elem.find('.school-area').on('click', function(event) {
+                    event.preventDefault();
+                    console.log('a');
+                    selectBlock.click();
+                });
+            }
+        };
+    }
+]);*/
+
 app.directive('wishwalltop', ['$window',
     function($window) {
         return {
