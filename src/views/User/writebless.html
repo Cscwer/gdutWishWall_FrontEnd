@@ -16,15 +16,18 @@
                 <span class="wishwall-word-num" ng-bind="140-bless.length"></span>
             </div>
             <div class="wishwall-write-info school-area blesswall-write-info">
-                <div class="row row-noborder">
+                <div class="row row-noborder writebless-area">
                     <label class="blesswall-label">所在校区
-                    <select name="school_area" id="" ng-model="user.school_area" required class="hide-select-school form-control input-lg">
+                    <select name="school_area" ng-model="user.school_area" required class="hide-select-school form-control input-lg writebless-select">
                         <option value="大学城">大学城</option>
                         <option value="龙洞">龙洞</option>
                         <option value="东风路">东风路</option>
                         <option value="番禺">番禺</option>
                     </select>
                     </label>
+                    <div class="area-selection">
+                        <span ng-bind="user.school_area"></span>
+                    </div>
                 </div>
             </div>
             <button type="button" class="btn btn-warning" ng-click="publicBless()" ng-disabled="putBlessForm.$invalid" disabled="{{!real_name}}">发布</button>
