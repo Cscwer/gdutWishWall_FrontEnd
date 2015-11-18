@@ -1,4 +1,3 @@
-
 //主页控制器
 app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData', 'WeChatService', '$rootScope',
     function($scope, WishService, $state, WishData, WeChatService, $rootScope) {
@@ -203,18 +202,18 @@ app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams'
     function($scope, $rootScope, $state, $stateParams, UserService) {
         $scope.isSelf = ($stateParams.userId === sessionStorage.getItem('uid'))
 
-        // var data = {
-        //     userId: $stateParams.userId
-        // };
-        // UserService.getUserInfo(data)
-        //     .success(function(data, status) {
-        //         if (status === 200) {
-        //             $scope.user = data.user;
-        //             $state.go('userinfo.wishwall', {
-        //                 sex: $scope.user.sex
-        //             });
-        //         }
-        //     });
+        var data = {
+            userId: $stateParams.userId
+        };
+        UserService.getUserInfo(data)
+            .success(function(data, status) {
+                if (status === 200) {
+                    $scope.user = data.user;
+                    $state.go('userinfo.wishwall', {
+                        sex: $scope.user.sex
+                    });
+                }
+            });
     }
 ]);
 
