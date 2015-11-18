@@ -1,7 +1,7 @@
-//主页控制器
 
-app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData', 'WeChatService',
-    function($scope, WishService, $state, WishData, WeChatService) {
+//主页控制器
+app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData', 'WeChatService', '$rootScope',
+    function($scope, WishService, $state, WishData, WeChatService, $rootScope) {
 
         //获取调用sdk的signature
         var ticket_data = {
@@ -12,12 +12,12 @@ app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData', 'WeC
                 if (status === 200) {
                     var signature = data.data;
                     wx.config({
-                        debug: false,
+                        debug: true,
                         appId: signature.appId,
                         timestamp: signature.timestamp,
                         nonceStr: signature.nonceStr,
                         signature: signature.signature,
-                        jsApiList: ['previewImage']
+                        jsApiList: ['previewImage', 'chooseImage', 'uploadImage']
                     });
                 }
             });
@@ -59,10 +59,11 @@ app.controller('WishIndexCtrl', ['$scope', 'WishData', '$state', 'WishService',
                 .success(function(data, status) {
                     if (status === 200 && data.wishes.length !== 0) {
                         // alert(data.wishes.length);
-                        for (var i = 0; i < data.wishes.length - 1; i = i + 2) {
+                        for (var i = 1; i < data.wishes.length; i = i + 2) {
                             $scope.oddwishes.push(data.wishes[i]);
-                            $scope.evenwishes.push(data.wishes[i + 1]);
+                            $scope.evenwishes.push(data.wishes[i - 1]);
                         }
+
                         $scope.page++;
                         $scope.isLoading = false;
                     }
@@ -201,18 +202,19 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
 app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'UserService',
     function($scope, $rootScope, $state, $stateParams, UserService) {
         $scope.isSelf = ($stateParams.userId === sessionStorage.getItem('uid'))
-        var data = {
-            userId: $stateParams.userId
-        };
-        UserService.getUserInfo(data)
-            .success(function(data, status) {
-                if (status === 200) {
-                    $scope.user = data.user;
-                    $state.go('userinfo.wishwall', {
-                        sex: $scope.user.sex
-                    });
-                }
-            });
+
+        // var data = {
+        //     userId: $stateParams.userId
+        // };
+        // UserService.getUserInfo(data)
+        //     .success(function(data, status) {
+        //         if (status === 200) {
+        //             $scope.user = data.user;
+        //             $state.go('userinfo.wishwall', {
+        //                 sex: $scope.user.sex
+        //             });
+        //         }
+        //     });
     }
 ]);
 
@@ -278,38 +280,38 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             userId: sessionStorage.getItem('uid')
         };
 
-        UserService.getUserInfo(data)
-            .success(function(data, status) {
-                if (status === 200) {
-                    $scope.user = data.user;
-                }
-            });
+        // UserService.getUserInfo(data)
+        //     .success(function(data, status) {
+        //         if (status === 200) {
+        //             $scope.user = data.user;
+        //         }
+        //     });
 
         //获取微信 AccessToken 以及 ApiTicket (女生才需要)
 
-        var ticket_data = {
-            location: window.location.href.split('#')[0]
-        };
-        WeChatService.getSignature(ticket_data)
-            .success(function(data, status) {
-                if (status === 200) {
-                    var signature = data.data;
-                    wx.config({
-                        debug: false,
-                        appId: signature.appId,
-                        timestamp: signature.timestamp,
-                        nonceStr: signature.nonceStr,
-                        signature: signature.signature,
-                        jsApiList: ['chooseImage', 'uploadImage']
-                    });
-                }
-            });
+        // var ticket_data = {
+        //     location: window.location.href.split('#')[0]
+        // };
+        // WeChatService.getSignature(ticket_data)
+        //     .success(function(data, status) {
+        //         if (status === 200) {
+        //             var signature = data.data;
+        // wx.config({
+        //     debug: true,
+        //     appId: $rootScope.signature.appId,
+        //     timestamp: $rootScope.signature.timestamp,
+        //     nonceStr: $rootScope.signature.nonceStr,
+        //     signature: $rootScope.signature.signature,
+        //     jsApiList: ['chooseImage', 'uploadImage']
+        // });
+        //         }
+        //     });
 
         //Wish image
         $scope.chooseImage = function() {
             wx.chooseImage({
                 count: 1,
-                sizeType: ['original', 'compressed'],
+                sizeType: ['compressed'],
                 sourceType: ['album', 'camera'],
                 success: function(res) {
                     $scope.localIds = res.localIds;
@@ -328,7 +330,7 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
         $scope.chooseBlessImage = function() {
             wx.chooseImage({
                 count: 1,
-                sizeType: ['original', 'compressed'],
+                sizeType: ['compressed'],
                 sourceType: ['album', 'camera'],
                 success: function(res) {
                     $scope.localBlessIds = res.localIds;
@@ -406,16 +408,16 @@ app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService', '$stateP
         };
         $scope.type = $stateParams.type;
 
-        var data = {
-            userId: sessionStorage.getItem('uid')
-        };
+        // var data = {
+        //     userId: sessionStorage.getItem('uid')
+        // };
 
-        UserService.getUserInfo(data)
-            .success(function(data, status) {
-                if (status === 200) {
-                    $scope.user = data.user;
-                }
-            });
+        // UserService.getUserInfo(data)
+        //     .success(function(data, status) {
+        //         if (status === 200) {
+        //             $scope.user = data.user;
+        //         }
+        //     });
 
         //更新用户信息
         $scope.setUserInfo = function() {
@@ -432,6 +434,12 @@ app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService', '$stateP
             UserService.updateInfo(InfoData)
                 .success(function(data, status) {
                     if (status === 200) {
+                        $rootScope.user.real_name = InfoData.real_name;
+                        $rootScope.user.school_area = InfoData.school_area;
+                        $rootScope.user.college_name = InfoData.college_name;
+                        $rootScope.user.long_tel = InfoData.long_tel;
+                        $rootScope.user.short_tel = InfoData.short_tel;
+                        $rootScope.user.email = InfoData.email;
                         $window.history.back();
                     }
                 });
@@ -463,6 +471,12 @@ app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService', '$stateP
                         UserService.updateInfo(InfoData)
                             .success(function(data, status) {
                                 if (status === 200) {
+                                    $rootScope.user.real_name = InfoData.real_name;
+                                    $rootScope.user.school_area = InfoData.school_area;
+                                    $rootScope.user.college_name = InfoData.college_name;
+                                    $rootScope.user.long_tel = InfoData.long_tel;
+                                    $rootScope.user.short_tel = InfoData.short_tel;
+                                    $rootScope.user.email = InfoData.email;
                                     var msg = {
                                         msg_type: 'Notice',
                                         sender: sessionStorage.getItem('uid'),
@@ -497,6 +511,12 @@ app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService', '$stateP
             UserService.updateInfo(InfoData)
                 .success(function(data, status) {
                     if (status === 200) {
+                        $rootScope.user.real_name = InfoData.real_name;
+                        $rootScope.user.school_area = InfoData.school_area;
+                        $rootScope.user.college_name = InfoData.college_name;
+                        $rootScope.user.long_tel = InfoData.long_tel;
+                        $rootScope.user.short_tel = InfoData.short_tel;
+                        $rootScope.user.email = InfoData.email;
                         alert('修改成功');
                         $state.go('userinfo', {
                             userId: InfoData.user
