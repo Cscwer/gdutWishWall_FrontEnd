@@ -26,6 +26,7 @@
                     </select>
                     </label>
                     <div class="area-selection">
+                        <span ng-if="!user.school_area">请选择校区</span>
                         <span ng-bind="user.school_area"></span>
                     </div>
                 </div>
