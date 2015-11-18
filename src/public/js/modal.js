@@ -14,39 +14,39 @@
   // ======================
 
   var Modal = function (element, options) {
-    this.options             = options
-    this.$body               = $(document.body)
-    this.$element            = $(element)
-    this.$dialog             = this.$element.find('.modal-dialog')
-    this.$backdrop           = null
-    this.isShown             = null
-    this.originalBodyPad     = null
-    this.scrollbarWidth      = 0
-    this.ignoreBackdropClick = false
+    this.options             = options;
+    this.$body               = $(document.body);
+    this.$element            = $(element);
+    this.$dialog             = this.$element.find('.modal-dialog');
+    this.$backdrop           = null;
+    this.isShown             = null;
+    this.originalBodyPad     = null;
+    this.scrollbarWidth      = 0;
+    this.ignoreBackdropClick = false;
 
     if (this.options.remote) {
       this.$element
         .find('.modal-content')
         .load(this.options.remote, $.proxy(function () {
-          this.$element.trigger('loaded.bs.modal')
-        }, this))
+          this.$element.trigger('loaded.bs.modal');
+        }, this));
     }
-  }
+  };
 
-  Modal.VERSION  = '3.3.5'
+  Modal.VERSION  = '3.3.5';
 
-  Modal.TRANSITION_DURATION = 300
-  Modal.BACKDROP_TRANSITION_DURATION = 150
+  Modal.TRANSITION_DURATION = 300;
+  Modal.BACKDROP_TRANSITION_DURATION = 150;
 
   Modal.DEFAULTS = {
     backdrop: true,
     keyboard: true,
     show: true
-  }
+  };
 
   Modal.prototype.toggle = function (_relatedTarget) {
-    return this.isShown ? this.hide() : this.show(_relatedTarget)
-  }
+    return this.isShown ? this.hide() : this.show(_relatedTarget);
+  };
 
   Modal.prototype.show = function (_relatedTarget) {
     var that = this
@@ -158,21 +158,21 @@
 
   Modal.prototype.resize = function () {
     if (this.isShown) {
-      $(window).on('resize.bs.modal', $.proxy(this.handleUpdate, this))
+      $(window).on('resize.bs.modal', $.proxy(this.handleUpdate, this));
     } else {
-      $(window).off('resize.bs.modal')
+      $(window).off('resize.bs.modal');
     }
-  }
+  };
 
   Modal.prototype.hideModal = function () {
-    var that = this
-    this.$element.hide()
+    var that = this;
+    this.$element.hide();
     this.backdrop(function () {
-      that.$body.removeClass('modal-open')
-      that.resetAdjustments()
-      that.resetScrollbar()
-      that.$element.trigger('hidden.bs.modal')
-    })
+      that.$body.removeClass('modal-open');
+      that.resetAdjustments();
+      that.resetScrollbar();
+      that.$element.trigger('hidden.bs.modal');
+    });
   }
 
   Modal.prototype.removeBackdrop = function () {

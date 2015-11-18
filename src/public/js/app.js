@@ -38,17 +38,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('user', {
             url: '/user',
-            templateUrl: '/views/User/index.html'
+            templateUrl: '/views/User/index.html',
+            controller: 'UserCtrl'
         })
         .state('user.writewish', {
             url: '/writewish',
             templateUrl: '/views/User/female/writewish.html',
-            controller: 'UserCtrl'
+            controller: 'UserWriteWishCtrl'
         })
         .state('user.writebless', {
             url: '/writebless',
             templateUrl: '/views/User/writebless.html',
-            controller: 'UserCtrl'
+            controller: 'UserWriteBlessCtrl'
         })
 
     //填写用户信息页面,type表示场景类型,1表示发布愿望和祝福,2表示领取愿望,3表示用户修改

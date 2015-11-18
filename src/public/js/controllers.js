@@ -2,25 +2,6 @@
 app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData', 'WeChatService', '$rootScope',
     function($scope, WishService, $state, WishData, WeChatService, $rootScope) {
 
-        //获取调用sdk的signature
-        var ticket_data = {
-            location: window.location.href.split('#')[0]
-        };
-        WeChatService.getSignature(ticket_data)
-            .success(function(data, status) {
-                if (status === 200) {
-                    var signature = data.data;
-                    wx.config({
-                        debug: true,
-                        appId: signature.appId,
-                        timestamp: signature.timestamp,
-                        nonceStr: signature.nonceStr,
-                        signature: signature.signature,
-                        jsApiList: ['previewImage', 'chooseImage', 'uploadImage']
-                    });
-                }
-            });
-
         $scope.previewImage = function(url) {
             wx.previewImage({
                 current: url, // 当前显示图片的http链接
@@ -120,6 +101,7 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
         };
     }
 ]);
+
 //导航栏控制器
 app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$http', 'MsgService', 'WeChatService',
     function($scope, $rootScope, $state, $location, $http, MsgService, WeChatService) {
@@ -136,6 +118,25 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
                     } else {
                         $rootScope.user = null;
                     }
+                }
+            });
+
+        //获取调用sdk的signature
+        var ticket_data = {
+            location: window.location.href.split('#')[0]
+        };
+        WeChatService.getSignature(ticket_data)
+            .success(function(data, status) {
+                if (status === 200) {
+                    var signature = data.data;
+                    wx.config({
+                        debug: false,
+                        appId: signature.appId,
+                        timestamp: signature.timestamp,
+                        nonceStr: signature.nonceStr,
+                        signature: signature.signature,
+                        jsApiList: ['previewImage', 'chooseImage', 'uploadImage']
+                    });
                 }
             });
 
@@ -200,7 +201,7 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
 //用户信息控制器
 app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'UserService',
     function($scope, $rootScope, $state, $stateParams, UserService) {
-        $scope.isSelf = ($stateParams.userId === sessionStorage.getItem('uid'))
+        $scope.isSelf = ($stateParams.userId === sessionStorage.getItem('uid'));
 
         var data = {
             userId: $stateParams.userId
@@ -267,46 +268,22 @@ app.controller('SettingCtrl', ['$scope', '$window',
 ]);
 
 //用户控制器
-app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'WishService', 'BlessService', 'WishData', 'BlessData', 'UserService', 'WeChatService', '$window',
-    function($scope, $rootScope, $state, $stateParams, WishService, BlessService, WishData, BlessData, UserService, WeChatService, $window) {
-
-        $scope.wish_type = '耗时类';
+app.controller('UserCtrl', ['$scope',
+    function($scope) {
         $scope.goBack = function() {
             $window.history.back();
         };
+    }
+]);
 
-        var data = {
-            userId: sessionStorage.getItem('uid')
-        };
+//填写愿望控制器
+app.controller('UserWriteWishCtrl', ['$scope', 'WishData', 'WishService', '$rootScope', '$state',
+    function($scope, WishData, WishService, $rootScope, $state) {
 
-        // UserService.getUserInfo(data)
-        //     .success(function(data, status) {
-        //         if (status === 200) {
-        //             $scope.user = data.user;
-        //         }
-        //     });
+        //默认愿望类型为耗时类
+        $scope.wish_type = '耗时类';
 
-        //获取微信 AccessToken 以及 ApiTicket (女生才需要)
-
-        // var ticket_data = {
-        //     location: window.location.href.split('#')[0]
-        // };
-        // WeChatService.getSignature(ticket_data)
-        //     .success(function(data, status) {
-        //         if (status === 200) {
-        //             var signature = data.data;
-        // wx.config({
-        //     debug: true,
-        //     appId: $rootScope.signature.appId,
-        //     timestamp: $rootScope.signature.timestamp,
-        //     nonceStr: $rootScope.signature.nonceStr,
-        //     signature: $rootScope.signature.signature,
-        //     jsApiList: ['chooseImage', 'uploadImage']
-        // });
-        //         }
-        //     });
-
-        //Wish image
+        //choose wish image
         $scope.chooseImage = function() {
             wx.chooseImage({
                 count: 1,
@@ -319,25 +296,6 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                         isShowProgressTips: 1,
                         success: function(res) {
                             WishData.mediaId = res.serverId;
-                        }
-                    });
-                }
-            });
-        };
-
-        //Bless image
-        $scope.chooseBlessImage = function() {
-            wx.chooseImage({
-                count: 1,
-                sizeType: ['compressed'],
-                sourceType: ['album', 'camera'],
-                success: function(res) {
-                    $scope.localBlessIds = res.localIds;
-                    wx.uploadImage({
-                        localId: res.localIds[0],
-                        isShowProgressTips: 1,
-                        success: function(res) {
-                            BlessData.mediaId = res.serverId;
                         }
                     });
                 }
@@ -363,14 +321,32 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                         $state.go('index.wishwall');
                     }
                 });
-
         };
+    }
+]);
 
+//用户填写祝福控制器
+app.controller('UserWriteBlessCtrl', ['$scope', '$rootScope', 'BlessData', 'BlessService', '$state',
+    function($scope, $rootScope, BlessData, BlessService, $state) {
 
-
-
-
-        //*************Bless Part***************//
+        //Bless image
+        $scope.chooseBlessImage = function() {
+            wx.chooseImage({
+                count: 1,
+                sizeType: ['compressed'],
+                sourceType: ['album', 'camera'],
+                success: function(res) {
+                    $scope.localBlessIds = res.localIds;
+                    wx.uploadImage({
+                        localId: res.localIds[0],
+                        isShowProgressTips: 1,
+                        success: function(res) {
+                            BlessData.mediaId = res.serverId;
+                        }
+                    });
+                }
+            });
+        };
 
         //发布祝福
         $scope.publicBless = function() {
@@ -392,9 +368,6 @@ app.controller('UserCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                 });
 
         };
-
-        //*************Bless Part***************//
-
     }
 ]);
 
@@ -406,17 +379,6 @@ app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService', '$stateP
             $window.history.back();
         };
         $scope.type = $stateParams.type;
-
-        // var data = {
-        //     userId: sessionStorage.getItem('uid')
-        // };
-
-        // UserService.getUserInfo(data)
-        //     .success(function(data, status) {
-        //         if (status === 200) {
-        //             $scope.user = data.user;
-        //         }
-        //     });
 
         //更新用户信息
         $scope.setUserInfo = function() {
@@ -486,7 +448,7 @@ app.controller('UserWriteInfoCtrl', ['$scope', '$state', 'UserService', '$stateP
                                     };
                                     $rootScope.socket.emit('WishMsg', msg);
                                     alert('领取成功！');
-                                    $state.go('wish.malewish');
+                                    $state.go('index.wishwall');
                                 }
                             });
                     }
