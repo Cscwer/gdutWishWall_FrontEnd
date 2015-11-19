@@ -174,7 +174,7 @@ app.factory('BlessService', ['$http',
             deleteBless: function(data) {
                 return $http({
                     method: 'DELETE',
-                    url: Host + '/api/blesses/' + data.blessId
+                    url: Host + '/api/blesses/' + data._id
                 });
             },
         };
