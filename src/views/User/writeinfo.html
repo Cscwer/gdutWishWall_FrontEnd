@@ -79,7 +79,7 @@
 			</div>
 		</div>
 	</div>
-	<button type="button" class="btn btn-warning" ng-click="setUserInfo()" ng-disabled="writeInfoForm.$invalid" ng-if="type === '1'">确定</button>
-	<button type="button" class="btn btn-warning" ng-click="pickWish()" ng-disabled="writeInfoForm.$invalid" ng-if="type === '2'">确定领取</button>
-	<button type="button" class="btn btn-warning" ng-click="pickWish()" ng-disabled="writeInfoForm.$invalid" ng-if="type === '3'">确定修改</button>
+	<button type="button" class="btn btn-warning" ng-click="setUserInfo()" ng-disabled="writeInfoForm.$invalid || isClick" ng-if="type === '1'">确定</button>
+	<button type="button" class="btn btn-warning" ng-click="pickWish()" ng-disabled="writeInfoForm.$invalid || isClick" ng-if="type === '2'">确定领取</button>
+	<button type="button" class="btn btn-warning" ng-click="pickWish()" ng-disabled="writeInfoForm.$invalid || isClick" ng-if="type === '3'">确定修改</button>
 </form>

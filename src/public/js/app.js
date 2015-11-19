@@ -6,13 +6,7 @@ app.config(['$compileProvider',
         $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|weixin|wxlocalresource):/);
     }
 ]);
-app.config(['$httpProvider',
-    function($httpProvider) {
-        $httpProvider.defaults.headers.patch = {
-            'Content-Type': 'application/json;charset=utf-8'
-        }
-    }
-])
+
 
 //配置路由规则
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -113,21 +107,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: '/views/Wish/search.html',
             controller: 'SearchCtrl'
         })
-        .state('wish.femalewish', {
-            url: '/female/mywish',
-            templateUrl: '/views/User/female/mywish.html',
-            controller: 'FemaleWishCtrl'
-        })
-        .state('wish.changewish', {
-            url: '/female/changewish/:wishId',
-            templateUrl: '/views/User/female/changewish.html',
-            controller: 'WishCtrl'
-        })
-        .state('wish.malewish', {
-            url: '/male/mywish/:pickerId',
-            templateUrl: '/views/User/male/mywish.html',
-            controller: 'MaleWishCtrl'
-        })
+
+    .state('wish.changewish', {
+        url: '/female/changewish/:wishId',
+        templateUrl: '/views/User/female/changewish.html',
+        controller: 'WishCtrl'
+    })
 
     .state('wish.detail', {
         url: '/detail/:wishId',

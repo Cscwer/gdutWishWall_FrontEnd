@@ -7,11 +7,11 @@
         </ol>
         <div class="carousel-inner">
             <div class="item active">
-                <img alt="" src="/public/img/1.jpg" height="1080" width="1920"></div>
+                <img alt="" src="http://7xnxuw.com1.z0.glb.clouddn.com/1.png" height="1080" width="1920"></div>
             <div class="item">
-                <img alt="" src="/public/img/2.jpg" height="1600" width="2560"></div>
+                <img alt="" src="http://7xnxuw.com1.z0.glb.clouddn.com/2.png" height="1600" width="2560"></div>
             <div class="item">
-                <img alt="" src="/public/img/3.jpg" height="1200" width="1920"></div>
+                <img alt="" src="http://7xnxuw.com1.z0.glb.clouddn.com/3.png" height="1200" width="1920"></div>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
             <div class="panel panel-default wishwall-panel" ng-repeat="wish in oddwishes">
                 <div class="panel-body wishwall-panel-body">
                     <div class="wishinfo-panel">
-                        <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg" ui-sref="user.contact({userId: wish.user,username: wish.username})">
+                        <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg">
 
                         <div class="username">
                             <span>{{wish.username}}</span>
@@ -31,7 +31,7 @@
                         <span class="pick_this" ng-click="pickWish(wish)">icon</span>
 
                         <hr class="wishborder">
-                        <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
+                        <p class="wish_content">{{wish.wish}}</p>
                     </div>
 
                     <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img" ng-click="previewImage(wish.img)"></div>
@@ -41,7 +41,7 @@
             <div class="panel panel-default wishwall-panel" ng-repeat="wish in evenwishes">
                 <div class="panel-body wishwall-panel-body">
                     <div class="wishinfo-panel">
-                        <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg" ui-sref="user.contact({userId: wish.user,username: wish.username})">
+                        <img ng-src="{{wish.userheadimg}}64" alt="" class="headimg">
                         <div class="username">
                             <span>{{wish.username}}</span>
                             <br>
@@ -49,7 +49,7 @@
                         </div>
                        <span class="pick_this" ng-click="pickWish(wish)">icon</span>
                         <hr class="wishborder">
-                        <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
+                        <p class="wish_content">{{wish.wish}}</p>
                     </div>
                     <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img" ng-click="previewImage(wish.img)"></div>
             </div>

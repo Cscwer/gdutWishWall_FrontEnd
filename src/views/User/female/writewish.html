@@ -48,7 +48,7 @@
 				</div>
 			</div>
 
-			<button type="button" class="btn btn-warning" ng-click="publicWish()" ng-disabled="putWishForm.$invalid" disabled="{{!real_name}}">发布</button>
+			<button type="button" class="btn btn-warning" ng-click="publicWish()" ng-disabled="putWishForm.$invalid || !user.real_name || !user.college_name || !user.email || !user.long_tel || !user.school_area || isClick">发布</button>
 		</form>
 	</div>
 

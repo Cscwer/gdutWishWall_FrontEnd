@@ -1,4 +1,4 @@
-var Host = 'http://wishwall.duapp.com'; //定义主机
+var Host = 'http://gdutgirl.duapp.com'; //定义主机
 
 
 /************************** 用户服务**********************/
@@ -19,7 +19,7 @@ app.factory('UserService', ['$http',
                     method: 'PUT',
                     url: Host + '/api/users/' + data.user,
                     data: data
-                })
+                });
             }
         };
     }
@@ -78,7 +78,7 @@ app.factory('WishService', ['$http',
             deleteWish: function(data) {
                 return $http({
                     method: 'DELETE',
-                    url: Host + '/api/wishes/' + data.wishId,
+                    url: Host + '/api/wishes/' + data._id,
                     data: data
                 });
             },

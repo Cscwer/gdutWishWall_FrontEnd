@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-warning" ng-click="publicBless()" ng-disabled="putBlessForm.$invalid" disabled="{{!real_name}}">发布</button>
+            <button type="button" class="btn btn-warning" ng-click="publicBless()" ng-disabled="putBlessForm.$invalid || isClick">发布</button>
         </form>
     </div>
 

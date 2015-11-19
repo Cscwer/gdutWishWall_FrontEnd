@@ -1,26 +1,45 @@
-<div class="row-fluid">
-	<table class="table">
-	   <caption>愿望详情</caption>
-	   <tbody>
-	      <tr>
-	         <td>许愿人</td>
-	         <td>{{wish.username}}</td>
-	      </tr>
-	      <tr>
-	         <td>许愿时间</td>
-	         <td>{{wish.publishDate | date: "yyyy-MM-dd"}}</td>
-	      </tr>
-	      <tr>
-	         <td>愿望类型</td>
-	         <td>{{wish.wishType}}</td>
-	      </tr>
-	      <tr>
-	         <td>愿望内容</td>
-	         <td>{{wish.wish}}</td>
-	      </tr>
-	   </tbody>
-	</table>
-	
-	<button type="submit" class="btn btn-default" ui-sref="user.writeinfo" ng-if="wish.ispicked === 0 && user.sex === 1">领取愿望</button>
+<div class="wishdetail">
 
+	<div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-top setting-navbar-top ">
+		<!-- Top Navbar -->
+		<div class="navbar-brand navbar-brand-center">
+			愿望详情
+			<a href="javascript:void(0)" class="btn btn-navbar wishwall-icon-a" ng-click="goBack()"> <i class="fa fa-angle-left fa-navbar wishwall-icon-cog"></i>
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<table class="table">
+				<caption>愿望详情</caption>
+				<tbody>
+					<tr>
+						<td>许愿人</td>
+						<td>{{wish.username}}</td>
+					</tr>
+					<tr>
+						<td>许愿时间</td>
+						<td>{{wish.publishDate | date: "yyyy-MM-dd"}}</td>
+					</tr>
+					<tr>
+						<td>愿望类型</td>
+						<td ng-if="!isRewrite">{{wish.wishType}}</td>
+						<td ng-if="isRewrite"><select ng-model="wish.wishType"><option value="耗时类">耗时类</option>
+						<option value="实物类">实物类</option></select></td>
+					</tr>
+					<tr>
+						<td>愿望内容</td>
+						<td ng-if="!isRewrite">{{wish.wish}}</td>
+						<td ng-if="isRewrite"><input type="text" ng-model="wish.wish"></td>
+					</tr>
+				</tbody>
+			</table>
+			<button type="submit" class="btn btn-warning" ng-if="wish.ispicked === 0 && !isRewrite" ng-click="changeWish()">修改愿望</button>
+			<button type="submit" class="btn btn-success" ng-if="wish.ispicked === 0 && isRewrite" ng-click="refreshWish(wish)" ng-disabled="!wish.wish || !wish.wishType">确认修改</button>
+			<button type="submit" class="btn btn-danger" ng-if="wish.ispicked === 0" ng-click="deleteWish(wish)">删除愿望</button>
+		</div>
+
+		
+
+	</div>
 </div>
