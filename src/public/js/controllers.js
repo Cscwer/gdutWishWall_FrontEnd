@@ -184,6 +184,11 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatServi
                 $scope.getUnreadMsgNum(sessionStorage.uid);
             }
         });
+        $rootScope.socket.on('FemaleMsg_res', function(msg) {
+            if(msg.receiver === sessionStorage.uid) {
+                $scope.getUnreadMsgNum(sessionStorage.uid);
+            }
+        });
         $scope.getUnreadMsgNum = function(uid) {
             MsgService.getUnreadMsgNum(uid)
                 .success(function(data, status) {
@@ -616,6 +621,7 @@ app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'MsgServi
 app.controller('WishCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'WishService', 'WishData', '$window',
     function($scope, $rootScope, $state, $stateParams, WishService, WishData, $window) {
 
+        $scope.user = $rootScope.user;
         //获取指定愿望的信息
         var data = {
             wishId: $stateParams.wishId
@@ -667,6 +673,34 @@ app.controller('WishCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
             }
 
         };
+
+     //确认完成愿望
+    $scope.completeWish = function(wish) {
+        if (confirm('确定要完成吗？')) {
+            var data = {
+                type: 2,
+                wishId: wish._id,
+                wishPicker: wish.wishpicker,
+                wishPickerName: wish.wishpickername
+            };
+            var msg = {
+                msg_type: 'Notice',
+                sender: sessionStorage.getItem('uid'),
+                sender_name: sessionStorage.getItem('username'),
+                receiver: wish.wishpicker,
+                receiver_name: wish.wishpickername,
+                msg: '确认完成了你领取的愿望'
+            };
+            WishService.updateWishState(data)
+                .success(function(data, status) {
+                    if (status === 200) {
+                        $rootScope.socket.emit('FemaleMsg', msg);
+                        alert('操作成功！');
+                        $state.go('userinfo', {userId: msg.sender});
+                    }
+                });
+        }
+    };
 
 
     }

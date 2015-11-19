@@ -36,6 +36,7 @@
 			</table>
 			<button type="submit" class="btn btn-warning" ng-if="wish.ispicked === 0 && !isRewrite" ng-click="changeWish()">修改愿望</button>
 			<button type="submit" class="btn btn-success" ng-if="wish.ispicked === 0 && isRewrite" ng-click="refreshWish(wish)" ng-disabled="!wish.wish || !wish.wishType">确认修改</button>
+			<button type="submit" class="btn btn-success" ng-if="wish.ispicked === 1 && user.sex == 2" ng-click="completeWish(wish)">确认完成</button>
 			<button type="submit" class="btn btn-danger" ng-if="wish.ispicked === 0" ng-click="deleteWish(wish)">删除愿望</button>
 		</div>
 
