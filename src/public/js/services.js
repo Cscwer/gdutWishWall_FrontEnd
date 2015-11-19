@@ -1,4 +1,4 @@
-var Host = 'http://gdutgirl.duapp.com'; //定义主机
+var Host = 'http://wishwall.duapp.com'; //定义主机
 
 
 /************************** 用户服务**********************/

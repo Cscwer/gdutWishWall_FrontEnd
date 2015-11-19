@@ -8,6 +8,7 @@ app.controller('IndexCtrl', ['$scope', 'WishService', '$state', 'WishData', 'WeC
                 urls: [url] // 需要预览的图片http链接列表
             });
         };
+
     }
 ]);
 
@@ -128,6 +129,7 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
         WeChatService.getSignature(ticket_data)
             .success(function(data, status) {
                 if (status === 200) {
+                    $rootScope.signature = data.data;
                     var signature = data.data;
                     wx.config({
                         debug: false,
@@ -135,7 +137,7 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', '$state', '$location', '$h
                         timestamp: signature.timestamp,
                         nonceStr: signature.nonceStr,
                         signature: signature.signature,
-                        jsApiList: ['previewImage', 'chooseImage', 'uploadImage']
+                        jsApiList: ['previewImage']
                     });
                 }
             });
@@ -268,11 +270,20 @@ app.controller('SettingCtrl', ['$scope', '$window',
 ]);
 
 //用户控制器
-app.controller('UserCtrl', ['$scope',
-    function($scope) {
+app.controller('UserCtrl', ['$scope', '$rootScope',
+    function($scope, $rootScope) {
         $scope.goBack = function() {
             $window.history.back();
         };
+        var signature = $rootScope.signature;
+        wx.config({
+            debug: false,
+            appId: signature.appId,
+            timestamp: signature.timestamp,
+            nonceStr: signature.nonceStr,
+            signature: signature.signature,
+            jsApiList: ['chooseImage', 'uploadImage']
+        });
     }
 ]);
 
@@ -617,64 +628,64 @@ app.controller('WishCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 ]);
 
 //女生愿望控制器
-app.controller('FemaleWishCtrl', ['$scope', '$rootScope', '$state', 'WishService', 'MsgService',
-    function($scope, $rootScope, $state, WishService, MsgService) {
-        $scope.UnpickWishes = [];
-        $scope.PickedWishes = [];
-        $scope.CompletedWishes = [];
+// app.controller('FemaleWishCtrl', ['$scope', '$rootScope', '$state', 'WishService', 'MsgService',
+//     function($scope, $rootScope, $state, WishService, MsgService) {
+//         $scope.UnpickWishes = [];
+//         $scope.PickedWishes = [];
+//         $scope.CompletedWishes = [];
 
 
 
-        //删除愿望
-        $scope.deleteWish = function(wish) {
-            if (confirm('确定要删除吗？')) {
-                var data = {
-                    wishId: wish._id
-                };
-                WishService.deleteWish(data)
-                    .success(function(data, status) {
-                        if (status === 200) {
-                            alert('删除成功');
-                            $state.go('wish.femalewish', {}, {
-                                reload: true
-                            });
-                        }
-                    });
-            }
+//         //删除愿望
+//         $scope.deleteWish = function(wish) {
+//             if (confirm('确定要删除吗？')) {
+//                 var data = {
+//                     wishId: wish._id
+//                 };
+//                 WishService.deleteWish(data)
+//                     .success(function(data, status) {
+//                         if (status === 200) {
+//                             alert('删除成功');
+//                             $state.go('wish.femalewish', {}, {
+//                                 reload: true
+//                             });
+//                         }
+//                     });
+//             }
 
-        };
+//         };
 
-        //确认完成愿望
-        $scope.completeWish = function(wish) {
-            if (confirm('确定要完成吗？')) {
-                var data = {
-                    type: 2,
-                    wishId: wish._id,
-                    wishPicker: wish.wishpicker,
-                    wishPickerName: wish.wishpickername
-                };
-                var msg = {
-                    msg_type: 'System',
-                    sender: sessionStorage.getItem('uid'),
-                    sender_name: sessionStorage.getItem('username'),
-                    receiver: wish.wishpicker,
-                    receiver_name: wish.wishpickername,
-                    msg: '确认完成了你领取的愿望'
-                };
-                WishService.updateWishState(data)
-                    .success(function(data, status) {
-                        if (status === 200) {
-                            $rootScope.socket.emit('Msg', msg);
-                            $state.go('wish.femalewish', {}, {
-                                reload: true
-                            });
-                        }
-                    });
-            }
-        };
+//         //确认完成愿望
+//         $scope.completeWish = function(wish) {
+//             if (confirm('确定要完成吗？')) {
+//                 var data = {
+//                     type: 2,
+//                     wishId: wish._id,
+//                     wishPicker: wish.wishpicker,
+//                     wishPickerName: wish.wishpickername
+//                 };
+//                 var msg = {
+//                     msg_type: 'System',
+//                     sender: sessionStorage.getItem('uid'),
+//                     sender_name: sessionStorage.getItem('username'),
+//                     receiver: wish.wishpicker,
+//                     receiver_name: wish.wishpickername,
+//                     msg: '确认完成了你领取的愿望'
+//                 };
+//                 WishService.updateWishState(data)
+//                     .success(function(data, status) {
+//                         if (status === 200) {
+//                             $rootScope.socket.emit('Msg', msg);
+//                             $state.go('wish.femalewish', {}, {
+//                                 reload: true
+//                             });
+//                         }
+//                     });
+//             }
+//         };
 
-    }
-]);
+//     }
+// ]);
 
 app.controller('MysteryLoverCtrl', ['$scope', '$window',
     function($scope, $window) {
