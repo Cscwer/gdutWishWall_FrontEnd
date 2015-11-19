@@ -18,7 +18,7 @@ var autoprefix = new lessAutoprefix({browsers: ['last 2 versions'], cascade: fal
 // 删除 css
 gulp.task('clean:css', function () {
     del.sync('./src/public/css/*.css');
-})
+});
 
 // 启动本地服务
 gulp.task('connect', function () {
