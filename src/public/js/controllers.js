@@ -67,6 +67,7 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
         $scope.pageForBless = 1;
         $scope.per_pageForBless = 5;
         $scope.hadpraise = false;
+        $scope.isLoading = false;
         $scope.nextpageBless = function(page, per_page) {
             $scope.isLoading = true;
             BlessService.getBlesses(page, per_page)
