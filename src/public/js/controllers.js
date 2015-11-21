@@ -281,7 +281,9 @@ app.controller('UserInfoBlessWallCtrl', ['$scope', '$stateParams', 'BlessService
                     .success(function(data, status) {
                         if (status === 200) {
                             alert('删除成功');
-                            $state.go('userinfo.blesswall', {userId: bless.user});
+                            $state.go('userinfo.blesswall', {userId: bless.user}, {
+                                reload: true
+                            });
                         }
                     });
             }

@@ -330,7 +330,7 @@ app.directive('wishwallvisitor', ['$window',
 ]);
 
 //控制选择框的弹出以及动态对齐选择框模块的位置
-app.directive('selecebox', ['$window',
+/*app.directive('selecebox', ['$window',
     function($window) {
         return {
             restrict: 'A',
@@ -351,7 +351,7 @@ app.directive('selecebox', ['$window',
             }
         };
     }
-]);
+]);*/
 
 //模拟用户信息选择框
 /*app.directive('infoselection', ['$window', 
