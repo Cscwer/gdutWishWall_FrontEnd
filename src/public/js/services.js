@@ -9,7 +9,7 @@ app.factory('UserService', ['$http',
             getMyInfo: function() {
                 return $http({
                     method: 'GET',
-                    url: Host + '/api/users/info'
+                    url: Host + '/api/user/info'
                 });
             },
             //获取用户信息

@@ -780,24 +780,23 @@ textarea {
 .blesswall-write-info {
 	margin-bottom: 10px;
 }
-.modal-chooose {
-	height:100%;
-	margin: 0;
-	background-color: transparent;
-	text-align: center;
-}
-.choosecircle-container {
+
+.chooseModel-content {
+	position: absolute;
+	width: 250px;
 	display: inline-block;
-	position: relative;
 	top: 50%;
-	-webkit-transform: translate(0, -50%);
-	transform: translate(0, -50%);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
 }
 .choose-wish,.choose-bless {
 	display: inline-block;
+	line-height: 100px;
+	text-align: center;
 	width: 100px;
 	height: 100px;
-	margin: 0 20px;
+	margin: 0;
 	border-radius: 100px;
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
@@ -805,7 +804,10 @@ textarea {
 }
 .choose-wish {
 	background-color: #f9bf15;
+	margin-right: 10px;
 }
 .choose-bless {
 	background-color: #9fbc2c;
+	float: right;
+	margin-left: 10px;
 }

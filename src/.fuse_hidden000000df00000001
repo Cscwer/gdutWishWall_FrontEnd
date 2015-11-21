@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/main.css">
     <!--endbuild-->
-    <!-- <link rel="stylesheet" href="http://7xnxuw.com1.z0.glb.clouddn.com/font-awesome.min.css">
-    -->
-    <link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css"></head>
+    <!-- <link rel="stylesheet" href="http://7xnxuw.com1.z0.glb.clouddn.com/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css">
+</head>
 
 <body>
 
@@ -24,21 +24,25 @@
             </div>
         </div>
         <div ng-controller="LeaderCtrl">
-            <div class="navbar wishwall-navbar-app wishwall-navbar-app-bottom navbar-fixed-bottom" wishwallmodal>
+            <div class="navbar wishwall-navbar-app wishwall-navbar-app-bottom navbar-fixed-bottom"  selecebox wishwallmodal>
                 <a href="javascript:void(0)" class="btn btn-navbar active wishwall-navbar-bottom-btn" ui-class ui-sref="index.wishwall" ui-sref-opts="{reload: true}"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
                 </a>
                 <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" data-toggle="modal" data-target="#myModal"> <i class="fa fa-search wishwall-icon-home fa-navbar"></i>
                 </a>
-                <a href="javascript:void(0)" class="btn btn-navbar select-box-button wishwall-navbar-bottom-btn active-longer" data-toggle="modal" data-target="#chooseModal">
+                <a href="javascript:void(0)" class="btn btn-navbar select-box-button wishwall-navbar-bottom-btn active-longer">
                     <i class="fa fa-plus wishwall-icon-home fa-navbar"></i>
                 </a>
                 <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" ui-sref="user.message" ng-click="cancelMsgCount()">
                     <i class="fa fa-comment wishwall-icon-home fa-navbar"></i>
                     <span class="badge" ng-if="unread_num !== 0"></span>
                 </a>
-                <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" ui-sref="userinfo({userId: '56504ac20e057022992c7ba5'})">
+                <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" ui-sref="userinfo({userId: user._id})">
                     <i class="fa fa-user wishwall-icon-home fa-navbar"></i>
                 </a>
+                <div class="select-box">
+                    <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writewish" >发愿望</a>
+                    <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writebless">发祝福</a>
+                </div>
             </div>
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -122,42 +126,22 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="chooseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="chooseModel-content">
-                <!-- <div class="choosecircle-container"  data-dismiss="modal" aria-label="Close"> -->
-                    <div class="choose-wish" ui-sref="user.writewish" aria-label="Close" data-dismiss="modal">许愿望</div>
-                <!-- </div> -->
-                <!-- <div class="choosecircle-container"  data-dismiss="modal" aria-label="Close"> -->
-                    <div class="choose-bless" ui-sref="user.writebless" aria-label="Close" data-dismiss="modal">发祝福</div>
-                    <!-- <p>发祝福</p> -->
-                <!-- </div> -->
-            </div>
-                
-                <!-- <div class="modal-dialog  modal-chooose" role="document">
-
-                <div class="modal-content modal-chooose" data-dismiss="modal" aria-label="Close">
-                    <div class="model-body"></div>
-
-                </div>
-            </div>
-            -->
         </div>
     </div>
-</div>
 
-<!--build:js public/js/index.js -->
-<script src="components/jquery/dist/jquery.min.js"></script>
-<script src="components/angular/angular.min.js"></script>
-<script src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
-<script src="public/js/infinite-scroll.js"></script>
-<script src="components/socket.io-client/socket.io.js"></script>
-<script src="public/js/app.js"></script>
-<script src="public/js/services.js"></script>
-<script src="public/js/directives.js"></script>
-<script src="public/js/controllers.js"></script>
+    <!--build:js public/js/index.js -->
+    <script src="components/jquery/dist/jquery.min.js"></script>
+    <script src="components/angular/angular.min.js"></script>
+    <script src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="public/js/infinite-scroll.js"></script>
+    <script src="components/socket.io-client/socket.io.js"></script>
+    <script src="public/js/app.js"></script>
+    <script src="public/js/services.js"></script>
+    <script src="public/js/directives.js"></script>
+    <script src="public/js/controllers.js"></script>
 
-<!--endbuild-->
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <!--endbuild-->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 
 </body>
 

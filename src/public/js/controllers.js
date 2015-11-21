@@ -115,14 +115,14 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatServi
         UserService.getMyInfo()
             .success(function(data, status) {
                 if (status === 200) {
-                    if (!data.errmsg) {
+                    if (!data.err) {
                         $rootScope.user = data.data;
                         sessionStorage.setItem('uid', $rootScope.user._id);
                         sessionStorage.setItem('username', $rootScope.user.nickname);
-                        alert($rootScope.user.nickname);
                         $scope.getUnreadMsgNum(data.data._id);
                     } else {
                         $rootScope.user = null;
+                        alert('出错');
                     }
                 }
             });
