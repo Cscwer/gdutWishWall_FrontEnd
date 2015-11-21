@@ -137,7 +137,7 @@ app.factory('BlessService', ['$http',
             getBlesses: function(page, perPage) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/api/blesses?page=' + page + '&per_page=' + perPage
+                    url: Host + '/api/blesses?page=' + page + '&perPage=' + perPage
                 });
             },
 
