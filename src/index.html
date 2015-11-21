@@ -24,12 +24,12 @@
             </div>
         </div>
         <div ng-controller="LeaderCtrl">
-            <div class="navbar wishwall-navbar-app wishwall-navbar-app-bottom navbar-fixed-bottom"  selecebox wishwallmodal>
+            <div class="navbar wishwall-navbar-app wishwall-navbar-app-bottom navbar-fixed-bottom" wishwallmodal>
                 <a href="javascript:void(0)" class="btn btn-navbar active wishwall-navbar-bottom-btn" ui-class ui-sref="index.wishwall" ui-sref-opts="{reload: true}"> <i class="fa fa-home wishwall-icon-home fa-navbar"></i>
                 </a>
                 <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" data-toggle="modal" data-target="#myModal"> <i class="fa fa-search wishwall-icon-home fa-navbar"></i>
                 </a>
-                <a href="javascript:void(0)" class="btn btn-navbar select-box-button wishwall-navbar-bottom-btn active-longer">
+                <a href="javascript:void(0)" class="btn btn-navbar select-box-button wishwall-navbar-bottom-btn active-longer" data-toggle="modal" data-target="#chooseModal">
                     <i class="fa fa-plus wishwall-icon-home fa-navbar"></i>
                 </a>
                 <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" ui-sref="user.message" ng-click="cancelMsgCount()">
@@ -39,10 +39,6 @@
                 <a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn" ui-sref="userinfo({userId: user._id})">
                     <i class="fa fa-user wishwall-icon-home fa-navbar"></i>
                 </a>
-                <div class="select-box">
-                    <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writewish" >发愿望</a>
-                    <a href="javascript:void(0)" class="btn btn-navbar selection" ui-sref="user.writebless">发祝福</a>
-                </div>
             </div>
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -123,6 +119,24 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="chooseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog  modal-chooose" role="document">
+                    <div class="modal-content modal-chooose" data-dismiss="modal" aria-label="Close">
+                        <div class="choosecircle-container" ui-sref="user.writewish" data-dismiss="modal" aria-label="Close">
+                            <div class="choose-wish">
+                                
+                            </div>
+                            <p>许愿望</p>
+                        </div>
+                        <div class="choosecircle-container" ui-sref="user.writebless" data-dismiss="modal" aria-label="Close">
+                            <div class="choose-bless">
+                                
+                            </div>
+                            <p>发祝福</p>
+                        </div>    
                     </div>
                 </div>
             </div>
