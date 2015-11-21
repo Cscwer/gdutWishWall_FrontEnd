@@ -5,6 +5,13 @@ var Host = 'http://gdutgirl.duapp.com'; //定义主机
 app.factory('UserService', ['$http',
     function($http) {
         return {
+            //获取当前登录用户信息
+            getMyInfo: function() {
+                return $http({
+                    method: 'GET',
+                    url: Host + '/api/users/info'
+                });
+            },
             //获取用户信息
             getUserInfo: function(data) {
                 return $http({

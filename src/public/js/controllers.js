@@ -108,17 +108,18 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
 ]);
 
 //导航栏控制器
-app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatService',
-    function($scope, $rootScope, MsgService, WeChatService) {
+app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatService', 'UserService',
+    function($scope, $rootScope, MsgService, WeChatService, UserService) {
 
         //获取微信用户信息
-        WeChatService.getWeChatInfo()
+        UserService.getMyInfo()
             .success(function(data, status) {
                 if (status === 200) {
                     if (!data.errmsg) {
                         $rootScope.user = data.data;
                         sessionStorage.setItem('uid', $rootScope.user._id);
                         sessionStorage.setItem('username', $rootScope.user.nickname);
+                        alert($rootScope.user.nickname);
                         $scope.getUnreadMsgNum(data.data._id);
                     } else {
                         $rootScope.user = null;
