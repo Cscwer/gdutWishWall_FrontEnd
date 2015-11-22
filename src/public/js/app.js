@@ -18,7 +18,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/index',
             templateUrl: "/views/Index/index.html",
             controller: 'IndexCtrl',
-            abstract: true
         })
         .state('index.wishwall', {
             url: '/wishwall',

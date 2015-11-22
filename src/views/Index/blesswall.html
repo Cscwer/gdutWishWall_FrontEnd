@@ -1,4 +1,4 @@
-        <div class="section yblesswall-section" infinite-scroll="nextpageBless(pageForBless, per_pageForBless)" infinite-scroll-disabled="isLoading">
+        <div class="section yblesswall-section" infinite-scroll="nextpageBless(pageForBless, per_pageForBless, search_area, search_sort)" infinite-scroll-disabled="isLoading">
             <div class="row">
                 <div class="col-xs-12 blesswall-con">
                     <div class="panel panel-default blesswall-panel" ng-repeat="bless in blesses">
@@ -9,7 +9,7 @@
                             </div>
                             <div class="blessmessage-con">
                                 <div class="headimg-con">
-                                    <img ng-src="{{bless.userheadimg}}?imageView2/2/w/60" alt="" class="headimg">
+                                    <img ng-src="{{bless.userheadimg}}" alt="" class="headimg">
                                 </div>
                                 <div class="blessuser-con">
                                     <p class="username bless-username">

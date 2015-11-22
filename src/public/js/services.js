@@ -37,10 +37,17 @@ app.factory('WishService', ['$http',
     function($http) {
         return {
 
-            getUnpickedWishes: function(page, perPage) {
+            getUnpickedWishes: function(page, perPage, searchArea, searchWishType) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/api/wishes?page=' + page + '&perPage=' + perPage
+                    url: Host + '/api/wishes?page=' + page + '&perPage=' + perPage + '&area=' + searchArea + '&type=' + searchWishType
+                });
+            },
+
+            searchWish: function(content) {
+                return $http({
+                    method: 'GET',
+                    url: Host + '/api/wishes/search?content=' + content
                 });
             },
 
@@ -141,10 +148,10 @@ app.factory('BlessService', ['$http',
     function($http) {
         return {
 
-            getBlesses: function(page, perPage) {
+            getBlesses: function(page, perPage, searchArea, searchSort) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/api/blesses?page=' + page + '&perPage=' + perPage
+                    url: Host + '/api/blesses?page=' + page + '&perPage=' + perPage + '&area=' + searchArea + '&sort=' + searchSort
                 });
             },
 
@@ -230,5 +237,15 @@ app.factory('BlessData', function() {
         user: '',
         username: '',
         bless: ''
+    };
+});
+
+app.factory('SearchConfig', function() {
+    return {
+        search_area: '',
+        search_wishtype: '',
+        bless_search_area: '',
+        search_sort: '',
+        searchinput: ''
     };
 });

@@ -13,8 +13,8 @@ app.controller('IndexCtrl', ['$scope',
 ]);
 
 //许愿墙主页控制器
-app.controller('WishIndexCtrl', ['$scope', 'WishData', '$state', 'WishService',
-    function($scope, WishData, $state, WishService) {
+app.controller('WishIndexCtrl', ['$scope', 'WishData', '$state', 'WishService', 'SearchConfig',
+    function($scope, WishData, $state, WishService, SearchConfig) {
 
         $scope.pickWish = function(wish) {
             if (confirm('确认领取' + wish.username + '的这个愿望?')) {
@@ -32,11 +32,15 @@ app.controller('WishIndexCtrl', ['$scope', 'WishData', '$state', 'WishService',
 
         //加载下一页的内容，只有登录的人才能查看
         $scope.page = 1; //当前页数
-        $scope.per_page = 30; //每页显示数目
+        $scope.per_page = 15; //每页显示数目
+        $scope.search_area = SearchConfig.search_area;
+        $scope.search_wishtype = SearchConfig.search_wishtype;
         $scope.isLoading = false;
-        $scope.nextpage = function(page, per_page) {
+        $scope.nextpage = function(page, per_page, search_area, search_wishtype) {
             $scope.isLoading = true;
-            WishService.getUnpickedWishes(page, per_page)
+            SearchConfig.search_area = '';
+            SearchConfig.search_wishtype = '';
+            WishService.getUnpickedWishes(page, per_page, search_area, search_wishtype)
                 .success(function(data, status) {
                     var len = data.wishes.length;
                     if (status === 200 && len !== 0) {
@@ -58,19 +62,23 @@ app.controller('WishIndexCtrl', ['$scope', 'WishData', '$state', 'WishService',
 ]);
 
 //祝福墙主页控制器
-app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService',
-    function($scope, $state, BlessService) {
+app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService', 'SearchConfig',
+    function($scope, $state, BlessService, SearchConfig) {
 
         //祝福列表
         var uid = sessionStorage.getItem('uid');
         $scope.blesses = [];
         $scope.pageForBless = 1;
         $scope.per_pageForBless = 5;
+        $scope.search_area = SearchConfig.bless_search_area;
+        $scope.search_sort = SearchConfig.search_sort;
         $scope.hadpraise = false;
         $scope.isLoading = false;
-        $scope.nextpageBless = function(page, per_page) {
+        $scope.nextpageBless = function(page, per_page, search_area, search_sort) {
             $scope.isLoading = true;
-            BlessService.getBlesses(page, per_page)
+            SearchConfig.bless_search_area = '';
+            SearchConfig.search_sort = '';
+            BlessService.getBlesses(page, per_page, search_area, search_sort)
                 .success(function(data, status) {
                     if (status === 200 && data.blesses.length !== 0) {
                         for (var i = 0; i < data.blesses.length; i++) {
@@ -147,17 +155,6 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatServi
                 }
             });
 
-        //登录保护
-        // $rootScope.$on('$stateChangeStart', function(event, toState) {
-
-        //     if ($rootScope.user === null) {
-        //         event.preventDefault();
-        //         $state.go('index');
-        //     }
-
-        // });
-
-
         //基于 socket.io 的消息推送
         $scope.unread_num = 0;
         $rootScope.isConnected = false;
@@ -187,7 +184,7 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatServi
             }
         });
         $rootScope.socket.on('FemaleMsg_res', function(msg) {
-            if(msg.receiver === sessionStorage.uid) {
+            if (msg.receiver === sessionStorage.uid) {
                 $scope.getUnreadMsgNum(sessionStorage.uid);
             }
         });
@@ -205,8 +202,108 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatServi
             $scope.unread_num = 0;
         };
 
-        $scope.searchwhere = '许愿墙';
+    }
+]);
 
+app.controller('SearchCtrl', ['$scope', '$state', 'WishService', 'WishData', 'SearchConfig',
+    function($scope, $state, WishService, WishData, SearchConfig) {
+        //许愿墙筛选部分
+        $scope.searchwhere = '许愿墙';
+        $scope.search_area = '';
+        $scope.search_wishtype = '';
+        $scope.search_sort = '';
+        $scope.searchSelect = function(index) {
+            if (index === 1) {
+                $scope.searchwhere = '许愿墙';
+            } else {
+                $scope.searchwhere = '祝福墙';
+            }
+        };
+        $scope.areaSelect = function(index) {
+            switch (index) {
+                case 1:
+                    $scope.search_area = '大学城';
+                    break;
+                case 2:
+                    $scope.search_area = '龙洞';
+                    break;
+                case 3:
+                    $scope.search_area = '东风路';
+                    break;
+                case 4:
+                    $scope.search_area = '番禺';
+                    break;
+                case 5:
+                    $scope.search_area = '沙河';
+                    break;
+                case 0:
+                    $scope.search_area = '';
+                    break;
+            }
+        };
+        $scope.typeSelect = function(index) {
+            switch (index) {
+                case 0:
+                    $scope.search_wishtype = '';
+                    break;
+                case 1:
+                    $scope.search_wishtype = '实物类';
+                    break;
+                case 2:
+                    $scope.search_wishtype = '耗时类';
+                    break;
+            }
+        };
+        $scope.sortSelect = function(index) {
+            switch (index) {
+                case -1:
+                    $scope.search_sort = -1;
+                    break;
+                case 0:
+                    $scope.search_sort = '';
+                    break;
+                case 1:
+                    $scope.search_sort = 1;
+                    break;
+            }
+        };
+
+        $scope.wishwallSearch = function() {
+            if ($scope.searchwhere === '许愿墙') {
+                SearchConfig.search_area = $scope.search_area;
+                SearchConfig.search_wishtype = $scope.search_wishtype;
+                $state.go('index.wishwall', {}, {
+                    reload: true
+                });
+            } else {
+                SearchConfig.bless_search_area = $scope.search_area;
+                SearchConfig.search_sort = $scope.search_sort;
+                $state.go('index.blesswall', {}, {
+                    reload: true
+                });
+            }
+
+        };
+
+        $scope.doSearch = function() {
+            if ($scope.searchwhere === '许愿墙') {
+                WishService.searchWish($scope.searchinput)
+                    .success(function(data, status) {
+                        $scope.search_result_wishes = data.wishes;
+                    });
+            }
+        };
+
+        $scope.pickWish = function(wish) {
+            if (confirm('确认领取' + wish.username + '的这个愿望?')) {
+                $scope.sure_to_pick = true;
+                WishData._id = wish._id;
+                WishData.useremail = wish.useremail;
+                $state.go('user.writeinfo', {
+                    type: 2
+                });
+            }
+        };
     }
 ]);
 
@@ -281,7 +378,9 @@ app.controller('UserInfoBlessWallCtrl', ['$scope', '$stateParams', 'BlessService
                     .success(function(data, status) {
                         if (status === 200) {
                             alert('删除成功');
-                            $state.go('userinfo.blesswall', {userId: bless.user}, {
+                            $state.go('userinfo.blesswall', {
+                                userId: bless.user
+                            }, {
                                 reload: true
                             });
                         }
@@ -672,7 +771,9 @@ app.controller('WishCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                     if (status === 200) {
                         alert('修改成功');
                         $scope.isRewrite = false;
-                        $state.go('wish.detail', {wishId: wish._id});
+                        $state.go('wish.detail', {
+                            wishId: wish._id
+                        });
                     }
                 });
         };
@@ -683,40 +784,44 @@ app.controller('WishCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
                     .success(function(data, status) {
                         if (status === 200) {
                             alert('删除成功');
-                            $state.go('userinfo', {userId: wish.user});
+                            $state.go('userinfo', {
+                                userId: wish.user
+                            });
                         }
                     });
             }
 
         };
 
-     //确认完成愿望
-    $scope.completeWish = function(wish) {
-        if (confirm('确定要完成吗？')) {
-            var data = {
-                type: 2,
-                wishId: wish._id,
-                wishPicker: wish.wishpicker,
-                wishPickerName: wish.wishpickername
-            };
-            var msg = {
-                msg_type: 'Notice',
-                sender: sessionStorage.getItem('uid'),
-                sender_name: sessionStorage.getItem('username'),
-                receiver: wish.wishpicker,
-                receiver_name: wish.wishpickername,
-                msg: '确认完成了你领取的愿望'
-            };
-            WishService.updateWishState(data)
-                .success(function(data, status) {
-                    if (status === 200) {
-                        $rootScope.socket.emit('FemaleMsg', msg);
-                        alert('操作成功！');
-                        $state.go('userinfo', {userId: msg.sender});
-                    }
-                });
-        }
-    };
+        //确认完成愿望
+        $scope.completeWish = function(wish) {
+            if (confirm('确定要完成吗？')) {
+                var data = {
+                    type: 2,
+                    wishId: wish._id,
+                    wishPicker: wish.wishpicker,
+                    wishPickerName: wish.wishpickername
+                };
+                var msg = {
+                    msg_type: 'Notice',
+                    sender: sessionStorage.getItem('uid'),
+                    sender_name: sessionStorage.getItem('username'),
+                    receiver: wish.wishpicker,
+                    receiver_name: wish.wishpickername,
+                    msg: '确认完成了你领取的愿望'
+                };
+                WishService.updateWishState(data)
+                    .success(function(data, status) {
+                        if (status === 200) {
+                            $rootScope.socket.emit('FemaleMsg', msg);
+                            alert('操作成功！');
+                            $state.go('userinfo', {
+                                userId: msg.sender
+                            });
+                        }
+                    });
+            }
+        };
 
 
     }
