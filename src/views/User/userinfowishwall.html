@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-6 wishwall-col-6">
             <div class="panel panel-default wishwall-panel" ng-repeat="wish in oddwishes">
-                <div class="panel-body wishwall-panel-body" ui-sref="wish.detail({wishId: wish._id})">
+                <div class="panel-body wishwall-panel-body" ui-sref="wish.detail({wishId: wish._id, sex: user.sex})">
                     <div class="wishinfo-panel">
                         <img ng-src="{{wish.userheadimg}}?imageView2/2/w/60" alt="" class="headimg">
                         <div class="username">
@@ -14,7 +14,7 @@
                         <span class="pick_this" ng-if="wish.ispicked === 1">进行中</span>
                         <span class="pick_this" ng-if="wish.ispicked === 2">已完成</span>
                         <hr class="wishborder">
-                        <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
+                        <p class="wish_content">{{wish.wish}}</p>
                     </div>
 
                     <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img"></div>
@@ -22,7 +22,7 @@
         </div>
         <div class="col-xs-6 wishwall-col-6">
             <div class="panel panel-default wishwall-panel" ng-repeat="wish in evenwishes">
-                <div class="panel-body wishwall-panel-body" ui-sref="wish.detail({wishId: wish._id})">
+                <div class="panel-body wishwall-panel-body" ui-sref="wish.detail({wishId: wish._id, sex: user.sex})">
                     <div class="wishinfo-panel">
                         <img ng-src="{{wish.userheadimg}}?imageView2/2/w/60" alt="" class="headimg">
                         <div class="username">
@@ -34,7 +34,7 @@
                         <span class="pick_this" ng-if="wish.ispicked === 1">进行中</span>
                         <span class="pick_this" ng-if="wish.ispicked === 2">已完成</span>
                         <hr class="wishborder">
-                        <p class="wish_content" ui-sref="wish.detail({wishId: wish._id})">{{wish.wish}}</p>
+                        <p class="wish_content">{{wish.wish}}</p>
                     </div>
                     <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img"></div>
             </div>

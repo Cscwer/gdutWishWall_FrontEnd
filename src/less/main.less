@@ -171,8 +171,7 @@ textarea {
 	}
 }
 .blesswall-con {
-	padding-left: 5px;
-	padding-right: 5px;
+	padding: 5px 5px 0 5px;
 
 	.blessimg-con img {
 		width: 100%;
@@ -182,7 +181,7 @@ textarea {
 	padding: 0;
 }
 .headimg {
-	background-image: url('/public/img/headimg56.png');
+	background-image: url('http://7xnxuw.com1.z0.glb.clouddn.com/headimg56.png');
 	background-size: cover;
 	width: 30px;
 	height: 30px;
@@ -233,7 +232,7 @@ textarea {
 }
 .blesswall-panel {
 	margin-bottom: 5px;
-	border-radius: 0;
+	border-radius: 5px;
 }
 .wishwall-carousel-indicators {
 	margin-bottom: 0;
@@ -262,7 +261,7 @@ textarea {
 			width: 55px;
 			height: 55px;
 			border-radius: 50%;
-			background-image: url('/public/img/headimg56.png');
+			background-image: url('http://7xnxuw.com1.z0.glb.clouddn.com/headimg56.png');
 			background-size: cover;
 		}
 		span {
@@ -270,20 +269,12 @@ textarea {
 			color: #fff;
 			font-weight: bold;
 			margin-top: 5px;
-			font-size: 8px;
+			font-size: 15px;
 		}
 		.info_school_area {
-			margin-right: 20px;
-			position: absolute;
-			left: 40%;
 			transform: translate(-50%);
 		}
-		.info_college_name {
-			margin-left: 20px;
-			position: absolute;
-			right: 40%;
-			transform: translate(50%);
-		}
+		
 	}
 }
 .userinfo-navbar-top {
@@ -405,20 +396,28 @@ textarea {
 }
 .bless-noimg {
 	height: 30px;
-	background: url(/public/img/line.png);
+	background: url(http://7xnxuw.com1.z0.glb.clouddn.com/line.png);
 }
+@searchnavbarheight: 40px;
 .wishwall-search-navbar {
+	background-color: @themecolor;
+	min-height: @searchnavbarheight;
+	border: none;
 	.navbar-brand-left {
+		height: @searchnavbarheight;
 		padding: 0px;
 		float: left;
 		width: inherit;
 	}
 	.btn {
-		line-height: @navbartopheight;
+		line-height: @searchnavbarheight;
 		padding-left: 5px;
 	}
 	a, span {
-		height: @navbartopheight;
+		height: @searchnavbarheight;
+		padding-top: 0;
+		padding-bottom: 0;
+		border: none;
 		font-size: 18px;
 		color: white;
 	}
@@ -428,12 +427,12 @@ textarea {
 	}
 	span {
 		display: inline-block;
-		line-height: @navbartopheight;
+		line-height: @searchnavbarheight;
 	}
 	input {
-		width: 60%;
-		margin-top: 5.5px;
-		height: 24px;
+		width: 58%;
+		margin-top: 5px;
+		height: 30px;
 		display: inline-block;
 	}
 	.fa-remove {
@@ -441,10 +440,21 @@ textarea {
 		margin-left: 5px;
 	}
 }
-@searchspanheight: 63px;
+@searchspanheight: 50px;
 @searchtypeheight: 58px;
 
 .wishwall-search-content {
+	.search-btn {
+		width: 150px;
+		border-radius: 20px;
+		color: #f9c014;
+		border-color: #f9c014;
+		font-weight: bold;
+		border-width: 2px;
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
+	}
 	.row {
 		margin-left: 0;
 		margin-right: 0;
@@ -457,7 +467,7 @@ textarea {
 			height: @searchtypeheight;
 			line-height: @searchtypeheight;
 			color: #c5bfbe;
-			font-size: 18px;
+			font-size: 15px;
 			text-align: center;
 		}
 	}
@@ -480,7 +490,17 @@ textarea {
 			text-align: center;
 			line-height: @searchspanheight;
 			background-color: white;
+			border-radius: 50px;
 		}
+		span.searchactive {
+			background-color: #f9c014;
+			color: #fff;
+		}
+	}
+}
+.wishwall-search-result {
+	.wishwall-col-6 {
+		padding: 0 20px;
 	}
 }
 .msg-content {
@@ -772,7 +792,7 @@ textarea {
     	right: 0;
   	top: 0;
    	z-index: 1;
-    	background: url('/public/img/arrow.png') right no-repeat;
+    	background: url('http://7xnxuw.com1.z0.glb.clouddn.com/arrow.png') right no-repeat;
     	background-size: 14px;
     	padding-right: 18px;
     	font-size: 16px;
@@ -810,4 +830,126 @@ textarea {
 	background-color: #9fbc2c;
 	float: right;
 	margin-left: 10px;
+}
+.wishwall-leader {
+	
+	
+	a:focus {
+		outline: none;
+	}
+	.btn:focus {
+		outline: none;
+	}
+	
+}
+.wishdetail {
+	.picker-info {
+		.row {
+			padding-bottom: 10px;
+		}
+	}
+	.wishborder {
+		margin: 0;
+	}
+	.row {
+		padding: 10px 10px 0 10px;
+		.col-xs-12 {
+			padding: 0;
+		}
+	}
+	.row:last-child {
+		padding-bottom: 10px;
+	}
+	.wishwall-col-6 {
+		// margin-top: 10px;
+		.wishwall-panel {
+			margin-bottom: 0;
+		}
+	}
+	.wishinfo-panel {
+		padding: 10px;
+		.pick_this {
+			float: right;
+			margin-left: 5px;
+		}
+		.username {
+			height: 30px;
+			line-height: 30px;
+		}
+		.wishpickername {
+			line-height: normal;
+			.nickname {
+				color: gray;
+			}
+		}
+
+		
+	}
+
+	.wish-content-img {
+		width: 100%;
+	}
+	.wish_content {
+		padding: 0 10px;
+		margin: 10px 0;
+		font-size: 14px;
+	}
+	.wish_tags {
+		padding: 0 10px;
+		span {
+			font-size: 12px;
+			color: gray;
+			float: right;
+			margin-left: 10px;
+		}
+	}
+}
+.contact-content {
+	.msg-container {
+		padding-top: 20px;
+
+	}
+	.that {
+		padding: 10px 10px 0px 50px;
+		p {
+			background-color: #fff;
+			margin-left: 10px;
+		}
+		img {
+			left: 10px;
+		}
+	}
+	.this {
+		padding: 10px 50px 0px 10px;
+		img {
+			right: 10px;
+
+		}
+		p {
+			margin-right: 10px;
+			
+			background-color: #f9c014;
+		}
+	}
+	.usermsg {
+		position: relative;
+		img {
+			width: 40px;
+			border-radius: 20px;
+			position: absolute;
+		}
+		p {
+			line-height: 40px;
+			vertical-align: top;
+			box-shadow: 0 0 1px gray;
+			text-align: left;
+		}
+	}
+	.contact-input {
+		position: fixed;
+		bottom: 40px;
+		.col-xs-12 {
+			padding: 0;
+		}
+	}
 }
