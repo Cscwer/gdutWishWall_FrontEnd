@@ -1,6 +1,6 @@
 @themecolor: #ff5247;
 @navbartopheight: 35px;
-@navbarbottomheight: 35px;
+@navbarbottomheight: 49px;
 
 a:hover, a:focus {
 	text-decoration: none;
@@ -18,9 +18,36 @@ textarea {
 .app {
 	height: 100%;
 }
+.btn.active {
+	background-image: inherit;
+}
+.wishwall-panel {
+	box-shadow: none;
+}
+.fa {
+	img {
+		height: 29px;
+		// display: none;
+	}
+}
+.fa-home {
+	// filter: grayscale(100%);
+	// -webkit-filter: grayscale(100%);
+	// filter: gray;
+}
+.fa-home.btnactive {
+	// filter: grayscale(0);
+}
+.fa-search {
+	// background-position: -180px -6px;
+	// filter: grayscale(100%);
+}
+.fa-search.btnactive {
+	// filter: grayscale(0);
+}
 .app-content {
-	background-color: #f4efee;
-	padding-bottom: 35px;
+	background-color: #ece2e1;
+	padding-bottom: 50px;
 }
 .navbar-brand-center {
 	width: 100%;
@@ -162,6 +189,7 @@ textarea {
 			position: absolute;
 			right: 5px;
 			font-size: 12px;
+			width: 13px;
 		}
 	}
 }
@@ -220,7 +248,7 @@ textarea {
 	font-size: 16px;
 }
 .wishwall-app-body {
-	background-color: #f4efee;
+	background-color: #ece2e1;
 	height: 100%;
 }
 .wishwall-section, .blesswall-section {
@@ -247,6 +275,19 @@ textarea {
 		height: 7px;
 	}
 }
+.userinfo-content {
+	.wishwall-section {
+		.wishinfo-panel {
+			.pick_this {
+				width: 29px;
+			}
+			.unpicked {
+				width: 18px;
+			}
+		}
+	}
+	
+}
 .wishwall-list-group {
 	margin-bottom: 0;
 
@@ -265,33 +306,33 @@ textarea {
 			background-size: cover;
 		}
 		span {
-			position: absolute;
 			color: #fff;
 			font-weight: bold;
 			margin-top: 5px;
-			font-size: 8px;
+			font-size: 15px;
 		}
 		.info_school_area {
-			margin-right: 20px;
-			position: absolute;
-			left: 40%;
-			transform: translate(-50%);
+			width: 100%;
+			text-align: center;
 		}
-		.info_college_name {
-			margin-left: 20px;
-			position: absolute;
-			right: 40%;
-			transform: translate(50%);
-		}
+		
 	}
 }
 .userinfo-navbar-top {
 	color: rgba(255, 255, 255, 1);
-
+	img {
+	    	display: inline-block;
+	    	height: 20px;
+	    	position: absolute;
+	    	right: 5px;
+	    	top: 50%;
+	    	transform: translate(0,-50%);
+	}
 	.navbar-brand {
 		line-height: @navbartopheight;
 	}
 	.wishwall-icon-a {
+
 		line-height: @navbartopheight;
 		position: absolute;
 		right: 0px;
@@ -327,7 +368,7 @@ textarea {
 	padding-right: 8px;
 	border: none;
 	min-height: 39px;
-
+	background-color: #fff;
 	a {
 		color: @themecolor;
 		font-size: 18px;
@@ -398,6 +439,9 @@ textarea {
 	p {
 		margin: 0;
 	}
+	img {
+		width: 20px;
+	}
 }
 .had-praise {
 	color: #ff5247;
@@ -408,6 +452,22 @@ textarea {
 }
 @searchnavbarheight: 40px;
 .wishwall-search-navbar {
+	margin-bottom: 0;
+	.wishwall-dropdown-menu {
+		min-width: 50px;
+		padding: 0;
+		li {
+			a {
+				line-height: 40px;
+				padding: 0 20px;
+			}
+		}
+	}
+	.wishwall-dropdown-btn {
+		img {
+			width: 12px;
+		}
+	}
 	background-color: @themecolor;
 	min-height: @searchnavbarheight;
 	border: none;
@@ -448,7 +508,7 @@ textarea {
 		margin-left: 5px;
 	}
 }
-@searchspanheight: 50px;
+@searchspanheight: 36px;
 @searchtypeheight: 58px;
 
 .wishwall-search-content {
@@ -459,9 +519,8 @@ textarea {
 		border-color: #f9c014;
 		font-weight: bold;
 		border-width: 2px;
-		position: absolute;
-		left: 50%;
-		transform: translate(-50%);
+		display: block;
+		margin: 0 auto;
 	}
 	.row {
 		margin-left: 0;
@@ -510,6 +569,12 @@ textarea {
 	.wishwall-col-6 {
 		padding: 0 20px;
 	}
+	.no_result {
+		    position: absolute;
+		    left: 50%;
+		    top: 50%;
+		    transform: translate(-50%, -50%);
+	}
 }
 .msg-content {
 	.message-navbar-top {
@@ -529,15 +594,37 @@ textarea {
 	}
 	.greenbox {
 		display: inline-block;
+		position: relative;
 		height: 45px;
 		width: 45px;
 		border-radius: 50%;
 		background-color: fade(green, 55%);
-
+		img {
+			width: 25px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%,-50%);
+		}
 		.badge {
 			float: right;
 			background-color: #f00;
 			font-weight: bold;
+		}
+		.msg-badge:empty {
+			display: none;
+		}
+	}
+	.sender_headimg {
+		background-color: white;
+		img {
+			width: 45px;
+			height: 45px;
+			border-radius: 50%;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%,-50%);
 		}
 	}
 	p {
@@ -549,6 +636,14 @@ textarea {
 	}
 }
 .setting-navbar-top {
+	img {
+		    display: inline-block;
+		    position: absolute;
+		    left: 10px;
+		    height: 22px;
+		    top: 50%;
+		    transform: translate(0,-50%);
+	}
 	color: #fff;
 
 	.navbar-brand-center {
@@ -601,6 +696,14 @@ textarea {
 			font-size: 25px;
 			position: absolute;
 			bottom: 0;
+			img {
+				width: 24px;
+
+			}
+			.wishimg {
+				width: 80px;
+				height: 80px;
+			}
 		}
 		.wishwall-word-num {
 			float: right;
@@ -628,13 +731,26 @@ textarea {
 		padding: 0;
 		background-color: #fff;
 		text-align: center;
-
+		color: #555;
+		img {
+			width: 29px;
+			position: absolute;
+			top: 40%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
 		hr {
 			display: inline-block;
 			float: right;
 			border-right: 1px solid fade(#000, 30%);
 			height: 100%;
 			margin: 0;
+		}
+		span {
+		    	position: absolute;
+		    	top: 80%;
+		    	left: 50%;
+		    	transform: translate(-50%,-50%);
 		}
 	}
 	.wishwall-writewish-info {
@@ -648,6 +764,16 @@ textarea {
 			height: 100%;
 			line-height: 35px;
 			text-align: left;
+			padding: 0;
+		}
+		.col-xs-2 {
+			padding: 0;
+		}
+		.goWriteInfo {
+			position: absolute;
+		    	right: 10px;
+		    	top: 50%;
+		    	transform: translate(0,-50%);
 		}
 		.col-xs-2, .col-xs-10 {
 			height: 100%;
@@ -811,12 +937,13 @@ textarea {
 
 .chooseModel-content {
 	position: absolute;
-	width: 250px;
+	width: 100%;
+	text-align: center;
 	display: inline-block;
 	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);
+	// left: 50%;
+	transform: translate(0, -50%);
+	-webkit-transform: translate(0, -50%);
 }
 .choose-wish,.choose-bless {
 	display: inline-block;
@@ -836,7 +963,6 @@ textarea {
 }
 .choose-bless {
 	background-color: #9fbc2c;
-	float: right;
 	margin-left: 10px;
 }
 .wishwall-leader {
@@ -849,4 +975,127 @@ textarea {
 		outline: none;
 	}
 	
+}
+.wishdetail {
+	.picker-info {
+		.row {
+			padding-bottom: 10px;
+		}
+	}
+	.wishborder {
+		margin: 0;
+	}
+	.row {
+		padding: 10px 10px 0 10px;
+		.col-xs-12 {
+			padding: 0;
+		}
+	}
+	.row:last-child {
+		padding-bottom: 10px;
+	}
+	.wishwall-col-6 {
+		// margin-top: 10px;
+		.wishwall-panel {
+			margin-bottom: 0;
+		}
+	}
+	.wishinfo-panel {
+		padding: 10px;
+		.pick_this {
+			float: right;
+			margin-left: 5px;
+			border-radius: 50%;
+			width: 31px;
+			height: 31px;
+			border: 1px solid fade(gray, 30%);
+			position: relative;
+			img {
+				width: 15px;
+			    	position: absolute;
+			    	left: 50%;
+			    	top: 50%;
+			    	transform: translate(-50%,-50%);
+			}
+		}
+		.username {
+			height: 30px;
+			line-height: 30px;
+		}
+		.wishpickername {
+			line-height: normal;
+			.nickname {
+				color: gray;
+			}
+		}
+
+		
+	}
+
+	.wish-content-img {
+		width: 100%;
+	}
+	.wish_content {
+		padding: 0 10px;
+		margin: 10px 0;
+		font-size: 14px;
+	}
+	.wish_tags {
+		padding: 0 10px;
+		span {
+			font-size: 12px;
+			color: gray;
+			float: right;
+			margin-left: 10px;
+		}
+	}
+}
+.contact-content {
+	.msg-container {
+		padding-top: 20px;
+
+	}
+	.that {
+		padding: 10px 10px 0px 50px;
+		p {
+			background-color: #fff;
+			margin-left: 10px;
+		}
+		img {
+			left: 10px;
+		}
+	}
+	.this {
+		padding: 10px 50px 0px 10px;
+		img {
+			right: 10px;
+
+		}
+		p {
+			margin-right: 10px;
+			
+			background-color: #f9c014;
+		}
+	}
+	.usermsg {
+		position: relative;
+		img {
+			width: 40px;
+			border-radius: 20px;
+			position: absolute;
+		}
+		p {
+			line-height: 40px;
+			vertical-align: top;
+			box-shadow: 0 0 1px gray;
+			text-align: left;
+		}
+	}
+	.contact-input {
+		position: fixed;
+		bottom: 50px;
+		.col-xs-12 {
+			padding: 0;
+		}
+	}
 }

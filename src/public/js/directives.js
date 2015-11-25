@@ -663,7 +663,7 @@ app.directive('wishwallmodal', ['$window',
 
 
                 elem.on('click', '.navbar-fixed-bottom .btn-navbar', function() {
-                    $(this).addClass('active').siblings('.btn-navbar').removeClass('active');
+                    $(this).addClass('btnactive').siblings('.btn-navbar').removeClass('btnactive');
                 });
 
 
@@ -680,30 +680,33 @@ app.directive('wishwallsearch', ['$window',
                 elem.find('.wishwall-dropdown-btn, .wishwall-dropdown-menu li').on('click', function() {
                     elem.find('.wishwall-dropdown-menu').toggle();
                 });
+                elem.on('click', '.wishwall-search-content', function() {
+                    elem.find('.wishwall-dropdown-menu').hide();
+                });
               
 
-                elem.find('input').on('keyup', function() {
-                    if (scope.searchinput !== '') {
-                        elem.find('.wishwall-search-content, .modal-footer, .fa-remove').hide();
-                        elem.find('.dosearch, .wishwall-search-result').show();
+                // elem.find('input').on('keyup', function() {
+                //     if (scope.searchinput !== '') {
+                //         elem.find('.wishwall-search-content, .modal-footer, .fa-remove').hide();
+                //         elem.find('.dosearch, .wishwall-search-result').show();
 
-                    } else {
-                        elem.find('.wishwall-search-content, .modal-footer, .fa-remove').show();
-                        elem.find('.dosearch, .wishwall-search-result').hide();
-                    }
-                });
+                //     } else {
+                //         elem.find('.wishwall-search-content, .modal-footer, .fa-remove').show();
+                //         elem.find('.dosearch, .wishwall-search-result').hide();
+                //     }
+                // });
 
-                elem.find('.dosearch').on('click', function() {
-                    elem.find('.dosearch').hide().prev().show();
-                    // elem.find('.wishwall-search-content, .modal-footer, .fa-remove').show();
-                    // elem.find('.dosearch').hide();
-                });
-                elem.on('click', '.pick_this', function() {
-                    console.log('aa');
-                    if(scope.sure_to_pick) {
-                        elem.find('.fa-remove').click();
-                    }
-                });
+                // elem.find('.dosearch').on('click', function() {
+                //     elem.find('.dosearch').hide().prev().show();
+                //     // elem.find('.wishwall-search-content, .modal-footer, .fa-remove').show();
+                //     // elem.find('.dosearch').hide();
+                // });
+                // elem.on('click', '.pick_this', function() {
+                //     console.log('aa');
+                //     if(scope.sure_to_pick) {
+                //         elem.find('.fa-remove').click();
+                //     }
+                // });
             }
         };
     }

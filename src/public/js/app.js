@@ -34,11 +34,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: '/views/User/index.html',
             controller: 'UserCtrl'
         })
-        .state('user.writewish', {
-            url: '/writewish',
-            templateUrl: '/views/User/female/writewish.html',
-            controller: 'UserWriteWishCtrl'
-        })
+    //填写愿望页面，type表示场景类型，1表示发布，2表示修改愿望，若修改愿望则带上愿望id
+    .state('user.writewish', {
+        url: '/writewish/:type/:wishId',
+        templateUrl: '/views/User/female/writewish.html',
+        controller: 'UserWriteWishCtrl'
+    })
         .state('user.writebless', {
             url: '/writebless',
             templateUrl: '/views/User/writebless.html',
@@ -107,17 +108,27 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'SearchCtrl'
         })
 
-    .state('wish.changewish', {
-        url: '/female/changewish/:wishId',
-        templateUrl: '/views/User/female/changewish.html',
-        controller: 'WishCtrl'
-    })
+        .state('wish.changewish', {
+            url: '/female/changewish/:wishId',
+            templateUrl: '/views/User/female/changewish.html',
+            controller: 'WishCtrl'
+        })
 
-    .state('wish.detail', {
-        url: '/detail/:wishId',
-        templateUrl: '/views/Wish/detail.html',
-        controller: 'WishCtrl'
-    });
+        .state('wish.detail', {
+            url: '/detail/:wishId/:sex',
+            templateUrl: '/views/Wish/detail.html',
+            controller: 'WishCtrl'
+        })
+        .state('bless', {
+            url: '/bless',
+            templateUrl: '/views/Bless/index.html',
+            abstract: true
+        })
+        .state('bless.detail', {
+            url: '/detail/:blessId',
+            templateUrl: '/views/Bless/detail.html',
+            controller: 'BlessCtrl'
+        });
 });
 
 //配置url参数规则

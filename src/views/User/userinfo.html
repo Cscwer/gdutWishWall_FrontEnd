@@ -1,22 +1,19 @@
-<div class="scrollable">
+<div class="scrollable userinfo-content">
     <div class="scrollable-content">
         <div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-top userinfo-navbar-top">
-            <!-- Top Navbar -->
             <div class="navbar-brand navbar-brand-center">
                 {{user.nickname}}
-                <a href="javascript:void(0)" class="btn btn-navbar wishwall-icon-a" ui-sref="setting">
-                    <i class="fa fa-cog fa-navbar wishwall-icon-cog"></i>
-                </a>
+                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/set1.png" alt="" ui-sref="setting">
             </div>
             
             
         </div>
         <div class="list-group text-center wishwall-list-group">
             <div class="list-group-item user-info-bg">
-                <img ng-src="{{user.headimgurl}}?imageView2/2/w/60" alt="" class="userheadimg">
+                <img ng-src="{{user.headimgurl}}" alt="" class="userheadimg">
                 <br>
-                <span class="info_school_area">{{user.school_area}}</span>
-                <span ng-bind="user.college_name" class="info_college_name"></span>
+                <span class="info_school_area">{{user.school_area}}
+                {{user.college_name.slice(0, 7)}}</span>
             </div>
         </div>
         <div class="navbar navbar-app userinfo-navbar-middle" wishwalltop>

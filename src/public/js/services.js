@@ -27,6 +27,14 @@ app.factory('UserService', ['$http',
                     url: Host + '/api/users/' + data.user,
                     data: data
                 });
+            },
+
+            matchLover: function(data) {
+                return $http({
+                    method: 'PUT',
+                    url: Host + '/api/user/mystery',
+                    data: data
+                });
             }
         };
     }
@@ -47,7 +55,7 @@ app.factory('WishService', ['$http',
             searchWish: function(content) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/api/wishes/search?content=' + content
+                    url: Host + '/api/search/wishes?content=' + content
                 });
             },
 
@@ -109,17 +117,17 @@ app.factory('WishService', ['$http',
 app.factory('MsgService', ['$http',
     function($http) {
         return {
-            getMsg: function(userId) {
+            getMsg: function(type, userId) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/api/msgs/' + userId
+                    url: Host + '/api/msgs/' + type + '/' + userId
                 });
             },
 
-            getUnreadMsgNum: function(data) {
+            getUnreadMsg: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/getunreadmsgnum?uid=' + data
+                    url: Host + '/api/unread?uid=' + data
                 });
             },
 
@@ -130,14 +138,19 @@ app.factory('MsgService', ['$http',
                 });
             },
 
+            clearUserMsg: function(contact) {
+                return $http({
+                    method: 'PUT',
+                    url: Host + '/api/unread/clear?this=' + contact.this + '&that=' + contact.that
+                });
+            },
+
             getContact: function(data) {
                 return $http({
                     method: 'GET',
-                    url: Host + '/api/msgs/contacts?this=' + data.this + '&that=' + data.that
+                    url: Host + '/api/contacts?this=' + data.this + '&that=' + data.that
                 });
             }
-
-
         };
     }
 ]);
@@ -175,6 +188,13 @@ app.factory('BlessService', ['$http',
                 return $http({
                     method: 'GET',
                     url: Host + '/api/blesses/' + data.blessId
+                });
+            },
+
+            searchBless: function(content) {
+                return $http({
+                    method: 'GET',
+                    url: Host + '/api/search/blesses?content=' + content
                 });
             },
 

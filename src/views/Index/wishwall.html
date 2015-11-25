@@ -22,13 +22,12 @@
                 <div class="panel-body wishwall-panel-body">
                     <div class="wishinfo-panel">
                         <img ng-src="{{wish.userheadimg}}" alt="" class="headimg">
-
                         <div class="username">
                             <span>{{wish.username}}</span>
                             <br>
                             <span class="school_area">{{wish.school_area}}</span>
                         </div>
-                        <span class="pick_this" ng-click="pickWish(wish)">icon</span>
+                        <img src="http://7xnxuw.com1.z0.glb.clouddn.com/present.png" alt="" ng-click="pickWish(wish)" class="pick_this" ng-if="user.sex === 1">
 
                         <hr class="wishborder">
                         <p class="wish_content">{{wish.wish}}</p>
@@ -47,7 +46,7 @@
                             <br>
                             <span class="school_area">{{wish.school_area}}</span>
                         </div>
-                       <span class="pick_this" ng-click="pickWish(wish)">icon</span>
+                       <img src="http://7xnxuw.com1.z0.glb.clouddn.com/present.png" alt="" ng-click="pickWish(wish)" class="pick_this" ng-if="user.sex === 1">
                         <hr class="wishborder">
                         <p class="wish_content">{{wish.wish}}</p>
                     </div>
