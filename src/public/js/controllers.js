@@ -921,21 +921,22 @@ app.controller('MysteryLoverCtrl', ['$scope', '$window', '$rootScope', 'UserServ
         $scope.goBack = function() {
             $window.history.back();
         };
-        var match_data = {
-            // uid: $scope.user._id,
-            uid: '56546e7e0cb2ce501a90344f',
-            myname: $scope.myname,
-            hisname: $scope.hisname
+        $scope.match_data = {
+            uid: $scope.user._id,
+            useremail: $scope.user.email
         };
         $scope.searchMystery = function() {
 
-            console.log(match_data);
-            UserService.matchLover(match_data)
+            console.log($scope.match_data);
+            UserService.matchLover($scope.match_data)
                 .success(function(data, status) {
                     if (status === 200) {
-                        $rootScope.user.real_name = match_data.myname;
-                        $rootScope.user.mystery_lover = match_data.hisname;
+                        $rootScope.user.real_name = $scope.match_data.myname;
+                        $rootScope.user.mystery_lover = $scope.match_data.hisname;
+                        $scope.user.mystery_lover = $scope.match_data.hisname;
+                        $scope.user.real_name = $scope.match_data.myname;
                         $rootScope.user.match_success = data.result;
+                        $scope.user.match_success = data.result;
                     }
                 });
         };

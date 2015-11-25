@@ -13,18 +13,19 @@
                 <div class="panel panel-default" ng-if="!user.mystery_lover">
                     <div class="panel-body">
                         <p>你的真实姓名</p>
-                        <input type="text" class="form-control" ng-model="myname">
+                        <input type="text" class="form-control" ng-model="match_data.myname">
                         <p>对方的真实姓名</p>
-                        <input type="text" class="form-control" ng-model="hisname">
+                        <input type="text" class="form-control" ng-model="match_data.hisname">
                         <br>
-                        <button type="button" class="btn btn-danger" ng-click="searchMystery()" ng-disabled="!hisname || !myname">立刻匹配</button>
+                        <button type="button" class="btn btn-danger" ng-click="searchMystery()" ng-disabled="!match_data.myname||!match_data.hisname">立刻匹配</button>
                     </div>
                 </div>
                 <div class="panel panel-default" ng-if="user.mystery_lover">
                     <div class="panel-body">
-                        <p>{{user.real_name}}</p>
                         <!-- <input type="text" class="form-control" ng-model="myname"> -->
                         <p>{{user.mystery_lover}}</p>
+                        <p ng-if="user.match_success===1">匹配成功</p>
+                        <p ng-if="user.match_success===0">等待中</p>
                         <!-- <input type="text" class="form-control" ng-model="hisname"> -->
                         <br>
                         <button type="button" class="btn btn-danger" ng-click="searchMystery()" ng-disabled="!hisname || !myname">立刻匹配</button>

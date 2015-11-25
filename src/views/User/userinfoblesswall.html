@@ -2,30 +2,30 @@
             <div class="row">
                 <div class="col-xs-12 blesswall-con">
                     <div class="panel panel-default blesswall-panel" ng-repeat="bless in blesses">
-                        <div class="panel-body blesswall-panel-body" ui-sref="bless.detail({blessId: bless._id})">
-                            <div class="blessimg-con">
+                        <div class="panel-body blesswall-panel-body">
+                            <div class="blessimg-con" ui-sref="bless.detail({blessId: bless._id})">
                                 <img ng-if="bless.img" ng-src="{{bless.img}}" alt="" class="bless-img">        
                                 <div class="bless-noimg" ng-if="!bless.img"></div>
                             </div>
                             <div class="blessmessage-con">
-                                <div class="headimg-con">
-
+                                <div class="headimg-con" ui-sref="bless.detail({blessId: bless._id})">
                                     <img ng-src="{{bless.userheadimg}}" alt="" class="headimg"></div>
-
-                                <div class="blessuser-con">
-                                    <p class="username bless-username">
+                                <div class="blessuser-con" >
+                                    <p class="username bless-username" ui-sref="bless.detail({blessId: bless._id})">
                                         {{bless.username}}
                                         <span class="school_area">{{bless.school_area}}</span>
 
                                     </p>
                                 </div>
-
                                 <p class="bless_content">{{bless.bless}}</p>
-                                <br></div>
+                                <br>        
+                                <button class="bless-praise" ng-click="deleteBless(bless)" makepraise>
+                                    <a href="javascript:void(0)">删除</a>
+                                </button>
+                            </div>
+
                         </div>
-                        <button class="bless-praise" ng-click="deleteBless(bless)" makepraise>
-                            <a href="javascript:void(0)">删除</a>
-                        </button>
+
                     </div>
                 </div>
             </div>
