@@ -292,7 +292,17 @@ app.controller('SearchCtrl', ['$scope', '$state', 'WishService', 'WishData', 'Se
             if ($scope.searchwhere === '祝福墙') {
                 BlessService.searchBless($scope.searchinput)
                     .success(function(data, status) {
-                        $scope.search_result_wishes = data.blesses;
+                        if (status === 200 && data.blesses.length !== 0) {
+                            $scope.search_result_wishes = [];
+                            for (var i = 0; i < data.blesses.length; i++) {
+                                $scope.search_result_wishes.push(data.blesses[i]);
+                                if (data.blesses[i].praiser.indexOf(sessionStorage.uid) === -1) {
+                                    $scope.search_result_wishes[i].hadpraise = false;
+                                } else {
+                                    $scope.search_result_wishes[i].hadpraise = true;
+                                }
+                            }
+                        }
                     });
             }
         };
@@ -306,6 +316,23 @@ app.controller('SearchCtrl', ['$scope', '$state', 'WishService', 'WishData', 'Se
                     type: 2
                 });
             }
+        };
+
+        //祝福点赞
+        $scope.praiseIt = function(bless) {
+            var praiseData = {
+                blessId: bless._id,
+                userId: sessionStorage.getItem('uid')
+            };
+            BlessService.makePraise(praiseData)
+                .success(function(data, status) {
+                    if (status === 200) {
+                        bless.praise_num++;
+                        bless.hadpraise = true;
+                    } else {
+                        // alert(data);
+                    }
+                });
         };
     }
 ]);

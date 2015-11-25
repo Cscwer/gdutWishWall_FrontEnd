@@ -4,8 +4,7 @@
             <div class="btn-group">
                 <a class='btn wishwall-dropdown-btn'>
                     <span ng-model="searchwhere" ng-bind="searchwhere"></span>
-                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/down-arrow.png" alt="">
-                </a>
+                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/down-arrow.png" alt=""></a>
                 <ul class="dropdown-menu wishwall-dropdown-menu">
                     <li>
                         <a ng-click="searchSelect(1)">许愿墙</a>
@@ -82,6 +81,16 @@
 
                                 <div class="username">
                                     <span>{{wish.username}}</span>
+                                    <div class="bless-praise" ng-if="searchwhere==='祝福墙'">
+                                        <a href="javascript:void(0)" ng-if="wish.hadpraise">
+                                            <img src="http://7xnxuw.com1.z0.glb.clouddn.com/2_bless_red.png" alt=""> 
+                                            <p>{{wish.praise_num}}</p>
+                                        </a>
+                                        <a href="javascript:void(0)" ng-if="!wish.hadpraise" ng-click="praiseIt(wish)" >
+                                            <img src="http://7xnxuw.com1.z0.glb.clouddn.com/2_bless_grey.png" alt="">
+                                            <p>{{wish.praise_num}}</p>
+                                        </a>
+                                    </div>
                                     <br>
                                     <span class="school_area">{{wish.school_area}}</span>
                                 </div>
@@ -90,6 +99,7 @@
                                 <hr class="wishborder">
                                 <p class="wish_content" ng-if="searchwhere==='许愿墙'">{{wish.wish}}</p>
                                 <p class="wish_content" ng-if="searchwhere==='祝福墙'">{{wish.bless}}</p>
+
                             </div>
 
                             <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img" ng-click="previewImage(wish.img)"></div>

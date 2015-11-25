@@ -12,8 +12,21 @@
             <div class="list-group-item user-info-bg">
                 <img ng-src="{{user.headimgurl}}" alt="" class="userheadimg">
                 <br>
-                <span class="info_school_area">{{user.school_area}}
-                {{user.college_name.slice(0, 7)}}</span>
+                <!-- <span class="info_school_area">{{user.school_area}}
+                {{user.college_name.slice(0, 7)}}</span> -->
+                <div class="info-area-campus">
+                    <span class="info_school_area">{{user.school_area}}校区</span>
+                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/6_boys.png" alt="" ng-if="user.sex === 1">
+                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/6_girls.png" alt="" ng-if="user.sex === 2">
+                    <span class="college_name">{{user.college_name.slice(0, 7)}}</span>
+                </div>
+                <div class="info-area-img">
+                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/6_cut-off-rule_left.png" alt="">
+                    <div class="info-area-pot"></div>
+                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/6_cut-off-rule_right.png" alt="">
+                </div>
+                
+                
             </div>
         </div>
         <div class="navbar navbar-app userinfo-navbar-middle" wishwalltop>
