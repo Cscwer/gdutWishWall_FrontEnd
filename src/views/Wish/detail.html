@@ -19,6 +19,7 @@
 							<div class="username">
 								<span>{{wish.username}}</span>
 							</div>
+
 							<span class="pick_this" ng-if="wish.ispicked === 0 && user.sex === 2" ng-click="deleteWish(wish)">
 								<img src="http://7xnxuw.com1.z0.glb.clouddn.com/3_delete.png">
 							</span>
@@ -35,16 +36,15 @@
 						<p class="wish_content">{{wish.wish}}</p>
 						<div class="wish_tags">
 							<span class="type" ng-bind="wish.wishType"></span>
-
 							<span class="area" ng-bind="wish.school_area"></span>
 							<span class="time">{{wish.publishDate | date: "MM.dd"}}</span>
 						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<div class="row" ng-if="wishpicker">
 		<div class="col-xs-12">
 			<div class="wishwall-col-6">
@@ -78,5 +78,6 @@
 			</div>
 		</div>
 	</div>
+
 
 </div>

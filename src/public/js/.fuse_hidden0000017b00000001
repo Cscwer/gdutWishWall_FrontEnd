@@ -428,11 +428,9 @@ app.controller('UserWriteWishCtrl', ['$scope', 'WishData', 'WishService', '$root
         if ($scope.type === '1') {
             $scope.writewish_title = '许愿望';
             //默认愿望类型为耗时类
-
             $scope.wish_type = WishData.wishType || '耗时类';
             $scope.wish = WishData.wish || '';
             $scope.localIds = WishData.localIds || [];
-
         } else {
             $scope.writewish_title = '修改愿望';
             var data = {
@@ -749,7 +747,6 @@ app.controller('NoticeCtrl', ['$scope', '$window', 'MsgService', '$stateParams',
 //用户联系控制器
 app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'MsgService', '$state',
     function($scope, $rootScope, $stateParams, MsgService, $state) {
-        // $scope.thisUser = $rootScope.user._id;
         $scope.thisUser = $rootScope.user._id;
         $scope.thatUser = $stateParams.userId;
         $scope.thatUserName = $stateParams.username;
@@ -898,7 +895,6 @@ app.controller('WishCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 
 app.controller('BlessCtrl', ['$scope', '$window', 'BlessService', '$stateParams',
     function($scope, $window, BlessService, $stateParams) {
-
         $scope.goBack = function() {
             $window.history.back();
         };
