@@ -64,8 +64,8 @@ app.controller('WishIndexCtrl', ['$scope', 'WishData', '$state', 'WishService', 
 ]);
 
 //祝福墙主页控制器
-app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService', 'SearchConfig',
-    function($scope, $state, BlessService, SearchConfig) {
+app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService', 'SearchConfig', '$rootScope',
+    function($scope, $state, BlessService, SearchConfig, $rootScope) {
 
         //祝福列表
         var uid = sessionStorage.getItem('uid');
@@ -108,6 +108,15 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService', 'SearchCon
                     if (status === 200) {
                         bless.praise_num++;
                         bless.hadpraise = true;
+                        var praise_msg = {
+                            msg_type: 'Praise',
+                            sender: sessionStorage.uid,
+                            sender_name: sessionStorage.username,
+                            receiver: bless.user,
+                            receiver_name: bless.username,
+                            msg: sessionStorage.username + '给你的祝福点赞了。'
+                        };
+                        $rootScope.socket.emit('Praise', praise_msg);
                     } else {
                         alert(data);
                     }
@@ -172,6 +181,11 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatServi
         $rootScope.socket.on('WishMsg_res', function(msg) {
             //处理系统消息
             if (msg.receiver === sessionStorage.getItem('uid')) {
+                $scope.getUnreadMsgNum(msg.receiver);
+            }
+        });
+        $rootScope.socket.on('Praise_res', function(msg) {
+            if(msg.receiver === sessionStorage.uid) {
                 $scope.getUnreadMsgNum(msg.receiver);
             }
         });
@@ -329,6 +343,15 @@ app.controller('SearchCtrl', ['$scope', '$state', 'WishService', 'WishData', 'Se
                     if (status === 200) {
                         bless.praise_num++;
                         bless.hadpraise = true;
+                        var praise_msg = {
+                            msg_type: 'Praise',
+                            sender: sessionStorage.uid,
+                            sender_name: sessionStorage.username,
+                            receiver: bless.user,
+                            receiver_name: bless.username,
+                            msg: sessionStorage.username + '给你的祝福点赞了。'
+                        };
+                        $rootScope.socket.emit('Praise', praise_msg);
                     } else {
                         // alert(data);
                     }
