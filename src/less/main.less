@@ -193,9 +193,15 @@ textarea {
 }
 .blesswall-con {
 	padding: 5px 5px 0 5px;
-
+	.blessimg-con {
+    		overflow: hidden;
+	}
 	.blessimg-con img {
 		width: 100%;
+		position: relative;
+    		top: 50%;
+    		-webkit-transform: translate(0, -50%);
+    		transform: translate(0, -50%);
 	}
 }
 .wishwall-panel-body, .blesswall-panel-body {

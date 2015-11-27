@@ -708,3 +708,18 @@ app.directive('wishwallmystery', ['$window',
         };
     }
 ]);
+
+
+
+app.directive('blessimgw', ['$window',
+    function($window) {
+        return {
+            restrict: 'A',
+            link: function(scope, elem, attrs) {
+                var imgWidth = $(window).width() - 10;
+                console.log(imgWidth);
+                elem.height(imgWidth * 0.56);
+            }
+        };
+    }
+]);

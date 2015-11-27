@@ -3,8 +3,11 @@
                 <div class="col-xs-12 blesswall-con">
                     <div class="panel panel-default blesswall-panel" ng-repeat="bless in blesses">
                         <div class="panel-body blesswall-panel-body">
-                            <div class="blessimg-con">
+                            <div ng-if="bless.img" class="blessimg-con" blessimgw>
                                 <img ng-if="bless.img" ng-src="{{bless.img}}" alt="" class="bless-img"  ng-click="previewImage(bless.img)">
+                                <div class="bless-noimg" ng-if="!bless.img"></div>
+                            </div>
+                            <div ng-if="!bless.img">
                                 <div class="bless-noimg" ng-if="!bless.img"></div>
                             </div>
                             <div class="blessmessage-con">
