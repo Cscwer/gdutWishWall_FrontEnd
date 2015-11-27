@@ -665,7 +665,7 @@ textarea {
 		    display: inline-block;
 		    position: absolute;
 		    left: 10px;
-		    height: 22px;
+		    height: 16px;
 		    top: 50%;
 		    transform: translate(0,-50%);
 	}
@@ -835,9 +835,14 @@ textarea {
 		width: 100%;
 	}
 	button {
+		position: absolute;
+		bottom: 0;
+		z-index: 1031;
 		width: 100%;
 		height: 50px;
 		font-size: 17px;
+		border: none;
+		background-color: #fabf14; 
 	}
 	.college-name {
 		margin-bottom: 20px;
@@ -845,23 +850,23 @@ textarea {
 }
 .wishwall-write-info {
 	height: 200px;
-	margin-top: 10px;
+	margin-top: 14px;
 	background-color: #fff;
 	padding: 0 10px;
-	border-top: 1px solid fade(#000, 15%);
-	border-bottom: 1px solid fade(#000, 15%);
+	border-top: 1px solid #dcddde;
+	border-bottom: 1px solid #dcddde;
 
 	.ng-invalid {
 		// border: 1px solid red;
 	}
 	label {
-		color: rgba(0, 0, 0, 0.5);
+		color: #857d7d;
 	}
 	.row {
 		margin: 0;
 		height: 50px;
 		line-height: 50px;
-		border-bottom: 1px solid fade(#000, 15%);
+		border-bottom: 1px solid #e2e6ea;
 	}
 	.row-noborder {
 		border: none;
@@ -872,7 +877,7 @@ textarea {
 		text-align: right;
 		padding: 0;
 		height: 48px;
-		color: rgba(0, 0, 0, 0.5);
+		color: #262626;
 	}
 	input:focus {
 		border: none;
@@ -1100,7 +1105,7 @@ textarea {
   	top: 0;
    	z-index: 1;
     	background: url('http://7xnxuw.com1.z0.glb.clouddn.com/arrow.png') right no-repeat;
-    	background-size: 14px;
+    	background-size: 12px;
     	padding-right: 18px;
     	font-size: 16px;
 }
@@ -1283,7 +1288,11 @@ textarea {
     	top: 2px;
 }
 .userinfobless_content {
-    word-wrap: break-word;
-    margin: 16px 8px 0 8px;
-    font-size: 16px;
+	word-wrap: break-word;
+	margin: 16px 8px 0 8px;
+	font-size: 16px;
+}
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+	background: #c9bfbf;
+	opacity: 1;
 }

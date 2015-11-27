@@ -32,6 +32,7 @@
 				<option value="东风路">东风路</option>
 				<option value="番禺">番禺</option>
 			</select>
+			<span class="value-require">*</span>
 			</label>
 			<div class="area-selection">
 			    <span ng-if="!user.school_area">请选择校区</span>
@@ -70,6 +71,7 @@
 				<!-- 番禺 -->
 				<option value="商学院" ng-if="user.school_area == '番禺'">商学院</option>
 			</select>
+			<span class="value-require">*</span>
 			</label>
 			<div class="area-selection">
 			    <span ng-if="!user.school_area && !user.college_name">请先选择学院</span>
