@@ -395,7 +395,7 @@ app.controller('UserInfoBlessWallCtrl', ['$scope', '$stateParams', 'BlessService
     function($scope, $stateParams, BlessService, $state) {
         $scope.blesses = [];
         var data = {
-            userId: $stateParams.userId
+            userId: '5654711708aeff961a6824b0'
         };
         BlessService.getUserBless(data)
             .success(function(data, status) {
@@ -913,9 +913,9 @@ app.controller('WishCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
     }
 ]);
 
-app.controller('BlessCtrl', ['$scope', '$window', 'BlessService', '$stateParams',
-    function($scope, $window, BlessService, $stateParams) {
-        var uid = sessionStorage.getItem('uid');
+app.controller('BlessCtrl', ['$scope', '$window', '$state', 'BlessService', '$stateParams',
+    function($scope, $window, $state, BlessService, $stateParams) {
+        var uid = '5654711708aeff961a6824b0';
         $scope.hadpraise = false;
         $scope.goBack = function() {
             $window.history.back();
@@ -940,8 +940,8 @@ app.controller('BlessCtrl', ['$scope', '$window', 'BlessService', '$stateParams'
                     .success(function(data, status) {
                         if (status === 200) {
                             alert('删除成功');
-                            $state.go('userinfo.blesswall', {
-                                userId: bless.user
+                            $state.go('userinfo', {
+                                userId: uid
                             }, {
                                 reload: true
                             });
