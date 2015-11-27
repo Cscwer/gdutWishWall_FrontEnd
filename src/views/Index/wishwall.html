@@ -53,5 +53,8 @@
                     <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img" ng-click="previewImage(wish.img)"></div>
             </div>
         </div>
+        <div class="col-xs-12" ng-if="!evenwishes.length&&!oddwishes.length">
+            <p class="no-select-result">没有相应结果</p>
+        </div>
     </div>
 </div>
