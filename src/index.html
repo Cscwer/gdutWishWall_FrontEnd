@@ -41,8 +41,8 @@
     </div>
     <div class="modal fade" id="chooseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="chooseModel-content">
-            <div class="choose-wish" ui-sref="user.writewish({type: 1})" aria-label="Close" data-dismiss="modal" ng-show="user.sex === 2">许愿望</div>
-            <div class="choose-bless" ui-sref="user.writebless" aria-label="Close" data-dismiss="modal">发祝福</div>
+            <div class="choose-wish" ui-sref="user.writewish({type: 1})" aria-label="Close" data-dismiss="modal" ng-show="user.sex === 2">许愿望</div><p ng-show="user.sex === 2">许愿望</p>
+            <div class="choose-bless" ui-sref="user.writebless" aria-label="Close" data-dismiss="modal"></div><p class="choose-tobless">祝福</p>
         </div>
     </div>
     <!--build:js public/js/index.js -->

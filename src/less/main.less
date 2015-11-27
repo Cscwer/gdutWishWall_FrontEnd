@@ -195,6 +195,7 @@ textarea {
 	padding: 5px 5px 0 5px;
 	.blessimg-con {
     		overflow: hidden;
+    		border-radius: 2px;
 	}
 	.blessimg-con img {
 		width: 100%;
@@ -246,7 +247,7 @@ textarea {
 .bless_content {
 	word-wrap: break-word;
 	margin: 10px;
-	font-size: 16px;
+	font-size: 12px;
 }
 .wishwall-app-body {
 	background-color: #f2eded;
@@ -261,7 +262,7 @@ textarea {
 }
 .blesswall-panel {
 	margin-bottom: 5px;
-	border-radius: 4px;
+	border-radius: 2px;
 }
 .wishwall-carousel-indicators {
 	margin-bottom: 0;
@@ -305,11 +306,12 @@ textarea {
 			border-radius: 50%;
 			background-image: url('http://7xnxuw.com1.z0.glb.clouddn.com/headimg56.png');
 			background-size: cover;
+			border: 2px solid rgba(255,255,255,0.5);
 		}
 		span {
 			color: #fff;
 			margin-top: 5px;
-			font-size: 14px;
+			font-size: 12px;
 		}
 		.info_school_area {
 			width: 100%;
@@ -323,7 +325,7 @@ textarea {
 			    background: white;
 			    border-radius: 50%;
 			    vertical-align: middle;
-
+			    opacity: 0.7;
 		}
 		.info-area-img {
 			img {
@@ -346,7 +348,7 @@ textarea {
 	    	display: inline-block;
 	    	height: 20px;
 	    	position: absolute;
-	    	right: 5px;
+	    	right: 14px;
 	    	top: 50%;
 	    	transform: translate(0,-50%);
 	}
@@ -439,6 +441,10 @@ textarea {
 }
 .bless-num {
 	color: #c3bdbc;
+	font-size: 12px;
+}
+.bless-num-hadpraise {
+	color: #ff5148;
 	font-size: 12px;
 }
 .blessuser-con {
@@ -629,9 +635,9 @@ textarea {
 		height: 45px;
 		width: 45px;
 		border-radius: 50%;
-		background-color: fade(green, 55%);
+		background-color: #bde22e;
 		img {
-			width: 25px;
+			width: 21px;
 			position: absolute;
 			left: 50%;
 			top: 50%;
@@ -645,6 +651,9 @@ textarea {
 		.msg-badge:empty {
 			display: none;
 		}
+	}
+	.announcement {
+		background-color: #9ebc2b;
 	}
 	.sender_headimg {
 		background-color: white;
@@ -1146,8 +1155,7 @@ textarea {
 	margin-right: 10px;
 }
 .choose-bless {
-	background-color: #9fbc2c;
-	margin-left: 10px;
+	background-color: #9ebc26;
 }
 .wishwall-leader {
 	
@@ -1314,4 +1322,21 @@ textarea {
 	font-size: 17px;
 	border: none;
 	background-color: #fabf14;
+}
+.choose-tobless {
+	width: 40px;
+	background-color: #000000;
+	font-size: 12px;
+	color: #fff;
+	position: relative;
+	top: 4px;
+	left: 50%;
+	transform: translate(-50%);
+	border-radius: 40px;
+}
+.box-mystery-lover {
+	background-color: #fabf14!important;
+}
+.box-feedback {
+	background-color: #fcdd2e!important;
 }
