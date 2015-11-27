@@ -27,13 +27,11 @@
                             <br>
                             <span class="school_area">{{wish.school_area}}</span>
                         </div>
-                        <img src="http://7xnxuw.com1.z0.glb.clouddn.com/present.png" alt="" ng-click="pickWish(wish)" class="pick_this" ng-if="user.sex === 1">
-
-                        <hr class="wishborder">
-                        <p class="wish_content">{{wish.wish}}</p>
+                        <img src="http://7xnxuw.com1.z0.glb.clouddn.com/present.png" alt="" ng-click="pickWish(wish)" class="pick_this">
                     </div>
-
-                    <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img" ng-click="previewImage(wish.img)"></div>
+                    <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img wishwall-img-middle" ng-click="previewImage(wish.img)">
+                    <div class="wishinfo-panel"><p class="wish_content wish-text">{{wish.wish}}</p></div>
+                </div>
             </div>
         </div>
         <div class="col-xs-6 wishwall-col-6">
@@ -47,10 +45,10 @@
                             <span class="school_area">{{wish.school_area}}</span>
                         </div>
                        <img src="http://7xnxuw.com1.z0.glb.clouddn.com/present.png" alt="" ng-click="pickWish(wish)" class="pick_this" ng-if="user.sex === 1">
-                        <hr class="wishborder">
-                        <p class="wish_content">{{wish.wish}}</p>
                     </div>
-                    <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img" ng-click="previewImage(wish.img)"></div>
+                    <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img wishwall-img-middle" ng-click="previewImage(wish.img)">
+                    <div class="wishinfo-panel"><p class="wish_content wish-text">{{wish.wish}}</p></div>
+                </div>
             </div>
         </div>
         <div class="col-xs-12" ng-if="!evenwishes.length&&!oddwishes.length">

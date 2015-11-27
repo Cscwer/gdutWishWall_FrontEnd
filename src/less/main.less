@@ -171,9 +171,9 @@ textarea {
 		.wish-content-img {
 			width: 100%;
 		}
-		border: none;
+		border: solid 1px #dcddde;
 		margin-bottom: 8px;
-		border-radius: 4px;
+		border-radius: 2px;
 	}
 	.wishinfo-panel {
 		padding: 10px 10px 0 10px;
@@ -221,7 +221,7 @@ textarea {
 	margin: 0;
 	font-size: 12px;
 	font-weight: bold;
-	color: #606060;
+	color: #616060;
 	vertical-align: top;
 	margin-left: 5px;
 }
@@ -240,6 +240,8 @@ textarea {
 .wish_content {
 	word-wrap: break-word;
 	font-size: 12px;
+	color: #262626;
+	line-height: 14px;
 }
 .bless_content {
 	word-wrap: break-word;
@@ -716,7 +718,7 @@ textarea {
 		height: 200px;
 		background-color: white;
 		padding: 10px;
-
+		border-bottom: solid 1px #dcddde;
 		.wishwall-icon-camera {
 			font-size: 25px;
 			position: absolute;
@@ -1157,6 +1159,9 @@ textarea {
 	}
 	
 }
+.wishwall-img-middle {
+	margin-top: 8px;
+}
 .wishdetail {
 	.picker-info {
 		.row {
@@ -1295,4 +1300,14 @@ textarea {
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
 	background: #c9bfbf;
 	opacity: 1;
+}
+.btn-warning {
+	position: absolute;
+	bottom: 0;
+	z-index: 1031;
+	width: 100%;
+	height: 50px;
+	font-size: 17px;
+	border: none;
+	background-color: #fabf14;
 }
