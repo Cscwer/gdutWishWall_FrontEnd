@@ -16,8 +16,14 @@
 							<div class="username">
 								<span>{{bless.username}}</span>
 							</div>
-							<span class="pick_this">
+							<span class="pick_this" ng-if="!bless.hadpraise" ng-click="praiseIt(bless)">
 								<img src="http://7xnxuw.com1.z0.glb.clouddn.com/3_Detailed-blessing_grey.png" alt="">
+							</span>
+							<span class="pick_this" ng-if="bless.hadpraise">
+								<img src="http://7xnxuw.com1.z0.glb.clouddn.com/2_bless_red.png" alt="">
+							</span>
+							<span class="pick_this" ng-click="deleteBless(bless)">
+								<img src="http://7xnxuw.com1.z0.glb.clouddn.com/3_delete.png">
 							</span>
 						</div>
 						<hr class="wishborder" ng-if="!bless.img">

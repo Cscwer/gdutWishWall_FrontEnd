@@ -430,22 +430,6 @@ app.controller('UserInfoBlessWallCtrl', ['$scope', '$stateParams', 'BlessService
                     $scope.isLoading = false;
                 }
             });
-        $scope.deleteBless = function(bless) {
-            if (confirm('确定要删除祝福？')) {
-                BlessService.deleteBless(bless)
-                    .success(function(data, status) {
-                        if (status === 200) {
-                            alert('删除成功');
-                            $state.go('userinfo.blesswall', {
-                                userId: bless.user
-                            }, {
-                                reload: true
-                            });
-                        }
-                    });
-            }
-
-        };
     }
 ]);
 
@@ -954,7 +938,8 @@ app.controller('WishCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 
 app.controller('BlessCtrl', ['$scope', '$window', 'BlessService', '$stateParams',
     function($scope, $window, BlessService, $stateParams) {
-
+        var uid = sessionStorage.getItem('uid');
+        $scope.hadpraise = false;
         $scope.goBack = function() {
             $window.history.back();
         };
@@ -965,8 +950,43 @@ app.controller('BlessCtrl', ['$scope', '$window', 'BlessService', '$stateParams'
             .success(function(data, status) {
                 if (status === 200) {
                     $scope.bless = data.bless;
+                    if ($scope.bless.praiser.indexOf(uid) === -1) {
+                        $scope.bless.hadpraise = false;
+                    } else {
+                        $scope.bless.hadpraise = true;
+                    }
                 }
             });
+        $scope.deleteBless = function(bless) {
+            if (confirm('确定要删除祝福？')) {
+                BlessService.deleteBless(bless)
+                    .success(function(data, status) {
+                        if (status === 200) {
+                            alert('删除成功');
+                            $state.go('userinfo.blesswall', {
+                                userId: bless.user
+                            }, {
+                                reload: true
+                            });
+                        }
+                    });
+            }
+        };
+        $scope.praiseIt = function(bless) {
+            var praiseData = {
+                blessId: bless._id,
+                userId: uid
+            };
+            BlessService.makePraise(praiseData)
+                .success(function(data, status) {
+                    if (status === 200) {
+                        bless.praise_num++;
+                        bless.hadpraise = true;
+                    } else {
+                        alert(data);
+                    }
+                });
+        };              
     }
 ]);
 
