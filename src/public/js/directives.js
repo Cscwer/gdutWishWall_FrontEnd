@@ -3,60 +3,67 @@ app.directive('autoroll', ['$window', '$timeout',
         return {
             restrict: 'A',
             link: function(scope, elem, attrs) {
+                var startX, endX;
+                elem.on('touchstart', function(e) {
+                    e.preventDefault();
+                    startX = e.targetTouches;
+
+                    console.log(startX);
+                });
 
                 + function($) {
                     'use strict';
 
                     function transitionEnd() {
-                        var el = document.createElement('bootstrap')
+                        var el = document.createElement('bootstrap');
 
                         var transEndEventNames = {
                             WebkitTransition: 'webkitTransitionEnd',
                             MozTransition: 'transitionend',
                             OTransition: 'oTransitionEnd otransitionend',
                             transition: 'transitionend'
-                        }
+                        };
 
                         for (var name in transEndEventNames) {
                             if (el.style[name] !== undefined) {
                                 return {
                                     end: transEndEventNames[name]
-                                }
+                                };
                             }
                         }
 
-                        return false // explicit for ie8 (  ._.)
+                        return false; // explicit for ie8 (  ._.)
                     }
 
                     // http://blog.alexmaccaw.com/css-transitions
                     $.fn.emulateTransitionEnd = function(duration) {
-                        var called = false
-                        var $el = this
+                        var called = false;
+                        var $el = this;
                         $(this).one('bsTransitionEnd', function() {
-                            called = true
-                        })
+                            called = true;
+                        });
                         var callback = function() {
-                            if (!called) $($el).trigger($.support.transition.end)
-                        }
-                        setTimeout(callback, duration)
-                        return this
-                    }
+                            if (!called) $($el).trigger($.support.transition.end);
+                        };
+                        setTimeout(callback, duration);
+                        return this;
+                    };
 
                     $(function() {
-                        $.support.transition = transitionEnd()
+                        $.support.transition = transitionEnd();
 
-                        if (!$.support.transition) return
+                        if (!$.support.transition) return;
 
                         $.event.special.bsTransitionEnd = {
                             bindType: $.support.transition.end,
                             delegateType: $.support.transition.end,
                             handle: function(e) {
-                                if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+                                if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments);
                             }
-                        }
-                    })
+                        };
+                    });
 
-                }(jQuery);
+                }(jQuery)
 
 
                 + function($) {
@@ -66,23 +73,23 @@ app.directive('autoroll', ['$window', '$timeout',
                     // =========================
 
                     var Carousel = function(element, options) {
-                        this.$element = $(element)
-                        this.$indicators = this.$element.find('.carousel-indicators')
-                        this.options = options
-                        this.paused = null
-                        this.sliding = null
-                        this.interval = null
-                        this.$active = null
-                        this.$items = null
+                        this.$element = $(element);
+                        this.$indicators = this.$element.find('.carousel-indicators');
+                        this.options = options;
+                        this.paused = null;
+                        this.sliding = null;
+                        this.interval = null;
+                        this.$active = null;
+                        this.$items = null;
 
-                        this.options.keyboard && this.$element.on('keydown.bs.carousel', $.proxy(this.keydown, this))
+                        this.options.keyboard && this.$element.on('keydown.bs.carousel', $.proxy(this.keydown, this));
 
                         this.options.pause == 'hover' && !('ontouchstart' in document.documentElement) && this.$element
                             .on('mouseenter.bs.carousel', $.proxy(this.pause, this))
-                            .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
+                            .on('mouseleave.bs.carousel', $.proxy(this.cycle, this));
                     }
 
-                    Carousel.VERSION = '3.3.5'
+                    Carousel.VERSION = '3.3.5';
 
                     Carousel.TRANSITION_DURATION = 600
 
@@ -330,7 +337,7 @@ app.directive('wishwallmodal', ['$window',
         return {
             restrict: 'A',
             link: function(scope, elem, attrs) {
-                + function($) {
+                elem.find('.icon-none').removeClass('icon-none'); + function($) {
                     'use strict';
 
                     // MODAL CLASS DEFINITION
@@ -683,30 +690,20 @@ app.directive('wishwallsearch', ['$window',
                 elem.on('click', '.wishwall-search-content', function() {
                     elem.find('.wishwall-dropdown-menu').hide();
                 });
-              
+            }
+        };
+    }
+]);
 
-                // elem.find('input').on('keyup', function() {
-                //     if (scope.searchinput !== '') {
-                //         elem.find('.wishwall-search-content, .modal-footer, .fa-remove').hide();
-                //         elem.find('.dosearch, .wishwall-search-result').show();
-
-                //     } else {
-                //         elem.find('.wishwall-search-content, .modal-footer, .fa-remove').show();
-                //         elem.find('.dosearch, .wishwall-search-result').hide();
-                //     }
-                // });
-
-                // elem.find('.dosearch').on('click', function() {
-                //     elem.find('.dosearch').hide().prev().show();
-                //     // elem.find('.wishwall-search-content, .modal-footer, .fa-remove').show();
-                //     // elem.find('.dosearch').hide();
-                // });
-                // elem.on('click', '.pick_this', function() {
-                //     console.log('aa');
-                //     if(scope.sure_to_pick) {
-                //         elem.find('.fa-remove').click();
-                //     }
-                // });
+app.directive('wishwallmystery', ['$window',
+    function($window) {
+        return {
+            restrict: 'A',
+            link: function(scope, elem, attrs) {
+                var panelH = $(window).height() - 125;
+                console.log(panelH);
+                elem.find('.panel-default').height(panelH);
+                elem.find('.match-state-wait-top').height(panelH*0.75 - 16);
             }
         };
     }

@@ -25,21 +25,19 @@
             <div class="navbar wishwall-navbar-app wishwall-navbar-app-bottom navbar-fixed-bottom">
                 <a href="javascript:void(0)" class="btn btn-navbar btnactive wishwall-navbar-bottom-btn fa fa-home" ui-sref="index.wishwall" ui-sref-opts="{reload: true}">
                     <img src="http://7xnxuw.com1.z0.glb.clouddn.com/home.png" ng-click="leadericon=1" ng-show="leadericon===1">
-                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/home-gray.png" ng-click="leadericon=1" ng-show="leadericon!==1"></a><a href="javascript:void(0)" ui-sref="wish.search" class="btn btn-navbar wishwall-navbar-bottom-btn fa fa-search">
-                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/search.png" ng-click="leadericon=2" ng-show="leadericon===2">
+                    <img class="icon-none" src="http://7xnxuw.com1.z0.glb.clouddn.com/home-gray.png" ng-click="leadericon=1" ng-show="leadericon!==1"></a><a href="javascript:void(0)" ui-sref="wish.search" class="btn btn-navbar wishwall-navbar-bottom-btn fa fa-search">
+                    <img class="icon-none" src="http://7xnxuw.com1.z0.glb.clouddn.com/search.png" ng-click="leadericon=2" ng-show="leadericon===2">
                     <img src="http://7xnxuw.com1.z0.glb.clouddn.com/search-gray.png" ng-click="leadericon=2" ng-show="leadericon!==2"></a><a href="javascript:void(0)" class="btn btn-navbar select-box-button wishwall-navbar-bottom-btn active-longer fa fa-add" data-toggle="modal" data-target="#chooseModal">
                     <img src="http://7xnxuw.com1.z0.glb.clouddn.com/add.png"></a><a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn fa fa-notice" ui-sref="user.message" ng-click="cancelMsgCount()">
-                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/news.png" ng-click="leadericon=4" ng-show="leadericon===4">
+                    <img class="icon-none" src="http://7xnxuw.com1.z0.glb.clouddn.com/news.png" ng-click="leadericon=4" ng-show="leadericon===4">
                     <img src="http://7xnxuw.com1.z0.glb.clouddn.com/news-gray.png" ng-click="leadericon=4" ng-show="leadericon!==4">
                     <span class="badge" ng-if="unread_num !== 0"></span>
                 </a><a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn fa fa-info" ui-sref="userinfo({userId: user._id})" ui-sref-opts="{reload: true}">
-                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/info.png" ng-click="leadericon=5" ng-show="leadericon===5">
+                    <img class="icon-none" src="http://7xnxuw.com1.z0.glb.clouddn.com/info.png" ng-click="leadericon=5" ng-show="leadericon===5">
                     <img src="http://7xnxuw.com1.z0.glb.clouddn.com/info-gray.png" ng-click="leadericon=5" ng-show="leadericon!==5"></a>
             </div>
         </div>
-        <!-- <div class="leader">
-            <span></span><span></span><span></span><span></span><span></span>
-        </div> -->
+       
     </div>
     <div class="modal fade" id="chooseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="chooseModel-content">

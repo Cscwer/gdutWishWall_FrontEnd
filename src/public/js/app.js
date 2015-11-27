@@ -73,9 +73,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'ContactCtrl'
         })
         .state('user.mysterylover', {
-            url: '/mysterylover',
+            url: '/mysterylover/:userId/:rewrite',
             templateUrl: '/views/User/mysterylover.html',
-            controller: 'MysteryLoverCtrl'
+            controller: 'MysteryLoverCtrl',
+            cache: false
         })
         .state('userinfo', {
             url: '/userinfo/:userId',

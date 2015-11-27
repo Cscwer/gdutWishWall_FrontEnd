@@ -71,7 +71,7 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService', 'SearchCon
         var uid = sessionStorage.getItem('uid');
         $scope.blesses = [];
         $scope.pageForBless = 1;
-        $scope.per_pageForBless = 5;
+        $scope.per_pageForBless = 15;
         $scope.search_area = SearchConfig.bless_search_area;
         $scope.search_sort = SearchConfig.search_sort;
         $scope.hadpraise = false;
@@ -125,7 +125,7 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatServi
         UserService.getMyInfo()
             .success(function(data, status) {
                 if (status === 200) {
-                    if (!data.err) {
+                    if (!data.error) {
                         $rootScope.user = data.data;
                         $scope.user = data.data;
                         sessionStorage.setItem('uid', $rootScope.user._id);
@@ -133,7 +133,7 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatServi
                         $scope.getUnreadMsgNum(data.data._id);
                     } else {
                         $rootScope.user = null;
-                        alert('出错');
+                        alert(data.error);
                     }
                 }
             });
@@ -348,10 +348,15 @@ app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams'
         UserService.getUserInfo(data)
             .success(function(data, status) {
                 if (status === 200) {
-                    $scope.user = data.user;
-                    $state.go('userinfo.wishwall', {
-                        sex: $scope.user.sex
-                    });
+                    if (!data.errmsg) {
+                        $scope.user = data.user;
+                        $rootScope.user = data.user;
+                        $state.go('userinfo.wishwall', {
+                            sex: $scope.user.sex
+                        });
+                    } else {
+                        alert(data.errmsg);
+                    }
                 }
             });
     }
@@ -421,8 +426,9 @@ app.controller('UserInfoBlessWallCtrl', ['$scope', '$stateParams', 'BlessService
     }
 ]);
 
-app.controller('SettingCtrl', ['$scope', '$window',
-    function($scope, $window) {
+app.controller('SettingCtrl', ['$scope', '$window', '$rootScope',
+    function($scope, $window, $rootScope) {
+        $scope.user = $rootScope.user;
         $scope.goBack = function() {
             $window.history.back();
         };
@@ -941,29 +947,59 @@ app.controller('BlessCtrl', ['$scope', '$window', 'BlessService', '$stateParams'
     }
 ]);
 
-app.controller('MysteryLoverCtrl', ['$scope', '$window', '$rootScope', 'UserService',
-    function($scope, $window, $rootScope, UserService) {
-
-        $scope.user = $rootScope.user;
+app.controller('MysteryLoverCtrl', ['$scope', '$window', '$rootScope', 'UserService', '$stateParams', '$state',
+    function($scope, $window, $rootScope, UserService, $stateParams, $state) {
+        var user_data = {
+            userId: $stateParams.userId
+        };
+        UserService.getUserInfo(user_data)
+            .success(function(data, status) {
+                if (status === 200) {
+                    $scope.user = data.user;
+                }
+            });
+        $scope.rewrite = $stateParams.rewrite;
         $scope.goBack = function() {
             $window.history.back();
         };
+
         $scope.match_data = {
             uid: $scope.user._id,
             useremail: $scope.user.email
         };
         $scope.searchMystery = function() {
 
-            console.log($scope.match_data);
             UserService.matchLover($scope.match_data)
                 .success(function(data, status) {
                     if (status === 200) {
-                        $rootScope.user.real_name = $scope.match_data.myname;
-                        $rootScope.user.mystery_lover = $scope.match_data.hisname;
-                        $scope.user.mystery_lover = $scope.match_data.hisname;
-                        $scope.user.real_name = $scope.match_data.myname;
-                        $rootScope.user.match_success = data.result;
-                        $scope.user.match_success = data.result;
+                        // $scope.user.mystery_lover = $scope.match_data.hisname;
+                        // $scope.user.match_success = data.result;
+                        $state.go('user.mysterylover', {
+                            userId: $scope.user._id
+                        }, {
+                            reload: true
+                        });
+                    }
+                });
+        };
+        $scope.rewrite_data = {
+            uid: $scope.user._id,
+            useremail: $scope.user.email
+        };
+        $scope.rewriteMystery = function() {
+
+            UserService.matchLover($scope.rewrite_data)
+                .success(function(data, status) {
+                    if (status === 200) {
+                        // $scope.user.mystery_lover = $scope.match_data.hisname;
+                        // $scope.user.match_success = data.result;
+
+                        $state.go('user.mysterylover', {
+                            userId: $scope.user._id,
+                            rewrite: ''
+                        }, {
+                            reload: true
+                        });
                     }
                 });
         };
