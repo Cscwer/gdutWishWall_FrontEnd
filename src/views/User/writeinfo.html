@@ -8,15 +8,15 @@
 	<div class="wishwall-write-info">
 		<div class="row">
 			<label>真实姓名
-			<input type="text" ng-model="user.real_name" required></div>
+			<input type="text" ng-model="user.real_name" required><span class="value-require">*</span></div>
 			</label>
 		<div class="row">
 			<label>手机长号
-			<input type="text" name="long_tel" ng-model="user.long_tel" required ng-pattern="/^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/"></div>
+			<input type="text" name="long_tel" ng-model="user.long_tel" required ng-pattern="/^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/"><span class="value-require">*</span></div>
 			</label>
 		<div class="row">
 			<label>邮箱
-			<input type="text" ng-model="user.email" required ng-pattern="/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/"></div>
+			<input type="text" ng-model="user.email" required ng-pattern="/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/"><span class="value-require">*</span></div>
 			</label>
 		<div class="row row-noborder">
 			<label>校园短号
