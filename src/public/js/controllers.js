@@ -418,7 +418,7 @@ app.controller('UserInfoBlessWallCtrl', ['$scope', '$stateParams', 'BlessService
     function($scope, $stateParams, BlessService, $state) {
         $scope.blesses = [];
         var data = {
-            userId: '5654711708aeff961a6824b0'
+            userId: sessionStorage.getItem('uid')
         };
         BlessService.getUserBless(data)
             .success(function(data, status) {
@@ -938,7 +938,7 @@ app.controller('WishCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
 
 app.controller('BlessCtrl', ['$scope', '$window', '$state', 'BlessService', '$stateParams',
     function($scope, $window, $state, BlessService, $stateParams) {
-        var uid = '5654711708aeff961a6824b0';
+        var uid = sessionStorage.getItem('uid');
         $scope.hadpraise = false;
         $scope.goBack = function() {
             $window.history.back();
