@@ -1,27 +1,24 @@
         <div class="section yblesswall-section" infinite-scroll-disabled="isLoading">
             <div class="row">
                 <div class="col-xs-12 blesswall-con">
-                    <div class="panel panel-default blesswall-panel" ng-repeat="bless in blesses">
+                    <div class="panel panel-default blesswall-panel" ng-repeat="bless in blesses" ui-sref="bless.detail({blessId: bless._id})">
                         <div class="panel-body blesswall-panel-body">
-                            <div class="blessimg-con" ui-sref="bless.detail({blessId: bless._id})">
+                            <div class="blessimg-con">
                                 <img ng-if="bless.img" ng-src="{{bless.img}}" alt="" class="bless-img">        
                                 <div class="bless-noimg" ng-if="!bless.img"></div>
                             </div>
                             <div class="blessmessage-con">
-                                <div class="headimg-con" ui-sref="bless.detail({blessId: bless._id})">
+                                <div class="headimg-con">
                                     <img ng-src="{{bless.userheadimg}}" alt="" class="headimg"></div>
                                 <div class="blessuser-con" >
-                                    <p class="username bless-username" ui-sref="bless.detail({blessId: bless._id})">
+                                    <p class="username bless-username">
                                         {{bless.username}}
                                         <span class="school_area">{{bless.school_area}}</span>
 
                                     </p>
                                 </div>
-                                <p class="bless_content">{{bless.bless}}</p>
+                                <p class="userinfobless_content">{{bless.bless}}</p>
                                 <br>        
-                                <button class="bless-praise" ng-click="deleteBless(bless)" makepraise>
-                                    <a href="javascript:void(0)">删除</a>
-                                </button>
                             </div>
 
                         </div>
