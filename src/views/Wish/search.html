@@ -62,10 +62,11 @@
             </div>
             <div class="col-xs-6">
                 <span ng-click="areaSelect(0)" ng-class="{searchactive: !search_area}" class="search-select-content">
-                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random-1.png" alt="" class="search-logo" ng-hide="search_area==='全校区'">
-                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random_white-1.png" alt="" class="search_logo" ng-show="search_area==='全校区'">随机</span>
+                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random-1.png" alt="" class="search-logo" ng-hide="search_area===''">
+                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random_white-1.png" alt="" class="search-logo" ng-show="search_area===''">随机</span>
             </div>
         </div>
+        <hr>
         <div class="row search-type">
             <div class="col-xs-12" ng-if="searchwhere==='许愿墙'" class="search-select-content">
                 <div class="search-type-cut">
@@ -101,24 +102,25 @@
                 <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_time_white.png" alt="" class="search-logo" ng-show="search_wishtype==='耗时类'">
                                         耗时类</span>
                 <span ng-if="searchwhere==='祝福墙'" ng-click="sortSelect(1)" ng-class="{searchactive: search_sort===1}" class="search-select-content">
-                <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_Ascending-1.png" alt="" class="search-logo" ng-hide="search_sort==='1'">
-                <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_Ascending_white-1.png" alt="" class="search-logo" ng-show="search_sort==='1'">
+                <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_Ascending-1.png" alt="" class="search-logo" ng-hide="search_sort===1">
+                <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_Ascending_white-1.png" alt="" class="search-logo" ng-show="search_sort===1">
                 从低到高</span>
             </div>
         </div>
         <div class="row search-school-area">
             <div class="col-xs-6">
                 <span ng-if="searchwhere==='许愿墙'" ng-click="typeSelect(0)" ng-class="{searchactive: !search_wishtype}" class="search-select-content">
-                <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random-1.png" alt="" class="search-logo" ng-hide="search_wishtype==='全部类'">
-                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random_white-1.png" alt="" class="search_logo" ng-show="search_wishtype==='全部类'">
+                <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random-1.png" alt="" class="search-logo" ng-hide="search_wishtype===''">
+                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random_white-1.png" alt="" class="search-logo" ng-show="search_wishtype===''">
                 随机</span>
                 <span ng-if="searchwhere==='祝福墙'" ng-click="sortSelect(0)" ng-class="{searchactive: !search_sort}" class="search-select-content">
-                <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random-1.png" alt="" class="search-logo" ng-hide="search_sort_0===0">
-                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random_white-1.png" alt="" class="search_logo" ng-show="search_sort_0===0">
+                <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random-1.png" alt="" class="search-logo" ng-hide="search_sort===''">
+                    <img src="http://7xnxuw.com1.z0.glb.clouddn.com/10_random_white-1.png" alt="" class="search-logo" ng-show="search_sort===''">
                 随机</span>
             </div>
             <div class="col-xs-6"></div>
         </div>
+        <hr>
         <button type="button" class="btn btn-default search-btn" ng-click="wishwallSearch()">筛选</button>
     </div>
     <div class="wishwall-search-result" ng-show="searchinput">

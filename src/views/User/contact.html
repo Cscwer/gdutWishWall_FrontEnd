@@ -32,7 +32,7 @@
                <div class="input-group">
                   <input type="text" class="form-control" ng-model="contact_msg">
                   <span class="input-group-btn">
-                     <button class="btn btn-default" type="button" ng-click="sendMsg()" ng-disabled="!isConnected&&!contact_msg">发送</button>
+                     <button class="btn btn-default" type="button" ng-click="sendMsg()" ng-disabled="!isConnected||!contact_msg">发送</button>
                   </span>
                </div>
                <!-- /input-group --> </div>

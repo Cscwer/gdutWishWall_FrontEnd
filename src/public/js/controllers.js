@@ -846,8 +846,8 @@ app.controller('NoticeCtrl', ['$scope', '$window', 'MsgService', '$stateParams',
 ]);
 
 //用户联系控制器
-app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'MsgService', '$state',
-    function($scope, $rootScope, $stateParams, MsgService, $state) {
+app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'MsgService', '$state', '$window',
+    function($scope, $rootScope, $stateParams, MsgService, $state, $window) {
         // $scope.thisUser = '56546e7e0cb2ce501a90344f';
         $scope.thisUser = $rootScope.user._id;
         $scope.thatUser = $stateParams.userId;
@@ -858,6 +858,9 @@ app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'MsgServi
         var contact = {
             this: $scope.thisUser,
             that: $scope.thatUser
+        };
+        $scope.goBack = function() {
+            $window.history.back();
         };
         var updateContact = function() {
             MsgService.getContact(contact)

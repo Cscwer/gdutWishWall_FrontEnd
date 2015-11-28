@@ -723,15 +723,22 @@ textarea {
 		margin-right: 3px;
 		vertical-align: middle;
 	}
+	hr {
+		margin-bottom: 0;
+		margin-top: 15px;
+	}
 	.search-btn {
 		width: 150px;
 		border-radius: 20px;
-		color: #f9c014;
-		border-color: #f9c014;
+		color: #fabf14;
+		border-color: #fabf14;
 		font-weight: bold;
 		border-width: 2px;
 		display: block;
-		margin: 0 auto;
+		position: absolute;
+		left: 50%;
+		bottom: 65px;
+		transform: translate(-50%);
 	}
 	.row {
 		margin-left: 0;
@@ -742,11 +749,12 @@ textarea {
 		margin-bottom: 0;
 
 		.col-xs-12 {
-			height: 60px;
-			line-height: @searchtypeheight;
+			height: 50px;
+			line-height: 50px;
 			color: #b8aeae;
 			font-size: 12px;
 			text-align: center;
+			margin-bottom: 10px;
 			.search-type-cut {
 				position: absolute;
 				display: inline-block;
@@ -784,6 +792,9 @@ textarea {
 		.col-xs-6:last-child {
 			padding-right: 30px;
 			padding-left: 4px;
+		}
+		.col-xs-6 {
+			text-align: center;
 		}
 		span {
 			display: inline-block;
@@ -870,7 +881,6 @@ textarea {
 	}
 	.sender_headimg {
 		background-color: white;
-
 		img {
 			width: 45px;
 			height: 45px;

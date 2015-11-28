@@ -3,33 +3,7 @@ app.directive('autoroll', ['$window', '$timeout',
         return {
             restrict: 'A',
             link: function(scope, elem, attrs) {
-                // var startX, endX;
-                // elem.on('touchstart', function(e) {
-                //     e.preventDefault();
-                //     startX = e.targetTouches;
-
-                //     console.log(startX);
-                // });
-                // elem.find('').on('swipeLeft', function() {
-                //     console.log('aa');
-                // });
-
-                /**
-                 * @author accountwcx@qq.com
-                 * http://git.oschina.net/accountwcx/rhui
-                 *
-                 * swipe事件，包括swipeLeft、swipeRight、swipeUp、swipeDown。
-                 * 调用方法
-                 * Rhui.mobile.swipeLeft(el, callback, options)
-                 * Rhui.mobile.swipeRight(el, callback, options)
-                 * Rhui.mobile.swipeUp(el, callback, options)
-                 * Rhui.mobile.swipeDown(el, callback, options)
-                 * 如果使用jQuery，调用方法
-                 * $(el).rhuiSwipe('swipeLeft', callback, options);
-                 * $(el).rhuiSwipe('swipeRight', callback, options);
-                 * $(el).rhuiSwipe('swipeUp', callback, options);
-                 * $(el).rhuiSwipe('swipeDown', callback, options);
-                 */
+                
                 (function(window, $) {
                     var Rhui = window.Rhui || {};
                     window.Rhui = Rhui;
@@ -246,9 +220,7 @@ app.directive('autoroll', ['$window', '$timeout',
 
 
                 elem.find('.item').rhuiSwipe('swipeLeft', function(event) {
-                    // elem.find('.carousel-inner').carousel('prev');
                     elem.find('.carousel .right').click();
-                    // console.log(elem.find('.carousel .left'));
                 }, {
                     // 可选参数
                     isStopPropagation: true,
@@ -984,11 +956,12 @@ app.directive('wishwallcontact', ['$window',
         return {
             restrict: 'A',
             link: function(scope, elem, attrs) {
-                // console.log(elem.find('.msg-container').find('.usermsg'));
-                // var msglen = elem.find('.msg-container').find('.usermsg').length;
-                // console.log(msglen);
-                // elem.find('.msg-container').find('.usermsg')[msglen-1].scrollIntoView();
-                console.log(elem.find('.msg-container').scrollTop());
+                // elem.find('.msg-container').on('change', function() {
+                //     console.log('aa');
+                // });
+                var msglen = document.querySelector('.msg-container').childNodes.length;
+                document.querySelector('.msg-container').childNodes[msglen-2].scrollIntoView()
+                // elem.find('.msg-container .usermsg').eq(4).scrollIntoView();
             }
         };
     }
