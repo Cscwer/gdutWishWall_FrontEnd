@@ -388,10 +388,10 @@ app.controller('SearchCtrl', ['$scope', '$state', 'WishService', 'WishData', 'Se
 //用户信息控制器
 app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'UserService',
     function($scope, $rootScope, $state, $stateParams, UserService) {
-        $scope.isSelf = ($stateParams.userId === sessionStorage.getItem('uid'));
+        $scope.isSelf = ($stateParams.userId === '56588621acf7e18aabc5e385');
 
         var data = {
-            userId: $stateParams.userId
+            userId: '56588621acf7e18aabc5e385'
         };
         UserService.getUserInfo(data)
             .success(function(data, status) {
@@ -443,7 +443,7 @@ app.controller('UserInfoBlessWallCtrl', ['$scope', '$stateParams', 'BlessService
     function($scope, $stateParams, BlessService, $state) {
         $scope.blesses = [];
         var data = {
-            userId: sessionStorage.getItem('uid')
+            userId: '56588621acf7e18aabc5e385'
         };
         BlessService.getUserBless(data)
             .success(function(data, status) {
@@ -848,12 +848,13 @@ app.controller('NoticeCtrl', ['$scope', '$window', 'MsgService', '$stateParams',
 //用户联系控制器
 app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'MsgService', '$state',
     function($scope, $rootScope, $stateParams, MsgService, $state) {
-        // $scope.thisUser = '56546e7e0cb2ce501a90344f';
-        $scope.thisUser = $rootScope.user._id;
-        $scope.thatUser = $stateParams.userId;
-        // $scope.thatUser = '56546e7e0cb2ce501a90344f';
-        $scope.thatUserName = $stateParams.username;
-        // $scope.thatUserName = 'Sibarone';
+        $scope.thisUser = '56546e7e0cb2ce501a90344f';
+        // $scope.contact_msg = '';
+        // $scope.thisUser = $rootScope.user._id;
+        // $scope.thatUser = $stateParams.userId;
+        $scope.thatUser = '56546e7e0cb2ce501a90344f';
+        // $scope.thatUserName = $stateParams.username;
+        $scope.thatUserName = 'Sibarone';
         $scope.user = $rootScope.user;
         var contact = {
             this: $scope.thisUser,

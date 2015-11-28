@@ -2,7 +2,7 @@
 	<div class="navbar navbar-app wishwall-navbar-app wishwall-navbar-top setting-navbar-top ">
 		<div class="navbar-brand navbar-brand-center">
 			我的祝福
-			<a href="javascript:void(0)" class="btn btn-navbar wishwall-icon-a" ng-click="goBack()"> <i class="fa fa-angle-left fa-navbar wishwall-icon-cog"></i>
+			<a href="javascript:void(0)" class="btn btn-navbar wishwall-icon-a" ng-click="goBack()"><img src="http://7xnxuw.com1.z0.glb.clouddn.com/3_return.png" alt=""></i>
 			</a>
 		</div>
 	</div>
@@ -16,22 +16,22 @@
 							<div class="username bless-detail-username">
 								<span>{{bless.username}}</span>
 							</div>
-							<span class="pick_this" ng-if="!bless.hadpraise" ng-click="praiseIt(bless)">
-								<img src="http://7xnxuw.com1.z0.glb.clouddn.com/3_Detailed-blessing_grey.png" alt="">
+							<span class="pick_this bless-detail-praise" ng-if="!bless.hadpraise" ng-click="praiseIt(bless)">
+								<img src="http://7xnxuw.com1.z0.glb.clouddn.com/3_Detailed-blessing_grey_1.png" alt="">
 							</span>
-							<span class="pick_this" ng-if="bless.hadpraise">
+							<span class="pick_this bless-detail-praise" ng-if="bless.hadpraise">
 								<img src="http://7xnxuw.com1.z0.glb.clouddn.com/2_bless_red.png" alt="">
 							</span>
 							<span class="pick_this" ng-click="deleteBless(bless)">
-								<img src="http://7xnxuw.com1.z0.glb.clouddn.com/3_delete.png">
+								<img src="http://7xnxuw.com1.z0.glb.clouddn.com/3_delete_1.png">
 							</span>
 						</div>
 						<hr class="wishborder" ng-if="!bless.img">
 						<img ng-if="bless.img" ng-src="{{bless.img}}" alt="" class="wish-content-img">
 						<p class="wish_content">{{bless.bless}}</p>
 						<div class="wish_tags">
-							<span class="area" ng-bind="bless.school_area"></span>
-							<span class="time">{{bless.publishDate | date: "MM.dd"}}</span>
+							<span class="area" ng-bind="'#'+bless.school_area"></span>
+							<span class="time">#{{bless.publishDate | date: "MM.dd"}}</span>
 						</div>
 					</div>
 				</div>

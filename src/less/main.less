@@ -364,6 +364,7 @@ textarea {
 }
 .wishborder {
 	margin: 10px 0;
+	color: #f5f6f7;
 }
 .wish_content {
 	word-wrap: break-word;
@@ -914,7 +915,7 @@ textarea {
 
 		    display: inline-block;
 		    position: absolute;
-		    left: 10px;
+		    left: 14px;
 		    height: 16px;
 		    top: 50%;
 		    transform: translate(0,-50%);
@@ -1391,9 +1392,13 @@ textarea {
 .choose-wish {
 	background-color: #f9bf15;
 	margin-right: 10px;
+	color: #fff;
+	font-size: 16px;
 }
 .choose-bless {
 	background-color: #9ebc26;
+	color: #fff;
+	font-size: 16px;
 }
 .wishwall-leader {
 	a:focus {
@@ -1413,16 +1418,38 @@ textarea {
 	margin-top: 8px;
 }
 .wishdetail {
+	.edit-wish {
+		margin-right: 8px;
+	}
 	.picker-info {
+		font-size: 12px;
+		color: #616060;
 		.row {
 			padding-bottom: 10px;
 		}
+		.row-a {
+			padding-bottom: 0;
+		}
+		.row-b {
+			padding-top: 8px;
+			padding-bottom: 20px!important;
+		}
+		img {
+			position: relative;
+			height: 12px;
+			top: -1px;
+			margin-right: 3px;
+		}
+	}
+	.detail-message {
+		padding-right: 6px;
+		padding-left: 6px;
 	}
 	.wishborder {
 		margin: 0;
 	}
 	.row {
-		padding: 10px 10px 0 10px;
+		padding: 14px 14px 0 14px;
 
 		.col-xs-12 {
 			padding: 0;
@@ -1439,19 +1466,15 @@ textarea {
 		}
 	}
 	.wishinfo-panel {
-		padding: 10px;
-
+		padding: 8px;
 		.pick_this {
 			float: right;
-			margin-left: 5px;
 			border-radius: 50%;
-			width: 31px;
-			height: 31px;
-			border: 1px solid fade(gray, 30%);
+			width: 30px;
+			height: 30px;
 			position: relative;
-
 			img {
-				width: 15px;
+				width: 30px;
 				position: absolute;
 				left: 50%;
 				top: 50%;
@@ -1461,12 +1484,13 @@ textarea {
 		.username {
 			height: 30px;
 			line-height: 30px;
+			color: #989292;
 		}
 		.wishpickername {
 			line-height: normal;
 
 			.nickname {
-				color: gray;
+				color: #c1b9b9;
 			}
 		}
 	}
@@ -1474,8 +1498,7 @@ textarea {
 		width: 100%;
 	}
 	.wish_content {
-		padding: 0 10px;
-		margin: 10px 0;
+		margin: 12px 8px;
 		font-size: 14px;
 	}
 	.wish_tags {
@@ -1483,10 +1506,14 @@ textarea {
 
 		span {
 			font-size: 12px;
-			color: gray;
+			color: #989292;
 			float: right;
-			margin-left: 10px;
+			margin-left: 8px;
+			margin-bottom: 8px;
 		}
+	}
+	.bless-detail-praise {
+		margin-left: 8px; 
 	}
 }
 .contact-content {
@@ -1588,3 +1615,55 @@ textarea {
 .box-feedback {
 	background-color: #fcdd2e!important;
 }
+.input-group {
+	background-color: #fff;
+	padding: 0 0 8px 14px;
+	height: 44px;
+	input {
+		box-shadow: none;
+		float: right;
+		border: none;
+		padding-top: 14px;
+		height: 44px;
+		color: #262626;
+		border-bottom: 2px solid #c9c9c9;
+	}
+	input:focus {
+		box-shadow: none;
+		border-bottom: 2px solid #c9c9c9;
+		outline: none;
+	}
+	a {
+		border-radius: 0;
+		border: none;
+		color: #c9c9c9;
+		margin-bottom: -8px;
+	}
+	a:hover {
+		border: none;
+		color: #e6970e;
+		background-color: #fff;
+	}
+	a:active {
+		border: none;
+		color: #e6970e;
+		background-color: #fff;
+	}
+	input.chating-active-border {
+		box-shadow: none;
+		float: right;
+		border: none;
+		padding-top: 14px;
+		height: 44px;
+		color: #262626;
+		border-bottom: 2px solid #c9c9c9;
+		box-shadow: none;
+		border-bottom: 2px solid #fabf14;
+		outline: none;
+	}
+	a.chating-active-text {
+		color: #e6970e;
+	}
+}
+
+
