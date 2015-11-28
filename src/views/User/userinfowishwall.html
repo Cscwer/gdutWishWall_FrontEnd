@@ -1,4 +1,5 @@
-<div class="section wishwall-section userinfowishwall">
+
+<div class="section wishwall-section" infinite-scroll="nextpage(page, per_page, search_area, search_wishtype)" infinite-scroll-disabled="isLoading" infinite-scroll-distance="4">
     <div class="row">
         <div class="col-xs-6 wishwall-col-6">
             <div class="panel panel-default wishwall-panel" ng-repeat="wish in oddwishes">
@@ -6,17 +7,16 @@
                     <div class="wishinfo-panel">
                         <img ng-src="{{wish.userheadimg}}" alt="" class="headimg">
                         <div class="username">
-                            <span>{{wish.username}}</span>
+                            <span class="username-inner">{{wish.username}}</span>
                             <br>
                             <span class="school_area">{{wish.school_area}}</span>
                         </div>
                         <img src="http://7xnxuw.com1.z0.glb.clouddn.com/6_ing.png" ng-if="wish.ispicked === 1" class="pick_this">
                         <img src="http://7xnxuw.com1.z0.glb.clouddn.com/6_finish.png" ng-if="wish.ispicked === 2" alt="" class="pick_this">
-                        <hr class="wishborder">
-                        <p class="wish_content">{{wish.wish}}</p>
                     </div>
-
-                    <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img"></div>
+                    <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img wishwall-img-middle" ng-click="previewImage(wish.img)">
+                    <div class="wishinfo-panel"><p class="wish_content wish-text">{{wish.wish}}</p></div>
+                </div>
             </div>
         </div>
         <div class="col-xs-6 wishwall-col-6">
@@ -25,16 +25,16 @@
                     <div class="wishinfo-panel">
                         <img ng-src="{{wish.userheadimg}}" alt="" class="headimg">
                         <div class="username">
-                            <span>{{wish.username}}</span>
+                            <span class="username-inner">{{wish.username}}</span>
                             <br>
                             <span class="school_area">{{wish.school_area}}</span>
                         </div>
-                        <img src="http://7xnxuw.com1.z0.glb.clouddn.com/6_ing.png" ng-if="wish.ispicked === 1" class="pick_this">
+                       <img src="http://7xnxuw.com1.z0.glb.clouddn.com/6_ing.png" ng-if="wish.ispicked === 1" class="pick_this">
                         <img src="http://7xnxuw.com1.z0.glb.clouddn.com/6_finish.png" ng-if="wish.ispicked === 2" alt="" class="pick_this">
-                        <hr class="wishborder">
-                        <p class="wish_content">{{wish.wish}}</p>
                     </div>
-                    <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img"></div>
+                    <img ng-if="wish.img" ng-src="{{wish.img}}" alt="" class="wish-content-img wishwall-img-middle" ng-click="previewImage(wish.img)">
+                    <div class="wishinfo-panel"><p class="wish_content wish-text">{{wish.wish}}</p></div>
+                </div>
             </div>
         </div>
     </div>
