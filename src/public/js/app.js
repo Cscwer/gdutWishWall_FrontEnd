@@ -1,5 +1,11 @@
 var app = angular.module('gdutWishWall', ['ui.router', 'infinite-scroll']);
-
+app.run(function() {
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+});
 //配置图片白名单
 app.config(['$compileProvider',
     function($compileProvider) {
@@ -28,12 +34,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/blesswall',
             templateUrl: '/views/Index/blesswall.html',
             controller: 'BlessIndexCtrl'
-        })
-        //attentiontype 
-        .state('attention', {
-            url: '/attention/:attentiontype',
-            templateUrl: '/views/Index/attention.html',
-            controller: 'AttentionCtrl'
         })
         .state('user', {
             url: '/user',
@@ -115,26 +115,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'SearchCtrl'
         })
 
-        .state('wish.changewish', {
-            url: '/female/changewish/:wishId',
-            templateUrl: '/views/User/female/changewish.html',
-            controller: 'WishCtrl'
-        })
+    .state('wish.changewish', {
+        url: '/female/changewish/:wishId',
+        templateUrl: '/views/User/female/changewish.html',
+        controller: 'WishCtrl'
+    })
 
-        .state('wish.detail', {
-            url: '/detail/:wishId/:sex',
-            templateUrl: '/views/Wish/detail.html',
-            controller: 'WishCtrl'
-        })
+    .state('wish.detail', {
+        url: '/detail/:wishId/:sex',
+        templateUrl: '/views/Wish/detail.html',
+        controller: 'WishCtrl'
+    })
         .state('bless', {
             url: '/bless',
             templateUrl: '/views/Bless/index.html',
             abstract: true
-        })
-        .state('bless.detail', {
-            url: '/detail/:blessId',
-            templateUrl: '/views/Bless/detail.html',
-            controller: 'BlessCtrl'
         });
 });
 

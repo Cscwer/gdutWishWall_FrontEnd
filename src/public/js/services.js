@@ -35,6 +35,14 @@ app.factory('UserService', ['$http',
                     url: Host + '/api/user/mystery',
                     data: data
                 });
+            },
+
+            rewriteLover: function(data) {
+                return $http({
+                    method: 'PUT',
+                    url: Host + '/api/user/mystery/refresh',
+                    data: data
+                });
             }
         };
     }

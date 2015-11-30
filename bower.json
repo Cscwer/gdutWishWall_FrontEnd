@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "ngInfiniteScroll": "~1.2.1",
-    "mobile-angular-ui": "~1.2.0-rc.3"
+    "mobile-angular-ui": "~1.2.0-rc.3",
+    "fastclick": "~1.0.6"
   }
 }

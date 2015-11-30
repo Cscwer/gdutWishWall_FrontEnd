@@ -527,13 +527,8 @@ app.directive('autoroll', ['$window', '$timeout',
                 }(jQuery);
 
 
-                var olelem = elem.find('.carousel-indicators').children();
-                var imgelem = elem.find('.carousel-inner');
-
-                var elemindex = 1;
                 var handle = function() {
-                    elem.find('.carousel-indicators').children()[elemindex].click();
-                    elemindex = (elemindex + 1) % 3;
+                    elem.find('.carousel .right').click();
                     $timeout(handle, 10000);
                 };
                 $timeout(handle, 10000);
@@ -543,26 +538,14 @@ app.directive('autoroll', ['$window', '$timeout',
 ]);
 
 
-app.directive('wishwalltop', ['$window',
-    function($window) {
-        return {
-            restrict: 'A',
-            link: function(scope, elem, attrs) {
-                // elem.find('.wishwall-navbar-top-btn').on('click', function() {
-                //     $(this).addClass('active').parent().siblings().find('.wishwall-navbar-top-btn').removeClass('active');
-                // });
-            }
-        };
-    }
-]);
-
 app.directive('wishwallmodal', ['$window',
     function($window) {
         return {
             restrict: 'A',
             link: function(scope, elem, attrs) {
                 elem.find('.icon-none').removeClass('icon-none');
-                elem.find('.leader-badge').removeClass('leader-badge'); + function($) {
+                elem.find('.leader-badge').removeClass('leader-badge'); 
+                + function($) {
                     'use strict';
 
                     // MODAL CLASS DEFINITION
@@ -928,7 +911,6 @@ app.directive('wishwallmystery', ['$window',
             restrict: 'A',
             link: function(scope, elem, attrs) {
                 var panelH = $(window).height() - 125;
-                console.log(panelH);
                 elem.find('.panel-default').height(panelH);
                 elem.find('.match-state-wait-top').height(panelH * 0.75 - 16);
             }
@@ -944,7 +926,6 @@ app.directive('blessimgw', ['$window',
             restrict: 'A',
             link: function(scope, elem, attrs) {
                 var imgWidth = $(window).width() - 10;
-                console.log(imgWidth);
                 elem.height(imgWidth * 0.56);
             }
         };
@@ -959,8 +940,7 @@ app.directive('wishwallcontact', ['$window',
                 // elem.find('.msg-container').on('change', function() {
                 //     console.log('aa');
                 // });
-                var msglen = document.querySelector('.msg-container').childNodes.length;
-                document.querySelector('.msg-container').childNodes[msglen-2].scrollIntoView()
+                // document.querySelector('.msg-container').childNodes[msglen-2].scrollIntoView();
                 // elem.find('.msg-container .usermsg').eq(4).scrollIntoView();
             }
         };

@@ -23,6 +23,11 @@
                 <p>获赞</p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12" ui-sref="user.contact({userId: '5658860eacf7e18aabc5e383',username: 'Sibarone'})">
+                <div class="greenbox box-feedback"></div><p>意见反馈</p>
+            </div>
+        </div>
         <div class="row" ng-repeat="msg in user_msg_list">
             <div class="col-xs-12" ui-sref="user.contact({userId: msg.sender,username: msg.sender_name})">
                 <div class="greenbox sender_headimg">
@@ -30,7 +35,7 @@
                     <span class="badge usermsg-badge" ng-if="msg.hadread===0"></span>
                 </div>
                 <p class="usermsg-sendername">{{msg.sender_name}}</p>
-                <p class="user-msg" style="text-overflow: ellipsis">{{msg.msg}}</p>
+                <p class="user-msg" style="text-overflow: ellipsis">{{msg.msg.slice(0,16)}}</p>
             </div>
         </div>
         <!-- <div class="row">

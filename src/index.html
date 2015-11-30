@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>许愿墙</title>
+    <title>广工女生节许愿墙</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
     <meta http-equiv="Cache-Control" content="no-transform " />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -21,9 +21,9 @@
                 <div ui-view></div>
             </div>
         </div>
-        <!-- <div class="loading">
-            <img src="http://7xnxuw.com1.z0.glb.clouddn.com/loading.png" alt="" class="loading-img" >
-        </div> -->
+        <div class="loading">
+            <img src="public/img/loading.png" alt="" class="loading-img" ng-show="LoadingAnimateCtrl">
+        </div>
         <div ng-controller="LeaderCtrl" class="wishwall-leader" wishwallmodal>
             <div class="navbar wishwall-navbar-app wishwall-navbar-app-bottom navbar-fixed-bottom">
                 <a href="javascript:void(0)" class="btn btn-navbar btnactive wishwall-navbar-bottom-btn fa fa-home" ui-sref="index.wishwall({select: ''})" ui-sref-opts="{reload: true}">
@@ -34,7 +34,7 @@
                     <img src="http://7xnxuw.com1.z0.glb.clouddn.com/add.png"></a><a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn fa fa-notice" ui-sref="user.message" ng-click="cancelMsgCount()">
                     <img class="icon-none" src="http://7xnxuw.com1.z0.glb.clouddn.com/news.png" ng-click="leadericon=4" ng-show="leadericon===4">
                     <img src="http://7xnxuw.com1.z0.glb.clouddn.com/news-gray.png" ng-click="leadericon=4" ng-show="leadericon!==4">
-                    <span class="badge leader-badge" ng-if="unread_num !== 0"></span>
+                    <span class="badge leader-badge" ng-show="unread_num !== 0"></span>
                 </a><a href="javascript:void(0)" class="btn btn-navbar wishwall-navbar-bottom-btn fa fa-info" ui-sref="userinfo({userId: user._id})" ui-sref-opts="{reload: true}">
                     <img class="icon-none" src="http://7xnxuw.com1.z0.glb.clouddn.com/info.png" ng-click="leadericon=5" ng-show="leadericon===5">
                     <img src="http://7xnxuw.com1.z0.glb.clouddn.com/info-gray.png" ng-click="leadericon=5" ng-show="leadericon!==5"></a>
@@ -42,13 +42,26 @@
         </div>
     </div>
     <div class="modal fade" id="chooseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="chooseModel-content chooseModel-content-mystery">
+            <div class="choose-mystery" aria-label="Close" data-dismiss="modal" ui-sref="user.mysterylover({userId: user._id})">
+                <img src="public/img/8_crush.png" class="choose-icon" alt="">
+                <span>暗恋</span>
+            </div>
+        </div>
         <div class="chooseModel-content">
-            <div class="choose-wish" ui-sref="user.writewish({type: 1})" aria-label="Close" data-dismiss="modal" ng-show="user.sex === 2">许愿望</div>
-            <div class="choose-bless" ui-sref="user.writebless" aria-label="Close" data-dismiss="modal">发祝福</div>
+            <div class="choose-wish" ui-sref="user.writewish({type: 1})" aria-label="Close" data-dismiss="modal" ng-if="user.sex===2||user.sex===3">
+                <img src="public/img/11_wish.png" alt="" class="choose-icon">
+                <span>许愿</span>
+            </div>
+            <div class="choose-bless" ui-sref="user.writebless" aria-label="Close" data-dismiss="modal">
+                <img src="public/img/11_bless.png"  alt="" class="choose-icon">
+                <span>祝福</span>
+            </div>
         </div>
     </div>
     <!--build:js public/js/index.js -->
     <script src="components/jquery/dist/jquery.min.js"></script>
+    <script src="components/fastclick/lib/fastclick.js"></script>
     <script src="components/angular/angular.min.js"></script>
     <script src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="public/js/infinite-scroll.js"></script>

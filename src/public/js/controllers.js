@@ -34,17 +34,19 @@ app.controller('WishIndexCtrl', ['$scope', 'WishData', '$state', 'WishService', 
 
         //加载下一页的内容，只有登录的人才能查看
         $scope.page = 1; //当前页数
-        $scope.per_page = 30; //每页显示数目
+        $scope.per_page = 50; //每页显示数目
         $scope.search_area = SearchConfig.search_area;
         $scope.search_wishtype = SearchConfig.search_wishtype;
         $scope.isLoading = false;
         $scope.nextpage = function(page, per_page, search_area, search_wishtype) {
             $scope.isLoading = true;
+            $rootScope.LoadingAnimateCtrl = true;
             SearchConfig.search_area = '';
             SearchConfig.search_wishtype = '';
             WishService.getUnpickedWishes(page, per_page, search_area, search_wishtype)
                 .success(function(data, status) {
                     var len = data.wishes.length;
+                    $rootScope.LoadingAnimateCtrl = false;
                     if (status === 200 && len !== 0) {
                         for (var i = 0; i < len - 1; i = i + 2) {
                             $scope.evenwishes.push(data.wishes[i + 1]);
@@ -72,17 +74,19 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService', 'SearchCon
         var uid = sessionStorage.getItem('uid');
         $scope.blesses = [];
         $scope.pageForBless = 1;
-        $scope.per_pageForBless = 15;
+        $scope.per_pageForBless = 50;
         $scope.search_area = SearchConfig.bless_search_area;
         $scope.search_sort = SearchConfig.search_sort;
         $scope.hadpraise = false;
         $scope.isLoading = false;
         $scope.nextpageBless = function(page, per_page, search_area, search_sort) {
+            $rootScope.LoadingAnimateCtrl = true;
             $scope.isLoading = true;
             SearchConfig.bless_search_area = '';
             SearchConfig.search_sort = '';
             BlessService.getBlesses(page, per_page, search_area, search_sort)
                 .success(function(data, status) {
+                    $rootScope.LoadingAnimateCtrl = false;
                     if (status === 200 && data.blesses.length !== 0) {
                         for (var i = 0; i < data.blesses.length; i++) {
                             $scope.blesses.push(data.blesses[i]);
@@ -100,6 +104,8 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService', 'SearchCon
 
         //祝福点赞
         $scope.praiseIt = function(bless) {
+            bless.praise_num++;
+            bless.hadpraise = true;
             var praiseData = {
                 blessId: bless._id,
                 userId: sessionStorage.getItem('uid')
@@ -107,8 +113,6 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService', 'SearchCon
             BlessService.makePraise(praiseData)
                 .success(function(data, status) {
                     if (status === 200) {
-                        bless.praise_num++;
-                        bless.hadpraise = true;
                         var praise_msg = {
                             msg_type: 'Praise',
                             sender: sessionStorage.uid,
@@ -126,34 +130,43 @@ app.controller('BlessIndexCtrl', ['$scope', '$state', 'BlessService', 'SearchCon
     }
 ]);
 
-app.controller('AttentionCtrl', ['$scope', '$stateParams', '$window',
-    function($scope, $stateParams, $window) {
-        $scope.attentiontype = $stateParams.attentiontype;
-        console.log($scope.attentiontype);
-        $scope.goBack = function() {
-            $window.history.back();
-        };
-    }
-]);
 
 //导航栏控制器
 app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatService', 'UserService',
     function($scope, $rootScope, MsgService, WeChatService, UserService) {
 
         $scope.leadericon = 1;
+        $rootScope.isLoading = false;
         //获取微信用户信息
-        UserService.getMyInfo()
+        // UserService.getMyInfo()
+        //     .success(function(data, status) {
+        //         if (status === 200) {
+        //             if (!data.error) {
+        //                 $rootScope.user = data.data;
+        //                 $scope.user = data.data;
+        //                 sessionStorage.setItem('uid', $rootScope.user._id);
+        //                 sessionStorage.setItem('username', $rootScope.user.nickname);
+        //                 $scope.getUnreadMsgNum(data.data._id);
+        //             } else {
+        //                 $rootScope.user = null;
+        //             }
+        //         }
+        //     });
+
+        var data = {
+            userId: '5658860eacf7e18aabc5e383'
+        };
+        UserService.getUserInfo(data)
             .success(function(data, status) {
                 if (status === 200) {
                     if (!data.error) {
-                        $rootScope.user = data.data;
-                        $scope.user = data.data;
+                        $rootScope.user = data.user;
+                        $scope.user = data.user;
                         sessionStorage.setItem('uid', $rootScope.user._id);
-                        sessionStorage.setItem('username', $rootScope.user.nickname);
-                        $scope.getUnreadMsgNum(data.data._id);
+                        sessionStorage.setItem('username', data.user.nickname);
+                        $scope.getUnreadMsgNum(data.user._id);
                     } else {
                         $rootScope.user = null;
-                        // alert(data.error);
                     }
                 }
             });
@@ -174,7 +187,7 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatServi
                         timestamp: signature.timestamp,
                         nonceStr: signature.nonceStr,
                         signature: signature.signature,
-                        jsApiList: ['previewImage', 'onMenuShareTimeline']
+                        jsApiList: ['previewImage', 'onMenuShareTimeline', 'onMenuShareAppMessage']
                     });
                 }
             });
@@ -191,13 +204,27 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatServi
                 // 用户取消分享后执行的回调函数
             }
         });
+        wx.onMenuShareAppMessage({
+            title: '广工大女生节许愿墙', // 分享标题
+            desc: '女生节来咯！快来写下你的愿望与祝福吧！', // 分享描述
+            link: 'http://gdutgirl.duapp.com/', // 分享链接
+            imgUrl: 'http://7xnxuw.com1.z0.glb.clouddn.com/logo.png', // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function() {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function() {
+                // 用户取消分享后执行的回调函数
+            }
+        });
         //基于 socket.io 的消息推送
         $scope.unread_num = 0;
         $rootScope.isConnected = false;
         $rootScope.socket = io.connect('180.149.144.13:30004');
         $rootScope.socket.on('open', function() {
             $rootScope.isConnected = true;
-            console.log('连接成功');
+            console.log('socket连接成功');
         });
 
         //SystemMsgList
@@ -228,10 +255,10 @@ app.controller('LeaderCtrl', ['$scope', '$rootScope', 'MsgService', 'WeChatServi
                 .success(function(data, status) {
                     if (status === 200) {
                         $scope.unread_num = data.num;
+                        console.log($scope.unread_num);
                     }
                 });
         };
-
 
         $scope.cancelMsgCount = function() {
             $scope.unread_num = 0;
@@ -296,7 +323,7 @@ app.controller('SearchCtrl', ['$scope', '$state', 'WishService', 'WishData', 'Se
                     break;
                 case 0:
                     $scope.search_sort = '';
-                    $scope.search_sort_0=0;
+                    $scope.search_sort_0 = 0;
                     break;
                 case 1:
                     $scope.search_sort = 1;
@@ -359,6 +386,8 @@ app.controller('SearchCtrl', ['$scope', '$state', 'WishService', 'WishData', 'Se
 
         //祝福点赞
         $scope.praiseIt = function(bless) {
+            bless.praise_num++;
+            bless.hadpraise = true;
             var praiseData = {
                 blessId: bless._id,
                 userId: sessionStorage.getItem('uid')
@@ -366,8 +395,6 @@ app.controller('SearchCtrl', ['$scope', '$state', 'WishService', 'WishData', 'Se
             BlessService.makePraise(praiseData)
                 .success(function(data, status) {
                     if (status === 200) {
-                        bless.praise_num++;
-                        bless.hadpraise = true;
                         var praise_msg = {
                             msg_type: 'Praise',
                             sender: sessionStorage.uid,
@@ -386,10 +413,13 @@ app.controller('SearchCtrl', ['$scope', '$state', 'WishService', 'WishData', 'Se
 ]);
 
 //用户信息控制器
-app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'UserService',
-    function($scope, $rootScope, $state, $stateParams, UserService) {
+app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'UserService', '$window',
+    function($scope, $rootScope, $state, $stateParams, UserService, $window) {
+        $scope.goBack = function() {
+            $state.go('index.wishwall');
+        };
         $scope.isSelf = ($stateParams.userId === sessionStorage.getItem('uid'));
-
+        $scope.me = $rootScope.user;
         var data = {
             userId: $stateParams.userId
         };
@@ -398,7 +428,6 @@ app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams'
                 if (status === 200) {
                     if (!data.errmsg) {
                         $scope.user = data.user;
-                        $rootScope.user = data.user;
                         $state.go('userinfo.wishwall', {
                             sex: $scope.user.sex
                         });
@@ -410,8 +439,8 @@ app.controller('UserInfoCtrl', ['$scope', '$rootScope', '$state', '$stateParams'
     }
 ]);
 
-app.controller('UserInfoWishWallCtrl', ['$scope', '$stateParams', 'WishService',
-    function($scope, $stateParams, WishService) {
+app.controller('UserInfoWishWallCtrl', ['$scope', '$stateParams', 'WishService', '$rootScope', 'WishData', '$state',
+    function($scope, $stateParams, WishService, $rootScope, WishData, $state) {
 
         $scope.oddwishes = [];
         $scope.evenwishes = [];
@@ -421,9 +450,10 @@ app.controller('UserInfoWishWallCtrl', ['$scope', '$stateParams', 'WishService',
             sex: $stateParams.sex,
             userId: $stateParams.userId
         };
-
+        $rootScope.LoadingAnimateCtrl = true;
         WishService.getWish(data)
             .success(function(data, status) {
+                $rootScope.LoadingAnimateCtrl = false;
                 var len = data.wishes.length;
                 if (status === 200) {
                     for (var i = 0; i < len - 1; i = i + 2) {
@@ -436,25 +466,64 @@ app.controller('UserInfoWishWallCtrl', ['$scope', '$stateParams', 'WishService',
                 }
             });
 
+        $scope.previewImage = function(url) {
+            wx.previewImage({
+                current: url, // 当前显示图片的http链接
+                urls: [url] // 需要预览的图片http链接列表
+            });
+        };
+        $scope.pickWish = function(wish) {
+            if (confirm('确认领取' + wish.username + '的这个愿望?')) {
+                WishData._id = wish._id;
+                WishData.user = wish.user;
+                WishData.username = wish.username;
+                WishData.useremail = wish.useremail;
+                $state.go('user.writeinfo', {
+                    type: 2
+                });
+            }
+        };
     }
 ]);
 
-app.controller('UserInfoBlessWallCtrl', ['$scope', '$stateParams', 'BlessService', '$state',
-    function($scope, $stateParams, BlessService, $state) {
+app.controller('UserInfoBlessWallCtrl', ['$scope', '$stateParams', 'BlessService', '$state', '$rootScope',
+    function($scope, $stateParams, BlessService, $state, $rootScope) {
         $scope.blesses = [];
         var data = {
-            userId: sessionStorage.getItem('uid')
+            userId: $stateParams.userId
         };
+        $rootScope.LoadingAnimateCtrl = true;
         BlessService.getUserBless(data)
             .success(function(data, status) {
+                $rootScope.LoadingAnimateCtrl = false;
                 if (status === 200 && data.blesses.length !== 0) {
                     for (var i = 0; i < data.blesses.length; i++) {
                         $scope.blesses.push(data.blesses[i]);
                     }
-                    /*$scope.pageForBless++;*/
                     $scope.isLoading = false;
                 }
             });
+        $scope.previewImage = function(url) {
+            wx.previewImage({
+                current: url, // 当前显示图片的http链接
+                urls: [url] // 需要预览的图片http链接列表
+            });
+        };
+        $scope.deleteBless = function(bless) {
+            if (confirm('确定要删除祝福？')) {
+                BlessService.deleteBless(bless)
+                    .success(function(data, status) {
+                        if (status === 200) {
+                            alert('删除成功');
+                            $state.go('userinfo', {
+                                userId: $stateParams.userId
+                            }, {
+                                reload: true
+                            });
+                        }
+                    });
+            }
+        };
     }
 ]);
 
@@ -490,6 +559,7 @@ app.controller('UserWriteWishCtrl', ['$scope', 'WishData', 'WishService', '$root
     function($scope, WishData, WishService, $rootScope, $state, $stateParams) {
         $scope.type = $stateParams.type;
         var refresh_wish_data = {};
+
         if ($scope.type === '1') {
             $scope.writewish_title = '许愿望';
             //默认愿望类型为耗时类
@@ -536,6 +606,12 @@ app.controller('UserWriteWishCtrl', ['$scope', 'WishData', 'WishService', '$root
             });
         };
 
+        $scope.cancelImage = function() {
+            $scope.localIds = [];
+            WishData.localIds = [];
+            refresh_wish_data.mediaId = '';
+            WishData.mediaId = '';
+        };
         $scope.goWriteInfo = function() {
             WishData.wishType = $scope.wish_type;
             WishData.wish = $scope.wish;
@@ -613,6 +689,11 @@ app.controller('UserWriteBlessCtrl', ['$scope', '$rootScope', 'BlessData', 'Bles
             });
         };
 
+        $scope.cancelImage = function() {
+            $scope.localBlessIds = [];
+            BlessData.mediaId = '';
+        };
+
         //发布祝福
         $scope.publicBless = function() {
             $scope.isClick = true;
@@ -634,6 +715,8 @@ app.controller('UserWriteBlessCtrl', ['$scope', '$rootScope', 'BlessData', 'Bles
                 });
 
         };
+
+
     }
 ]);
 
@@ -796,7 +879,6 @@ app.controller('MsgCtrl', ['$scope', '$state', 'MsgService',
                 if (status === 200) {
                     $scope.notices_num = data.notice;
                     $scope.praise_num = data.praise;
-                    // $scope.user_msg_list = data.user;
                 }
             });
         MsgService.getMsg('User', sessionStorage.uid)
@@ -867,6 +949,7 @@ app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'MsgServi
                 .success(function(data, status) {
                     if (status === 200) {
                         $scope.contacts = data.contacts;
+                        $rootScope.LoadingAnimateCtrl = false;
                     }
                 });
         };
@@ -883,17 +966,22 @@ app.controller('ContactCtrl', ['$scope', '$rootScope', '$stateParams', 'MsgServi
             }
         });
         $scope.sendMsg = function() {
-            var msg = {
-                msg_type: 'User',
-                msg: $scope.contact_msg,
-                receiver: $stateParams.userId,
-                receiver_name: $stateParams.username,
-                sender: sessionStorage.getItem('uid'),
-                sender_name: sessionStorage.getItem('username'),
-                sender_headimg: $scope.user.headimgurl
-            };
-            
-            $rootScope.socket.emit('UserMsg', msg);
+            $rootScope.LoadingAnimateCtrl = true;
+            if ($scope.contact_msg) {
+                var msg = {
+                    msg_type: 'User',
+                    msg: $scope.contact_msg,
+                    receiver: $stateParams.userId,
+                    receiver_name: $stateParams.username,
+                    sender: sessionStorage.getItem('uid'),
+                    sender_name: sessionStorage.getItem('username'),
+                    sender_headimg: $scope.user.headimgurl
+                };
+                $rootScope.socket.emit('UserMsg', msg);
+            } else {
+                return;
+            }
+
         };
     }
 ]);
@@ -1001,59 +1089,7 @@ app.controller('WishCtrl', ['$scope', '$rootScope', '$state', '$stateParams', 'W
     }
 ]);
 
-app.controller('BlessCtrl', ['$scope', '$window', '$state', 'BlessService', '$stateParams',
-    function($scope, $window, $state, BlessService, $stateParams) {
-        var uid = sessionStorage.getItem('uid');
-        $scope.hadpraise = false;
-        $scope.goBack = function() {
-            $window.history.back();
-        };
-        var bless_data = {
-            blessId: $stateParams.blessId
-        };
-        BlessService.getBless(bless_data)
-            .success(function(data, status) {
-                if (status === 200) {
-                    $scope.bless = data.bless;
-                    if ($scope.bless.praiser.indexOf(uid) === -1) {
-                        $scope.bless.hadpraise = false;
-                    } else {
-                        $scope.bless.hadpraise = true;
-                    }
-                }
-            });
-        $scope.deleteBless = function(bless) {
-            if (confirm('确定要删除祝福？')) {
-                BlessService.deleteBless(bless)
-                    .success(function(data, status) {
-                        if (status === 200) {
-                            alert('删除成功');
-                            $state.go('userinfo', {
-                                userId: uid
-                            }, {
-                                reload: true
-                            });
-                        }
-                    });
-            }
-        };
-        $scope.praiseIt = function(bless) {
-            var praiseData = {
-                blessId: bless._id,
-                userId: uid
-            };
-            BlessService.makePraise(praiseData)
-                .success(function(data, status) {
-                    if (status === 200) {
-                        bless.praise_num++;
-                        bless.hadpraise = true;
-                    } else {
-                        alert(data);
-                    }
-                });
-        };
-    }
-]);
+
 
 app.controller('MysteryLoverCtrl', ['$scope', '$window', '$rootScope', 'UserService', '$stateParams', '$state',
     function($scope, $window, $rootScope, UserService, $stateParams, $state) {
@@ -1076,7 +1112,10 @@ app.controller('MysteryLoverCtrl', ['$scope', '$window', '$rootScope', 'UserServ
             useremail: $scope.user.email
         };
         $scope.searchMystery = function() {
-
+            if($scope.match_data.hisname == $scope.match_data.myname) {
+                alert('不要自恋！');
+                return;
+            }
             UserService.matchLover($scope.match_data)
                 .success(function(data, status) {
                     if (status === 200) {
@@ -1096,7 +1135,7 @@ app.controller('MysteryLoverCtrl', ['$scope', '$window', '$rootScope', 'UserServ
         };
         $scope.rewriteMystery = function() {
 
-            UserService.matchLover($scope.rewrite_data)
+            UserService.rewriteLover($scope.rewrite_data)
                 .success(function(data, status) {
                     if (status === 200) {
                         // $scope.user.mystery_lover = $scope.match_data.hisname;

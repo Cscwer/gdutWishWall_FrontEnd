@@ -20,7 +20,7 @@
 								<span>{{wish.username}}</span>
 							</div>
 
-							<span class="pick_this" ng-click="deleteWish(wish)">
+							<span class="pick_this" ng-click="deleteWish(wish)" ng-if="wish.ispicked===0">
 								<img src="http://7xnxuw.com1.z0.glb.clouddn.com/3_delete_1.png">
 							</span>
 							<span class="pick_this edit-wish" ng-if="wish.ispicked === 0 && user.sex === 2" ui-sref="user.writewish({type:2, wishId:wish._id})">

@@ -6,7 +6,7 @@
                 暗恋匹配
                 <a href="javascript:void(0)" class="btn btn-navbar wishwall-icon-a" ng-click="goBack()">
                     <img src="http://7xnxuw.com1.z0.glb.clouddn.com/3_return.png" alt=""></a>
-                    <span class="rewrite" ui-sref="user.mysterylover({rewrite: 1})" ng-if="user.match_success !== 1">编辑</span>
+                    <span class="rewrite" ui-sref="user.mysterylover({rewrite: 1})" ng-if="user.mystery_lover">编辑</span>
             </div>
         </div>
         <div class="row">
@@ -75,7 +75,7 @@
                             <p class="match-state">静待花开</p>
                         </div>
 
-                        <button type="button" class="btn" ng-click="rewriteMystery()" ng-disabled="!user.real_name||!user.mystery_lover" ng-show="rewrite==='1'">保存修改</button>
+                        <button type="button" class="btn" ng-click="rewriteMystery()" ng-disabled="!rewrite_data.myname" ng-show="rewrite==='1'">保存修改</button>
                     </div>
                 </div>
 

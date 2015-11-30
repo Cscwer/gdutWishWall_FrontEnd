@@ -16,6 +16,7 @@
 					<img  ng-src="{{localIds[0]}}" ng-show="localIds.length" class="wishimg">
 					<img ng-src="{{wishimg}}" ng-if="wishimg" ng-hide="localIds.length" alt="" class="wishimg">
 					</span>
+					<a href="javascript:void(0)" class="cancel-img" ng-click="cancelImage()">取消图片</a>
 				<span class="wishwall-word-num" ng-bind="140-wish.length"></span>
 			</div>
 			<label class="wishwall-type">愿望类型</label>
